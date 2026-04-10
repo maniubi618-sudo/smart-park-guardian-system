@@ -4,7 +4,7 @@ chcp 65001 >nul
 :: 一键启动前端服务脚本
 :: 使用方法: 双击运行 start-frontend.bat
 
-set "PROJECT_ROOT=C:\Users\cry\Desktop\SmartSafetyGuardSystemForPark-main"
+set "PROJECT_ROOT=C:\Users\cry\Desktop\smart-park-guardian-system"
 set "FRONTEND_PATH=%PROJECT_ROOT%\park-safety-frontend"
 
 echo ========================================

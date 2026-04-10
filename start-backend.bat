@@ -4,7 +4,7 @@ chcp 65001 >nul
 :: 一键启动后端服务脚本
 :: 使用方法: 双击运行 start-backend.bat
 
-set "PROJECT_ROOT=C:\Users\cry\Desktop\SmartSafetyGuardSystemForPark-main"
+set "PROJECT_ROOT=C:\Users\cry\Desktop\smart-park-guardian-system"
 set "VENV_PATH=%PROJECT_ROOT%\venv"
 
 echo ========================================
