@@ -1,0 +1,1741 @@
+2026-04-04 19:03:56,465 - fastapi_app - INFO - WebSocket连接已建立，当前连接数: 1
+2026-04-04 19:05:02,473 - fastapi_app - INFO - WebSocket连接已断开，当前连接数: 0
+2026-04-04 19:05:08,403 - fastapi_app - INFO - WebSocket连接已建立，当前连接数: 1
+2026-04-04 19:05:11,440 - fastapi_app - INFO - WebSocket连接已断开，当前连接数: 0
+2026-04-04 19:05:11,845 - fastapi_app - INFO - WebSocket连接已建立，当前连接数: 1
+2026-04-04 19:11:03,301 - fastapi_app - INFO - WebSocket连接已断开，当前连接数: 0
+2026-04-04 19:11:03,782 - fastapi_app - INFO - WebSocket连接已建立，当前连接数: 1
+2026-04-04 19:15:00,214 - fastapi_app - INFO - WebSocket连接已断开，当前连接数: 0
+2026-04-04 19:15:06,041 - fastapi_app - INFO - WebSocket连接已建立，当前连接数: 1
+2026-04-04 19:15:08,048 - fastapi_app - INFO - WebSocket连接已断开，当前连接数: 0
+2026-04-04 19:15:08,422 - fastapi_app - INFO - WebSocket连接已建立，当前连接数: 1
+2026-04-04 19:15:15,249 - fastapi_app - INFO - WebSocket连接已断开，当前连接数: 0
+2026-04-04 20:12:47,053 - fastapi_app - INFO - WebSocket连接已建立，当前连接数: 1
+2026-04-04 20:13:32,875 - fastapi_app - INFO - WebSocket连接已断开，当前连接数: 0
+2026-04-04 20:13:33,254 - fastapi_app - INFO - WebSocket连接已建立，当前连接数: 1
+2026-04-04 20:17:56,332 - fastapi_app - INFO - WebSocket连接已断开，当前连接数: 0
+2026-04-04 20:17:56,703 - fastapi_app - INFO - WebSocket连接已建立，当前连接数: 1
+2026-04-04 20:22:02,960 - fastapi_app - INFO - WebSocket连接已断开，当前连接数: 0
+2026-04-04 20:22:03,367 - fastapi_app - INFO - WebSocket连接已建立，当前连接数: 1
+2026-04-04 20:22:19,369 - fastapi_app - INFO - WebSocket连接已断开，当前连接数: 0
+2026-04-04 20:22:19,836 - fastapi_app - INFO - WebSocket连接已建立，当前连接数: 1
+2026-04-04 20:23:14,113 - fastapi_app - INFO - WebSocket连接已断开，当前连接数: 0
+2026-04-04 20:23:16,005 - fastapi_app - INFO - WebSocket连接已建立，当前连接数: 1
+2026-04-04 20:25:26,135 - fastapi_app - INFO - WebSocket连接已断开，当前连接数: 0
+2026-04-04 20:25:26,513 - fastapi_app - INFO - WebSocket连接已建立，当前连接数: 1
+2026-04-04 20:26:33,614 - fastapi_app - INFO - WebSocket连接已断开，当前连接数: 0
+2026-04-04 20:26:33,970 - fastapi_app - INFO - WebSocket连接已建立，当前连接数: 1
+2026-04-04 20:26:49,232 - fastapi_app - INFO - WebSocket连接已断开，当前连接数: 0
+2026-04-04 20:27:43,378 - fastapi_app - INFO - WebSocket连接已建立，当前连接数: 1
+2026-04-04 20:27:47,288 - fastapi_app - INFO - WebSocket连接已断开，当前连接数: 0
+2026-04-04 20:27:47,634 - fastapi_app - INFO - WebSocket连接已建立，当前连接数: 1
+2026-04-04 20:30:56,688 - fastapi_app - INFO - WebSocket连接已断开，当前连接数: 0
+2026-04-04 20:30:57,057 - fastapi_app - INFO - WebSocket连接已建立，当前连接数: 1
+2026-04-04 20:31:02,158 - fastapi_app - INFO - WebSocket连接已断开，当前连接数: 0
+2026-04-04 20:31:07,488 - fastapi_app - INFO - WebSocket连接已建立，当前连接数: 1
+2026-04-04 20:31:08,811 - fastapi_app - INFO - WebSocket连接已断开，当前连接数: 0
+2026-04-04 20:31:09,158 - fastapi_app - INFO - WebSocket连接已建立，当前连接数: 1
+2026-04-04 20:32:09,688 - fastapi_app - INFO - WebSocket连接已断开，当前连接数: 0
+2026-04-04 20:32:10,045 - fastapi_app - INFO - WebSocket连接已建立，当前连接数: 1
+2026-04-04 20:32:20,642 - fastapi_app - INFO - WebSocket连接已断开，当前连接数: 0
+2026-04-04 20:32:25,967 - fastapi_app - INFO - WebSocket连接已建立，当前连接数: 1
+2026-04-04 20:32:27,945 - fastapi_app - INFO - WebSocket连接已断开，当前连接数: 0
+2026-04-04 20:32:28,316 - fastapi_app - INFO - WebSocket连接已建立，当前连接数: 1
+2026-04-04 20:32:29,035 - fastapi_app - INFO - WebSocket连接已断开，当前连接数: 0
+2026-04-04 20:32:29,396 - fastapi_app - INFO - WebSocket连接已建立，当前连接数: 1
+2026-04-04 20:32:30,012 - fastapi_app - INFO - WebSocket连接已断开，当前连接数: 0
+2026-04-04 20:32:30,372 - fastapi_app - INFO - WebSocket连接已建立，当前连接数: 1
+2026-04-04 20:32:39,533 - fastapi_app - INFO - WebSocket连接已断开，当前连接数: 0
+2026-04-04 20:32:39,879 - fastapi_app - INFO - WebSocket连接已建立，当前连接数: 1
+2026-04-04 20:34:06,476 - fastapi_app - INFO - WebSocket连接已断开，当前连接数: 0
+2026-04-04 20:34:06,832 - fastapi_app - INFO - WebSocket连接已建立，当前连接数: 1
+2026-04-04 20:38:50,229 - fastapi_app - INFO - WebSocket连接已断开，当前连接数: 0
+2026-04-04 20:38:50,637 - fastapi_app - INFO - WebSocket连接已建立，当前连接数: 1
+2026-04-04 20:41:03,670 - fastapi_app - INFO - WebSocket连接已断开，当前连接数: 0
+2026-04-04 20:41:04,048 - fastapi_app - INFO - WebSocket连接已建立，当前连接数: 1
+2026-04-04 20:42:03,642 - fastapi_app - INFO - WebSocket连接已断开，当前连接数: 0
+2026-04-04 20:42:04,014 - fastapi_app - INFO - WebSocket连接已建立，当前连接数: 1
+2026-04-04 20:44:27,114 - fastapi_app - INFO - WebSocket连接已断开，当前连接数: 0
+2026-04-04 20:44:27,548 - fastapi_app - INFO - WebSocket连接已建立，当前连接数: 1
+2026-04-04 20:45:35,474 - fastapi_app - INFO - WebSocket连接已断开，当前连接数: 0
+2026-04-04 20:45:35,837 - fastapi_app - INFO - WebSocket连接已建立，当前连接数: 1
+2026-04-04 20:47:12,461 - fastapi_app - INFO - WebSocket连接已断开，当前连接数: 0
+2026-04-04 20:47:12,830 - fastapi_app - INFO - WebSocket连接已建立，当前连接数: 1
+2026-04-04 20:48:49,570 - fastapi_app - INFO - WebSocket连接已断开，当前连接数: 0
+2026-04-04 20:48:49,950 - fastapi_app - INFO - WebSocket连接已建立，当前连接数: 1
+2026-04-04 20:51:26,976 - fastapi_app - INFO - WebSocket连接已断开，当前连接数: 0
+2026-04-04 20:51:27,348 - fastapi_app - INFO - WebSocket连接已建立，当前连接数: 1
+2026-04-04 20:56:41,513 - fastapi_app - INFO - WebSocket连接已断开，当前连接数: 0
+2026-04-04 20:56:41,941 - fastapi_app - INFO - WebSocket连接已建立，当前连接数: 1
+2026-04-04 20:58:32,976 - fastapi_app - INFO - WebSocket连接已建立，当前连接数: 2
+2026-04-04 20:59:24,446 - fastapi_app - INFO - WebSocket连接已断开，当前连接数: 1
+2026-04-04 20:59:24,883 - fastapi_app - INFO - WebSocket连接已建立，当前连接数: 2
+2026-04-04 21:00:37,601 - fastapi_app - INFO - WebSocket连接已断开，当前连接数: 1
+2026-04-04 21:00:37,601 - fastapi_app - INFO - WebSocket连接已断开，当前连接数: 0
+2026-04-04 21:00:42,933 - fastapi_app - INFO - WebSocket连接已建立，当前连接数: 1
+2026-04-04 21:00:43,865 - fastapi_app - INFO - WebSocket连接已断开，当前连接数: 0
+2026-04-04 21:00:43,879 - fastapi_app - INFO - WebSocket连接已建立，当前连接数: 1
+2026-04-04 21:00:44,317 - fastapi_app - INFO - WebSocket连接已建立，当前连接数: 2
+2026-04-04 21:00:52,089 - fastapi_app - INFO - WebSocket连接已断开，当前连接数: 1
+2026-04-04 21:00:55,186 - fastapi_app - INFO - WebSocket连接已断开，当前连接数: 0
+2026-04-04 21:00:55,596 - fastapi_app - INFO - WebSocket连接已建立，当前连接数: 1
+2026-04-04 21:02:38,448 - fastapi_app - INFO - WebSocket连接已建立，当前连接数: 2
+2026-04-04 21:03:16,700 - fastapi_app - INFO - WebSocket连接已断开，当前连接数: 1
+2026-04-04 21:03:16,703 - fastapi_app - INFO - WebSocket连接已断开，当前连接数: 0
+2026-04-04 21:03:22,030 - fastapi_app - INFO - WebSocket连接已建立，当前连接数: 1
+2026-04-04 21:03:22,034 - fastapi_app - INFO - WebSocket连接已建立，当前连接数: 2
+2026-04-04 21:03:23,566 - fastapi_app - INFO - WebSocket连接已断开，当前连接数: 1
+2026-04-04 21:03:23,929 - fastapi_app - INFO - WebSocket连接已建立，当前连接数: 2
+2026-04-04 21:04:13,828 - fastapi_app - INFO - WebSocket连接已断开，当前连接数: 1
+2026-04-04 21:04:14,236 - fastapi_app - INFO - WebSocket连接已建立，当前连接数: 2
+2026-04-04 21:04:21,976 - fastapi_app - INFO - WebSocket连接已断开，当前连接数: 1
+2026-04-04 21:04:22,412 - fastapi_app - INFO - WebSocket连接已建立，当前连接数: 2
+2026-04-04 21:04:31,531 - fastapi_app - INFO - WebSocket连接已断开，当前连接数: 1
+2026-04-04 21:04:31,531 - fastapi_app - INFO - WebSocket连接已断开，当前连接数: 0
+2026-04-04 21:04:36,860 - fastapi_app - INFO - WebSocket连接已建立，当前连接数: 1
+2026-04-04 21:04:36,876 - fastapi_app - INFO - WebSocket连接已建立，当前连接数: 2
+2026-04-04 21:04:37,833 - fastapi_app - INFO - WebSocket连接已断开，当前连接数: 1
+2026-04-04 21:04:38,287 - fastapi_app - INFO - WebSocket连接已建立，当前连接数: 2
+2026-04-04 21:06:02,145 - fastapi_app - INFO - WebSocket连接已断开，当前连接数: 1
+2026-04-04 21:06:02,581 - fastapi_app - INFO - WebSocket连接已建立，当前连接数: 2
+2026-04-04 21:06:12,020 - fastapi_app - INFO - WebSocket连接已断开，当前连接数: 1
+2026-04-04 21:06:12,421 - fastapi_app - INFO - WebSocket连接已建立，当前连接数: 2
+2026-04-04 21:06:16,107 - fastapi_app - INFO - WebSocket连接已断开，当前连接数: 1
+2026-04-04 21:06:16,107 - fastapi_app - INFO - WebSocket连接已断开，当前连接数: 0
+2026-04-04 21:06:22,387 - fastapi_app - INFO - WebSocket连接已建立，当前连接数: 1
+2026-04-04 21:06:22,432 - fastapi_app - INFO - WebSocket连接已建立，当前连接数: 2
+2026-04-04 21:06:25,097 - fastapi_app - INFO - WebSocket连接已断开，当前连接数: 1
+2026-04-04 21:06:25,540 - fastapi_app - INFO - WebSocket连接已建立，当前连接数: 2
+2026-04-04 21:08:20,707 - fastapi_app - INFO - WebSocket连接已断开，当前连接数: 1
+2026-04-04 21:08:21,181 - fastapi_app - INFO - WebSocket连接已建立，当前连接数: 2
+2026-04-04 21:08:29,993 - fastapi_app - INFO - WebSocket连接已断开，当前连接数: 1
+2026-04-04 21:08:29,993 - fastapi_app - INFO - WebSocket连接已断开，当前连接数: 0
+2026-04-04 21:08:35,312 - fastapi_app - INFO - WebSocket连接已建立，当前连接数: 1
+2026-04-04 21:08:35,891 - fastapi_app - INFO - WebSocket连接已建立，当前连接数: 2
+2026-04-04 21:08:36,158 - fastapi_app - INFO - WebSocket连接已断开，当前连接数: 1
+2026-04-04 21:08:36,609 - fastapi_app - INFO - WebSocket连接已建立，当前连接数: 2
+2026-04-04 21:09:06,022 - fastapi_app - INFO - WebSocket连接已断开，当前连接数: 1
+2026-04-04 21:09:06,439 - fastapi_app - INFO - WebSocket连接已建立，当前连接数: 2
+2026-04-04 21:12:56,585 - fastapi_app - INFO - WebSocket连接已断开，当前连接数: 1
+2026-04-04 21:13:04,579 - fastapi_app - INFO - WebSocket连接已断开，当前连接数: 0
+2026-04-04 21:13:05,061 - fastapi_app - INFO - WebSocket连接已建立，当前连接数: 1
+2026-04-04 21:14:27,396 - fastapi_app - INFO - WebSocket连接已断开，当前连接数: 0
+2026-04-04 21:14:33,376 - fastapi_app - INFO - WebSocket连接已建立，当前连接数: 1
+2026-04-04 21:15:48,726 - fastapi_app - INFO - WebSocket连接已断开，当前连接数: 0
+2026-04-04 21:15:54,885 - fastapi_app - INFO - WebSocket连接已建立，当前连接数: 1
+2026-04-04 21:16:39,956 - fastapi_app - INFO - WebSocket连接已断开，当前连接数: 0
+2026-04-04 21:16:45,879 - fastapi_app - INFO - WebSocket连接已建立，当前连接数: 1
+2026-04-04 21:16:47,993 - fastapi_app - INFO - WebSocket连接已断开，当前连接数: 0
+2026-04-04 21:16:48,444 - fastapi_app - INFO - WebSocket连接已建立，当前连接数: 1
+2026-04-04 21:16:57,131 - fastapi_app - INFO - WebSocket连接已断开，当前连接数: 0
+2026-04-04 21:40:52,550 - fastapi_app - INFO - WebSocket连接已建立，当前连接数: 1
+2026-04-04 21:42:51,754 - fastapi_app - INFO - WebSocket连接已断开，当前连接数: 0
+2026-04-04 21:42:52,238 - fastapi_app - INFO - WebSocket连接已建立，当前连接数: 1
+2026-04-04 21:44:47,104 - fastapi_app - INFO - WebSocket连接已断开，当前连接数: 0
+2026-04-04 21:44:47,498 - fastapi_app - INFO - WebSocket连接已建立，当前连接数: 1
+2026-04-04 21:46:28,313 - fastapi_app - INFO - WebSocket连接已断开，当前连接数: 0
+2026-04-04 21:46:28,789 - fastapi_app - INFO - WebSocket连接已建立，当前连接数: 1
+2026-04-04 21:46:48,057 - fastapi_app - INFO - WebSocket连接已断开，当前连接数: 0
+2026-04-04 21:47:17,397 - fastapi_app - INFO - WebSocket连接已建立，当前连接数: 1
+2026-04-04 21:47:21,789 - fastapi_app - INFO - WebSocket连接已断开，当前连接数: 0
+2026-04-04 21:47:22,170 - fastapi_app - INFO - WebSocket连接已建立，当前连接数: 1
+2026-04-04 21:48:40,088 - fastapi_app - INFO - WebSocket连接已断开，当前连接数: 0
+2026-04-04 21:48:47,050 - fastapi_app - INFO - WebSocket连接已建立，当前连接数: 1
+2026-04-04 21:49:47,732 - fastapi_app - INFO - WebSocket连接已断开，当前连接数: 0
+2026-04-04 21:49:48,128 - fastapi_app - INFO - WebSocket连接已建立，当前连接数: 1
+2026-04-04 21:52:40,710 - fastapi_app - INFO - WebSocket连接已断开，当前连接数: 0
+2026-04-04 21:52:41,190 - fastapi_app - INFO - WebSocket连接已建立，当前连接数: 1
+2026-04-04 21:52:50,665 - fastapi_app - INFO - WebSocket连接已断开，当前连接数: 0
+2026-04-04 21:52:51,053 - fastapi_app - INFO - WebSocket连接已建立，当前连接数: 1
+2026-04-04 21:54:17,860 - fastapi_app - INFO - WebSocket连接已断开，当前连接数: 0
+2026-04-04 21:54:18,255 - fastapi_app - INFO - WebSocket连接已建立，当前连接数: 1
+2026-04-04 21:59:33,606 - fastapi_app - INFO - WebSocket连接已断开，当前连接数: 0
+2026-04-04 22:20:39,883 - fastapi_app - INFO - WebSocket连接已建立，当前连接数: 1
+2026-04-04 22:20:52,231 - fastapi_app - INFO - WebSocket连接已断开，当前连接数: 0
+2026-04-04 22:20:53,125 - fastapi_app - INFO - WebSocket连接已建立，当前连接数: 1
+2026-04-04 22:21:00,139 - fastapi_app - INFO - WebSocket连接已断开，当前连接数: 0
+2026-04-04 22:21:00,529 - fastapi_app - INFO - WebSocket连接已建立，当前连接数: 1
+2026-04-04 22:21:05,933 - fastapi_app - INFO - WebSocket连接已断开，当前连接数: 0
+2026-04-05 22:11:33,235 - fastapi_app - INFO - WebSocket连接已建立，当前连接数: 1
+2026-04-05 22:12:11,197 - fastapi_app - INFO - WebSocket连接已断开，当前连接数: 0
+2026-04-05 22:12:11,695 - fastapi_app - INFO - WebSocket连接已建立，当前连接数: 1
+2026-04-05 22:14:51,196 - fastapi_app - INFO - WebSocket连接已断开，当前连接数: 0
+2026-04-05 22:14:51,565 - fastapi_app - INFO - WebSocket连接已建立，当前连接数: 1
+2026-04-05 22:21:24,361 - fastapi_app - INFO - WebSocket连接已建立，当前连接数: 1
+2026-04-05 22:21:24,889 - fastapi_app - INFO - WebSocket连接已建立，当前连接数: 2
+2026-04-05 22:21:25,554 - fastapi_app - INFO - WebSocket连接已断开，当前连接数: 1
+2026-04-05 22:23:09,342 - fastapi_app - INFO - WebSocket连接已断开，当前连接数: 0
+2026-04-05 22:23:09,737 - fastapi_app - INFO - WebSocket连接已建立，当前连接数: 1
+2026-04-05 22:24:56,514 - fastapi_app - INFO - WebSocket连接已断开，当前连接数: 0
+2026-04-05 22:24:56,905 - fastapi_app - INFO - WebSocket连接已建立，当前连接数: 1
+2026-04-05 22:29:31,722 - fastapi_app - INFO - WebSocket连接已断开，当前连接数: 0
+2026-04-05 22:29:32,195 - fastapi_app - INFO - WebSocket连接已建立，当前连接数: 1
+2026-04-05 22:29:42,599 - fastapi_app - INFO - WebSocket连接已断开，当前连接数: 0
+2026-04-05 22:29:42,991 - fastapi_app - INFO - WebSocket连接已建立，当前连接数: 1
+2026-04-05 22:29:54,705 - fastapi_app - INFO - WebSocket连接已断开，当前连接数: 0
+2026-04-05 22:29:55,103 - fastapi_app - INFO - WebSocket连接已建立，当前连接数: 1
+2026-04-05 22:30:01,533 - fastapi_app - INFO - WebSocket连接已断开，当前连接数: 0
+2026-04-05 22:30:01,935 - fastapi_app - INFO - WebSocket连接已建立，当前连接数: 1
+2026-04-05 22:32:51,174 - fastapi_app - INFO - WebSocket连接已断开，当前连接数: 0
+2026-04-05 22:32:51,577 - fastapi_app - INFO - WebSocket连接已建立，当前连接数: 1
+2026-04-05 22:33:02,422 - fastapi_app - INFO - WebSocket连接已断开，当前连接数: 0
+2026-04-05 22:33:02,815 - fastapi_app - INFO - WebSocket连接已建立，当前连接数: 1
+2026-04-05 22:34:01,983 - fastapi_app - INFO - WebSocket连接已断开，当前连接数: 0
+2026-04-05 22:34:02,387 - fastapi_app - INFO - WebSocket连接已建立，当前连接数: 1
+2026-04-05 22:34:31,338 - fastapi_app - INFO - WebSocket连接已断开，当前连接数: 0
+2026-04-05 22:34:31,746 - fastapi_app - INFO - WebSocket连接已建立，当前连接数: 1
+2026-04-05 22:35:20,497 - fastapi_app - INFO - WebSocket连接已断开，当前连接数: 0
+2026-04-05 22:35:20,902 - fastapi_app - INFO - WebSocket连接已建立，当前连接数: 1
+2026-04-05 22:36:13,263 - fastapi_app - INFO - WebSocket连接已断开，当前连接数: 0
+2026-04-05 22:36:13,644 - fastapi_app - INFO - WebSocket连接已建立，当前连接数: 1
+2026-04-05 22:36:18,665 - fastapi_app - INFO - WebSocket连接已断开，当前连接数: 0
+2026-04-05 22:36:19,064 - fastapi_app - INFO - WebSocket连接已建立，当前连接数: 1
+2026-04-05 22:36:20,753 - fastapi_app - INFO - WebSocket连接已断开，当前连接数: 0
+2026-04-05 22:36:21,160 - fastapi_app - INFO - WebSocket连接已建立，当前连接数: 1
+2026-04-05 22:36:31,862 - fastapi_app - INFO - WebSocket连接已断开，当前连接数: 0
+2026-04-05 22:36:32,264 - fastapi_app - INFO - WebSocket连接已建立，当前连接数: 1
+2026-04-05 22:36:50,710 - fastapi_app - INFO - WebSocket连接已断开，当前连接数: 0
+2026-04-05 22:37:11,889 - fastapi_app - INFO - WebSocket连接已建立，当前连接数: 1
+2026-04-05 22:37:15,544 - fastapi_app - INFO - WebSocket连接已断开，当前连接数: 0
+2026-04-05 22:37:15,948 - fastapi_app - INFO - WebSocket连接已建立，当前连接数: 1
+2026-04-05 22:39:01,127 - fastapi_app - INFO - WebSocket连接已断开，当前连接数: 0
+2026-04-05 22:39:23,687 - fastapi_app - INFO - WebSocket连接已建立，当前连接数: 1
+2026-04-05 22:41:12,157 - fastapi_app - INFO - WebSocket连接已断开，当前连接数: 0
+2026-04-05 22:41:12,535 - fastapi_app - INFO - WebSocket连接已建立，当前连接数: 1
+2026-04-05 22:46:32,770 - fastapi_app - INFO - WebSocket连接已断开，当前连接数: 0
+2026-04-05 22:46:33,238 - fastapi_app - INFO - WebSocket连接已建立，当前连接数: 1
+2026-04-05 22:48:05,494 - fastapi_app - INFO - WebSocket连接已断开，当前连接数: 0
+2026-04-05 22:48:18,748 - fastapi_app - INFO - WebSocket连接已建立，当前连接数: 1
+2026-04-05 22:48:20,010 - fastapi_app - INFO - WebSocket连接已断开，当前连接数: 0
+2026-04-05 22:48:20,392 - fastapi_app - INFO - WebSocket连接已建立，当前连接数: 1
+2026-04-05 22:49:58,192 - fastapi_app - INFO - WebSocket连接已断开，当前连接数: 0
+2026-04-05 22:49:58,586 - fastapi_app - INFO - WebSocket连接已建立，当前连接数: 1
+2026-04-05 22:50:54,825 - fastapi_app - INFO - WebSocket连接已断开，当前连接数: 0
+2026-04-05 22:51:00,876 - fastapi_app - INFO - WebSocket连接已建立，当前连接数: 1
+2026-04-05 22:51:03,614 - fastapi_app - INFO - WebSocket连接已断开，当前连接数: 0
+2026-04-05 22:51:04,024 - fastapi_app - INFO - WebSocket连接已建立，当前连接数: 1
+2026-04-05 22:56:07,972 - fastapi_app - INFO - WebSocket连接已断开，当前连接数: 0
+2026-04-05 22:56:08,387 - fastapi_app - INFO - WebSocket连接已建立，当前连接数: 1
+2026-04-05 22:56:33,500 - fastapi_app - INFO - WebSocket连接已断开，当前连接数: 0
+2026-04-05 23:11:55,715 - fastapi_app - INFO - WebSocket连接已建立，当前连接数: 1
+2026-04-05 23:14:34,670 - fastapi_app - INFO - WebSocket连接已断开，当前连接数: 0
+2026-04-05 23:14:35,043 - fastapi_app - INFO - WebSocket连接已建立，当前连接数: 1
+2026-04-05 23:16:00,158 - fastapi_app - INFO - WebSocket连接已断开，当前连接数: 0
+2026-04-05 23:16:00,529 - fastapi_app - INFO - WebSocket连接已建立，当前连接数: 1
+2026-04-05 23:16:54,061 - fastapi_app - INFO - WebSocket连接已断开，当前连接数: 0
+2026-04-05 23:16:54,423 - fastapi_app - INFO - WebSocket连接已建立，当前连接数: 1
+2026-04-05 23:16:57,681 - fastapi_app - INFO - WebSocket连接已断开，当前连接数: 0
+2026-04-05 23:16:58,029 - fastapi_app - INFO - WebSocket连接已建立，当前连接数: 1
+2026-04-05 23:17:24,439 - fastapi_app - INFO - WebSocket连接已断开，当前连接数: 0
+2026-04-05 23:17:24,798 - fastapi_app - INFO - WebSocket连接已建立，当前连接数: 1
+2026-04-05 23:23:41,117 - fastapi_app - INFO - WebSocket连接已断开，当前连接数: 0
+2026-04-05 23:23:41,546 - fastapi_app - INFO - WebSocket连接已建立，当前连接数: 1
+2026-04-05 23:24:05,280 - fastapi_app - INFO - WebSocket连接已断开，当前连接数: 0
+2026-04-05 23:24:05,631 - fastapi_app - INFO - WebSocket连接已建立，当前连接数: 1
+2026-04-05 23:24:07,309 - fastapi_app - INFO - WebSocket连接已断开，当前连接数: 0
+2026-04-05 23:24:21,985 - fastapi_app - INFO - WebSocket连接已建立，当前连接数: 1
+2026-04-05 23:24:25,878 - fastapi_app - INFO - WebSocket连接已断开，当前连接数: 0
+2026-04-05 23:24:26,238 - fastapi_app - INFO - WebSocket连接已建立，当前连接数: 1
+2026-04-05 23:25:28,523 - fastapi_app - INFO - WebSocket连接已断开，当前连接数: 0
+2026-04-05 23:25:34,852 - fastapi_app - INFO - WebSocket连接已建立，当前连接数: 1
+2026-04-05 23:26:02,369 - fastapi_app - INFO - WebSocket连接已断开，当前连接数: 0
+2026-04-05 23:26:07,885 - fastapi_app - INFO - WebSocket连接已建立，当前连接数: 1
+2026-04-05 23:26:34,992 - fastapi_app - INFO - WebSocket连接已断开，当前连接数: 0
+2026-04-05 23:26:35,399 - fastapi_app - INFO - WebSocket连接已建立，当前连接数: 1
+2026-04-05 23:26:42,035 - fastapi_app - INFO - WebSocket连接已断开，当前连接数: 0
+2026-04-05 23:26:47,896 - fastapi_app - INFO - WebSocket连接已建立，当前连接数: 1
+2026-04-05 23:26:51,307 - fastapi_app - INFO - WebSocket连接已断开，当前连接数: 0
+2026-04-05 23:26:51,695 - fastapi_app - INFO - WebSocket连接已建立，当前连接数: 1
+2026-04-05 23:27:07,207 - fastapi_app - INFO - WebSocket连接已断开，当前连接数: 0
+2026-04-05 23:27:07,603 - fastapi_app - INFO - WebSocket连接已建立，当前连接数: 1
+2026-04-05 23:27:12,838 - fastapi_app - INFO - WebSocket连接已断开，当前连接数: 0
+2026-04-05 23:27:18,879 - fastapi_app - INFO - WebSocket连接已建立，当前连接数: 1
+2026-04-05 23:27:22,362 - fastapi_app - INFO - WebSocket连接已断开，当前连接数: 0
+2026-04-05 23:27:22,768 - fastapi_app - INFO - WebSocket连接已建立，当前连接数: 1
+2026-04-05 23:29:34,506 - fastapi_app - INFO - WebSocket连接已断开，当前连接数: 0
+2026-04-05 23:30:43,889 - fastapi_app - INFO - WebSocket连接已建立，当前连接数: 1
+2026-04-05 23:30:48,155 - fastapi_app - INFO - WebSocket连接已断开，当前连接数: 0
+2026-04-05 23:30:48,571 - fastapi_app - INFO - WebSocket连接已建立，当前连接数: 1
+2026-04-05 23:31:34,849 - fastapi_app - INFO - WebSocket连接已断开，当前连接数: 0
+2026-04-05 23:31:35,258 - fastapi_app - INFO - WebSocket连接已建立，当前连接数: 1
+2026-04-05 23:35:10,151 - fastapi_app - INFO - WebSocket连接已断开，当前连接数: 0
+2026-04-05 23:35:15,888 - fastapi_app - INFO - WebSocket连接已建立，当前连接数: 1
+2026-04-05 23:35:18,221 - fastapi_app - INFO - WebSocket连接已断开，当前连接数: 0
+2026-04-05 23:35:18,698 - fastapi_app - INFO - WebSocket连接已建立，当前连接数: 1
+2026-04-05 23:43:51,896 - fastapi_app - INFO - WebSocket连接已断开，当前连接数: 0
+2026-04-05 23:43:52,320 - fastapi_app - INFO - WebSocket连接已建立，当前连接数: 1
+2026-04-05 23:54:51,444 - fastapi_app - INFO - WebSocket连接已断开，当前连接数: 0
+2026-04-06 13:56:36,761 - fastapi_app - INFO - WebSocket连接已建立，当前连接数: 1
+2026-04-06 13:57:50,048 - fastapi_app - INFO - WebSocket连接已断开，当前连接数: 0
+2026-04-06 13:57:50,624 - fastapi_app - INFO - WebSocket连接已建立，当前连接数: 1
+2026-04-06 13:59:53,065 - fastapi_app - INFO - WebSocket连接已断开，当前连接数: 0
+2026-04-06 13:59:53,501 - fastapi_app - INFO - WebSocket连接已建立，当前连接数: 1
+2026-04-06 14:02:46,405 - fastapi_app - INFO - WebSocket连接已断开，当前连接数: 0
+2026-04-06 14:02:46,834 - fastapi_app - INFO - WebSocket连接已建立，当前连接数: 1
+2026-04-06 14:06:03,064 - fastapi_app - INFO - WebSocket连接已断开，当前连接数: 0
+2026-04-06 14:06:03,466 - fastapi_app - INFO - WebSocket连接已建立，当前连接数: 1
+2026-04-06 14:06:11,513 - fastapi_app - INFO - WebSocket连接已断开，当前连接数: 0
+2026-04-06 14:29:56,169 - fastapi_app - INFO - WebSocket连接已建立，当前连接数: 1
+2026-04-06 14:34:40,770 - fastapi_app - INFO - WebSocket连接已断开，当前连接数: 0
+2026-04-06 14:34:41,209 - fastapi_app - INFO - WebSocket连接已建立，当前连接数: 1
+2026-04-06 14:40:00,606 - fastapi_app - INFO - WebSocket连接已断开，当前连接数: 0
+2026-04-06 14:40:01,039 - fastapi_app - INFO - WebSocket连接已建立，当前连接数: 1
+2026-04-06 14:40:38,619 - fastapi_app - INFO - WebSocket连接已断开，当前连接数: 0
+2026-04-06 14:40:40,999 - fastapi_app - INFO - WebSocket连接已建立，当前连接数: 1
+2026-04-06 14:40:41,655 - fastapi_app - INFO - WebSocket连接已断开，当前连接数: 0
+2026-04-06 14:40:42,056 - fastapi_app - INFO - WebSocket连接已建立，当前连接数: 1
+2026-04-06 14:44:14,607 - fastapi_app - INFO - WebSocket连接已断开，当前连接数: 0
+2026-04-06 15:49:02,192 - fastapi_app - INFO - WebSocket连接已建立，当前连接数: 1
+2026-04-06 15:50:16,224 - fastapi_app - INFO - WebSocket连接已断开，当前连接数: 0
+2026-04-06 15:50:16,575 - fastapi_app - INFO - WebSocket连接已建立，当前连接数: 1
+2026-04-06 15:50:28,233 - fastapi_app - INFO - WebSocket连接已断开，当前连接数: 0
+2026-04-06 15:50:28,582 - fastapi_app - INFO - WebSocket连接已建立，当前连接数: 1
+2026-04-06 15:50:33,170 - fastapi_app - INFO - WebSocket连接已断开，当前连接数: 0
+2026-04-06 15:53:14,910 - fastapi_app - INFO - WebSocket连接已建立，当前连接数: 1
+2026-04-06 15:54:05,624 - fastapi_app - INFO - WebSocket连接已断开，当前连接数: 0
+2026-04-06 16:15:09,228 - fastapi_app - INFO - WebSocket连接已建立，当前连接数: 1
+2026-04-06 16:16:05,972 - fastapi_app - INFO - WebSocket连接已断开，当前连接数: 0
+2026-04-06 16:16:06,347 - fastapi_app - INFO - WebSocket连接已建立，当前连接数: 1
+2026-04-06 16:16:10,520 - fastapi_app - INFO - WebSocket连接已断开，当前连接数: 0
+2026-04-06 16:16:10,915 - fastapi_app - INFO - WebSocket连接已建立，当前连接数: 1
+2026-04-06 16:16:48,470 - fastapi_app - INFO - WebSocket连接已断开，当前连接数: 0
+2026-04-06 16:16:48,828 - fastapi_app - INFO - WebSocket连接已建立，当前连接数: 1
+2026-04-06 16:17:02,523 - fastapi_app - INFO - WebSocket连接已断开，当前连接数: 0
+2026-04-06 16:17:15,892 - fastapi_app - INFO - WebSocket连接已建立，当前连接数: 1
+2026-04-06 16:17:21,725 - fastapi_app - INFO - WebSocket连接已建立，当前连接数: 2
+2026-04-06 16:17:41,420 - fastapi_app - INFO - WebSocket连接已断开，当前连接数: 1
+2026-04-06 16:17:41,797 - fastapi_app - INFO - WebSocket连接已建立，当前连接数: 2
+2026-04-06 16:17:43,902 - fastapi_app - INFO - WebSocket连接已断开，当前连接数: 1
+2026-04-06 16:22:57,320 - fastapi_app - INFO - WebSocket连接已断开，当前连接数: 0
+2026-04-06 16:22:57,707 - fastapi_app - INFO - WebSocket连接已建立，当前连接数: 1
+2026-04-06 16:28:35,687 - fastapi_app - INFO - WebSocket连接已断开，当前连接数: 0
+2026-04-06 16:28:36,116 - fastapi_app - INFO - WebSocket连接已建立，当前连接数: 1
+2026-04-06 16:30:36,120 - fastapi_app - INFO - WebSocket连接已断开，当前连接数: 0
+2026-04-06 16:30:36,499 - fastapi_app - INFO - WebSocket连接已建立，当前连接数: 1
+2026-04-06 16:31:32,294 - fastapi_app - INFO - WebSocket连接已断开，当前连接数: 0
+2026-04-06 16:31:32,671 - fastapi_app - INFO - WebSocket连接已建立，当前连接数: 1
+2026-04-06 16:32:32,485 - fastapi_app - INFO - WebSocket连接已断开，当前连接数: 0
+2026-04-06 16:32:32,861 - fastapi_app - INFO - WebSocket连接已建立，当前连接数: 1
+2026-04-06 16:33:00,364 - fastapi_app - INFO - WebSocket连接已断开，当前连接数: 0
+2026-04-06 16:33:00,736 - fastapi_app - INFO - WebSocket连接已建立，当前连接数: 1
+2026-04-06 16:36:11,009 - fastapi_app - INFO - WebSocket连接已断开，当前连接数: 0
+2026-04-06 16:36:11,393 - fastapi_app - INFO - WebSocket连接已建立，当前连接数: 1
+2026-04-06 16:36:23,671 - fastapi_app - INFO - WebSocket连接已断开，当前连接数: 0
+2026-04-06 20:41:23,869 - fastapi_app - INFO - WebSocket连接已建立，当前连接数: 1
+2026-04-06 20:41:44,094 - fastapi_app - INFO - WebSocket连接已断开，当前连接数: 0
+2026-04-06 20:44:54,205 - fastapi_app - INFO - WebSocket连接已建立，当前连接数: 1
+2026-04-06 20:49:37,901 - fastapi_app - INFO - WebSocket连接已断开，当前连接数: 0
+2026-04-06 20:49:38,372 - fastapi_app - INFO - WebSocket连接已建立，当前连接数: 1
+2026-04-06 20:55:26,346 - fastapi_app - INFO - WebSocket连接已断开，当前连接数: 0
+2026-04-06 20:55:26,759 - fastapi_app - INFO - WebSocket连接已建立，当前连接数: 1
+2026-04-06 20:57:03,596 - fastapi_app - INFO - WebSocket连接已断开，当前连接数: 0
+2026-04-06 20:57:03,956 - fastapi_app - INFO - WebSocket连接已建立，当前连接数: 1
+2026-04-06 20:57:59,119 - fastapi_app - INFO - WebSocket连接已断开，当前连接数: 0
+2026-04-06 20:57:59,469 - fastapi_app - INFO - WebSocket连接已建立，当前连接数: 1
+2026-04-06 21:01:56,874 - fastapi_app - INFO - WebSocket连接已断开，当前连接数: 0
+2026-04-06 21:01:57,254 - fastapi_app - INFO - WebSocket连接已建立，当前连接数: 1
+2026-04-06 21:08:32,688 - fastapi_app - INFO - WebSocket连接已断开，当前连接数: 0
+2026-04-06 21:08:33,056 - fastapi_app - INFO - WebSocket连接已建立，当前连接数: 1
+2026-04-06 21:10:37,385 - fastapi_app - INFO - WebSocket连接已断开，当前连接数: 0
+2026-04-06 21:10:37,746 - fastapi_app - INFO - WebSocket连接已建立，当前连接数: 1
+2026-04-06 21:13:00,155 - fastapi_app - INFO - WebSocket连接已断开，当前连接数: 0
+2026-04-06 21:13:00,506 - fastapi_app - INFO - WebSocket连接已建立，当前连接数: 1
+2026-04-06 21:16:47,253 - fastapi_app - INFO - WebSocket连接已断开，当前连接数: 0
+2026-04-06 21:16:47,607 - fastapi_app - INFO - WebSocket连接已建立，当前连接数: 1
+2026-04-06 21:16:57,643 - fastapi_app - INFO - WebSocket连接已断开，当前连接数: 0
+2026-04-06 21:16:58,001 - fastapi_app - INFO - WebSocket连接已建立，当前连接数: 1
+2026-04-06 21:18:59,293 - fastapi_app - INFO - WebSocket连接已断开，当前连接数: 0
+2026-04-06 21:36:16,584 - fastapi_app - INFO - WebSocket连接已建立，当前连接数: 1
+2026-04-06 21:38:15,794 - fastapi_app - INFO - WebSocket连接已断开，当前连接数: 0
+2026-04-06 21:38:16,148 - fastapi_app - INFO - WebSocket连接已建立，当前连接数: 1
+2026-04-06 21:38:19,612 - fastapi_app - INFO - WebSocket连接已断开，当前连接数: 0
+2026-04-06 21:38:19,970 - fastapi_app - INFO - WebSocket连接已建立，当前连接数: 1
+2026-04-06 21:38:26,405 - fastapi_app - INFO - WebSocket连接已断开，当前连接数: 0
+2026-04-06 21:38:26,755 - fastapi_app - INFO - WebSocket连接已建立，当前连接数: 1
+2026-04-06 21:38:27,195 - fastapi_app - INFO - WebSocket连接已断开，当前连接数: 0
+2026-04-06 21:38:27,553 - fastapi_app - INFO - WebSocket连接已建立，当前连接数: 1
+2026-04-06 21:39:53,959 - fastapi_app - INFO - WebSocket连接已断开，当前连接数: 0
+2026-04-06 21:39:54,315 - fastapi_app - INFO - WebSocket连接已建立，当前连接数: 1
+2026-04-06 21:40:02,905 - fastapi_app - INFO - WebSocket连接已断开，当前连接数: 0
+2026-04-06 21:40:03,252 - fastapi_app - INFO - WebSocket连接已建立，当前连接数: 1
+2026-04-06 21:40:12,357 - fastapi_app - INFO - WebSocket连接已断开，当前连接数: 0
+2026-04-06 21:40:12,743 - fastapi_app - INFO - WebSocket连接已建立，当前连接数: 1
+2026-04-06 21:41:15,315 - fastapi_app - INFO - WebSocket连接已断开，当前连接数: 0
+2026-04-06 21:41:15,698 - fastapi_app - INFO - WebSocket连接已建立，当前连接数: 1
+2026-04-06 21:44:19,041 - fastapi_app - INFO - WebSocket连接已断开，当前连接数: 0
+2026-04-06 21:44:19,406 - fastapi_app - INFO - WebSocket连接已建立，当前连接数: 1
+2026-04-06 21:45:18,236 - fastapi_app - INFO - WebSocket连接已断开，当前连接数: 0
+2026-04-06 21:45:18,589 - fastapi_app - INFO - WebSocket连接已建立，当前连接数: 1
+2026-04-06 21:49:29,111 - fastapi_app - INFO - WebSocket连接已断开，当前连接数: 0
+2026-04-06 21:49:29,481 - fastapi_app - INFO - WebSocket连接已建立，当前连接数: 1
+2026-04-06 21:51:01,873 - fastapi_app - INFO - WebSocket连接已断开，当前连接数: 0
+2026-04-06 21:51:02,227 - fastapi_app - INFO - WebSocket连接已建立，当前连接数: 1
+2026-04-06 21:51:59,799 - fastapi_app - INFO - WebSocket连接已断开，当前连接数: 0
+2026-04-06 21:52:00,159 - fastapi_app - INFO - WebSocket连接已建立，当前连接数: 1
+2026-04-06 21:54:11,270 - fastapi_app - INFO - WebSocket连接已断开，当前连接数: 0
+2026-04-06 21:54:11,634 - fastapi_app - INFO - WebSocket连接已建立，当前连接数: 1
+2026-04-06 21:54:26,633 - fastapi_app - INFO - WebSocket连接已断开，当前连接数: 0
+2026-04-08 18:34:43,158 - fastapi_app - INFO - WebSocket连接已建立，当前连接数: 1
+2026-04-08 18:43:35,390 - fastapi_app - INFO - WebSocket连接已断开，当前连接数: 0
+2026-04-08 18:43:35,949 - fastapi_app - INFO - WebSocket连接已建立，当前连接数: 1
+2026-04-08 18:43:56,961 - fastapi_app - INFO - WebSocket连接已断开，当前连接数: 0
+2026-04-08 18:43:57,426 - fastapi_app - INFO - WebSocket连接已建立，当前连接数: 1
+2026-04-08 18:44:58,085 - fastapi_app - INFO - WebSocket连接已断开，当前连接数: 0
+2026-04-08 18:44:58,569 - fastapi_app - INFO - WebSocket连接已建立，当前连接数: 1
+2026-04-08 18:49:40,386 - fastapi_app - INFO - WebSocket连接已断开，当前连接数: 0
+2026-04-08 18:49:40,930 - fastapi_app - INFO - WebSocket连接已建立，当前连接数: 1
+2026-04-08 18:51:54,661 - fastapi_app - INFO - WebSocket连接已断开，当前连接数: 0
+2026-04-08 18:52:01,739 - fastapi_app - INFO - WebSocket连接已建立，当前连接数: 1
+2026-04-08 18:52:05,988 - fastapi_app - INFO - WebSocket连接已断开，当前连接数: 0
+2026-04-08 18:52:06,547 - fastapi_app - INFO - WebSocket连接已建立，当前连接数: 1
+2026-04-08 18:52:14,798 - fastapi_app - INFO - WebSocket连接已断开，当前连接数: 0
+2026-04-08 18:52:15,248 - fastapi_app - INFO - WebSocket连接已建立，当前连接数: 1
+2026-04-08 18:54:38,997 - fastapi_app - INFO - WebSocket连接已断开，当前连接数: 0
+2026-04-08 18:54:39,675 - fastapi_app - INFO - WebSocket连接已建立，当前连接数: 1
+2026-04-08 18:57:47,661 - fastapi_app - INFO - WebSocket连接已断开，当前连接数: 0
+2026-04-08 18:57:53,225 - fastapi_app - INFO - WebSocket连接已建立，当前连接数: 1
+2026-04-08 18:58:59,558 - fastapi_app - INFO - WebSocket连接已断开，当前连接数: 0
+2026-04-08 18:59:05,232 - fastapi_app - INFO - WebSocket连接已建立，当前连接数: 1
+2026-04-08 18:59:06,959 - fastapi_app - INFO - WebSocket连接已断开，当前连接数: 0
+2026-04-08 18:59:07,515 - fastapi_app - INFO - WebSocket连接已建立，当前连接数: 1
+2026-04-08 19:07:25,091 - fastapi_app - INFO - WebSocket连接已断开，当前连接数: 0
+2026-04-08 19:07:31,232 - fastapi_app - INFO - WebSocket连接已建立，当前连接数: 1
+2026-04-08 19:08:05,087 - fastapi_app - INFO - WebSocket连接已断开，当前连接数: 0
+2026-04-08 19:14:26,641 - fastapi_app - INFO - WebSocket连接已建立，当前连接数: 1
+2026-04-08 19:22:49,168 - fastapi_app - INFO - WebSocket连接已断开，当前连接数: 0
+2026-04-08 19:22:49,664 - fastapi_app - INFO - WebSocket连接已建立，当前连接数: 1
+2026-04-08 19:26:25,051 - fastapi_app - INFO - WebSocket连接已断开，当前连接数: 0
+2026-04-08 19:26:25,602 - fastapi_app - INFO - WebSocket连接已建立，当前连接数: 1
+2026-04-08 19:30:10,227 - fastapi_app - INFO - WebSocket连接已断开，当前连接数: 0
+2026-04-08 19:30:10,735 - fastapi_app - INFO - WebSocket连接已建立，当前连接数: 1
+2026-04-08 19:32:13,974 - fastapi_app - INFO - WebSocket连接已断开，当前连接数: 0
+2026-04-08 19:49:49,147 - fastapi_app - INFO - WebSocket连接已建立，当前连接数: 1
+2026-04-08 19:54:47,536 - fastapi_app - INFO - WebSocket连接已断开，当前连接数: 0
+2026-04-08 19:55:01,224 - fastapi_app - INFO - WebSocket连接已建立，当前连接数: 1
+2026-04-08 19:55:04,437 - fastapi_app - INFO - WebSocket连接已断开，当前连接数: 0
+2026-04-08 19:55:04,931 - fastapi_app - INFO - WebSocket连接已建立，当前连接数: 1
+2026-04-08 19:56:53,995 - fastapi_app - INFO - WebSocket连接已断开，当前连接数: 0
+2026-04-08 19:58:20,032 - fastapi_app - INFO - WebSocket连接已建立，当前连接数: 1
+2026-04-08 19:58:20,652 - fastapi_app - INFO - WebSocket连接已断开，当前连接数: 0
+2026-04-08 19:58:21,172 - fastapi_app - INFO - WebSocket连接已建立，当前连接数: 1
+2026-04-08 19:59:18,066 - fastapi_app - INFO - WebSocket连接已断开，当前连接数: 0
+2026-04-08 19:59:29,639 - fastapi_app - INFO - WebSocket连接已建立，当前连接数: 1
+2026-04-08 20:00:52,325 - fastapi_app - INFO - WebSocket连接已断开，当前连接数: 0
+2026-04-08 20:00:52,982 - fastapi_app - INFO - WebSocket连接已建立，当前连接数: 1
+2026-04-08 20:01:32,920 - fastapi_app - INFO - WebSocket连接已断开，当前连接数: 0
+2026-04-08 20:01:39,234 - fastapi_app - INFO - WebSocket连接已建立，当前连接数: 1
+2026-04-08 20:01:40,651 - fastapi_app - INFO - WebSocket连接已断开，当前连接数: 0
+2026-04-08 20:01:41,185 - fastapi_app - INFO - WebSocket连接已建立，当前连接数: 1
+2026-04-08 20:03:45,564 - fastapi_app - INFO - WebSocket连接已断开，当前连接数: 0
+2026-04-08 20:03:51,232 - fastapi_app - INFO - WebSocket连接已建立，当前连接数: 1
+2026-04-08 20:03:53,764 - fastapi_app - INFO - WebSocket连接已断开，当前连接数: 0
+2026-04-08 20:03:54,292 - fastapi_app - INFO - WebSocket连接已建立，当前连接数: 1
+2026-04-08 20:09:24,296 - fastapi_app - INFO - WebSocket连接已断开，当前连接数: 0
+2026-04-08 20:15:48,694 - fastapi_app - INFO - WebSocket连接已建立，当前连接数: 1
+2026-04-08 20:15:49,782 - fastapi_app - INFO - WebSocket连接已断开，当前连接数: 0
+2026-04-08 20:15:50,309 - fastapi_app - INFO - WebSocket连接已建立，当前连接数: 1
+2026-04-08 20:16:07,990 - fastapi_app - ERROR - 上传告警截图失败: OSS配置不完整，请检查环境变量设置
+2026-04-08 20:16:09,581 - fastapi_app - ERROR - 上传告警截图失败: OSS配置不完整，请检查环境变量设置
+2026-04-08 20:16:11,131 - fastapi_app - ERROR - 上传告警截图失败: OSS配置不完整，请检查环境变量设置
+2026-04-08 20:16:12,796 - fastapi_app - ERROR - 上传告警截图失败: OSS配置不完整，请检查环境变量设置
+2026-04-08 20:16:14,299 - fastapi_app - ERROR - 上传告警截图失败: OSS配置不完整，请检查环境变量设置
+2026-04-08 20:16:15,865 - fastapi_app - ERROR - 上传告警截图失败: OSS配置不完整，请检查环境变量设置
+2026-04-08 20:16:17,401 - fastapi_app - ERROR - 上传告警截图失败: OSS配置不完整，请检查环境变量设置
+2026-04-08 20:16:18,767 - fastapi_app - ERROR - 上传告警截图失败: OSS配置不完整，请检查环境变量设置
+2026-04-08 20:16:20,310 - fastapi_app - ERROR - 上传告警截图失败: OSS配置不完整，请检查环境变量设置
+2026-04-08 20:16:21,684 - fastapi_app - ERROR - 上传告警截图失败: OSS配置不完整，请检查环境变量设置
+2026-04-08 20:16:23,112 - fastapi_app - ERROR - 上传告警截图失败: OSS配置不完整，请检查环境变量设置
+2026-04-08 20:16:24,684 - fastapi_app - ERROR - 上传告警截图失败: OSS配置不完整，请检查环境变量设置
+2026-04-08 20:16:25,737 - fastapi_app - ERROR - 上传告警截图失败: OSS配置不完整，请检查环境变量设置
+2026-04-08 20:16:26,572 - fastapi_app - ERROR - 上传告警截图失败: OSS配置不完整，请检查环境变量设置
+2026-04-08 20:16:27,379 - fastapi_app - ERROR - 上传告警截图失败: OSS配置不完整，请检查环境变量设置
+2026-04-08 20:16:28,170 - fastapi_app - ERROR - 上传告警截图失败: OSS配置不完整，请检查环境变量设置
+2026-04-08 20:16:28,916 - fastapi_app - ERROR - 上传告警截图失败: OSS配置不完整，请检查环境变量设置
+2026-04-08 20:16:29,744 - fastapi_app - ERROR - 上传告警截图失败: OSS配置不完整，请检查环境变量设置
+2026-04-08 20:16:30,508 - fastapi_app - ERROR - 上传告警截图失败: OSS配置不完整，请检查环境变量设置
+2026-04-08 20:16:31,349 - fastapi_app - ERROR - 上传告警截图失败: OSS配置不完整，请检查环境变量设置
+2026-04-08 20:16:32,128 - fastapi_app - ERROR - 上传告警截图失败: OSS配置不完整，请检查环境变量设置
+2026-04-08 20:16:32,947 - fastapi_app - ERROR - 上传告警截图失败: OSS配置不完整，请检查环境变量设置
+2026-04-08 20:16:33,732 - fastapi_app - ERROR - 上传告警截图失败: OSS配置不完整，请检查环境变量设置
+2026-04-08 20:16:34,511 - fastapi_app - ERROR - 上传告警截图失败: OSS配置不完整，请检查环境变量设置
+2026-04-08 20:16:35,309 - fastapi_app - ERROR - 上传告警截图失败: OSS配置不完整，请检查环境变量设置
+2026-04-08 20:16:36,116 - fastapi_app - ERROR - 上传告警截图失败: OSS配置不完整，请检查环境变量设置
+2026-04-08 20:16:36,907 - fastapi_app - ERROR - 上传告警截图失败: OSS配置不完整，请检查环境变量设置
+2026-04-08 20:16:37,691 - fastapi_app - ERROR - 上传告警截图失败: OSS配置不完整，请检查环境变量设置
+2026-04-08 20:16:38,774 - fastapi_app - ERROR - 上传告警截图失败: OSS配置不完整，请检查环境变量设置
+2026-04-08 20:16:40,148 - fastapi_app - ERROR - 上传告警截图失败: OSS配置不完整，请检查环境变量设置
+2026-04-08 20:16:41,573 - fastapi_app - ERROR - 上传告警截图失败: OSS配置不完整，请检查环境变量设置
+2026-04-08 20:16:43,010 - fastapi_app - ERROR - 上传告警截图失败: OSS配置不完整，请检查环境变量设置
+2026-04-08 20:16:44,411 - fastapi_app - ERROR - 上传告警截图失败: OSS配置不完整，请检查环境变量设置
+2026-04-08 20:16:45,883 - fastapi_app - ERROR - 上传告警截图失败: OSS配置不完整，请检查环境变量设置
+2026-04-08 20:16:54,040 - fastapi_app - ERROR - 上传告警截图失败: OSS配置不完整，请检查环境变量设置
+2026-04-08 20:16:55,447 - fastapi_app - ERROR - 上传告警截图失败: OSS配置不完整，请检查环境变量设置
+2026-04-08 20:16:56,857 - fastapi_app - ERROR - 上传告警截图失败: OSS配置不完整，请检查环境变量设置
+2026-04-08 20:16:58,258 - fastapi_app - ERROR - 上传告警截图失败: OSS配置不完整，请检查环境变量设置
+2026-04-08 20:16:59,896 - fastapi_app - ERROR - 上传告警截图失败: OSS配置不完整，请检查环境变量设置
+2026-04-08 20:17:01,332 - fastapi_app - ERROR - 上传告警截图失败: OSS配置不完整，请检查环境变量设置
+2026-04-08 20:17:02,941 - fastapi_app - ERROR - 上传告警截图失败: OSS配置不完整，请检查环境变量设置
+2026-04-08 20:17:04,466 - fastapi_app - ERROR - 上传告警截图失败: OSS配置不完整，请检查环境变量设置
+2026-04-08 20:17:05,946 - fastapi_app - ERROR - 上传告警截图失败: OSS配置不完整，请检查环境变量设置
+2026-04-08 20:17:07,427 - fastapi_app - ERROR - 上传告警截图失败: OSS配置不完整，请检查环境变量设置
+2026-04-08 20:17:08,839 - fastapi_app - ERROR - 上传告警截图失败: OSS配置不完整，请检查环境变量设置
+2026-04-08 20:17:10,349 - fastapi_app - ERROR - 上传告警截图失败: OSS配置不完整，请检查环境变量设置
+2026-04-08 20:17:11,986 - fastapi_app - ERROR - 上传告警截图失败: OSS配置不完整，请检查环境变量设置
+2026-04-08 20:17:13,476 - fastapi_app - ERROR - 上传告警截图失败: OSS配置不完整，请检查环境变量设置
+2026-04-08 20:17:14,888 - fastapi_app - ERROR - 上传告警截图失败: OSS配置不完整，请检查环境变量设置
+2026-04-08 20:17:16,571 - fastapi_app - ERROR - 上传告警截图失败: OSS配置不完整，请检查环境变量设置
+2026-04-08 20:17:18,048 - fastapi_app - ERROR - 上传告警截图失败: OSS配置不完整，请检查环境变量设置
+2026-04-08 20:17:19,652 - fastapi_app - ERROR - 上传告警截图失败: OSS配置不完整，请检查环境变量设置
+2026-04-08 20:17:21,208 - fastapi_app - ERROR - 上传告警截图失败: OSS配置不完整，请检查环境变量设置
+2026-04-08 20:17:22,813 - fastapi_app - ERROR - 上传告警截图失败: OSS配置不完整，请检查环境变量设置
+2026-04-08 20:17:24,292 - fastapi_app - ERROR - 上传告警截图失败: OSS配置不完整，请检查环境变量设置
+2026-04-08 20:17:25,787 - fastapi_app - ERROR - 上传告警截图失败: OSS配置不完整，请检查环境变量设置
+2026-04-08 20:17:27,330 - fastapi_app - ERROR - 上传告警截图失败: OSS配置不完整，请检查环境变量设置
+2026-04-08 20:17:28,819 - fastapi_app - ERROR - 上传告警截图失败: OSS配置不完整，请检查环境变量设置
+2026-04-08 20:17:30,141 - fastapi_app - ERROR - 上传告警截图失败: OSS配置不完整，请检查环境变量设置
+2026-04-08 20:17:31,470 - fastapi_app - ERROR - 上传告警截图失败: OSS配置不完整，请检查环境变量设置
+2026-04-08 20:17:32,877 - fastapi_app - ERROR - 上传告警截图失败: OSS配置不完整，请检查环境变量设置
+2026-04-08 20:17:34,175 - fastapi_app - ERROR - 上传告警截图失败: OSS配置不完整，请检查环境变量设置
+2026-04-08 20:17:39,938 - fastapi_app - INFO - WebSocket连接已断开，当前连接数: 0
+2026-04-08 20:18:49,262 - fastapi_app - INFO - WebSocket连接已建立，当前连接数: 1
+2026-04-08 20:19:00,423 - fastapi_app - ERROR - 上传告警截图失败: OSS配置不完整，请检查环境变量设置
+2026-04-08 20:19:01,886 - fastapi_app - ERROR - 上传告警截图失败: OSS配置不完整，请检查环境变量设置
+2026-04-08 20:19:03,412 - fastapi_app - ERROR - 上传告警截图失败: OSS配置不完整，请检查环境变量设置
+2026-04-08 20:19:04,753 - fastapi_app - ERROR - 上传告警截图失败: OSS配置不完整，请检查环境变量设置
+2026-04-08 20:19:06,213 - fastapi_app - ERROR - 上传告警截图失败: OSS配置不完整，请检查环境变量设置
+2026-04-08 20:19:07,811 - fastapi_app - ERROR - 上传告警截图失败: OSS配置不完整，请检查环境变量设置
+2026-04-08 20:19:09,386 - fastapi_app - ERROR - 上传告警截图失败: OSS配置不完整，请检查环境变量设置
+2026-04-08 20:19:10,952 - fastapi_app - ERROR - 上传告警截图失败: OSS配置不完整，请检查环境变量设置
+2026-04-08 20:19:12,439 - fastapi_app - ERROR - 上传告警截图失败: OSS配置不完整，请检查环境变量设置
+2026-04-08 20:19:13,952 - fastapi_app - ERROR - 上传告警截图失败: OSS配置不完整，请检查环境变量设置
+2026-04-08 20:19:15,448 - fastapi_app - ERROR - 上传告警截图失败: OSS配置不完整，请检查环境变量设置
+2026-04-08 20:19:17,017 - fastapi_app - ERROR - 上传告警截图失败: OSS配置不完整，请检查环境变量设置
+2026-04-08 20:19:18,311 - fastapi_app - ERROR - 上传告警截图失败: OSS配置不完整，请检查环境变量设置
+2026-04-08 20:19:19,675 - fastapi_app - ERROR - 上传告警截图失败: OSS配置不完整，请检查环境变量设置
+2026-04-08 20:19:21,012 - fastapi_app - ERROR - 上传告警截图失败: OSS配置不完整，请检查环境变量设置
+2026-04-08 20:19:22,497 - fastapi_app - ERROR - 上传告警截图失败: OSS配置不完整，请检查环境变量设置
+2026-04-08 20:19:23,831 - fastapi_app - ERROR - 上传告警截图失败: OSS配置不完整，请检查环境变量设置
+2026-04-08 20:19:25,314 - fastapi_app - ERROR - 上传告警截图失败: OSS配置不完整，请检查环境变量设置
+2026-04-08 20:19:26,750 - fastapi_app - ERROR - 上传告警截图失败: OSS配置不完整，请检查环境变量设置
+2026-04-08 20:19:28,184 - fastapi_app - ERROR - 上传告警截图失败: OSS配置不完整，请检查环境变量设置
+2026-04-08 20:19:29,420 - fastapi_app - ERROR - 上传告警截图失败: OSS配置不完整，请检查环境变量设置
+2026-04-08 20:21:50,439 - fastapi_app - INFO - WebSocket连接已断开，当前连接数: 0
+2026-04-08 21:38:25,499 - fastapi_app - INFO - WebSocket连接已建立，当前连接数: 1
+2026-04-08 21:40:00,573 - fastapi_app - INFO - WebSocket连接已断开，当前连接数: 0
+2026-04-08 21:40:14,233 - fastapi_app - INFO - WebSocket连接已建立，当前连接数: 1
+2026-04-08 21:40:24,528 - fastapi_app - ERROR - 上传告警截图失败: OSS配置不完整，请检查环境变量设置
+2026-04-08 21:40:26,390 - fastapi_app - ERROR - 上传告警截图失败: OSS配置不完整，请检查环境变量设置
+2026-04-08 21:40:28,271 - fastapi_app - ERROR - 上传告警截图失败: OSS配置不完整，请检查环境变量设置
+2026-04-08 21:40:30,172 - fastapi_app - ERROR - 上传告警截图失败: OSS配置不完整，请检查环境变量设置
+2026-04-08 21:40:31,844 - fastapi_app - ERROR - 上传告警截图失败: OSS配置不完整，请检查环境变量设置
+2026-04-08 21:40:32,885 - fastapi_app - ERROR - 上传告警截图失败: OSS配置不完整，请检查环境变量设置
+2026-04-08 21:40:33,938 - fastapi_app - ERROR - 上传告警截图失败: OSS配置不完整，请检查环境变量设置
+2026-04-08 21:40:35,015 - fastapi_app - ERROR - 上传告警截图失败: OSS配置不完整，请检查环境变量设置
+2026-04-08 21:40:36,931 - fastapi_app - ERROR - 上传告警截图失败: OSS配置不完整，请检查环境变量设置
+2026-04-08 21:40:38,766 - fastapi_app - ERROR - 上传告警截图失败: OSS配置不完整，请检查环境变量设置
+2026-04-08 21:40:40,785 - fastapi_app - ERROR - 上传告警截图失败: OSS配置不完整，请检查环境变量设置
+2026-04-08 21:40:42,787 - fastapi_app - ERROR - 上传告警截图失败: OSS配置不完整，请检查环境变量设置
+2026-04-08 21:40:44,837 - fastapi_app - ERROR - 上传告警截图失败: OSS配置不完整，请检查环境变量设置
+2026-04-08 21:40:46,905 - fastapi_app - ERROR - 上传告警截图失败: OSS配置不完整，请检查环境变量设置
+2026-04-08 21:40:48,979 - fastapi_app - ERROR - 上传告警截图失败: OSS配置不完整，请检查环境变量设置
+2026-04-08 21:40:50,816 - fastapi_app - ERROR - 上传告警截图失败: OSS配置不完整，请检查环境变量设置
+2026-04-08 21:40:52,809 - fastapi_app - ERROR - 上传告警截图失败: OSS配置不完整，请检查环境变量设置
+2026-04-08 21:40:54,705 - fastapi_app - ERROR - 上传告警截图失败: OSS配置不完整，请检查环境变量设置
+2026-04-08 21:40:56,666 - fastapi_app - ERROR - 上传告警截图失败: OSS配置不完整，请检查环境变量设置
+2026-04-08 21:40:58,695 - fastapi_app - ERROR - 上传告警截图失败: OSS配置不完整，请检查环境变量设置
+2026-04-08 21:41:00,840 - fastapi_app - ERROR - 上传告警截图失败: OSS配置不完整，请检查环境变量设置
+2026-04-08 21:41:02,690 - fastapi_app - ERROR - 上传告警截图失败: OSS配置不完整，请检查环境变量设置
+2026-04-08 21:41:04,497 - fastapi_app - ERROR - 上传告警截图失败: OSS配置不完整，请检查环境变量设置
+2026-04-08 21:41:06,393 - fastapi_app - ERROR - 上传告警截图失败: OSS配置不完整，请检查环境变量设置
+2026-04-08 21:41:08,309 - fastapi_app - ERROR - 上传告警截图失败: OSS配置不完整，请检查环境变量设置
+2026-04-08 21:41:10,017 - fastapi_app - ERROR - 上传告警截图失败: OSS配置不完整，请检查环境变量设置
+2026-04-08 21:42:13,250 - fastapi_app - ERROR - 上传告警截图失败: OSS配置不完整，请检查环境变量设置
+2026-04-08 21:42:14,912 - fastapi_app - ERROR - 上传告警截图失败: OSS配置不完整，请检查环境变量设置
+2026-04-08 21:42:16,597 - fastapi_app - ERROR - 上传告警截图失败: OSS配置不完整，请检查环境变量设置
+2026-04-08 21:42:18,235 - fastapi_app - ERROR - 上传告警截图失败: OSS配置不完整，请检查环境变量设置
+2026-04-08 21:42:19,897 - fastapi_app - ERROR - 上传告警截图失败: OSS配置不完整，请检查环境变量设置
+2026-04-08 21:42:21,514 - fastapi_app - ERROR - 上传告警截图失败: OSS配置不完整，请检查环境变量设置
+2026-04-08 21:42:21,814 - fastapi_app - INFO - WebSocket连接已断开，当前连接数: 0
+2026-04-08 21:42:22,367 - fastapi_app - INFO - WebSocket连接已建立，当前连接数: 1
+2026-04-08 21:42:30,984 - fastapi_app - ERROR - 上传告警截图失败: OSS配置不完整，请检查环境变量设置
+2026-04-08 21:42:32,698 - fastapi_app - ERROR - 上传告警截图失败: OSS配置不完整，请检查环境变量设置
+2026-04-08 21:42:34,375 - fastapi_app - ERROR - 上传告警截图失败: OSS配置不完整，请检查环境变量设置
+2026-04-08 21:42:36,044 - fastapi_app - ERROR - 上传告警截图失败: OSS配置不完整，请检查环境变量设置
+2026-04-08 21:42:37,749 - fastapi_app - ERROR - 上传告警截图失败: OSS配置不完整，请检查环境变量设置
+2026-04-08 21:42:39,479 - fastapi_app - ERROR - 上传告警截图失败: OSS配置不完整，请检查环境变量设置
+2026-04-08 21:42:41,202 - fastapi_app - ERROR - 上传告警截图失败: OSS配置不完整，请检查环境变量设置
+2026-04-08 21:42:42,827 - fastapi_app - ERROR - 上传告警截图失败: OSS配置不完整，请检查环境变量设置
+2026-04-08 21:42:44,688 - fastapi_app - ERROR - 上传告警截图失败: OSS配置不完整，请检查环境变量设置
+2026-04-08 21:42:46,622 - fastapi_app - ERROR - 上传告警截图失败: OSS配置不完整，请检查环境变量设置
+2026-04-08 21:42:48,561 - fastapi_app - ERROR - 上传告警截图失败: OSS配置不完整，请检查环境变量设置
+2026-04-08 21:42:50,343 - fastapi_app - ERROR - 上传告警截图失败: OSS配置不完整，请检查环境变量设置
+2026-04-08 21:46:30,419 - fastapi_app - INFO - WebSocket连接已断开，当前连接数: 0
+2026-04-08 21:46:36,231 - fastapi_app - INFO - WebSocket连接已建立，当前连接数: 1
+2026-04-08 21:46:40,416 - fastapi_app - INFO - WebSocket连接已断开，当前连接数: 0
+2026-04-08 21:46:40,945 - fastapi_app - INFO - WebSocket连接已建立，当前连接数: 1
+2026-04-08 21:46:49,075 - fastapi_app - ERROR - 上传告警截图失败: OSS配置不完整，请检查环境变量设置
+2026-04-08 21:46:50,589 - fastapi_app - ERROR - 上传告警截图失败: OSS配置不完整，请检查环境变量设置
+2026-04-08 21:46:52,049 - fastapi_app - ERROR - 上传告警截图失败: OSS配置不完整，请检查环境变量设置
+2026-04-08 21:46:53,551 - fastapi_app - ERROR - 上传告警截图失败: OSS配置不完整，请检查环境变量设置
+2026-04-08 21:46:55,174 - fastapi_app - ERROR - 上传告警截图失败: OSS配置不完整，请检查环境变量设置
+2026-04-08 21:46:56,664 - fastapi_app - ERROR - 上传告警截图失败: OSS配置不完整，请检查环境变量设置
+2026-04-08 21:46:58,188 - fastapi_app - ERROR - 上传告警截图失败: OSS配置不完整，请检查环境变量设置
+2026-04-08 21:46:59,632 - fastapi_app - ERROR - 上传告警截图失败: OSS配置不完整，请检查环境变量设置
+2026-04-08 21:47:01,178 - fastapi_app - ERROR - 上传告警截图失败: OSS配置不完整，请检查环境变量设置
+2026-04-08 21:47:02,813 - fastapi_app - ERROR - 上传告警截图失败: OSS配置不完整，请检查环境变量设置
+2026-04-08 21:47:04,552 - fastapi_app - ERROR - 上传告警截图失败: OSS配置不完整，请检查环境变量设置
+2026-04-08 21:47:06,106 - fastapi_app - ERROR - 上传告警截图失败: OSS配置不完整，请检查环境变量设置
+2026-04-08 21:47:07,791 - fastapi_app - ERROR - 上传告警截图失败: OSS配置不完整，请检查环境变量设置
+2026-04-08 21:47:09,501 - fastapi_app - ERROR - 上传告警截图失败: OSS配置不完整，请检查环境变量设置
+2026-04-08 21:47:11,183 - fastapi_app - ERROR - 上传告警截图失败: OSS配置不完整，请检查环境变量设置
+2026-04-08 21:47:12,750 - fastapi_app - ERROR - 上传告警截图失败: OSS配置不完整，请检查环境变量设置
+2026-04-08 21:47:14,375 - fastapi_app - ERROR - 上传告警截图失败: OSS配置不完整，请检查环境变量设置
+2026-04-08 21:47:15,799 - fastapi_app - ERROR - 上传告警截图失败: OSS配置不完整，请检查环境变量设置
+2026-04-08 21:47:17,092 - fastapi_app - ERROR - 上传告警截图失败: OSS配置不完整，请检查环境变量设置
+2026-04-08 21:47:18,513 - fastapi_app - ERROR - 上传告警截图失败: OSS配置不完整，请检查环境变量设置
+2026-04-08 21:47:20,031 - fastapi_app - ERROR - 上传告警截图失败: OSS配置不完整，请检查环境变量设置
+2026-04-08 21:47:21,368 - fastapi_app - ERROR - 上传告警截图失败: OSS配置不完整，请检查环境变量设置
+2026-04-08 21:47:22,852 - fastapi_app - ERROR - 上传告警截图失败: OSS配置不完整，请检查环境变量设置
+2026-04-08 21:47:24,273 - fastapi_app - ERROR - 上传告警截图失败: OSS配置不完整，请检查环境变量设置
+2026-04-08 21:47:25,748 - fastapi_app - ERROR - 上传告警截图失败: OSS配置不完整，请检查环境变量设置
+2026-04-08 21:47:27,261 - fastapi_app - ERROR - 上传告警截图失败: OSS配置不完整，请检查环境变量设置
+2026-04-08 21:47:28,743 - fastapi_app - ERROR - 上传告警截图失败: OSS配置不完整，请检查环境变量设置
+2026-04-08 21:47:30,239 - fastapi_app - ERROR - 上传告警截图失败: OSS配置不完整，请检查环境变量设置
+2026-04-08 21:47:31,686 - fastapi_app - ERROR - 上传告警截图失败: OSS配置不完整，请检查环境变量设置
+2026-04-08 21:47:33,235 - fastapi_app - ERROR - 上传告警截图失败: OSS配置不完整，请检查环境变量设置
+2026-04-08 21:47:34,453 - fastapi_app - ERROR - 上传告警截图失败: OSS配置不完整，请检查环境变量设置
+2026-04-08 21:54:22,005 - fastapi_app - INFO - WebSocket连接已断开，当前连接数: 0
+2026-04-08 21:54:28,224 - fastapi_app - INFO - WebSocket连接已建立，当前连接数: 1
+2026-04-08 21:54:32,315 - fastapi_app - INFO - WebSocket连接已断开，当前连接数: 0
+2026-04-08 21:54:32,862 - fastapi_app - INFO - WebSocket连接已建立，当前连接数: 1
+2026-04-08 21:54:43,538 - fastapi_app - ERROR - 上传告警截图失败: OSS配置不完整，请检查环境变量设置
+2026-04-08 21:54:45,027 - fastapi_app - ERROR - 上传告警截图失败: OSS配置不完整，请检查环境变量设置
+2026-04-08 21:54:46,456 - fastapi_app - ERROR - 上传告警截图失败: OSS配置不完整，请检查环境变量设置
+2026-04-08 21:54:47,983 - fastapi_app - ERROR - 上传告警截图失败: OSS配置不完整，请检查环境变量设置
+2026-04-08 21:54:49,575 - fastapi_app - ERROR - 上传告警截图失败: OSS配置不完整，请检查环境变量设置
+2026-04-08 21:54:50,971 - fastapi_app - ERROR - 上传告警截图失败: OSS配置不完整，请检查环境变量设置
+2026-04-08 21:54:52,494 - fastapi_app - ERROR - 上传告警截图失败: OSS配置不完整，请检查环境变量设置
+2026-04-08 21:54:54,089 - fastapi_app - ERROR - 上传告警截图失败: OSS配置不完整，请检查环境变量设置
+2026-04-08 21:54:55,699 - fastapi_app - ERROR - 上传告警截图失败: OSS配置不完整，请检查环境变量设置
+2026-04-08 21:54:57,325 - fastapi_app - ERROR - 上传告警截图失败: OSS配置不完整，请检查环境变量设置
+2026-04-08 21:54:58,373 - fastapi_app - ERROR - 上传告警截图失败: OSS配置不完整，请检查环境变量设置
+2026-04-08 21:54:59,268 - fastapi_app - ERROR - 上传告警截图失败: OSS配置不完整，请检查环境变量设置
+2026-04-08 21:55:00,134 - fastapi_app - ERROR - 上传告警截图失败: OSS配置不完整，请检查环境变量设置
+2026-04-08 21:55:01,038 - fastapi_app - ERROR - 上传告警截图失败: OSS配置不完整，请检查环境变量设置
+2026-04-08 21:55:01,878 - fastapi_app - ERROR - 上传告警截图失败: OSS配置不完整，请检查环境变量设置
+2026-04-08 21:55:02,796 - fastapi_app - ERROR - 上传告警截图失败: OSS配置不完整，请检查环境变量设置
+2026-04-08 21:55:03,626 - fastapi_app - ERROR - 上传告警截图失败: OSS配置不完整，请检查环境变量设置
+2026-04-08 21:55:04,541 - fastapi_app - ERROR - 上传告警截图失败: OSS配置不完整，请检查环境变量设置
+2026-04-08 21:55:05,384 - fastapi_app - ERROR - 上传告警截图失败: OSS配置不完整，请检查环境变量设置
+2026-04-08 21:55:06,286 - fastapi_app - ERROR - 上传告警截图失败: OSS配置不完整，请检查环境变量设置
+2026-04-08 21:55:07,135 - fastapi_app - ERROR - 上传告警截图失败: OSS配置不完整，请检查环境变量设置
+2026-04-08 21:55:08,049 - fastapi_app - ERROR - 上传告警截图失败: OSS配置不完整，请检查环境变量设置
+2026-04-08 21:55:09,466 - fastapi_app - ERROR - 上传告警截图失败: OSS配置不完整，请检查环境变量设置
+2026-04-08 21:55:10,967 - fastapi_app - ERROR - 上传告警截图失败: OSS配置不完整，请检查环境变量设置
+2026-04-08 21:55:12,416 - fastapi_app - ERROR - 上传告警截图失败: OSS配置不完整，请检查环境变量设置
+2026-04-08 21:55:13,870 - fastapi_app - ERROR - 上传告警截图失败: OSS配置不完整，请检查环境变量设置
+2026-04-08 21:55:15,322 - fastapi_app - ERROR - 上传告警截图失败: OSS配置不完整，请检查环境变量设置
+2026-04-08 21:55:16,853 - fastapi_app - ERROR - 上传告警截图失败: OSS配置不完整，请检查环境变量设置
+2026-04-08 21:55:18,390 - fastapi_app - ERROR - 上传告警截图失败: OSS配置不完整，请检查环境变量设置
+2026-04-08 21:55:19,939 - fastapi_app - ERROR - 上传告警截图失败: OSS配置不完整，请检查环境变量设置
+2026-04-08 21:55:21,278 - fastapi_app - ERROR - 上传告警截图失败: OSS配置不完整，请检查环境变量设置
+2026-04-08 21:55:22,583 - fastapi_app - ERROR - 上传告警截图失败: OSS配置不完整，请检查环境变量设置
+2026-04-08 21:55:24,012 - fastapi_app - ERROR - 上传告警截图失败: OSS配置不完整，请检查环境变量设置
+2026-04-08 21:55:25,370 - fastapi_app - ERROR - 上传告警截图失败: OSS配置不完整，请检查环境变量设置
+2026-04-08 21:55:26,824 - fastapi_app - ERROR - 上传告警截图失败: OSS配置不完整，请检查环境变量设置
+2026-04-08 21:55:28,311 - fastapi_app - ERROR - 上传告警截图失败: OSS配置不完整，请检查环境变量设置
+2026-04-08 21:55:29,977 - fastapi_app - ERROR - 上传告警截图失败: OSS配置不完整，请检查环境变量设置
+2026-04-08 21:55:31,527 - fastapi_app - ERROR - 上传告警截图失败: OSS配置不完整，请检查环境变量设置
+2026-04-08 21:55:33,111 - fastapi_app - ERROR - 上传告警截图失败: OSS配置不完整，请检查环境变量设置
+2026-04-08 21:55:34,623 - fastapi_app - ERROR - 上传告警截图失败: OSS配置不完整，请检查环境变量设置
+2026-04-08 22:02:14,525 - fastapi_app - INFO - WebSocket连接已断开，当前连接数: 0
+2026-04-08 22:02:22,244 - fastapi_app - INFO - WebSocket连接已建立，当前连接数: 1
+2026-04-08 22:02:45,433 - fastapi_app - INFO - WebSocket连接已断开，当前连接数: 0
+2026-04-08 22:02:45,981 - fastapi_app - INFO - WebSocket连接已建立，当前连接数: 1
+2026-04-08 22:03:11,848 - fastapi_app - ERROR - 上传告警截图失败: OSS配置不完整，请检查环境变量设置
+2026-04-08 22:03:16,443 - fastapi_app - ERROR - 上传告警截图失败: OSS配置不完整，请检查环境变量设置
+2026-04-08 22:05:45,057 - fastapi_app - INFO - WebSocket连接已断开，当前连接数: 0
+2026-04-08 22:05:51,229 - fastapi_app - INFO - WebSocket连接已建立，当前连接数: 1
+2026-04-08 22:05:53,739 - fastapi_app - INFO - WebSocket连接已断开，当前连接数: 0
+2026-04-08 22:05:54,311 - fastapi_app - INFO - WebSocket连接已建立，当前连接数: 1
+2026-04-08 22:06:06,834 - fastapi_app - ERROR - 上传告警截图失败: OSS配置不完整，请检查环境变量设置
+2026-04-08 22:06:06,835 - fastapi_app - ERROR - 创建告警记录失败: OSS配置不完整，请检查环境变量设置
+2026-04-08 22:06:06,841 - fastapi_app - INFO - 分析结果已发送: 人员1人, 车辆0辆, 安全帽检测到, 反光衣检测到
+2026-04-08 22:06:08,309 - fastapi_app - ERROR - 上传告警截图失败: OSS配置不完整，请检查环境变量设置
+2026-04-08 22:06:08,310 - fastapi_app - ERROR - 创建告警记录失败: OSS配置不完整，请检查环境变量设置
+2026-04-08 22:06:08,317 - fastapi_app - INFO - 分析结果已发送: 人员1人, 车辆0辆, 安全帽检测到, 反光衣检测到
+2026-04-08 22:06:09,851 - fastapi_app - ERROR - 上传告警截图失败: OSS配置不完整，请检查环境变量设置
+2026-04-08 22:06:09,851 - fastapi_app - ERROR - 创建告警记录失败: OSS配置不完整，请检查环境变量设置
+2026-04-08 22:06:09,858 - fastapi_app - INFO - 分析结果已发送: 人员1人, 车辆0辆, 安全帽检测到, 反光衣检测到
+2026-04-08 22:06:11,441 - fastapi_app - ERROR - 上传告警截图失败: OSS配置不完整，请检查环境变量设置
+2026-04-08 22:06:11,441 - fastapi_app - ERROR - 创建告警记录失败: OSS配置不完整，请检查环境变量设置
+2026-04-08 22:06:11,449 - fastapi_app - INFO - 分析结果已发送: 人员1人, 车辆0辆, 安全帽检测到, 反光衣检测到
+2026-04-08 22:06:12,978 - fastapi_app - ERROR - 上传告警截图失败: OSS配置不完整，请检查环境变量设置
+2026-04-08 22:06:12,978 - fastapi_app - ERROR - 创建告警记录失败: OSS配置不完整，请检查环境变量设置
+2026-04-08 22:06:12,985 - fastapi_app - INFO - 分析结果已发送: 人员1人, 车辆0辆, 安全帽检测到, 反光衣检测到
+2026-04-08 22:06:14,584 - fastapi_app - ERROR - 上传告警截图失败: OSS配置不完整，请检查环境变量设置
+2026-04-08 22:06:14,585 - fastapi_app - ERROR - 创建告警记录失败: OSS配置不完整，请检查环境变量设置
+2026-04-08 22:06:14,591 - fastapi_app - INFO - 分析结果已发送: 人员1人, 车辆0辆, 安全帽检测到, 反光衣检测到
+2026-04-08 22:06:16,140 - fastapi_app - ERROR - 上传告警截图失败: OSS配置不完整，请检查环境变量设置
+2026-04-08 22:06:16,140 - fastapi_app - ERROR - 创建告警记录失败: OSS配置不完整，请检查环境变量设置
+2026-04-08 22:06:16,147 - fastapi_app - INFO - 分析结果已发送: 人员1人, 车辆0辆, 安全帽检测到, 反光衣检测到
+2026-04-08 22:06:17,714 - fastapi_app - ERROR - 上传告警截图失败: OSS配置不完整，请检查环境变量设置
+2026-04-08 22:06:17,715 - fastapi_app - ERROR - 创建告警记录失败: OSS配置不完整，请检查环境变量设置
+2026-04-08 22:06:17,722 - fastapi_app - INFO - 分析结果已发送: 人员1人, 车辆0辆, 安全帽检测到, 反光衣检测到
+2026-04-08 22:06:19,204 - fastapi_app - ERROR - 上传告警截图失败: OSS配置不完整，请检查环境变量设置
+2026-04-08 22:06:19,205 - fastapi_app - ERROR - 创建告警记录失败: OSS配置不完整，请检查环境变量设置
+2026-04-08 22:06:19,211 - fastapi_app - INFO - 分析结果已发送: 人员1人, 车辆0辆, 安全帽检测到, 反光衣检测到
+2026-04-08 22:06:20,671 - fastapi_app - ERROR - 上传告警截图失败: OSS配置不完整，请检查环境变量设置
+2026-04-08 22:06:20,671 - fastapi_app - ERROR - 创建告警记录失败: OSS配置不完整，请检查环境变量设置
+2026-04-08 22:06:20,678 - fastapi_app - INFO - 分析结果已发送: 人员1人, 车辆0辆, 安全帽检测到, 反光衣检测到
+2026-04-08 22:06:22,096 - fastapi_app - ERROR - 上传告警截图失败: OSS配置不完整，请检查环境变量设置
+2026-04-08 22:06:22,097 - fastapi_app - ERROR - 创建告警记录失败: OSS配置不完整，请检查环境变量设置
+2026-04-08 22:06:22,103 - fastapi_app - INFO - 分析结果已发送: 人员1人, 车辆0辆, 安全帽检测到, 反光衣检测到
+2026-04-08 22:06:23,560 - fastapi_app - ERROR - 上传告警截图失败: OSS配置不完整，请检查环境变量设置
+2026-04-08 22:06:23,560 - fastapi_app - ERROR - 创建告警记录失败: OSS配置不完整，请检查环境变量设置
+2026-04-08 22:06:23,569 - fastapi_app - INFO - 分析结果已发送: 人员1人, 车辆0辆, 安全帽未检测到, 反光衣检测到
+2026-04-08 22:06:24,972 - fastapi_app - ERROR - 上传告警截图失败: OSS配置不完整，请检查环境变量设置
+2026-04-08 22:06:24,972 - fastapi_app - ERROR - 创建告警记录失败: OSS配置不完整，请检查环境变量设置
+2026-04-08 22:06:24,972 - fastapi_app - ERROR - 发送WebSocket消息失败: 
+2026-04-08 22:06:26,440 - fastapi_app - ERROR - 上传告警截图失败: OSS配置不完整，请检查环境变量设置
+2026-04-08 22:06:26,440 - fastapi_app - ERROR - 创建告警记录失败: OSS配置不完整，请检查环境变量设置
+2026-04-08 22:06:26,442 - fastapi_app - ERROR - 发送WebSocket消息失败: Cannot call "send" once a close message has been sent.
+2026-04-08 22:06:27,881 - fastapi_app - ERROR - 上传告警截图失败: OSS配置不完整，请检查环境变量设置
+2026-04-08 22:06:27,881 - fastapi_app - ERROR - 创建告警记录失败: OSS配置不完整，请检查环境变量设置
+2026-04-08 22:06:27,882 - fastapi_app - ERROR - 发送WebSocket消息失败: Cannot call "send" once a close message has been sent.
+2026-04-08 22:06:29,134 - fastapi_app - ERROR - 上传告警截图失败: OSS配置不完整，请检查环境变量设置
+2026-04-08 22:06:29,135 - fastapi_app - ERROR - 创建告警记录失败: OSS配置不完整，请检查环境变量设置
+2026-04-08 22:06:29,135 - fastapi_app - ERROR - 发送WebSocket消息失败: Cannot call "send" once a close message has been sent.
+2026-04-08 22:06:30,557 - fastapi_app - ERROR - 上传告警截图失败: OSS配置不完整，请检查环境变量设置
+2026-04-08 22:06:30,557 - fastapi_app - ERROR - 创建告警记录失败: OSS配置不完整，请检查环境变量设置
+2026-04-08 22:06:30,559 - fastapi_app - ERROR - 发送WebSocket消息失败: Cannot call "send" once a close message has been sent.
+2026-04-08 22:06:32,052 - fastapi_app - ERROR - 上传告警截图失败: OSS配置不完整，请检查环境变量设置
+2026-04-08 22:06:32,052 - fastapi_app - ERROR - 创建告警记录失败: OSS配置不完整，请检查环境变量设置
+2026-04-08 22:06:32,053 - fastapi_app - ERROR - 发送WebSocket消息失败: Cannot call "send" once a close message has been sent.
+2026-04-08 22:06:33,531 - fastapi_app - ERROR - 上传告警截图失败: OSS配置不完整，请检查环境变量设置
+2026-04-08 22:06:33,533 - fastapi_app - ERROR - 创建告警记录失败: OSS配置不完整，请检查环境变量设置
+2026-04-08 22:06:33,533 - fastapi_app - ERROR - 发送WebSocket消息失败: Cannot call "send" once a close message has been sent.
+2026-04-08 22:06:34,778 - fastapi_app - ERROR - 上传告警截图失败: OSS配置不完整，请检查环境变量设置
+2026-04-08 22:06:34,780 - fastapi_app - ERROR - 创建告警记录失败: OSS配置不完整，请检查环境变量设置
+2026-04-08 22:06:34,780 - fastapi_app - ERROR - 发送WebSocket消息失败: Cannot call "send" once a close message has been sent.
+2026-04-08 22:06:35,660 - fastapi_app - ERROR - 上传告警截图失败: OSS配置不完整，请检查环境变量设置
+2026-04-08 22:06:35,662 - fastapi_app - ERROR - 创建告警记录失败: OSS配置不完整，请检查环境变量设置
+2026-04-08 22:06:35,662 - fastapi_app - ERROR - 发送WebSocket消息失败: Cannot call "send" once a close message has been sent.
+2026-04-08 22:06:36,591 - fastapi_app - ERROR - 上传告警截图失败: OSS配置不完整，请检查环境变量设置
+2026-04-08 22:06:36,593 - fastapi_app - ERROR - 创建告警记录失败: OSS配置不完整，请检查环境变量设置
+2026-04-08 22:06:36,593 - fastapi_app - ERROR - 发送WebSocket消息失败: Cannot call "send" once a close message has been sent.
+2026-04-08 22:06:37,911 - fastapi_app - ERROR - 上传告警截图失败: OSS配置不完整，请检查环境变量设置
+2026-04-08 22:06:37,911 - fastapi_app - ERROR - 创建告警记录失败: OSS配置不完整，请检查环境变量设置
+2026-04-08 22:06:37,913 - fastapi_app - ERROR - 发送WebSocket消息失败: Cannot call "send" once a close message has been sent.
+2026-04-08 22:06:39,314 - fastapi_app - ERROR - 上传告警截图失败: OSS配置不完整，请检查环境变量设置
+2026-04-08 22:06:39,314 - fastapi_app - ERROR - 创建告警记录失败: OSS配置不完整，请检查环境变量设置
+2026-04-08 22:06:39,317 - fastapi_app - ERROR - 发送WebSocket消息失败: Cannot call "send" once a close message has been sent.
+2026-04-08 22:06:40,716 - fastapi_app - ERROR - 上传告警截图失败: OSS配置不完整，请检查环境变量设置
+2026-04-08 22:06:40,717 - fastapi_app - ERROR - 创建告警记录失败: OSS配置不完整，请检查环境变量设置
+2026-04-08 22:06:40,718 - fastapi_app - ERROR - 发送WebSocket消息失败: Cannot call "send" once a close message has been sent.
+2026-04-08 22:06:42,224 - fastapi_app - ERROR - 上传告警截图失败: OSS配置不完整，请检查环境变量设置
+2026-04-08 22:06:42,224 - fastapi_app - ERROR - 创建告警记录失败: OSS配置不完整，请检查环境变量设置
+2026-04-08 22:06:42,227 - fastapi_app - ERROR - 发送WebSocket消息失败: Cannot call "send" once a close message has been sent.
+2026-04-08 22:06:43,697 - fastapi_app - ERROR - 上传告警截图失败: OSS配置不完整，请检查环境变量设置
+2026-04-08 22:06:43,697 - fastapi_app - ERROR - 创建告警记录失败: OSS配置不完整，请检查环境变量设置
+2026-04-08 22:06:43,698 - fastapi_app - ERROR - 发送WebSocket消息失败: Cannot call "send" once a close message has been sent.
+2026-04-08 22:06:45,185 - fastapi_app - ERROR - 上传告警截图失败: OSS配置不完整，请检查环境变量设置
+2026-04-08 22:06:45,185 - fastapi_app - ERROR - 创建告警记录失败: OSS配置不完整，请检查环境变量设置
+2026-04-08 22:06:45,187 - fastapi_app - ERROR - 发送WebSocket消息失败: Cannot call "send" once a close message has been sent.
+2026-04-08 22:06:46,512 - fastapi_app - ERROR - 上传告警截图失败: OSS配置不完整，请检查环境变量设置
+2026-04-08 22:06:46,512 - fastapi_app - ERROR - 创建告警记录失败: OSS配置不完整，请检查环境变量设置
+2026-04-08 22:06:46,519 - fastapi_app - INFO - 分析结果已发送: 人员1人, 车辆0辆, 安全帽未检测到, 反光衣检测到
+2026-04-08 22:06:47,940 - fastapi_app - ERROR - 上传告警截图失败: OSS配置不完整，请检查环境变量设置
+2026-04-08 22:06:47,940 - fastapi_app - ERROR - 创建告警记录失败: OSS配置不完整，请检查环境变量设置
+2026-04-08 22:06:47,941 - fastapi_app - ERROR - 发送WebSocket消息失败: Cannot call "send" once a close message has been sent.
+2026-04-08 22:06:49,258 - fastapi_app - ERROR - 上传告警截图失败: OSS配置不完整，请检查环境变量设置
+2026-04-08 22:06:49,258 - fastapi_app - ERROR - 创建告警记录失败: OSS配置不完整，请检查环境变量设置
+2026-04-08 22:06:49,267 - fastapi_app - INFO - 分析结果已发送: 人员1人, 车辆0辆, 安全帽未检测到, 反光衣检测到
+2026-04-08 22:06:50,565 - fastapi_app - ERROR - 上传告警截图失败: OSS配置不完整，请检查环境变量设置
+2026-04-08 22:06:50,565 - fastapi_app - ERROR - 创建告警记录失败: OSS配置不完整，请检查环境变量设置
+2026-04-08 22:06:50,567 - fastapi_app - ERROR - 发送WebSocket消息失败: Cannot call "send" once a close message has been sent.
+2026-04-08 22:06:51,429 - fastapi_app - ERROR - 上传告警截图失败: OSS配置不完整，请检查环境变量设置
+2026-04-08 22:06:51,429 - fastapi_app - ERROR - 创建告警记录失败: OSS配置不完整，请检查环境变量设置
+2026-04-08 22:06:52,210 - fastapi_app - ERROR - 上传告警截图失败: OSS配置不完整，请检查环境变量设置
+2026-04-08 22:06:52,210 - fastapi_app - ERROR - 创建告警记录失败: OSS配置不完整，请检查环境变量设置
+2026-04-08 22:06:52,211 - fastapi_app - ERROR - 发送WebSocket消息失败: Cannot call "send" once a close message has been sent.
+2026-04-08 22:06:52,212 - fastapi_app - ERROR - 发送WebSocket消息失败: 
+2026-04-08 22:06:53,047 - fastapi_app - ERROR - 上传告警截图失败: OSS配置不完整，请检查环境变量设置
+2026-04-08 22:06:53,047 - fastapi_app - ERROR - 创建告警记录失败: OSS配置不完整，请检查环境变量设置
+2026-04-08 22:06:53,048 - fastapi_app - ERROR - 发送WebSocket消息失败: Cannot call "send" once a close message has been sent.
+2026-04-08 22:06:53,870 - fastapi_app - ERROR - 上传告警截图失败: OSS配置不完整，请检查环境变量设置
+2026-04-08 22:06:53,870 - fastapi_app - ERROR - 创建告警记录失败: OSS配置不完整，请检查环境变量设置
+2026-04-08 22:06:53,871 - fastapi_app - ERROR - 发送WebSocket消息失败: Cannot call "send" once a close message has been sent.
+2026-04-08 22:06:54,624 - fastapi_app - ERROR - 上传告警截图失败: OSS配置不完整，请检查环境变量设置
+2026-04-08 22:06:54,624 - fastapi_app - ERROR - 创建告警记录失败: OSS配置不完整，请检查环境变量设置
+2026-04-08 22:06:54,624 - fastapi_app - ERROR - 发送WebSocket消息失败: Cannot call "send" once a close message has been sent.
+2026-04-08 22:06:55,415 - fastapi_app - ERROR - 上传告警截图失败: OSS配置不完整，请检查环境变量设置
+2026-04-08 22:06:55,415 - fastapi_app - ERROR - 创建告警记录失败: OSS配置不完整，请检查环境变量设置
+2026-04-08 22:06:55,415 - fastapi_app - ERROR - 发送WebSocket消息失败: Cannot call "send" once a close message has been sent.
+2026-04-08 22:06:55,417 - fastapi_app - INFO - WebSocket连接已断开，当前连接数: 0
+2026-04-08 22:06:56,143 - fastapi_app - ERROR - 上传告警截图失败: OSS配置不完整，请检查环境变量设置
+2026-04-08 22:06:56,145 - fastapi_app - ERROR - 创建告警记录失败: OSS配置不完整，请检查环境变量设置
+2026-04-08 22:06:56,145 - fastapi_app - ERROR - 发送WebSocket消息失败: Cannot call "send" once a close message has been sent.
+2026-04-08 22:13:43,304 - fastapi_app - INFO - WebSocket连接已建立，当前连接数: 1
+2026-04-08 22:13:48,812 - fastapi_app - INFO - WebSocket连接已断开，当前连接数: 0
+2026-04-08 22:13:49,359 - fastapi_app - INFO - WebSocket连接已建立，当前连接数: 1
+2026-04-08 22:13:57,413 - fastapi_app - ERROR - 上传告警截图失败: OSS配置不完整，请检查环境变量设置
+2026-04-08 22:13:57,415 - fastapi_app - ERROR - 上传告警截图失败: OSS配置不完整，请检查环境变量设置
+2026-04-08 22:13:57,423 - fastapi_app - INFO - 分析结果已发送: 人员1人, 车辆0辆, 安全帽未检测到, 反光衣检测到
+2026-04-08 22:13:59,002 - fastapi_app - ERROR - 上传告警截图失败: OSS配置不完整，请检查环境变量设置
+2026-04-08 22:13:59,003 - fastapi_app - ERROR - 上传告警截图失败: OSS配置不完整，请检查环境变量设置
+2026-04-08 22:13:59,010 - fastapi_app - INFO - 分析结果已发送: 人员1人, 车辆0辆, 安全帽未检测到, 反光衣检测到
+2026-04-08 22:14:00,526 - fastapi_app - ERROR - 上传告警截图失败: OSS配置不完整，请检查环境变量设置
+2026-04-08 22:14:00,527 - fastapi_app - ERROR - 上传告警截图失败: OSS配置不完整，请检查环境变量设置
+2026-04-08 22:14:00,534 - fastapi_app - INFO - 分析结果已发送: 人员1人, 车辆0辆, 安全帽检测到, 反光衣检测到
+2026-04-08 22:14:02,108 - fastapi_app - ERROR - 上传告警截图失败: OSS配置不完整，请检查环境变量设置
+2026-04-08 22:14:02,108 - fastapi_app - ERROR - 上传告警截图失败: OSS配置不完整，请检查环境变量设置
+2026-04-08 22:14:02,115 - fastapi_app - INFO - 分析结果已发送: 人员1人, 车辆0辆, 安全帽未检测到, 反光衣检测到
+2026-04-08 22:14:03,709 - fastapi_app - ERROR - 上传告警截图失败: OSS配置不完整，请检查环境变量设置
+2026-04-08 22:14:03,709 - fastapi_app - ERROR - 上传告警截图失败: OSS配置不完整，请检查环境变量设置
+2026-04-08 22:14:03,715 - fastapi_app - INFO - 分析结果已发送: 人员1人, 车辆0辆, 安全帽未检测到, 反光衣检测到
+2026-04-08 22:14:05,275 - fastapi_app - ERROR - 上传告警截图失败: OSS配置不完整，请检查环境变量设置
+2026-04-08 22:14:05,275 - fastapi_app - ERROR - 上传告警截图失败: OSS配置不完整，请检查环境变量设置
+2026-04-08 22:14:05,282 - fastapi_app - INFO - 分析结果已发送: 人员1人, 车辆0辆, 安全帽未检测到, 反光衣检测到
+2026-04-08 22:14:06,848 - fastapi_app - ERROR - 上传告警截图失败: OSS配置不完整，请检查环境变量设置
+2026-04-08 22:14:06,848 - fastapi_app - ERROR - 上传告警截图失败: OSS配置不完整，请检查环境变量设置
+2026-04-08 22:14:06,855 - fastapi_app - INFO - 分析结果已发送: 人员1人, 车辆0辆, 安全帽检测到, 反光衣检测到
+2026-04-08 22:14:08,434 - fastapi_app - ERROR - 上传告警截图失败: OSS配置不完整，请检查环境变量设置
+2026-04-08 22:14:08,434 - fastapi_app - ERROR - 上传告警截图失败: OSS配置不完整，请检查环境变量设置
+2026-04-08 22:14:08,442 - fastapi_app - INFO - 分析结果已发送: 人员1人, 车辆0辆, 安全帽未检测到, 反光衣检测到
+2026-04-08 22:14:10,044 - fastapi_app - ERROR - 上传告警截图失败: OSS配置不完整，请检查环境变量设置
+2026-04-08 22:14:10,044 - fastapi_app - ERROR - 上传告警截图失败: OSS配置不完整，请检查环境变量设置
+2026-04-08 22:14:10,051 - fastapi_app - INFO - 分析结果已发送: 人员2人, 车辆0辆, 安全帽未检测到, 反光衣未检测到
+2026-04-08 22:14:11,665 - fastapi_app - ERROR - 上传告警截图失败: OSS配置不完整，请检查环境变量设置
+2026-04-08 22:14:11,666 - fastapi_app - ERROR - 上传告警截图失败: OSS配置不完整，请检查环境变量设置
+2026-04-08 22:14:11,673 - fastapi_app - INFO - 分析结果已发送: 人员2人, 车辆0辆, 安全帽未检测到, 反光衣未检测到
+2026-04-08 22:14:13,293 - fastapi_app - ERROR - 上传告警截图失败: OSS配置不完整，请检查环境变量设置
+2026-04-08 22:14:13,293 - fastapi_app - ERROR - 上传告警截图失败: OSS配置不完整，请检查环境变量设置
+2026-04-08 22:14:13,300 - fastapi_app - INFO - 分析结果已发送: 人员1人, 车辆0辆, 安全帽未检测到, 反光衣未检测到
+2026-04-08 22:14:14,778 - fastapi_app - INFO - 分析结果已发送: 人员0人, 车辆0辆, 安全帽未检测到, 反光衣未检测到
+2026-04-08 22:14:16,247 - fastapi_app - INFO - 分析结果已发送: 人员0人, 车辆0辆, 安全帽未检测到, 反光衣未检测到
+2026-04-08 22:14:17,767 - fastapi_app - ERROR - 上传告警截图失败: OSS配置不完整，请检查环境变量设置
+2026-04-08 22:14:17,767 - fastapi_app - ERROR - 上传告警截图失败: OSS配置不完整，请检查环境变量设置
+2026-04-08 22:14:17,773 - fastapi_app - INFO - 分析结果已发送: 人员1人, 车辆0辆, 安全帽未检测到, 反光衣未检测到
+2026-04-08 22:14:19,219 - fastapi_app - ERROR - 上传告警截图失败: OSS配置不完整，请检查环境变量设置
+2026-04-08 22:14:19,219 - fastapi_app - ERROR - 上传告警截图失败: OSS配置不完整，请检查环境变量设置
+2026-04-08 22:14:19,226 - fastapi_app - INFO - 分析结果已发送: 人员1人, 车辆0辆, 安全帽未检测到, 反光衣未检测到
+2026-04-08 22:14:20,654 - fastapi_app - ERROR - 上传告警截图失败: OSS配置不完整，请检查环境变量设置
+2026-04-08 22:14:20,654 - fastapi_app - ERROR - 上传告警截图失败: OSS配置不完整，请检查环境变量设置
+2026-04-08 22:14:20,655 - fastapi_app - ERROR - 发送WebSocket消息失败: 
+2026-04-08 22:14:21,522 - fastapi_app - ERROR - 上传告警截图失败: OSS配置不完整，请检查环境变量设置
+2026-04-08 22:14:21,523 - fastapi_app - ERROR - 上传告警截图失败: OSS配置不完整，请检查环境变量设置
+2026-04-08 22:14:21,524 - fastapi_app - ERROR - 发送WebSocket消息失败: Cannot call "send" once a close message has been sent.
+2026-04-08 22:14:22,365 - fastapi_app - ERROR - 上传告警截图失败: OSS配置不完整，请检查环境变量设置
+2026-04-08 22:14:22,366 - fastapi_app - ERROR - 上传告警截图失败: OSS配置不完整，请检查环境变量设置
+2026-04-08 22:14:22,366 - fastapi_app - ERROR - 发送WebSocket消息失败: Cannot call "send" once a close message has been sent.
+2026-04-08 22:14:23,269 - fastapi_app - ERROR - 上传告警截图失败: OSS配置不完整，请检查环境变量设置
+2026-04-08 22:14:23,269 - fastapi_app - ERROR - 上传告警截图失败: OSS配置不完整，请检查环境变量设置
+2026-04-08 22:14:23,269 - fastapi_app - ERROR - 发送WebSocket消息失败: Cannot call "send" once a close message has been sent.
+2026-04-08 22:14:24,155 - fastapi_app - ERROR - 上传告警截图失败: OSS配置不完整，请检查环境变量设置
+2026-04-08 22:14:24,155 - fastapi_app - ERROR - 上传告警截图失败: OSS配置不完整，请检查环境变量设置
+2026-04-08 22:14:24,156 - fastapi_app - ERROR - 发送WebSocket消息失败: Cannot call "send" once a close message has been sent.
+2026-04-08 22:14:24,996 - fastapi_app - ERROR - 上传告警截图失败: OSS配置不完整，请检查环境变量设置
+2026-04-08 22:14:24,996 - fastapi_app - ERROR - 上传告警截图失败: OSS配置不完整，请检查环境变量设置
+2026-04-08 22:14:24,997 - fastapi_app - ERROR - 发送WebSocket消息失败: Cannot call "send" once a close message has been sent.
+2026-04-08 22:14:25,848 - fastapi_app - ERROR - 上传告警截图失败: OSS配置不完整，请检查环境变量设置
+2026-04-08 22:14:25,849 - fastapi_app - ERROR - 上传告警截图失败: OSS配置不完整，请检查环境变量设置
+2026-04-08 22:14:25,849 - fastapi_app - ERROR - 发送WebSocket消息失败: Cannot call "send" once a close message has been sent.
+2026-04-08 22:14:26,716 - fastapi_app - ERROR - 上传告警截图失败: OSS配置不完整，请检查环境变量设置
+2026-04-08 22:14:26,717 - fastapi_app - ERROR - 上传告警截图失败: OSS配置不完整，请检查环境变量设置
+2026-04-08 22:14:26,717 - fastapi_app - ERROR - 发送WebSocket消息失败: Cannot call "send" once a close message has been sent.
+2026-04-08 22:14:27,580 - fastapi_app - ERROR - 上传告警截图失败: OSS配置不完整，请检查环境变量设置
+2026-04-08 22:14:27,582 - fastapi_app - ERROR - 上传告警截图失败: OSS配置不完整，请检查环境变量设置
+2026-04-08 22:14:27,582 - fastapi_app - ERROR - 发送WebSocket消息失败: Cannot call "send" once a close message has been sent.
+2026-04-08 22:14:28,440 - fastapi_app - ERROR - 上传告警截图失败: OSS配置不完整，请检查环境变量设置
+2026-04-08 22:14:28,440 - fastapi_app - ERROR - 上传告警截图失败: OSS配置不完整，请检查环境变量设置
+2026-04-08 22:14:28,440 - fastapi_app - ERROR - 发送WebSocket消息失败: Cannot call "send" once a close message has been sent.
+2026-04-08 22:14:29,289 - fastapi_app - ERROR - 上传告警截图失败: OSS配置不完整，请检查环境变量设置
+2026-04-08 22:14:29,289 - fastapi_app - ERROR - 上传告警截图失败: OSS配置不完整，请检查环境变量设置
+2026-04-08 22:14:29,289 - fastapi_app - ERROR - 发送WebSocket消息失败: Cannot call "send" once a close message has been sent.
+2026-04-08 22:14:30,105 - fastapi_app - ERROR - 上传告警截图失败: OSS配置不完整，请检查环境变量设置
+2026-04-08 22:14:30,105 - fastapi_app - ERROR - 上传告警截图失败: OSS配置不完整，请检查环境变量设置
+2026-04-08 22:14:30,105 - fastapi_app - ERROR - 发送WebSocket消息失败: Cannot call "send" once a close message has been sent.
+2026-04-08 22:14:30,982 - fastapi_app - ERROR - 上传告警截图失败: OSS配置不完整，请检查环境变量设置
+2026-04-08 22:14:30,982 - fastapi_app - ERROR - 上传告警截图失败: OSS配置不完整，请检查环境变量设置
+2026-04-08 22:14:30,982 - fastapi_app - ERROR - 发送WebSocket消息失败: Cannot call "send" once a close message has been sent.
+2026-04-08 22:14:31,834 - fastapi_app - ERROR - 上传告警截图失败: OSS配置不完整，请检查环境变量设置
+2026-04-08 22:14:31,834 - fastapi_app - ERROR - 上传告警截图失败: OSS配置不完整，请检查环境变量设置
+2026-04-08 22:14:31,835 - fastapi_app - ERROR - 发送WebSocket消息失败: Cannot call "send" once a close message has been sent.
+2026-04-08 22:14:32,716 - fastapi_app - ERROR - 上传告警截图失败: OSS配置不完整，请检查环境变量设置
+2026-04-08 22:14:32,716 - fastapi_app - ERROR - 上传告警截图失败: OSS配置不完整，请检查环境变量设置
+2026-04-08 22:14:32,716 - fastapi_app - ERROR - 发送WebSocket消息失败: Cannot call "send" once a close message has been sent.
+2026-04-08 22:14:33,579 - fastapi_app - ERROR - 上传告警截图失败: OSS配置不完整，请检查环境变量设置
+2026-04-08 22:14:33,579 - fastapi_app - ERROR - 上传告警截图失败: OSS配置不完整，请检查环境变量设置
+2026-04-08 22:14:33,579 - fastapi_app - ERROR - 发送WebSocket消息失败: Cannot call "send" once a close message has been sent.
+2026-04-08 22:14:33,581 - fastapi_app - INFO - WebSocket连接已断开，当前连接数: 0
+2026-04-08 22:14:34,476 - fastapi_app - ERROR - 上传告警截图失败: OSS配置不完整，请检查环境变量设置
+2026-04-08 22:14:34,476 - fastapi_app - ERROR - 上传告警截图失败: OSS配置不完整，请检查环境变量设置
+2026-04-08 22:14:34,478 - fastapi_app - ERROR - 发送WebSocket消息失败: Cannot call "send" once a close message has been sent.
+2026-04-08 22:16:06,637 - fastapi_app - INFO - WebSocket连接已建立，当前连接数: 1
+2026-04-08 22:16:08,233 - fastapi_app - INFO - WebSocket连接已断开，当前连接数: 0
+2026-04-08 22:16:08,715 - fastapi_app - INFO - WebSocket连接已建立，当前连接数: 1
+2026-04-08 22:16:16,249 - fastapi_app - ERROR - 上传告警截图失败: OSS配置不完整，请检查环境变量设置
+2026-04-08 22:16:16,251 - fastapi_app - ERROR - 上传告警截图失败: OSS配置不完整，请检查环境变量设置
+2026-04-08 22:16:16,258 - fastapi_app - INFO - 分析结果已发送: 人员1人, 车辆0辆, 安全帽检测到, 反光衣检测到
+2026-04-08 22:16:17,729 - fastapi_app - ERROR - 上传告警截图失败: OSS配置不完整，请检查环境变量设置
+2026-04-08 22:16:17,729 - fastapi_app - ERROR - 上传告警截图失败: OSS配置不完整，请检查环境变量设置
+2026-04-08 22:16:17,738 - fastapi_app - INFO - 分析结果已发送: 人员1人, 车辆0辆, 安全帽检测到, 反光衣检测到
+2026-04-08 22:16:19,235 - fastapi_app - ERROR - 上传告警截图失败: OSS配置不完整，请检查环境变量设置
+2026-04-08 22:16:19,235 - fastapi_app - ERROR - 上传告警截图失败: OSS配置不完整，请检查环境变量设置
+2026-04-08 22:16:19,242 - fastapi_app - INFO - 分析结果已发送: 人员1人, 车辆0辆, 安全帽检测到, 反光衣检测到
+2026-04-08 22:16:20,646 - fastapi_app - ERROR - 上传告警截图失败: OSS配置不完整，请检查环境变量设置
+2026-04-08 22:16:20,646 - fastapi_app - ERROR - 上传告警截图失败: OSS配置不完整，请检查环境变量设置
+2026-04-08 22:16:20,652 - fastapi_app - INFO - 分析结果已发送: 人员1人, 车辆0辆, 安全帽检测到, 反光衣检测到
+2026-04-08 22:16:22,102 - fastapi_app - ERROR - 上传告警截图失败: OSS配置不完整，请检查环境变量设置
+2026-04-08 22:16:22,104 - fastapi_app - ERROR - 上传告警截图失败: OSS配置不完整，请检查环境变量设置
+2026-04-08 22:16:22,110 - fastapi_app - INFO - 分析结果已发送: 人员1人, 车辆0辆, 安全帽检测到, 反光衣检测到
+2026-04-08 22:16:23,637 - fastapi_app - ERROR - 上传告警截图失败: OSS配置不完整，请检查环境变量设置
+2026-04-08 22:16:23,637 - fastapi_app - ERROR - 上传告警截图失败: OSS配置不完整，请检查环境变量设置
+2026-04-08 22:16:23,644 - fastapi_app - INFO - 分析结果已发送: 人员1人, 车辆0辆, 安全帽检测到, 反光衣检测到
+2026-04-08 22:16:25,148 - fastapi_app - ERROR - 上传告警截图失败: OSS配置不完整，请检查环境变量设置
+2026-04-08 22:16:25,148 - fastapi_app - ERROR - 上传告警截图失败: OSS配置不完整，请检查环境变量设置
+2026-04-08 22:16:25,149 - fastapi_app - ERROR - 发送WebSocket消息失败: 
+2026-04-08 22:16:26,172 - fastapi_app - ERROR - 上传告警截图失败: OSS配置不完整，请检查环境变量设置
+2026-04-08 22:16:26,172 - fastapi_app - ERROR - 上传告警截图失败: OSS配置不完整，请检查环境变量设置
+2026-04-08 22:16:26,173 - fastapi_app - ERROR - 发送WebSocket消息失败: Cannot call "send" once a close message has been sent.
+2026-04-08 22:16:27,069 - fastapi_app - ERROR - 上传告警截图失败: OSS配置不完整，请检查环境变量设置
+2026-04-08 22:16:27,071 - fastapi_app - ERROR - 上传告警截图失败: OSS配置不完整，请检查环境变量设置
+2026-04-08 22:16:27,071 - fastapi_app - ERROR - 发送WebSocket消息失败: Cannot call "send" once a close message has been sent.
+2026-04-08 22:16:27,900 - fastapi_app - ERROR - 上传告警截图失败: OSS配置不完整，请检查环境变量设置
+2026-04-08 22:16:27,900 - fastapi_app - ERROR - 上传告警截图失败: OSS配置不完整，请检查环境变量设置
+2026-04-08 22:16:27,901 - fastapi_app - ERROR - 发送WebSocket消息失败: Cannot call "send" once a close message has been sent.
+2026-04-08 22:16:28,805 - fastapi_app - ERROR - 上传告警截图失败: OSS配置不完整，请检查环境变量设置
+2026-04-08 22:16:28,805 - fastapi_app - ERROR - 上传告警截图失败: OSS配置不完整，请检查环境变量设置
+2026-04-08 22:16:28,805 - fastapi_app - ERROR - 发送WebSocket消息失败: Cannot call "send" once a close message has been sent.
+2026-04-08 22:16:29,634 - fastapi_app - ERROR - 上传告警截图失败: OSS配置不完整，请检查环境变量设置
+2026-04-08 22:16:29,634 - fastapi_app - ERROR - 上传告警截图失败: OSS配置不完整，请检查环境变量设置
+2026-04-08 22:16:29,634 - fastapi_app - ERROR - 发送WebSocket消息失败: Cannot call "send" once a close message has been sent.
+2026-04-08 22:16:29,635 - fastapi_app - INFO - WebSocket连接已断开，当前连接数: 0
+2026-04-08 22:16:30,563 - fastapi_app - ERROR - 上传告警截图失败: OSS配置不完整，请检查环境变量设置
+2026-04-08 22:16:30,563 - fastapi_app - ERROR - 上传告警截图失败: OSS配置不完整，请检查环境变量设置
+2026-04-08 22:16:30,564 - fastapi_app - ERROR - 发送WebSocket消息失败: Cannot call "send" once a close message has been sent.
+2026-04-08 22:16:42,581 - fastapi_app - INFO - WebSocket连接已建立，当前连接数: 1
+2026-04-08 22:17:32,792 - fastapi_app - INFO - WebSocket连接已断开，当前连接数: 0
+2026-04-08 22:17:33,230 - fastapi_app - INFO - WebSocket连接已建立，当前连接数: 1
+2026-04-08 22:17:41,896 - fastapi_app - ERROR - 上传告警截图失败: OSS配置不完整，请检查环境变量设置
+2026-04-08 22:17:41,897 - fastapi_app - ERROR - 上传告警截图失败: OSS配置不完整，请检查环境变量设置
+2026-04-08 22:17:41,902 - fastapi_app - INFO - 分析结果已发送: 人员1人, 车辆0辆, 安全帽检测到, 反光衣检测到
+2026-04-08 22:17:43,438 - fastapi_app - ERROR - 上传告警截图失败: OSS配置不完整，请检查环境变量设置
+2026-04-08 22:17:43,439 - fastapi_app - ERROR - 上传告警截图失败: OSS配置不完整，请检查环境变量设置
+2026-04-08 22:17:43,445 - fastapi_app - INFO - 分析结果已发送: 人员1人, 车辆0辆, 安全帽检测到, 反光衣检测到
+2026-04-08 22:17:44,995 - fastapi_app - ERROR - 上传告警截图失败: OSS配置不完整，请检查环境变量设置
+2026-04-08 22:17:44,995 - fastapi_app - ERROR - 上传告警截图失败: OSS配置不完整，请检查环境变量设置
+2026-04-08 22:17:45,004 - fastapi_app - INFO - 分析结果已发送: 人员1人, 车辆0辆, 安全帽检测到, 反光衣检测到
+2026-04-08 22:17:46,581 - fastapi_app - ERROR - 上传告警截图失败: OSS配置不完整，请检查环境变量设置
+2026-04-08 22:17:46,581 - fastapi_app - ERROR - 上传告警截图失败: OSS配置不完整，请检查环境变量设置
+2026-04-08 22:17:46,587 - fastapi_app - INFO - 分析结果已发送: 人员1人, 车辆0辆, 安全帽检测到, 反光衣检测到
+2026-04-08 22:17:48,086 - fastapi_app - ERROR - 上传告警截图失败: OSS配置不完整，请检查环境变量设置
+2026-04-08 22:17:48,086 - fastapi_app - ERROR - 上传告警截图失败: OSS配置不完整，请检查环境变量设置
+2026-04-08 22:17:48,094 - fastapi_app - INFO - 分析结果已发送: 人员1人, 车辆0辆, 安全帽检测到, 反光衣检测到
+2026-04-08 22:17:49,565 - fastapi_app - ERROR - 上传告警截图失败: OSS配置不完整，请检查环境变量设置
+2026-04-08 22:17:49,565 - fastapi_app - ERROR - 上传告警截图失败: OSS配置不完整，请检查环境变量设置
+2026-04-08 22:17:49,574 - fastapi_app - INFO - 分析结果已发送: 人员1人, 车辆0辆, 安全帽检测到, 反光衣检测到
+2026-04-08 22:17:50,984 - fastapi_app - ERROR - 上传告警截图失败: OSS配置不完整，请检查环境变量设置
+2026-04-08 22:17:50,984 - fastapi_app - ERROR - 上传告警截图失败: OSS配置不完整，请检查环境变量设置
+2026-04-08 22:17:50,993 - fastapi_app - INFO - 分析结果已发送: 人员1人, 车辆0辆, 安全帽检测到, 反光衣检测到
+2026-04-08 22:17:52,480 - fastapi_app - ERROR - 上传告警截图失败: OSS配置不完整，请检查环境变量设置
+2026-04-08 22:17:52,480 - fastapi_app - ERROR - 上传告警截图失败: OSS配置不完整，请检查环境变量设置
+2026-04-08 22:17:52,481 - fastapi_app - ERROR - 发送WebSocket消息失败: 
+2026-04-08 22:17:53,512 - fastapi_app - ERROR - 上传告警截图失败: OSS配置不完整，请检查环境变量设置
+2026-04-08 22:17:53,512 - fastapi_app - ERROR - 上传告警截图失败: OSS配置不完整，请检查环境变量设置
+2026-04-08 22:17:53,512 - fastapi_app - ERROR - 发送WebSocket消息失败: Cannot call "send" once a close message has been sent.
+2026-04-08 22:17:54,422 - fastapi_app - ERROR - 上传告警截图失败: OSS配置不完整，请检查环境变量设置
+2026-04-08 22:17:54,422 - fastapi_app - ERROR - 上传告警截图失败: OSS配置不完整，请检查环境变量设置
+2026-04-08 22:17:54,422 - fastapi_app - ERROR - 发送WebSocket消息失败: Cannot call "send" once a close message has been sent.
+2026-04-08 22:17:55,302 - fastapi_app - ERROR - 上传告警截图失败: OSS配置不完整，请检查环境变量设置
+2026-04-08 22:17:55,302 - fastapi_app - ERROR - 上传告警截图失败: OSS配置不完整，请检查环境变量设置
+2026-04-08 22:17:55,304 - fastapi_app - ERROR - 发送WebSocket消息失败: Cannot call "send" once a close message has been sent.
+2026-04-08 22:17:56,219 - fastapi_app - ERROR - 上传告警截图失败: OSS配置不完整，请检查环境变量设置
+2026-04-08 22:17:56,219 - fastapi_app - ERROR - 上传告警截图失败: OSS配置不完整，请检查环境变量设置
+2026-04-08 22:17:56,219 - fastapi_app - ERROR - 发送WebSocket消息失败: Cannot call "send" once a close message has been sent.
+2026-04-08 22:17:56,220 - fastapi_app - INFO - WebSocket连接已断开，当前连接数: 0
+2026-04-08 22:17:57,108 - fastapi_app - ERROR - 上传告警截图失败: OSS配置不完整，请检查环境变量设置
+2026-04-08 22:17:57,108 - fastapi_app - ERROR - 上传告警截图失败: OSS配置不完整，请检查环境变量设置
+2026-04-08 22:17:57,108 - fastapi_app - ERROR - 发送WebSocket消息失败: Cannot call "send" once a close message has been sent.
+2026-04-08 22:18:10,227 - fastapi_app - INFO - WebSocket连接已建立，当前连接数: 1
+2026-04-08 22:19:11,407 - fastapi_app - INFO - WebSocket连接已断开，当前连接数: 0
+2026-04-08 22:19:17,224 - fastapi_app - INFO - WebSocket连接已建立，当前连接数: 1
+2026-04-08 22:19:19,189 - fastapi_app - INFO - WebSocket连接已断开，当前连接数: 0
+2026-04-08 22:19:19,646 - fastapi_app - INFO - WebSocket连接已建立，当前连接数: 1
+2026-04-08 22:19:26,829 - fastapi_app - ERROR - 上传告警截图失败: OSS配置不完整，请检查环境变量设置
+2026-04-08 22:19:26,829 - fastapi_app - ERROR - 上传告警截图失败: OSS配置不完整，请检查环境变量设置
+2026-04-08 22:19:26,837 - fastapi_app - INFO - 分析结果已发送: 人员1人, 车辆0辆, 安全帽检测到, 反光衣检测到
+2026-04-08 22:19:28,278 - fastapi_app - ERROR - 上传告警截图失败: OSS配置不完整，请检查环境变量设置
+2026-04-08 22:19:28,278 - fastapi_app - ERROR - 上传告警截图失败: OSS配置不完整，请检查环境变量设置
+2026-04-08 22:19:28,286 - fastapi_app - INFO - 分析结果已发送: 人员1人, 车辆0辆, 安全帽检测到, 反光衣检测到
+2026-04-08 22:19:29,667 - fastapi_app - ERROR - 上传告警截图失败: OSS配置不完整，请检查环境变量设置
+2026-04-08 22:19:29,667 - fastapi_app - ERROR - 上传告警截图失败: OSS配置不完整，请检查环境变量设置
+2026-04-08 22:19:29,675 - fastapi_app - INFO - 分析结果已发送: 人员1人, 车辆0辆, 安全帽检测到, 反光衣检测到
+2026-04-08 22:19:31,026 - fastapi_app - ERROR - 上传告警截图失败: OSS配置不完整，请检查环境变量设置
+2026-04-08 22:19:31,028 - fastapi_app - ERROR - 上传告警截图失败: OSS配置不完整，请检查环境变量设置
+2026-04-08 22:19:31,034 - fastapi_app - INFO - 分析结果已发送: 人员1人, 车辆0辆, 安全帽检测到, 反光衣检测到
+2026-04-08 22:19:32,443 - fastapi_app - ERROR - 上传告警截图失败: OSS配置不完整，请检查环境变量设置
+2026-04-08 22:19:32,443 - fastapi_app - ERROR - 上传告警截图失败: OSS配置不完整，请检查环境变量设置
+2026-04-08 22:19:32,451 - fastapi_app - INFO - 分析结果已发送: 人员1人, 车辆0辆, 安全帽检测到, 反光衣检测到
+2026-04-08 22:19:33,838 - fastapi_app - ERROR - 上传告警截图失败: OSS配置不完整，请检查环境变量设置
+2026-04-08 22:19:33,838 - fastapi_app - ERROR - 上传告警截图失败: OSS配置不完整，请检查环境变量设置
+2026-04-08 22:19:33,844 - fastapi_app - INFO - 分析结果已发送: 人员1人, 车辆0辆, 安全帽检测到, 反光衣检测到
+2026-04-08 22:19:35,361 - fastapi_app - ERROR - 上传告警截图失败: OSS配置不完整，请检查环境变量设置
+2026-04-08 22:19:35,362 - fastapi_app - ERROR - 上传告警截图失败: OSS配置不完整，请检查环境变量设置
+2026-04-08 22:19:35,368 - fastapi_app - INFO - 分析结果已发送: 人员1人, 车辆0辆, 安全帽检测到, 反光衣检测到
+2026-04-08 22:19:36,838 - fastapi_app - ERROR - 上传告警截图失败: OSS配置不完整，请检查环境变量设置
+2026-04-08 22:19:36,839 - fastapi_app - ERROR - 上传告警截图失败: OSS配置不完整，请检查环境变量设置
+2026-04-08 22:19:36,845 - fastapi_app - INFO - 分析结果已发送: 人员1人, 车辆0辆, 安全帽检测到, 反光衣检测到
+2026-04-08 22:19:38,363 - fastapi_app - ERROR - 上传告警截图失败: OSS配置不完整，请检查环境变量设置
+2026-04-08 22:19:38,363 - fastapi_app - ERROR - 上传告警截图失败: OSS配置不完整，请检查环境变量设置
+2026-04-08 22:19:38,369 - fastapi_app - INFO - 分析结果已发送: 人员1人, 车辆0辆, 安全帽检测到, 反光衣检测到
+2026-04-08 22:19:39,951 - fastapi_app - ERROR - 上传告警截图失败: OSS配置不完整，请检查环境变量设置
+2026-04-08 22:19:39,952 - fastapi_app - ERROR - 上传告警截图失败: OSS配置不完整，请检查环境变量设置
+2026-04-08 22:19:39,958 - fastapi_app - INFO - 分析结果已发送: 人员1人, 车辆0辆, 安全帽检测到, 反光衣检测到
+2026-04-08 22:19:41,293 - fastapi_app - ERROR - 上传告警截图失败: OSS配置不完整，请检查环境变量设置
+2026-04-08 22:19:41,293 - fastapi_app - ERROR - 上传告警截图失败: OSS配置不完整，请检查环境变量设置
+2026-04-08 22:19:41,299 - fastapi_app - INFO - 分析结果已发送: 人员1人, 车辆0辆, 安全帽检测到, 反光衣检测到
+2026-04-08 22:19:42,677 - fastapi_app - ERROR - 上传告警截图失败: OSS配置不完整，请检查环境变量设置
+2026-04-08 22:19:42,677 - fastapi_app - ERROR - 上传告警截图失败: OSS配置不完整，请检查环境变量设置
+2026-04-08 22:19:42,685 - fastapi_app - INFO - 分析结果已发送: 人员1人, 车辆0辆, 安全帽检测到, 反光衣检测到
+2026-04-08 22:19:44,181 - fastapi_app - ERROR - 上传告警截图失败: OSS配置不完整，请检查环境变量设置
+2026-04-08 22:19:44,183 - fastapi_app - ERROR - 上传告警截图失败: OSS配置不完整，请检查环境变量设置
+2026-04-08 22:19:44,188 - fastapi_app - INFO - 分析结果已发送: 人员1人, 车辆0辆, 安全帽检测到, 反光衣检测到
+2026-04-08 22:19:45,624 - fastapi_app - ERROR - 上传告警截图失败: OSS配置不完整，请检查环境变量设置
+2026-04-08 22:19:45,624 - fastapi_app - ERROR - 上传告警截图失败: OSS配置不完整，请检查环境变量设置
+2026-04-08 22:19:46,975 - fastapi_app - ERROR - 上传告警截图失败: OSS配置不完整，请检查环境变量设置
+2026-04-08 22:19:46,976 - fastapi_app - ERROR - 上传告警截图失败: OSS配置不完整，请检查环境变量设置
+2026-04-08 22:19:46,983 - fastapi_app - INFO - 分析结果已发送: 人员1人, 车辆0辆, 安全帽检测到, 反光衣检测到
+2026-04-08 22:19:46,983 - fastapi_app - ERROR - 发送WebSocket消息失败: 
+2026-04-08 22:19:51,076 - fastapi_app - ERROR - 上传告警截图失败: OSS配置不完整，请检查环境变量设置
+2026-04-08 22:19:51,076 - fastapi_app - ERROR - 上传告警截图失败: OSS配置不完整，请检查环境变量设置
+2026-04-08 22:19:51,083 - fastapi_app - INFO - 分析结果已发送: 人员1人, 车辆0辆, 安全帽检测到, 反光衣检测到
+2026-04-08 22:19:52,333 - fastapi_app - ERROR - 上传告警截图失败: OSS配置不完整，请检查环境变量设置
+2026-04-08 22:19:52,333 - fastapi_app - ERROR - 上传告警截图失败: OSS配置不完整，请检查环境变量设置
+2026-04-08 22:19:52,338 - fastapi_app - INFO - 分析结果已发送: 人员1人, 车辆0辆, 安全帽检测到, 反光衣检测到
+2026-04-08 22:19:53,097 - fastapi_app - ERROR - 上传告警截图失败: OSS配置不完整，请检查环境变量设置
+2026-04-08 22:19:53,097 - fastapi_app - ERROR - 上传告警截图失败: OSS配置不完整，请检查环境变量设置
+2026-04-08 22:19:53,102 - fastapi_app - INFO - 分析结果已发送: 人员1人, 车辆0辆, 安全帽检测到, 反光衣检测到
+2026-04-08 22:19:53,844 - fastapi_app - ERROR - 上传告警截图失败: OSS配置不完整，请检查环境变量设置
+2026-04-08 22:19:53,844 - fastapi_app - ERROR - 上传告警截图失败: OSS配置不完整，请检查环境变量设置
+2026-04-08 22:19:53,849 - fastapi_app - INFO - 分析结果已发送: 人员1人, 车辆0辆, 安全帽检测到, 反光衣检测到
+2026-04-08 22:19:54,667 - fastapi_app - ERROR - 上传告警截图失败: OSS配置不完整，请检查环境变量设置
+2026-04-08 22:19:54,667 - fastapi_app - ERROR - 上传告警截图失败: OSS配置不完整，请检查环境变量设置
+2026-04-08 22:19:54,668 - fastapi_app - ERROR - 发送WebSocket消息失败: 
+2026-04-08 22:19:54,936 - fastapi_app - INFO - WebSocket连接已断开，当前连接数: 0
+2026-04-08 22:23:06,824 - fastapi_app - INFO - WebSocket连接已建立，当前连接数: 1
+2026-04-08 22:23:09,660 - fastapi_app - INFO - WebSocket连接已断开，当前连接数: 0
+2026-04-08 22:23:10,160 - fastapi_app - INFO - WebSocket连接已建立，当前连接数: 1
+2026-04-08 22:23:17,422 - fastapi_app - ERROR - 上传告警截图失败: OSS配置不完整，请检查环境变量设置
+2026-04-08 22:23:17,422 - fastapi_app - ERROR - 上传告警截图失败: OSS配置不完整，请检查环境变量设置
+2026-04-08 22:23:17,428 - fastapi_app - INFO - 分析结果已发送: 人员1人, 车辆0辆, 安全帽检测到, 反光衣检测到
+2026-04-08 22:23:18,830 - fastapi_app - ERROR - 上传告警截图失败: OSS配置不完整，请检查环境变量设置
+2026-04-08 22:23:18,830 - fastapi_app - ERROR - 上传告警截图失败: OSS配置不完整，请检查环境变量设置
+2026-04-08 22:23:18,838 - fastapi_app - INFO - 分析结果已发送: 人员1人, 车辆0辆, 安全帽检测到, 反光衣检测到
+2026-04-08 22:23:20,266 - fastapi_app - ERROR - 上传告警截图失败: OSS配置不完整，请检查环境变量设置
+2026-04-08 22:23:20,267 - fastapi_app - ERROR - 上传告警截图失败: OSS配置不完整，请检查环境变量设置
+2026-04-08 22:23:20,274 - fastapi_app - INFO - 分析结果已发送: 人员1人, 车辆0辆, 安全帽检测到, 反光衣检测到
+2026-04-08 22:23:21,805 - fastapi_app - ERROR - 上传告警截图失败: OSS配置不完整，请检查环境变量设置
+2026-04-08 22:23:21,807 - fastapi_app - ERROR - 上传告警截图失败: OSS配置不完整，请检查环境变量设置
+2026-04-08 22:23:21,813 - fastapi_app - INFO - 分析结果已发送: 人员1人, 车辆0辆, 安全帽检测到, 反光衣检测到
+2026-04-08 22:23:23,338 - fastapi_app - ERROR - 上传告警截图失败: OSS配置不完整，请检查环境变量设置
+2026-04-08 22:23:23,338 - fastapi_app - ERROR - 上传告警截图失败: OSS配置不完整，请检查环境变量设置
+2026-04-08 22:23:23,346 - fastapi_app - INFO - 分析结果已发送: 人员1人, 车辆0辆, 安全帽检测到, 反光衣检测到
+2026-04-08 22:23:24,990 - fastapi_app - ERROR - 上传告警截图失败: OSS配置不完整，请检查环境变量设置
+2026-04-08 22:23:24,990 - fastapi_app - ERROR - 上传告警截图失败: OSS配置不完整，请检查环境变量设置
+2026-04-08 22:23:24,997 - fastapi_app - INFO - 分析结果已发送: 人员1人, 车辆0辆, 安全帽检测到, 反光衣检测到
+2026-04-08 22:23:26,611 - fastapi_app - ERROR - 上传告警截图失败: OSS配置不完整，请检查环境变量设置
+2026-04-08 22:23:26,611 - fastapi_app - ERROR - 上传告警截图失败: OSS配置不完整，请检查环境变量设置
+2026-04-08 22:23:26,620 - fastapi_app - INFO - 分析结果已发送: 人员1人, 车辆0辆, 安全帽未检测到, 反光衣检测到
+2026-04-08 22:23:28,206 - fastapi_app - ERROR - 上传告警截图失败: OSS配置不完整，请检查环境变量设置
+2026-04-08 22:23:28,206 - fastapi_app - ERROR - 上传告警截图失败: OSS配置不完整，请检查环境变量设置
+2026-04-08 22:23:28,213 - fastapi_app - INFO - 分析结果已发送: 人员1人, 车辆0辆, 安全帽检测到, 反光衣未检测到
+2026-04-08 22:23:29,739 - fastapi_app - ERROR - 上传告警截图失败: OSS配置不完整，请检查环境变量设置
+2026-04-08 22:23:29,740 - fastapi_app - ERROR - 上传告警截图失败: OSS配置不完整，请检查环境变量设置
+2026-04-08 22:23:29,747 - fastapi_app - INFO - 分析结果已发送: 人员1人, 车辆0辆, 安全帽未检测到, 反光衣未检测到
+2026-04-08 22:23:31,320 - fastapi_app - ERROR - 上传告警截图失败: OSS配置不完整，请检查环境变量设置
+2026-04-08 22:23:31,320 - fastapi_app - ERROR - 上传告警截图失败: OSS配置不完整，请检查环境变量设置
+2026-04-08 22:23:31,325 - fastapi_app - INFO - 分析结果已发送: 人员1人, 车辆0辆, 安全帽检测到, 反光衣未检测到
+2026-04-08 22:23:32,825 - fastapi_app - ERROR - 上传告警截图失败: OSS配置不完整，请检查环境变量设置
+2026-04-08 22:23:32,825 - fastapi_app - ERROR - 上传告警截图失败: OSS配置不完整，请检查环境变量设置
+2026-04-08 22:23:32,827 - fastapi_app - ERROR - 发送WebSocket消息失败: 
+2026-04-08 22:26:51,228 - fastapi_app - INFO - WebSocket连接已断开，当前连接数: 0
+2026-04-08 22:26:57,219 - fastapi_app - INFO - WebSocket连接已建立，当前连接数: 1
+2026-04-08 22:27:02,024 - fastapi_app - INFO - WebSocket连接已断开，当前连接数: 0
+2026-04-08 22:27:02,665 - fastapi_app - INFO - WebSocket连接已建立，当前连接数: 1
+2026-04-08 22:27:13,268 - fastapi_app - WARNING - OSS上传失败，保存到本地: OSS配置不完整，请检查环境变量设置
+2026-04-08 22:27:13,275 - fastapi_app - INFO - 告警截图已保存到本地: C:\Users\cry\Desktop\SmartSafetyGuardSystemForPark-main\app\snapshots\34_20260408_222713.jpg
+2026-04-08 22:27:13,275 - fastapi_app - INFO - 告警截图上传成功: C:\Users\cry\Desktop\SmartSafetyGuardSystemForPark-main\app\snapshots\34_20260408_222713.jpg
+2026-04-08 22:27:13,381 - fastapi_app - INFO - 告警记录创建成功: alarm_id=56, camera_id=34, alarm_type=1, snapshot=C:\Users\cry\Desktop\SmartSafetyGuardSystemForPark-main\app\snapshots\34_20260408_222713.jpg
+2026-04-08 22:27:13,381 - fastapi_app - INFO - 广播告警: Alarm ID=56, 类型=区域入侵(人/车辆)
+2026-04-08 22:27:13,384 - fastapi_app - INFO - 广播消息完成，有效连接数: 1
+2026-04-08 22:27:13,388 - fastapi_app - INFO - 分析结果已发送: 人员1人, 车辆0辆, 安全帽检测到, 反光衣检测到
+2026-04-08 22:27:14,871 - fastapi_app - WARNING - OSS上传失败，保存到本地: OSS配置不完整，请检查环境变量设置
+2026-04-08 22:27:14,876 - fastapi_app - INFO - 告警截图已保存到本地: C:\Users\cry\Desktop\SmartSafetyGuardSystemForPark-main\app\snapshots\34_20260408_222714.jpg
+2026-04-08 22:27:14,877 - fastapi_app - INFO - 告警截图上传成功: C:\Users\cry\Desktop\SmartSafetyGuardSystemForPark-main\app\snapshots\34_20260408_222714.jpg
+2026-04-08 22:27:14,905 - fastapi_app - INFO - 告警记录创建成功: alarm_id=57, camera_id=34, alarm_type=1, snapshot=C:\Users\cry\Desktop\SmartSafetyGuardSystemForPark-main\app\snapshots\34_20260408_222714.jpg
+2026-04-08 22:27:14,905 - fastapi_app - INFO - 广播告警: Alarm ID=57, 类型=区域入侵(人/车辆)
+2026-04-08 22:27:14,907 - fastapi_app - INFO - 广播消息完成，有效连接数: 1
+2026-04-08 22:27:14,912 - fastapi_app - INFO - 分析结果已发送: 人员1人, 车辆0辆, 安全帽检测到, 反光衣检测到
+2026-04-08 22:27:16,391 - fastapi_app - WARNING - OSS上传失败，保存到本地: OSS配置不完整，请检查环境变量设置
+2026-04-08 22:27:16,398 - fastapi_app - INFO - 告警截图已保存到本地: C:\Users\cry\Desktop\SmartSafetyGuardSystemForPark-main\app\snapshots\34_20260408_222716.jpg
+2026-04-08 22:27:16,398 - fastapi_app - INFO - 告警截图上传成功: C:\Users\cry\Desktop\SmartSafetyGuardSystemForPark-main\app\snapshots\34_20260408_222716.jpg
+2026-04-08 22:27:16,411 - fastapi_app - INFO - 告警记录创建成功: alarm_id=58, camera_id=34, alarm_type=1, snapshot=C:\Users\cry\Desktop\SmartSafetyGuardSystemForPark-main\app\snapshots\34_20260408_222716.jpg
+2026-04-08 22:27:16,411 - fastapi_app - INFO - 广播告警: Alarm ID=58, 类型=区域入侵(人/车辆)
+2026-04-08 22:27:16,413 - fastapi_app - INFO - 广播消息完成，有效连接数: 1
+2026-04-08 22:27:16,419 - fastapi_app - INFO - 分析结果已发送: 人员1人, 车辆0辆, 安全帽检测到, 反光衣检测到
+2026-04-08 22:27:17,974 - fastapi_app - WARNING - OSS上传失败，保存到本地: OSS配置不完整，请检查环境变量设置
+2026-04-08 22:27:17,979 - fastapi_app - INFO - 告警截图已保存到本地: C:\Users\cry\Desktop\SmartSafetyGuardSystemForPark-main\app\snapshots\34_20260408_222717.jpg
+2026-04-08 22:27:17,980 - fastapi_app - INFO - 告警截图上传成功: C:\Users\cry\Desktop\SmartSafetyGuardSystemForPark-main\app\snapshots\34_20260408_222717.jpg
+2026-04-08 22:27:18,002 - fastapi_app - INFO - 告警记录创建成功: alarm_id=59, camera_id=34, alarm_type=1, snapshot=C:\Users\cry\Desktop\SmartSafetyGuardSystemForPark-main\app\snapshots\34_20260408_222717.jpg
+2026-04-08 22:27:18,002 - fastapi_app - INFO - 广播告警: Alarm ID=59, 类型=区域入侵(人/车辆)
+2026-04-08 22:27:18,005 - fastapi_app - INFO - 广播消息完成，有效连接数: 1
+2026-04-08 22:27:18,009 - fastapi_app - INFO - 分析结果已发送: 人员1人, 车辆0辆, 安全帽检测到, 反光衣未检测到
+2026-04-08 22:27:19,464 - fastapi_app - WARNING - OSS上传失败，保存到本地: OSS配置不完整，请检查环境变量设置
+2026-04-08 22:27:19,468 - fastapi_app - INFO - 告警截图已保存到本地: C:\Users\cry\Desktop\SmartSafetyGuardSystemForPark-main\app\snapshots\34_20260408_222719.jpg
+2026-04-08 22:27:19,469 - fastapi_app - INFO - 告警截图上传成功: C:\Users\cry\Desktop\SmartSafetyGuardSystemForPark-main\app\snapshots\34_20260408_222719.jpg
+2026-04-08 22:27:19,487 - fastapi_app - INFO - 告警记录创建成功: alarm_id=60, camera_id=34, alarm_type=1, snapshot=C:\Users\cry\Desktop\SmartSafetyGuardSystemForPark-main\app\snapshots\34_20260408_222719.jpg
+2026-04-08 22:27:19,488 - fastapi_app - INFO - 广播告警: Alarm ID=60, 类型=区域入侵(人/车辆)
+2026-04-08 22:27:19,490 - fastapi_app - INFO - 广播消息完成，有效连接数: 1
+2026-04-08 22:27:19,496 - fastapi_app - INFO - 分析结果已发送: 人员1人, 车辆0辆, 安全帽检测到, 反光衣未检测到
+2026-04-08 22:27:20,970 - fastapi_app - WARNING - OSS上传失败，保存到本地: OSS配置不完整，请检查环境变量设置
+2026-04-08 22:27:20,975 - fastapi_app - INFO - 告警截图已保存到本地: C:\Users\cry\Desktop\SmartSafetyGuardSystemForPark-main\app\snapshots\34_20260408_222720.jpg
+2026-04-08 22:27:20,975 - fastapi_app - INFO - 告警截图上传成功: C:\Users\cry\Desktop\SmartSafetyGuardSystemForPark-main\app\snapshots\34_20260408_222720.jpg
+2026-04-08 22:27:20,998 - fastapi_app - INFO - 告警记录创建成功: alarm_id=61, camera_id=34, alarm_type=1, snapshot=C:\Users\cry\Desktop\SmartSafetyGuardSystemForPark-main\app\snapshots\34_20260408_222720.jpg
+2026-04-08 22:27:20,998 - fastapi_app - INFO - 广播告警: Alarm ID=61, 类型=区域入侵(人/车辆)
+2026-04-08 22:27:20,999 - fastapi_app - INFO - 广播消息完成，有效连接数: 1
+2026-04-08 22:27:21,008 - fastapi_app - INFO - 分析结果已发送: 人员1人, 车辆0辆, 安全帽检测到, 反光衣未检测到
+2026-04-08 22:27:22,584 - fastapi_app - WARNING - OSS上传失败，保存到本地: OSS配置不完整，请检查环境变量设置
+2026-04-08 22:27:22,590 - fastapi_app - INFO - 告警截图已保存到本地: C:\Users\cry\Desktop\SmartSafetyGuardSystemForPark-main\app\snapshots\34_20260408_222722.jpg
+2026-04-08 22:27:22,591 - fastapi_app - INFO - 告警截图上传成功: C:\Users\cry\Desktop\SmartSafetyGuardSystemForPark-main\app\snapshots\34_20260408_222722.jpg
+2026-04-08 22:27:22,604 - fastapi_app - INFO - 告警记录创建成功: alarm_id=62, camera_id=34, alarm_type=1, snapshot=C:\Users\cry\Desktop\SmartSafetyGuardSystemForPark-main\app\snapshots\34_20260408_222722.jpg
+2026-04-08 22:27:22,606 - fastapi_app - INFO - 广播告警: Alarm ID=62, 类型=区域入侵(人/车辆)
+2026-04-08 22:27:22,607 - fastapi_app - INFO - 广播消息完成，有效连接数: 1
+2026-04-08 22:27:22,612 - fastapi_app - INFO - 分析结果已发送: 人员1人, 车辆0辆, 安全帽检测到, 反光衣未检测到
+2026-04-08 22:27:24,090 - fastapi_app - WARNING - OSS上传失败，保存到本地: OSS配置不完整，请检查环境变量设置
+2026-04-08 22:27:24,095 - fastapi_app - INFO - 告警截图已保存到本地: C:\Users\cry\Desktop\SmartSafetyGuardSystemForPark-main\app\snapshots\34_20260408_222724.jpg
+2026-04-08 22:27:24,095 - fastapi_app - INFO - 告警截图上传成功: C:\Users\cry\Desktop\SmartSafetyGuardSystemForPark-main\app\snapshots\34_20260408_222724.jpg
+2026-04-08 22:27:24,111 - fastapi_app - INFO - 告警记录创建成功: alarm_id=63, camera_id=34, alarm_type=1, snapshot=C:\Users\cry\Desktop\SmartSafetyGuardSystemForPark-main\app\snapshots\34_20260408_222724.jpg
+2026-04-08 22:27:24,112 - fastapi_app - INFO - 广播告警: Alarm ID=63, 类型=区域入侵(人/车辆)
+2026-04-08 22:27:24,112 - fastapi_app - ERROR - 发送WebSocket消息失败: 
+2026-04-08 22:27:24,112 - fastapi_app - INFO - 广播消息完成，有效连接数: 1
+2026-04-08 22:32:23,540 - fastapi_app - INFO - WebSocket连接已断开，当前连接数: 0
+2026-04-09 23:02:56,878 - fastapi_app - INFO - WebSocket连接已建立，当前连接数: 1
+2026-04-09 23:10:10,177 - fastapi_app - INFO - WebSocket连接已断开，当前连接数: 0
+2026-04-09 23:10:10,678 - fastapi_app - INFO - WebSocket连接已建立，当前连接数: 1
+2026-04-09 23:10:20,402 - fastapi_app - INFO - WebSocket连接已断开，当前连接数: 0
+2026-04-09 23:10:20,797 - fastapi_app - INFO - WebSocket连接已建立，当前连接数: 1
+2026-04-09 23:10:41,191 - fastapi_app - INFO - WebSocket连接已断开，当前连接数: 0
+2026-04-09 23:10:41,682 - fastapi_app - INFO - WebSocket连接已建立，当前连接数: 1
+2026-04-09 23:11:15,448 - fastapi_app - INFO - WebSocket连接已断开，当前连接数: 0
+2026-04-09 23:11:21,781 - fastapi_app - INFO - WebSocket连接已建立，当前连接数: 1
+2026-04-09 23:11:25,074 - fastapi_app - INFO - WebSocket连接已断开，当前连接数: 0
+2026-04-09 23:11:25,504 - fastapi_app - INFO - WebSocket连接已建立，当前连接数: 1
+2026-04-09 23:21:59,842 - fastapi_app - INFO - WebSocket连接已断开，当前连接数: 0
+2026-04-09 23:22:05,232 - fastapi_app - INFO - WebSocket连接已建立，当前连接数: 1
+2026-04-09 23:22:08,442 - fastapi_app - INFO - WebSocket连接已断开，当前连接数: 0
+2026-04-09 23:22:08,908 - fastapi_app - INFO - WebSocket连接已建立，当前连接数: 1
+2026-04-09 23:22:14,978 - fastapi_app - ERROR - 火焰烟雾检测失败: type object 'DetectionService' has no attribute 'fire_smoke_seg_model'
+2026-04-09 23:22:14,979 - fastapi_app - ERROR - 人员车辆检测失败: type object 'DetectionService' has no attribute 'yolo11s_model'
+2026-04-09 23:22:15,558 - fastapi_app - ERROR - 火焰烟雾检测失败: type object 'DetectionService' has no attribute 'fire_smoke_seg_model'
+2026-04-09 23:22:15,558 - fastapi_app - ERROR - 人员车辆检测失败: type object 'DetectionService' has no attribute 'yolo11s_model'
+2026-04-09 23:22:16,665 - fastapi_app - ERROR - 火焰烟雾检测失败: type object 'DetectionService' has no attribute 'fire_smoke_seg_model'
+2026-04-09 23:22:16,665 - fastapi_app - ERROR - 人员车辆检测失败: type object 'DetectionService' has no attribute 'yolo11s_model'
+2026-04-09 23:22:17,782 - fastapi_app - ERROR - 火焰烟雾检测失败: type object 'DetectionService' has no attribute 'fire_smoke_seg_model'
+2026-04-09 23:22:17,783 - fastapi_app - ERROR - 人员车辆检测失败: type object 'DetectionService' has no attribute 'yolo11s_model'
+2026-04-09 23:22:18,648 - fastapi_app - ERROR - 火焰烟雾检测失败: type object 'DetectionService' has no attribute 'fire_smoke_seg_model'
+2026-04-09 23:22:18,649 - fastapi_app - ERROR - 人员车辆检测失败: type object 'DetectionService' has no attribute 'yolo11s_model'
+2026-04-09 23:22:19,750 - fastapi_app - ERROR - 火焰烟雾检测失败: type object 'DetectionService' has no attribute 'fire_smoke_seg_model'
+2026-04-09 23:22:19,750 - fastapi_app - ERROR - 人员车辆检测失败: type object 'DetectionService' has no attribute 'yolo11s_model'
+2026-04-09 23:22:20,704 - fastapi_app - ERROR - 火焰烟雾检测失败: type object 'DetectionService' has no attribute 'fire_smoke_seg_model'
+2026-04-09 23:22:20,704 - fastapi_app - ERROR - 人员车辆检测失败: type object 'DetectionService' has no attribute 'yolo11s_model'
+2026-04-09 23:22:21,931 - fastapi_app - ERROR - 火焰烟雾检测失败: type object 'DetectionService' has no attribute 'fire_smoke_seg_model'
+2026-04-09 23:22:21,931 - fastapi_app - ERROR - 人员车辆检测失败: type object 'DetectionService' has no attribute 'yolo11s_model'
+2026-04-09 23:22:22,697 - fastapi_app - ERROR - 火焰烟雾检测失败: type object 'DetectionService' has no attribute 'fire_smoke_seg_model'
+2026-04-09 23:22:22,699 - fastapi_app - ERROR - 人员车辆检测失败: type object 'DetectionService' has no attribute 'yolo11s_model'
+2026-04-09 23:22:23,951 - fastapi_app - ERROR - 火焰烟雾检测失败: type object 'DetectionService' has no attribute 'fire_smoke_seg_model'
+2026-04-09 23:22:23,951 - fastapi_app - ERROR - 人员车辆检测失败: type object 'DetectionService' has no attribute 'yolo11s_model'
+2026-04-09 23:22:24,701 - fastapi_app - ERROR - 火焰烟雾检测失败: type object 'DetectionService' has no attribute 'fire_smoke_seg_model'
+2026-04-09 23:22:24,703 - fastapi_app - ERROR - 人员车辆检测失败: type object 'DetectionService' has no attribute 'yolo11s_model'
+2026-04-09 23:22:25,943 - fastapi_app - ERROR - 火焰烟雾检测失败: type object 'DetectionService' has no attribute 'fire_smoke_seg_model'
+2026-04-09 23:22:25,944 - fastapi_app - ERROR - 人员车辆检测失败: type object 'DetectionService' has no attribute 'yolo11s_model'
+2026-04-09 23:22:26,712 - fastapi_app - ERROR - 火焰烟雾检测失败: type object 'DetectionService' has no attribute 'fire_smoke_seg_model'
+2026-04-09 23:22:26,712 - fastapi_app - ERROR - 人员车辆检测失败: type object 'DetectionService' has no attribute 'yolo11s_model'
+2026-04-09 23:22:27,877 - fastapi_app - ERROR - 火焰烟雾检测失败: type object 'DetectionService' has no attribute 'fire_smoke_seg_model'
+2026-04-09 23:22:27,877 - fastapi_app - ERROR - 人员车辆检测失败: type object 'DetectionService' has no attribute 'yolo11s_model'
+2026-04-09 23:22:28,906 - fastapi_app - ERROR - 火焰烟雾检测失败: type object 'DetectionService' has no attribute 'fire_smoke_seg_model'
+2026-04-09 23:22:28,907 - fastapi_app - ERROR - 人员车辆检测失败: type object 'DetectionService' has no attribute 'yolo11s_model'
+2026-04-09 23:22:29,823 - fastapi_app - ERROR - 火焰烟雾检测失败: type object 'DetectionService' has no attribute 'fire_smoke_seg_model'
+2026-04-09 23:22:29,825 - fastapi_app - ERROR - 人员车辆检测失败: type object 'DetectionService' has no attribute 'yolo11s_model'
+2026-04-09 23:22:30,979 - fastapi_app - ERROR - 火焰烟雾检测失败: type object 'DetectionService' has no attribute 'fire_smoke_seg_model'
+2026-04-09 23:22:30,979 - fastapi_app - ERROR - 人员车辆检测失败: type object 'DetectionService' has no attribute 'yolo11s_model'
+2026-04-09 23:22:31,778 - fastapi_app - ERROR - 火焰烟雾检测失败: type object 'DetectionService' has no attribute 'fire_smoke_seg_model'
+2026-04-09 23:22:31,778 - fastapi_app - ERROR - 人员车辆检测失败: type object 'DetectionService' has no attribute 'yolo11s_model'
+2026-04-09 23:22:32,842 - fastapi_app - ERROR - 火焰烟雾检测失败: type object 'DetectionService' has no attribute 'fire_smoke_seg_model'
+2026-04-09 23:22:32,842 - fastapi_app - ERROR - 人员车辆检测失败: type object 'DetectionService' has no attribute 'yolo11s_model'
+2026-04-09 23:22:33,806 - fastapi_app - ERROR - 火焰烟雾检测失败: type object 'DetectionService' has no attribute 'fire_smoke_seg_model'
+2026-04-09 23:22:33,808 - fastapi_app - ERROR - 人员车辆检测失败: type object 'DetectionService' has no attribute 'yolo11s_model'
+2026-04-09 23:22:34,648 - fastapi_app - ERROR - 火焰烟雾检测失败: type object 'DetectionService' has no attribute 'fire_smoke_seg_model'
+2026-04-09 23:22:34,648 - fastapi_app - ERROR - 人员车辆检测失败: type object 'DetectionService' has no attribute 'yolo11s_model'
+2026-04-09 23:22:35,420 - fastapi_app - ERROR - 火焰烟雾检测失败: type object 'DetectionService' has no attribute 'fire_smoke_seg_model'
+2026-04-09 23:22:35,421 - fastapi_app - ERROR - 人员车辆检测失败: type object 'DetectionService' has no attribute 'yolo11s_model'
+2026-04-09 23:22:36,341 - fastapi_app - ERROR - 火焰烟雾检测失败: type object 'DetectionService' has no attribute 'fire_smoke_seg_model'
+2026-04-09 23:22:36,342 - fastapi_app - ERROR - 人员车辆检测失败: type object 'DetectionService' has no attribute 'yolo11s_model'
+2026-04-09 23:22:37,299 - fastapi_app - ERROR - 火焰烟雾检测失败: type object 'DetectionService' has no attribute 'fire_smoke_seg_model'
+2026-04-09 23:22:37,300 - fastapi_app - ERROR - 人员车辆检测失败: type object 'DetectionService' has no attribute 'yolo11s_model'
+2026-04-09 23:22:38,378 - fastapi_app - ERROR - 火焰烟雾检测失败: type object 'DetectionService' has no attribute 'fire_smoke_seg_model'
+2026-04-09 23:22:38,378 - fastapi_app - ERROR - 人员车辆检测失败: type object 'DetectionService' has no attribute 'yolo11s_model'
+2026-04-09 23:24:14,485 - fastapi_app - INFO - WebSocket连接已断开，当前连接数: 0
+2026-04-09 23:24:20,231 - fastapi_app - INFO - WebSocket连接已建立，当前连接数: 1
+2026-04-09 23:24:22,204 - fastapi_app - INFO - WebSocket连接已断开，当前连接数: 0
+2026-04-09 23:24:22,648 - fastapi_app - INFO - WebSocket连接已建立，当前连接数: 1
+2026-04-09 23:29:59,898 - fastapi_app - INFO - WebSocket连接已断开，当前连接数: 0
+2026-04-09 23:30:05,230 - fastapi_app - INFO - WebSocket连接已建立，当前连接数: 1
+2026-04-09 23:33:46,309 - fastapi_app - INFO - WebSocket连接已断开，当前连接数: 0
+2026-04-09 23:35:04,233 - fastapi_app - INFO - WebSocket连接已建立，当前连接数: 1
+2026-04-09 23:35:07,294 - fastapi_app - INFO - WebSocket连接已断开，当前连接数: 0
+2026-04-09 23:35:07,834 - fastapi_app - INFO - WebSocket连接已建立，当前连接数: 1
+2026-04-09 23:38:59,799 - fastapi_app - INFO - WebSocket连接已断开，当前连接数: 0
+2026-04-09 23:39:05,240 - fastapi_app - INFO - WebSocket连接已建立，当前连接数: 1
+2026-04-09 23:41:37,268 - fastapi_app - INFO - WebSocket连接已断开，当前连接数: 0
+2026-04-09 23:41:37,792 - fastapi_app - INFO - WebSocket连接已建立，当前连接数: 1
+2026-04-09 23:44:16,805 - fastapi_app - WARNING - OSS上传失败，保存到本地: OSS配置不完整，请检查环境变量设置
+2026-04-09 23:44:16,812 - fastapi_app - INFO - 告警截图已保存到本地: C:\Users\cry\Desktop\SmartSafetyGuardSystemForPark-main\app\snapshots\34_20260409_234416.jpg
+2026-04-09 23:44:16,814 - fastapi_app - INFO - 告警截图上传成功: C:\Users\cry\Desktop\SmartSafetyGuardSystemForPark-main\app\snapshots\34_20260409_234416.jpg
+2026-04-09 23:44:16,943 - fastapi_app - INFO - 告警记录创建成功: alarm_id=64, camera_id=34, alarm_type=2, snapshot=C:\Users\cry\Desktop\SmartSafetyGuardSystemForPark-main\app\snapshots\34_20260409_234416.jpg
+2026-04-09 23:44:16,943 - fastapi_app - INFO - 广播告警: Alarm ID=64, 类型=火警(火焰、烟雾)
+2026-04-09 23:44:16,948 - fastapi_app - INFO - 广播消息完成，有效连接数: 1
+2026-04-09 23:44:16,948 - fastapi_app - INFO - 分析结果已发送: 人员1人, 车辆0辆, 安全帽未检测到, 反光衣未检测到
+2026-04-09 23:44:18,349 - fastapi_app - WARNING - OSS上传失败，保存到本地: OSS配置不完整，请检查环境变量设置
+2026-04-09 23:44:18,353 - fastapi_app - INFO - 告警截图已保存到本地: C:\Users\cry\Desktop\SmartSafetyGuardSystemForPark-main\app\snapshots\34_20260409_234418.jpg
+2026-04-09 23:44:18,354 - fastapi_app - INFO - 告警截图上传成功: C:\Users\cry\Desktop\SmartSafetyGuardSystemForPark-main\app\snapshots\34_20260409_234418.jpg
+2026-04-09 23:44:18,365 - fastapi_app - INFO - 告警记录创建成功: alarm_id=65, camera_id=34, alarm_type=2, snapshot=C:\Users\cry\Desktop\SmartSafetyGuardSystemForPark-main\app\snapshots\34_20260409_234418.jpg
+2026-04-09 23:44:18,365 - fastapi_app - INFO - 广播告警: Alarm ID=65, 类型=火警(火焰、烟雾)
+2026-04-09 23:44:18,367 - fastapi_app - INFO - 广播消息完成，有效连接数: 1
+2026-04-09 23:44:18,369 - fastapi_app - INFO - 分析结果已发送: 人员1人, 车辆0辆, 安全帽未检测到, 反光衣未检测到
+2026-04-09 23:44:19,810 - fastapi_app - WARNING - OSS上传失败，保存到本地: OSS配置不完整，请检查环境变量设置
+2026-04-09 23:44:19,815 - fastapi_app - INFO - 告警截图已保存到本地: C:\Users\cry\Desktop\SmartSafetyGuardSystemForPark-main\app\snapshots\34_20260409_234419.jpg
+2026-04-09 23:44:19,816 - fastapi_app - INFO - 告警截图上传成功: C:\Users\cry\Desktop\SmartSafetyGuardSystemForPark-main\app\snapshots\34_20260409_234419.jpg
+2026-04-09 23:44:19,830 - fastapi_app - INFO - 告警记录创建成功: alarm_id=66, camera_id=34, alarm_type=2, snapshot=C:\Users\cry\Desktop\SmartSafetyGuardSystemForPark-main\app\snapshots\34_20260409_234419.jpg
+2026-04-09 23:44:19,830 - fastapi_app - INFO - 广播告警: Alarm ID=66, 类型=火警(火焰、烟雾)
+2026-04-09 23:44:19,831 - fastapi_app - INFO - 广播消息完成，有效连接数: 1
+2026-04-09 23:44:19,837 - fastapi_app - INFO - 分析结果已发送: 人员1人, 车辆0辆, 安全帽未检测到, 反光衣未检测到
+2026-04-09 23:44:21,437 - fastapi_app - WARNING - OSS上传失败，保存到本地: OSS配置不完整，请检查环境变量设置
+2026-04-09 23:44:21,441 - fastapi_app - INFO - 告警截图已保存到本地: C:\Users\cry\Desktop\SmartSafetyGuardSystemForPark-main\app\snapshots\34_20260409_234421.jpg
+2026-04-09 23:44:21,443 - fastapi_app - INFO - 告警截图上传成功: C:\Users\cry\Desktop\SmartSafetyGuardSystemForPark-main\app\snapshots\34_20260409_234421.jpg
+2026-04-09 23:44:21,469 - fastapi_app - INFO - 告警记录创建成功: alarm_id=67, camera_id=34, alarm_type=2, snapshot=C:\Users\cry\Desktop\SmartSafetyGuardSystemForPark-main\app\snapshots\34_20260409_234421.jpg
+2026-04-09 23:44:21,469 - fastapi_app - INFO - 广播告警: Alarm ID=67, 类型=火警(火焰、烟雾)
+2026-04-09 23:44:21,470 - fastapi_app - INFO - 广播消息完成，有效连接数: 1
+2026-04-09 23:44:21,476 - fastapi_app - INFO - 分析结果已发送: 人员1人, 车辆0辆, 安全帽未检测到, 反光衣检测到
+2026-04-09 23:44:22,992 - fastapi_app - WARNING - OSS上传失败，保存到本地: OSS配置不完整，请检查环境变量设置
+2026-04-09 23:44:22,999 - fastapi_app - INFO - 告警截图已保存到本地: C:\Users\cry\Desktop\SmartSafetyGuardSystemForPark-main\app\snapshots\34_20260409_234422.jpg
+2026-04-09 23:44:22,999 - fastapi_app - INFO - 告警截图上传成功: C:\Users\cry\Desktop\SmartSafetyGuardSystemForPark-main\app\snapshots\34_20260409_234422.jpg
+2026-04-09 23:44:23,024 - fastapi_app - INFO - 告警记录创建成功: alarm_id=68, camera_id=34, alarm_type=2, snapshot=C:\Users\cry\Desktop\SmartSafetyGuardSystemForPark-main\app\snapshots\34_20260409_234422.jpg
+2026-04-09 23:44:23,026 - fastapi_app - INFO - 广播告警: Alarm ID=68, 类型=火警(火焰、烟雾)
+2026-04-09 23:44:23,027 - fastapi_app - INFO - 广播消息完成，有效连接数: 1
+2026-04-09 23:44:23,035 - fastapi_app - INFO - 分析结果已发送: 人员1人, 车辆0辆, 安全帽未检测到, 反光衣检测到
+2026-04-09 23:44:24,414 - fastapi_app - WARNING - OSS上传失败，保存到本地: OSS配置不完整，请检查环境变量设置
+2026-04-09 23:44:24,419 - fastapi_app - INFO - 告警截图已保存到本地: C:\Users\cry\Desktop\SmartSafetyGuardSystemForPark-main\app\snapshots\34_20260409_234424.jpg
+2026-04-09 23:44:24,419 - fastapi_app - INFO - 告警截图上传成功: C:\Users\cry\Desktop\SmartSafetyGuardSystemForPark-main\app\snapshots\34_20260409_234424.jpg
+2026-04-09 23:44:24,431 - fastapi_app - INFO - 告警记录创建成功: alarm_id=69, camera_id=34, alarm_type=2, snapshot=C:\Users\cry\Desktop\SmartSafetyGuardSystemForPark-main\app\snapshots\34_20260409_234424.jpg
+2026-04-09 23:44:24,431 - fastapi_app - INFO - 广播告警: Alarm ID=69, 类型=火警(火焰、烟雾)
+2026-04-09 23:44:24,433 - fastapi_app - INFO - 广播消息完成，有效连接数: 1
+2026-04-09 23:44:24,439 - fastapi_app - INFO - 分析结果已发送: 人员1人, 车辆0辆, 安全帽检测到, 反光衣检测到
+2026-04-09 23:44:25,907 - fastapi_app - WARNING - OSS上传失败，保存到本地: OSS配置不完整，请检查环境变量设置
+2026-04-09 23:44:25,912 - fastapi_app - INFO - 告警截图已保存到本地: C:\Users\cry\Desktop\SmartSafetyGuardSystemForPark-main\app\snapshots\34_20260409_234425.jpg
+2026-04-09 23:44:25,912 - fastapi_app - INFO - 告警截图上传成功: C:\Users\cry\Desktop\SmartSafetyGuardSystemForPark-main\app\snapshots\34_20260409_234425.jpg
+2026-04-09 23:44:25,929 - fastapi_app - INFO - 告警记录创建成功: alarm_id=70, camera_id=34, alarm_type=2, snapshot=C:\Users\cry\Desktop\SmartSafetyGuardSystemForPark-main\app\snapshots\34_20260409_234425.jpg
+2026-04-09 23:44:25,930 - fastapi_app - INFO - 广播告警: Alarm ID=70, 类型=火警(火焰、烟雾)
+2026-04-09 23:44:25,931 - fastapi_app - ERROR - 发送WebSocket消息失败: 
+2026-04-09 23:44:25,931 - fastapi_app - INFO - 广播消息完成，有效连接数: 1
+2026-04-09 23:48:06,267 - fastapi_app - INFO - WebSocket连接已断开，当前连接数: 0
+2026-04-09 23:48:06,802 - fastapi_app - INFO - WebSocket连接已建立，当前连接数: 1
+2026-04-09 23:48:11,506 - fastapi_app - INFO - WebSocket连接已断开，当前连接数: 0
+2026-04-09 23:48:12,027 - fastapi_app - INFO - WebSocket连接已建立，当前连接数: 1
+2026-04-09 23:48:53,646 - fastapi_app - INFO - WebSocket连接已断开，当前连接数: 0
+2026-04-09 23:48:54,115 - fastapi_app - INFO - WebSocket连接已建立，当前连接数: 1
+2026-04-09 23:52:14,478 - fastapi_app - INFO - WebSocket连接已断开，当前连接数: 0
+2026-04-09 23:52:14,955 - fastapi_app - INFO - WebSocket连接已建立，当前连接数: 1
+2026-04-09 23:52:51,041 - fastapi_app - INFO - WebSocket连接已断开，当前连接数: 0
+2026-04-09 23:52:51,517 - fastapi_app - INFO - WebSocket连接已建立，当前连接数: 1
+2026-04-10 00:00:52,899 - fastapi_app - INFO - WebSocket连接已断开，当前连接数: 0
+2026-04-10 00:00:58,736 - fastapi_app - INFO - WebSocket连接已建立，当前连接数: 1
+2026-04-10 00:01:01,811 - fastapi_app - INFO - WebSocket连接已断开，当前连接数: 0
+2026-04-10 00:01:02,341 - fastapi_app - INFO - WebSocket连接已建立，当前连接数: 1
+2026-04-10 00:01:14,923 - fastapi_app - INFO - 分析结果已发送: 人员1人, 车辆0辆, 安全帽检测到, 反光衣检测到
+2026-04-10 00:01:16,306 - fastapi_app - INFO - 分析结果已发送: 人员1人, 车辆0辆, 安全帽检测到, 反光衣检测到
+2026-04-10 00:01:17,719 - fastapi_app - INFO - 分析结果已发送: 人员1人, 车辆0辆, 安全帽检测到, 反光衣检测到
+2026-04-10 00:01:19,089 - fastapi_app - INFO - 分析结果已发送: 人员1人, 车辆0辆, 安全帽检测到, 反光衣检测到
+2026-04-10 00:01:20,595 - fastapi_app - INFO - 分析结果已发送: 人员1人, 车辆0辆, 安全帽检测到, 反光衣检测到
+2026-04-10 00:01:22,217 - fastapi_app - INFO - 分析结果已发送: 人员1人, 车辆0辆, 安全帽检测到, 反光衣检测到
+2026-04-10 00:01:23,643 - fastapi_app - INFO - 分析结果已发送: 人员1人, 车辆0辆, 安全帽检测到, 反光衣检测到
+2026-04-10 00:01:25,122 - fastapi_app - INFO - 分析结果已发送: 人员1人, 车辆0辆, 安全帽检测到, 反光衣检测到
+2026-04-10 00:01:26,443 - fastapi_app - INFO - 分析结果已发送: 人员1人, 车辆0辆, 安全帽检测到, 反光衣检测到
+2026-04-10 00:01:27,985 - fastapi_app - INFO - 分析结果已发送: 人员1人, 车辆0辆, 安全帽检测到, 反光衣检测到
+2026-04-10 00:01:29,391 - fastapi_app - INFO - 分析结果已发送: 人员1人, 车辆0辆, 安全帽检测到, 反光衣检测到
+2026-04-10 00:01:30,710 - fastapi_app - ERROR - 发送WebSocket消息失败: 
+2026-04-10 00:01:45,770 - fastapi_app - INFO - 分析结果已发送: 人员1人, 车辆0辆, 安全帽检测到, 反光衣检测到
+2026-04-10 00:01:47,141 - fastapi_app - INFO - 分析结果已发送: 人员1人, 车辆0辆, 安全帽检测到, 反光衣检测到
+2026-04-10 00:01:48,462 - fastapi_app - INFO - 分析结果已发送: 人员1人, 车辆0辆, 安全帽检测到, 反光衣检测到
+2026-04-10 00:01:49,825 - fastapi_app - INFO - 分析结果已发送: 人员1人, 车辆0辆, 安全帽检测到, 反光衣检测到
+2026-04-10 00:01:51,220 - fastapi_app - INFO - 分析结果已发送: 人员1人, 车辆0辆, 安全帽检测到, 反光衣检测到
+2026-04-10 00:01:52,860 - fastapi_app - INFO - 分析结果已发送: 人员1人, 车辆0辆, 安全帽检测到, 反光衣检测到
+2026-04-10 00:01:54,484 - fastapi_app - INFO - 分析结果已发送: 人员1人, 车辆0辆, 安全帽检测到, 反光衣检测到
+2026-04-10 00:01:56,123 - fastapi_app - INFO - 分析结果已发送: 人员1人, 车辆0辆, 安全帽未检测到, 反光衣未检测到
+2026-04-10 00:01:57,579 - fastapi_app - INFO - 分析结果已发送: 人员1人, 车辆0辆, 安全帽未检测到, 反光衣未检测到
+2026-04-10 00:01:59,181 - fastapi_app - INFO - 分析结果已发送: 人员1人, 车辆0辆, 安全帽未检测到, 反光衣未检测到
+2026-04-10 00:02:00,880 - fastapi_app - INFO - 分析结果已发送: 人员1人, 车辆0辆, 安全帽未检测到, 反光衣未检测到
+2026-04-10 00:02:02,502 - fastapi_app - INFO - 分析结果已发送: 人员1人, 车辆0辆, 安全帽检测到, 反光衣未检测到
+2026-04-10 00:02:04,061 - fastapi_app - INFO - 分析结果已发送: 人员1人, 车辆0辆, 安全帽检测到, 反光衣未检测到
+2026-04-10 00:02:05,741 - fastapi_app - INFO - 分析结果已发送: 人员1人, 车辆0辆, 安全帽检测到, 反光衣未检测到
+2026-04-10 00:02:07,500 - fastapi_app - INFO - 分析结果已发送: 人员1人, 车辆0辆, 安全帽检测到, 反光衣未检测到
+2026-04-10 00:02:08,829 - fastapi_app - INFO - 分析结果已发送: 人员1人, 车辆0辆, 安全帽检测到, 反光衣未检测到
+2026-04-10 00:02:10,108 - fastapi_app - ERROR - 发送WebSocket消息失败: 
+2026-04-10 00:02:33,039 - fastapi_app - INFO - 分析结果已发送: 人员1人, 车辆0辆, 安全帽未检测到, 反光衣检测到
+2026-04-10 00:02:34,496 - fastapi_app - INFO - 分析结果已发送: 人员1人, 车辆0辆, 安全帽未检测到, 反光衣检测到
+2026-04-10 00:02:35,880 - fastapi_app - INFO - 分析结果已发送: 人员1人, 车辆0辆, 安全帽未检测到, 反光衣检测到
+2026-04-10 00:02:37,328 - fastapi_app - INFO - 分析结果已发送: 人员1人, 车辆0辆, 安全帽未检测到, 反光衣检测到
+2026-04-10 00:02:38,945 - fastapi_app - INFO - 分析结果已发送: 人员1人, 车辆0辆, 安全帽未检测到, 反光衣检测到
+2026-04-10 00:02:40,358 - fastapi_app - INFO - 分析结果已发送: 人员1人, 车辆0辆, 安全帽未检测到, 反光衣检测到
+2026-04-10 00:02:41,786 - fastapi_app - INFO - 分析结果已发送: 人员1人, 车辆0辆, 安全帽未检测到, 反光衣未检测到
+2026-04-10 00:02:43,238 - fastapi_app - INFO - 分析结果已发送: 人员1人, 车辆0辆, 安全帽未检测到, 反光衣检测到
+2026-04-10 00:02:44,904 - fastapi_app - INFO - 分析结果已发送: 人员1人, 车辆0辆, 安全帽检测到, 反光衣检测到
+2026-04-10 00:02:46,605 - fastapi_app - INFO - 分析结果已发送: 人员1人, 车辆0辆, 安全帽未检测到, 反光衣未检测到
+2026-04-10 00:02:48,063 - fastapi_app - INFO - 分析结果已发送: 人员1人, 车辆0辆, 安全帽未检测到, 反光衣未检测到
+2026-04-10 00:02:49,626 - fastapi_app - INFO - 分析结果已发送: 人员1人, 车辆0辆, 安全帽检测到, 反光衣检测到
+2026-04-10 00:02:51,152 - fastapi_app - INFO - 分析结果已发送: 人员1人, 车辆0辆, 安全帽未检测到, 反光衣检测到
+2026-04-10 00:02:52,750 - fastapi_app - INFO - 分析结果已发送: 人员1人, 车辆0辆, 安全帽检测到, 反光衣检测到
+2026-04-10 00:02:54,242 - fastapi_app - INFO - 分析结果已发送: 人员1人, 车辆0辆, 安全帽检测到, 反光衣检测到
+2026-04-10 00:02:55,894 - fastapi_app - INFO - 分析结果已发送: 人员1人, 车辆0辆, 安全帽未检测到, 反光衣检测到
+2026-04-10 00:02:57,546 - fastapi_app - INFO - 分析结果已发送: 人员1人, 车辆0辆, 安全帽未检测到, 反光衣检测到
+2026-04-10 00:02:59,061 - fastapi_app - INFO - 分析结果已发送: 人员1人, 车辆0辆, 安全帽未检测到, 反光衣检测到
+2026-04-10 00:03:00,474 - fastapi_app - ERROR - 发送WebSocket消息失败: 
+2026-04-10 00:03:08,708 - fastapi_app - INFO - WebSocket连接已断开，当前连接数: 0
+2026-04-10 00:03:09,229 - fastapi_app - INFO - WebSocket连接已建立，当前连接数: 1
+2026-04-10 00:04:29,796 - fastapi_app - INFO - WebSocket连接已断开，当前连接数: 0
+2026-04-10 00:04:36,247 - fastapi_app - INFO - WebSocket连接已建立，当前连接数: 1
+2026-04-10 00:06:56,029 - fastapi_app - INFO - WebSocket连接已断开，当前连接数: 0
+2026-04-10 00:07:13,722 - fastapi_app - INFO - WebSocket连接已建立，当前连接数: 1
+2026-04-10 00:07:32,316 - fastapi_app - INFO - 分析结果已发送: 人员1人, 车辆0辆, 安全帽检测到, 反光衣检测到
+2026-04-10 00:07:33,512 - fastapi_app - INFO - 分析结果已发送: 人员1人, 车辆0辆, 安全帽未检测到, 反光衣检测到
+2026-04-10 00:07:34,766 - fastapi_app - INFO - 分析结果已发送: 人员1人, 车辆0辆, 安全帽未检测到, 反光衣检测到
+2026-04-10 00:07:36,086 - fastapi_app - INFO - 分析结果已发送: 人员1人, 车辆0辆, 安全帽未检测到, 反光衣检测到
+2026-04-10 00:07:37,306 - fastapi_app - INFO - 分析结果已发送: 人员1人, 车辆0辆, 安全帽检测到, 反光衣检测到
+2026-04-10 00:07:38,607 - fastapi_app - INFO - 分析结果已发送: 人员1人, 车辆0辆, 安全帽检测到, 反光衣检测到
+2026-04-10 00:07:39,876 - fastapi_app - INFO - 分析结果已发送: 人员1人, 车辆0辆, 安全帽检测到, 反光衣检测到
+2026-04-10 00:07:41,064 - fastapi_app - INFO - 分析结果已发送: 人员1人, 车辆0辆, 安全帽检测到, 反光衣检测到
+2026-04-10 00:07:42,416 - fastapi_app - INFO - 分析结果已发送: 人员1人, 车辆0辆, 安全帽检测到, 反光衣检测到
+2026-04-10 00:07:43,857 - fastapi_app - INFO - 分析结果已发送: 人员1人, 车辆0辆, 安全帽检测到, 反光衣未检测到
+2026-04-10 00:07:45,049 - fastapi_app - INFO - 分析结果已发送: 人员1人, 车辆0辆, 安全帽未检测到, 反光衣未检测到
+2026-04-10 00:07:46,310 - fastapi_app - INFO - 分析结果已发送: 人员1人, 车辆0辆, 安全帽未检测到, 反光衣未检测到
+2026-04-10 00:07:47,629 - fastapi_app - INFO - 分析结果已发送: 人员1人, 车辆0辆, 安全帽未检测到, 反光衣未检测到
+2026-04-10 00:07:48,895 - fastapi_app - INFO - 分析结果已发送: 人员1人, 车辆0辆, 安全帽检测到, 反光衣未检测到
+2026-04-10 00:07:50,131 - fastapi_app - INFO - 分析结果已发送: 人员1人, 车辆0辆, 安全帽未检测到, 反光衣未检测到
+2026-04-10 00:07:51,443 - fastapi_app - INFO - 分析结果已发送: 人员1人, 车辆0辆, 安全帽未检测到, 反光衣未检测到
+2026-04-10 00:07:52,774 - fastapi_app - INFO - 分析结果已发送: 人员1人, 车辆0辆, 安全帽未检测到, 反光衣未检测到
+2026-04-10 00:07:54,059 - fastapi_app - INFO - 分析结果已发送: 人员1人, 车辆0辆, 安全帽检测到, 反光衣未检测到
+2026-04-10 00:07:55,281 - fastapi_app - INFO - 分析结果已发送: 人员1人, 车辆0辆, 安全帽未检测到, 反光衣未检测到
+2026-04-10 00:07:56,710 - fastapi_app - INFO - 分析结果已发送: 人员1人, 车辆0辆, 安全帽未检测到, 反光衣未检测到
+2026-04-10 00:07:58,065 - fastapi_app - INFO - 分析结果已发送: 人员1人, 车辆0辆, 安全帽检测到, 反光衣未检测到
+2026-04-10 00:07:59,467 - fastapi_app - INFO - 分析结果已发送: 人员1人, 车辆0辆, 安全帽未检测到, 反光衣未检测到
+2026-04-10 00:08:00,891 - fastapi_app - INFO - 分析结果已发送: 人员1人, 车辆0辆, 安全帽未检测到, 反光衣未检测到
+2026-04-10 00:08:02,332 - fastapi_app - INFO - 分析结果已发送: 人员1人, 车辆0辆, 安全帽未检测到, 反光衣未检测到
+2026-04-10 00:08:03,749 - fastapi_app - INFO - 分析结果已发送: 人员1人, 车辆0辆, 安全帽未检测到, 反光衣未检测到
+2026-04-10 00:08:05,082 - fastapi_app - INFO - 分析结果已发送: 人员1人, 车辆0辆, 安全帽未检测到, 反光衣未检测到
+2026-04-10 00:08:06,443 - fastapi_app - INFO - 分析结果已发送: 人员1人, 车辆0辆, 安全帽未检测到, 反光衣未检测到
+2026-04-10 00:08:07,798 - fastapi_app - INFO - 分析结果已发送: 人员1人, 车辆0辆, 安全帽检测到, 反光衣未检测到
+2026-04-10 00:08:09,032 - fastapi_app - INFO - 分析结果已发送: 人员1人, 车辆0辆, 安全帽检测到, 反光衣检测到
+2026-04-10 00:08:10,324 - fastapi_app - INFO - 分析结果已发送: 人员1人, 车辆0辆, 安全帽检测到, 反光衣未检测到
+2026-04-10 00:08:11,711 - fastapi_app - INFO - 分析结果已发送: 人员1人, 车辆0辆, 安全帽未检测到, 反光衣未检测到
+2026-04-10 00:08:13,089 - fastapi_app - INFO - 分析结果已发送: 人员1人, 车辆0辆, 安全帽未检测到, 反光衣检测到
+2026-04-10 00:08:14,484 - fastapi_app - INFO - 分析结果已发送: 人员1人, 车辆0辆, 安全帽检测到, 反光衣未检测到
+2026-04-10 00:08:15,903 - fastapi_app - INFO - 分析结果已发送: 人员0人, 车辆0辆, 安全帽未检测到, 反光衣未检测到
+2026-04-10 00:08:17,344 - fastapi_app - INFO - 分析结果已发送: 人员1人, 车辆0辆, 安全帽未检测到, 反光衣未检测到
+2026-04-10 00:08:18,715 - fastapi_app - INFO - 分析结果已发送: 人员1人, 车辆0辆, 安全帽未检测到, 反光衣未检测到
+2026-04-10 00:08:20,127 - fastapi_app - INFO - 分析结果已发送: 人员1人, 车辆0辆, 安全帽未检测到, 反光衣检测到
+2026-04-10 00:08:21,542 - fastapi_app - INFO - 分析结果已发送: 人员1人, 车辆0辆, 安全帽未检测到, 反光衣未检测到
+2026-04-10 00:08:23,269 - fastapi_app - INFO - 分析结果已发送: 人员1人, 车辆0辆, 安全帽未检测到, 反光衣未检测到
+2026-04-10 00:08:24,784 - fastapi_app - INFO - 分析结果已发送: 人员0人, 车辆0辆, 安全帽未检测到, 反光衣未检测到
+2026-04-10 00:08:26,103 - fastapi_app - INFO - 分析结果已发送: 人员0人, 车辆0辆, 安全帽未检测到, 反光衣未检测到
+2026-04-10 00:08:27,600 - fastapi_app - INFO - 分析结果已发送: 人员0人, 车辆0辆, 安全帽未检测到, 反光衣未检测到
+2026-04-10 00:08:28,995 - fastapi_app - INFO - 分析结果已发送: 人员1人, 车辆0辆, 安全帽未检测到, 反光衣未检测到
+2026-04-10 00:08:30,375 - fastapi_app - INFO - 分析结果已发送: 人员1人, 车辆0辆, 安全帽未检测到, 反光衣未检测到
+2026-04-10 00:08:31,843 - fastapi_app - INFO - 分析结果已发送: 人员1人, 车辆0辆, 安全帽未检测到, 反光衣未检测到
+2026-04-10 00:08:33,364 - fastapi_app - INFO - 分析结果已发送: 人员1人, 车辆0辆, 安全帽未检测到, 反光衣未检测到
+2026-04-10 00:08:34,699 - fastapi_app - INFO - 分析结果已发送: 人员0人, 车辆0辆, 安全帽未检测到, 反光衣未检测到
+2026-04-10 00:08:36,108 - fastapi_app - INFO - 分析结果已发送: 人员1人, 车辆0辆, 安全帽未检测到, 反光衣未检测到
+2026-04-10 00:08:37,473 - fastapi_app - INFO - 分析结果已发送: 人员1人, 车辆0辆, 安全帽未检测到, 反光衣未检测到
+2026-04-10 00:08:38,923 - fastapi_app - INFO - 分析结果已发送: 人员0人, 车辆0辆, 安全帽未检测到, 反光衣未检测到
+2026-04-10 00:08:40,346 - fastapi_app - INFO - 分析结果已发送: 人员1人, 车辆0辆, 安全帽未检测到, 反光衣未检测到
+2026-04-10 00:08:41,680 - fastapi_app - INFO - 分析结果已发送: 人员2人, 车辆0辆, 安全帽未检测到, 反光衣未检测到
+2026-04-10 00:08:42,957 - fastapi_app - INFO - 分析结果已发送: 人员1人, 车辆0辆, 安全帽未检测到, 反光衣未检测到
+2026-04-10 00:08:44,274 - fastapi_app - ERROR - 发送WebSocket消息失败: 
+2026-04-10 00:09:03,352 - fastapi_app - INFO - 分析结果已发送: 人员1人, 车辆0辆, 安全帽检测到, 反光衣未检测到
+2026-04-10 00:09:04,733 - fastapi_app - INFO - 分析结果已发送: 人员1人, 车辆0辆, 安全帽检测到, 反光衣检测到
+2026-04-10 00:09:06,084 - fastapi_app - INFO - 分析结果已发送: 人员1人, 车辆0辆, 安全帽未检测到, 反光衣检测到
+2026-04-10 00:09:07,473 - fastapi_app - INFO - 分析结果已发送: 人员1人, 车辆0辆, 安全帽未检测到, 反光衣未检测到
+2026-04-10 00:09:08,745 - fastapi_app - INFO - 分析结果已发送: 人员1人, 车辆0辆, 安全帽未检测到, 反光衣未检测到
+2026-04-10 00:09:10,113 - fastapi_app - INFO - 分析结果已发送: 人员1人, 车辆0辆, 安全帽未检测到, 反光衣检测到
+2026-04-10 00:09:11,469 - fastapi_app - INFO - 分析结果已发送: 人员1人, 车辆0辆, 安全帽未检测到, 反光衣未检测到
+2026-04-10 00:09:12,860 - fastapi_app - INFO - 分析结果已发送: 人员1人, 车辆0辆, 安全帽未检测到, 反光衣未检测到
+2026-04-10 00:09:14,096 - fastapi_app - ERROR - 发送WebSocket消息失败: 
+2026-04-10 00:09:17,577 - fastapi_app - WARNING - OSS上传失败，保存到本地: OSS配置不完整，请检查环境变量设置
+2026-04-10 00:09:17,583 - fastapi_app - INFO - 告警截图已保存到本地: C:\Users\cry\Desktop\SmartSafetyGuardSystemForPark-main\app\snapshots\34_20260410_000917.jpg
+2026-04-10 00:09:17,583 - fastapi_app - INFO - 告警截图上传成功: C:\Users\cry\Desktop\SmartSafetyGuardSystemForPark-main\app\snapshots\34_20260410_000917.jpg
+2026-04-10 00:09:17,694 - fastapi_app - INFO - 告警记录创建成功: alarm_id=71, camera_id=34, alarm_type=2, snapshot=C:\Users\cry\Desktop\SmartSafetyGuardSystemForPark-main\app\snapshots\34_20260410_000917.jpg
+2026-04-10 00:09:17,694 - fastapi_app - INFO - 广播告警: Alarm ID=71, 类型=火警(火焰、烟雾)
+2026-04-10 00:09:17,696 - fastapi_app - INFO - 广播消息完成，有效连接数: 1
+2026-04-10 00:09:17,699 - fastapi_app - INFO - 分析结果已发送: 人员1人, 车辆0辆, 安全帽未检测到, 反光衣未检测到
+2026-04-10 00:09:19,087 - fastapi_app - WARNING - OSS上传失败，保存到本地: OSS配置不完整，请检查环境变量设置
+2026-04-10 00:09:19,092 - fastapi_app - INFO - 告警截图已保存到本地: C:\Users\cry\Desktop\SmartSafetyGuardSystemForPark-main\app\snapshots\34_20260410_000919.jpg
+2026-04-10 00:09:19,092 - fastapi_app - INFO - 告警截图上传成功: C:\Users\cry\Desktop\SmartSafetyGuardSystemForPark-main\app\snapshots\34_20260410_000919.jpg
+2026-04-10 00:09:19,112 - fastapi_app - INFO - 告警记录创建成功: alarm_id=72, camera_id=34, alarm_type=2, snapshot=C:\Users\cry\Desktop\SmartSafetyGuardSystemForPark-main\app\snapshots\34_20260410_000919.jpg
+2026-04-10 00:09:19,113 - fastapi_app - INFO - 广播告警: Alarm ID=72, 类型=火警(火焰、烟雾)
+2026-04-10 00:09:19,115 - fastapi_app - INFO - 广播消息完成，有效连接数: 1
+2026-04-10 00:09:19,118 - fastapi_app - INFO - 分析结果已发送: 人员1人, 车辆0辆, 安全帽未检测到, 反光衣检测到
+2026-04-10 00:09:20,461 - fastapi_app - WARNING - OSS上传失败，保存到本地: OSS配置不完整，请检查环境变量设置
+2026-04-10 00:09:20,465 - fastapi_app - INFO - 告警截图已保存到本地: C:\Users\cry\Desktop\SmartSafetyGuardSystemForPark-main\app\snapshots\34_20260410_000920.jpg
+2026-04-10 00:09:20,466 - fastapi_app - INFO - 告警截图上传成功: C:\Users\cry\Desktop\SmartSafetyGuardSystemForPark-main\app\snapshots\34_20260410_000920.jpg
+2026-04-10 00:09:20,502 - fastapi_app - INFO - 告警记录创建成功: alarm_id=73, camera_id=34, alarm_type=2, snapshot=C:\Users\cry\Desktop\SmartSafetyGuardSystemForPark-main\app\snapshots\34_20260410_000920.jpg
+2026-04-10 00:09:20,504 - fastapi_app - INFO - 广播告警: Alarm ID=73, 类型=火警(火焰、烟雾)
+2026-04-10 00:09:20,506 - fastapi_app - INFO - 广播消息完成，有效连接数: 1
+2026-04-10 00:09:20,513 - fastapi_app - INFO - 分析结果已发送: 人员1人, 车辆0辆, 安全帽未检测到, 反光衣检测到
+2026-04-10 00:09:22,002 - fastapi_app - WARNING - OSS上传失败，保存到本地: OSS配置不完整，请检查环境变量设置
+2026-04-10 00:09:22,007 - fastapi_app - INFO - 告警截图已保存到本地: C:\Users\cry\Desktop\SmartSafetyGuardSystemForPark-main\app\snapshots\34_20260410_000922.jpg
+2026-04-10 00:09:22,008 - fastapi_app - INFO - 告警截图上传成功: C:\Users\cry\Desktop\SmartSafetyGuardSystemForPark-main\app\snapshots\34_20260410_000922.jpg
+2026-04-10 00:09:22,026 - fastapi_app - INFO - 告警记录创建成功: alarm_id=74, camera_id=34, alarm_type=2, snapshot=C:\Users\cry\Desktop\SmartSafetyGuardSystemForPark-main\app\snapshots\34_20260410_000922.jpg
+2026-04-10 00:09:22,026 - fastapi_app - INFO - 广播告警: Alarm ID=74, 类型=火警(火焰、烟雾)
+2026-04-10 00:09:22,029 - fastapi_app - INFO - 广播消息完成，有效连接数: 1
+2026-04-10 00:09:22,033 - fastapi_app - INFO - 分析结果已发送: 人员1人, 车辆0辆, 安全帽未检测到, 反光衣检测到
+2026-04-10 00:09:23,491 - fastapi_app - WARNING - OSS上传失败，保存到本地: OSS配置不完整，请检查环境变量设置
+2026-04-10 00:09:23,498 - fastapi_app - INFO - 告警截图已保存到本地: C:\Users\cry\Desktop\SmartSafetyGuardSystemForPark-main\app\snapshots\34_20260410_000923.jpg
+2026-04-10 00:09:23,498 - fastapi_app - INFO - 告警截图上传成功: C:\Users\cry\Desktop\SmartSafetyGuardSystemForPark-main\app\snapshots\34_20260410_000923.jpg
+2026-04-10 00:09:23,514 - fastapi_app - INFO - 告警记录创建成功: alarm_id=75, camera_id=34, alarm_type=2, snapshot=C:\Users\cry\Desktop\SmartSafetyGuardSystemForPark-main\app\snapshots\34_20260410_000923.jpg
+2026-04-10 00:09:23,514 - fastapi_app - INFO - 广播告警: Alarm ID=75, 类型=火警(火焰、烟雾)
+2026-04-10 00:09:23,516 - fastapi_app - INFO - 广播消息完成，有效连接数: 1
+2026-04-10 00:09:23,521 - fastapi_app - INFO - 分析结果已发送: 人员1人, 车辆0辆, 安全帽未检测到, 反光衣未检测到
+2026-04-10 00:09:25,083 - fastapi_app - WARNING - OSS上传失败，保存到本地: OSS配置不完整，请检查环境变量设置
+2026-04-10 00:09:25,089 - fastapi_app - INFO - 告警截图已保存到本地: C:\Users\cry\Desktop\SmartSafetyGuardSystemForPark-main\app\snapshots\34_20260410_000925.jpg
+2026-04-10 00:09:25,089 - fastapi_app - INFO - 告警截图上传成功: C:\Users\cry\Desktop\SmartSafetyGuardSystemForPark-main\app\snapshots\34_20260410_000925.jpg
+2026-04-10 00:09:25,111 - fastapi_app - INFO - 告警记录创建成功: alarm_id=76, camera_id=34, alarm_type=2, snapshot=C:\Users\cry\Desktop\SmartSafetyGuardSystemForPark-main\app\snapshots\34_20260410_000925.jpg
+2026-04-10 00:09:25,111 - fastapi_app - INFO - 广播告警: Alarm ID=76, 类型=火警(火焰、烟雾)
+2026-04-10 00:09:25,113 - fastapi_app - INFO - 广播消息完成，有效连接数: 1
+2026-04-10 00:09:25,118 - fastapi_app - INFO - 分析结果已发送: 人员1人, 车辆0辆, 安全帽未检测到, 反光衣未检测到
+2026-04-10 00:09:26,596 - fastapi_app - WARNING - OSS上传失败，保存到本地: OSS配置不完整，请检查环境变量设置
+2026-04-10 00:09:26,601 - fastapi_app - INFO - 告警截图已保存到本地: C:\Users\cry\Desktop\SmartSafetyGuardSystemForPark-main\app\snapshots\34_20260410_000926.jpg
+2026-04-10 00:09:26,601 - fastapi_app - INFO - 告警截图上传成功: C:\Users\cry\Desktop\SmartSafetyGuardSystemForPark-main\app\snapshots\34_20260410_000926.jpg
+2026-04-10 00:09:26,611 - fastapi_app - INFO - 告警记录创建成功: alarm_id=77, camera_id=34, alarm_type=2, snapshot=C:\Users\cry\Desktop\SmartSafetyGuardSystemForPark-main\app\snapshots\34_20260410_000926.jpg
+2026-04-10 00:09:26,612 - fastapi_app - INFO - 广播告警: Alarm ID=77, 类型=火警(火焰、烟雾)
+2026-04-10 00:09:26,613 - fastapi_app - INFO - 广播消息完成，有效连接数: 1
+2026-04-10 00:09:26,616 - fastapi_app - INFO - 分析结果已发送: 人员1人, 车辆0辆, 安全帽未检测到, 反光衣未检测到
+2026-04-10 00:09:27,938 - fastapi_app - WARNING - OSS上传失败，保存到本地: OSS配置不完整，请检查环境变量设置
+2026-04-10 00:09:27,943 - fastapi_app - INFO - 告警截图已保存到本地: C:\Users\cry\Desktop\SmartSafetyGuardSystemForPark-main\app\snapshots\34_20260410_000927.jpg
+2026-04-10 00:09:27,943 - fastapi_app - INFO - 告警截图上传成功: C:\Users\cry\Desktop\SmartSafetyGuardSystemForPark-main\app\snapshots\34_20260410_000927.jpg
+2026-04-10 00:09:27,965 - fastapi_app - INFO - 告警记录创建成功: alarm_id=78, camera_id=34, alarm_type=2, snapshot=C:\Users\cry\Desktop\SmartSafetyGuardSystemForPark-main\app\snapshots\34_20260410_000927.jpg
+2026-04-10 00:09:27,967 - fastapi_app - INFO - 广播告警: Alarm ID=78, 类型=火警(火焰、烟雾)
+2026-04-10 00:09:27,967 - fastapi_app - INFO - 广播消息完成，有效连接数: 1
+2026-04-10 00:09:27,971 - fastapi_app - INFO - 分析结果已发送: 人员1人, 车辆0辆, 安全帽未检测到, 反光衣未检测到
+2026-04-10 00:09:29,316 - fastapi_app - WARNING - OSS上传失败，保存到本地: OSS配置不完整，请检查环境变量设置
+2026-04-10 00:09:29,320 - fastapi_app - INFO - 告警截图已保存到本地: C:\Users\cry\Desktop\SmartSafetyGuardSystemForPark-main\app\snapshots\34_20260410_000929.jpg
+2026-04-10 00:09:29,322 - fastapi_app - INFO - 告警截图上传成功: C:\Users\cry\Desktop\SmartSafetyGuardSystemForPark-main\app\snapshots\34_20260410_000929.jpg
+2026-04-10 00:09:29,330 - fastapi_app - INFO - 告警记录创建成功: alarm_id=79, camera_id=34, alarm_type=2, snapshot=C:\Users\cry\Desktop\SmartSafetyGuardSystemForPark-main\app\snapshots\34_20260410_000929.jpg
+2026-04-10 00:09:29,330 - fastapi_app - INFO - 广播告警: Alarm ID=79, 类型=火警(火焰、烟雾)
+2026-04-10 00:09:29,332 - fastapi_app - ERROR - 发送WebSocket消息失败: 
+2026-04-10 00:09:29,332 - fastapi_app - INFO - 广播消息完成，有效连接数: 1
+2026-04-10 00:09:49,646 - fastapi_app - INFO - 分析结果已发送: 人员1人, 车辆0辆, 安全帽检测到, 反光衣检测到
+2026-04-10 00:09:51,029 - fastapi_app - INFO - 分析结果已发送: 人员1人, 车辆0辆, 安全帽检测到, 反光衣检测到
+2026-04-10 00:09:52,369 - fastapi_app - INFO - 分析结果已发送: 人员1人, 车辆0辆, 安全帽检测到, 反光衣检测到
+2026-04-10 00:09:53,616 - fastapi_app - INFO - 分析结果已发送: 人员1人, 车辆0辆, 安全帽未检测到, 反光衣检测到
+2026-04-10 00:09:55,014 - fastapi_app - INFO - 分析结果已发送: 人员1人, 车辆0辆, 安全帽未检测到, 反光衣检测到
+2026-04-10 00:09:56,411 - fastapi_app - ERROR - 发送WebSocket消息失败: 
+2026-04-10 00:11:43,591 - fastapi_app - INFO - WebSocket连接已断开，当前连接数: 0
+2026-04-10 00:11:49,229 - fastapi_app - INFO - WebSocket连接已建立，当前连接数: 1
+2026-04-10 00:11:55,506 - fastapi_app - INFO - WebSocket连接已断开，当前连接数: 0
+2026-04-10 00:11:56,080 - fastapi_app - INFO - WebSocket连接已建立，当前连接数: 1
+2026-04-10 00:12:42,032 - fastapi_app - INFO - WebSocket连接已断开，当前连接数: 0
+2026-04-10 00:12:48,254 - fastapi_app - INFO - WebSocket连接已建立，当前连接数: 1
+2026-04-10 00:12:50,381 - fastapi_app - INFO - WebSocket连接已断开，当前连接数: 0
+2026-04-10 00:12:50,893 - fastapi_app - INFO - WebSocket连接已建立，当前连接数: 1
+2026-04-10 00:13:00,258 - fastapi_app - INFO - 分析结果已发送: 人员1人, 车辆0辆, 安全帽检测到, 反光衣检测到
+2026-04-10 00:13:01,727 - fastapi_app - INFO - 分析结果已发送: 人员1人, 车辆0辆, 安全帽检测到, 反光衣检测到
+2026-04-10 00:13:03,217 - fastapi_app - ERROR - 发送WebSocket消息失败: 
+2026-04-10 00:13:04,268 - fastapi_app - WARNING - OSS上传失败，保存到本地: OSS配置不完整，请检查环境变量设置
+2026-04-10 00:13:04,272 - fastapi_app - INFO - 告警截图已保存到本地: C:\Users\cry\Desktop\SmartSafetyGuardSystemForPark-main\app\snapshots\34_20260410_001304.jpg
+2026-04-10 00:13:04,272 - fastapi_app - INFO - 告警截图上传成功: C:\Users\cry\Desktop\SmartSafetyGuardSystemForPark-main\app\snapshots\34_20260410_001304.jpg
+2026-04-10 00:13:04,344 - fastapi_app - INFO - 告警记录创建成功: alarm_id=80, camera_id=34, alarm_type=2, snapshot=C:\Users\cry\Desktop\SmartSafetyGuardSystemForPark-main\app\snapshots\34_20260410_001304.jpg
+2026-04-10 00:13:04,349 - fastapi_app - INFO - 广播告警: Alarm ID=80, 类型=火警(火焰、烟雾)
+2026-04-10 00:13:04,351 - fastapi_app - INFO - 广播消息完成，有效连接数: 1
+2026-04-10 00:13:04,355 - fastapi_app - INFO - 分析结果已发送: 人员1人, 车辆0辆, 安全帽检测到, 反光衣检测到
+2026-04-10 00:14:43,841 - fastapi_app - INFO - WebSocket连接已断开，当前连接数: 0
+2026-04-10 00:14:49,227 - fastapi_app - INFO - WebSocket连接已建立，当前连接数: 1
+2026-04-10 00:15:05,145 - fastapi_app - INFO - WebSocket连接已断开，当前连接数: 0
+2026-04-10 00:15:05,677 - fastapi_app - INFO - WebSocket连接已建立，当前连接数: 1
+2026-04-10 00:15:13,168 - fastapi_app - INFO - 分析结果已发送: 人员1人, 车辆0辆, 安全帽检测到, 反光衣检测到
+2026-04-10 00:15:15,492 - fastapi_app - INFO - 分析结果已发送: 人员0人, 车辆0辆, 安全帽未检测到, 反光衣未检测到
+2026-04-10 00:15:16,782 - fastapi_app - INFO - 分析结果已发送: 人员1人, 车辆0辆, 安全帽检测到, 反光衣检测到
+2026-04-10 00:15:18,138 - fastapi_app - INFO - 分析结果已发送: 人员1人, 车辆0辆, 安全帽检测到, 反光衣检测到
+2026-04-10 00:15:19,394 - fastapi_app - INFO - 分析结果已发送: 人员1人, 车辆0辆, 安全帽检测到, 反光衣检测到
+2026-04-10 00:15:19,508 - fastapi_app - INFO - 更新write_to_database值为: True
+2026-04-10 00:15:20,781 - fastapi_app - WARNING - OSS上传失败，保存到本地: OSS配置不完整，请检查环境变量设置
+2026-04-10 00:15:20,787 - fastapi_app - INFO - 告警截图已保存到本地: C:\Users\cry\Desktop\SmartSafetyGuardSystemForPark-main\app\snapshots\34_20260410_001520.jpg
+2026-04-10 00:15:20,788 - fastapi_app - INFO - 告警截图上传成功: C:\Users\cry\Desktop\SmartSafetyGuardSystemForPark-main\app\snapshots\34_20260410_001520.jpg
+2026-04-10 00:15:20,868 - fastapi_app - INFO - 告警记录创建成功: alarm_id=81, camera_id=34, alarm_type=2, snapshot=C:\Users\cry\Desktop\SmartSafetyGuardSystemForPark-main\app\snapshots\34_20260410_001520.jpg
+2026-04-10 00:15:20,868 - fastapi_app - INFO - 广播告警: Alarm ID=81, 类型=火警(火焰、烟雾)
+2026-04-10 00:15:20,870 - fastapi_app - INFO - 广播消息完成，有效连接数: 1
+2026-04-10 00:15:20,876 - fastapi_app - INFO - 分析结果已发送: 人员1人, 车辆0辆, 安全帽检测到, 反光衣检测到
+2026-04-10 00:15:22,244 - fastapi_app - WARNING - OSS上传失败，保存到本地: OSS配置不完整，请检查环境变量设置
+2026-04-10 00:15:22,247 - fastapi_app - INFO - 告警截图已保存到本地: C:\Users\cry\Desktop\SmartSafetyGuardSystemForPark-main\app\snapshots\34_20260410_001522.jpg
+2026-04-10 00:15:22,249 - fastapi_app - INFO - 告警截图上传成功: C:\Users\cry\Desktop\SmartSafetyGuardSystemForPark-main\app\snapshots\34_20260410_001522.jpg
+2026-04-10 00:15:22,264 - fastapi_app - INFO - 告警记录创建成功: alarm_id=82, camera_id=34, alarm_type=2, snapshot=C:\Users\cry\Desktop\SmartSafetyGuardSystemForPark-main\app\snapshots\34_20260410_001522.jpg
+2026-04-10 00:15:22,264 - fastapi_app - INFO - 广播告警: Alarm ID=82, 类型=火警(火焰、烟雾)
+2026-04-10 00:15:22,266 - fastapi_app - INFO - 广播消息完成，有效连接数: 1
+2026-04-10 00:15:22,271 - fastapi_app - INFO - 分析结果已发送: 人员1人, 车辆0辆, 安全帽检测到, 反光衣检测到
+2026-04-10 00:15:23,965 - fastapi_app - WARNING - OSS上传失败，保存到本地: OSS配置不完整，请检查环境变量设置
+2026-04-10 00:15:23,971 - fastapi_app - INFO - 告警截图已保存到本地: C:\Users\cry\Desktop\SmartSafetyGuardSystemForPark-main\app\snapshots\34_20260410_001523.jpg
+2026-04-10 00:15:23,971 - fastapi_app - INFO - 告警截图上传成功: C:\Users\cry\Desktop\SmartSafetyGuardSystemForPark-main\app\snapshots\34_20260410_001523.jpg
+2026-04-10 00:15:23,988 - fastapi_app - INFO - 告警记录创建成功: alarm_id=83, camera_id=34, alarm_type=2, snapshot=C:\Users\cry\Desktop\SmartSafetyGuardSystemForPark-main\app\snapshots\34_20260410_001523.jpg
+2026-04-10 00:15:23,989 - fastapi_app - INFO - 广播告警: Alarm ID=83, 类型=火警(火焰、烟雾)
+2026-04-10 00:15:23,991 - fastapi_app - INFO - 广播消息完成，有效连接数: 1
+2026-04-10 00:15:23,996 - fastapi_app - INFO - 分析结果已发送: 人员1人, 车辆0辆, 安全帽检测到, 反光衣检测到
+2026-04-10 00:15:25,404 - fastapi_app - WARNING - OSS上传失败，保存到本地: OSS配置不完整，请检查环境变量设置
+2026-04-10 00:15:25,409 - fastapi_app - INFO - 告警截图已保存到本地: C:\Users\cry\Desktop\SmartSafetyGuardSystemForPark-main\app\snapshots\34_20260410_001525.jpg
+2026-04-10 00:15:25,409 - fastapi_app - INFO - 告警截图上传成功: C:\Users\cry\Desktop\SmartSafetyGuardSystemForPark-main\app\snapshots\34_20260410_001525.jpg
+2026-04-10 00:15:25,429 - fastapi_app - INFO - 告警记录创建成功: alarm_id=84, camera_id=34, alarm_type=2, snapshot=C:\Users\cry\Desktop\SmartSafetyGuardSystemForPark-main\app\snapshots\34_20260410_001525.jpg
+2026-04-10 00:15:25,430 - fastapi_app - INFO - 广播告警: Alarm ID=84, 类型=火警(火焰、烟雾)
+2026-04-10 00:15:25,431 - fastapi_app - INFO - 广播消息完成，有效连接数: 1
+2026-04-10 00:15:25,436 - fastapi_app - INFO - 分析结果已发送: 人员1人, 车辆0辆, 安全帽检测到, 反光衣检测到
+2026-04-10 00:15:26,869 - fastapi_app - WARNING - OSS上传失败，保存到本地: OSS配置不完整，请检查环境变量设置
+2026-04-10 00:15:26,876 - fastapi_app - INFO - 告警截图已保存到本地: C:\Users\cry\Desktop\SmartSafetyGuardSystemForPark-main\app\snapshots\34_20260410_001526.jpg
+2026-04-10 00:15:26,876 - fastapi_app - INFO - 告警截图上传成功: C:\Users\cry\Desktop\SmartSafetyGuardSystemForPark-main\app\snapshots\34_20260410_001526.jpg
+2026-04-10 00:15:26,887 - fastapi_app - INFO - 告警记录创建成功: alarm_id=85, camera_id=34, alarm_type=2, snapshot=C:\Users\cry\Desktop\SmartSafetyGuardSystemForPark-main\app\snapshots\34_20260410_001526.jpg
+2026-04-10 00:15:26,887 - fastapi_app - INFO - 广播告警: Alarm ID=85, 类型=火警(火焰、烟雾)
+2026-04-10 00:15:26,888 - fastapi_app - INFO - 广播消息完成，有效连接数: 1
+2026-04-10 00:15:26,894 - fastapi_app - INFO - 分析结果已发送: 人员1人, 车辆0辆, 安全帽检测到, 反光衣检测到
+2026-04-10 00:15:28,271 - fastapi_app - WARNING - OSS上传失败，保存到本地: OSS配置不完整，请检查环境变量设置
+2026-04-10 00:15:28,277 - fastapi_app - INFO - 告警截图已保存到本地: C:\Users\cry\Desktop\SmartSafetyGuardSystemForPark-main\app\snapshots\34_20260410_001528.jpg
+2026-04-10 00:15:28,277 - fastapi_app - INFO - 告警截图上传成功: C:\Users\cry\Desktop\SmartSafetyGuardSystemForPark-main\app\snapshots\34_20260410_001528.jpg
+2026-04-10 00:15:28,289 - fastapi_app - INFO - 告警记录创建成功: alarm_id=86, camera_id=34, alarm_type=2, snapshot=C:\Users\cry\Desktop\SmartSafetyGuardSystemForPark-main\app\snapshots\34_20260410_001528.jpg
+2026-04-10 00:15:28,291 - fastapi_app - INFO - 广播告警: Alarm ID=86, 类型=火警(火焰、烟雾)
+2026-04-10 00:15:28,292 - fastapi_app - INFO - 广播消息完成，有效连接数: 1
+2026-04-10 00:15:28,299 - fastapi_app - INFO - 分析结果已发送: 人员1人, 车辆0辆, 安全帽检测到, 反光衣检测到
+2026-04-10 00:15:29,693 - fastapi_app - WARNING - OSS上传失败，保存到本地: OSS配置不完整，请检查环境变量设置
+2026-04-10 00:15:29,700 - fastapi_app - INFO - 告警截图已保存到本地: C:\Users\cry\Desktop\SmartSafetyGuardSystemForPark-main\app\snapshots\34_20260410_001529.jpg
+2026-04-10 00:15:29,700 - fastapi_app - INFO - 告警截图上传成功: C:\Users\cry\Desktop\SmartSafetyGuardSystemForPark-main\app\snapshots\34_20260410_001529.jpg
+2026-04-10 00:15:29,721 - fastapi_app - INFO - 告警记录创建成功: alarm_id=87, camera_id=34, alarm_type=2, snapshot=C:\Users\cry\Desktop\SmartSafetyGuardSystemForPark-main\app\snapshots\34_20260410_001529.jpg
+2026-04-10 00:15:29,721 - fastapi_app - INFO - 广播告警: Alarm ID=87, 类型=火警(火焰、烟雾)
+2026-04-10 00:15:29,722 - fastapi_app - INFO - 广播消息完成，有效连接数: 1
+2026-04-10 00:15:29,728 - fastapi_app - INFO - 分析结果已发送: 人员1人, 车辆0辆, 安全帽检测到, 反光衣检测到
+2026-04-10 00:15:31,136 - fastapi_app - WARNING - OSS上传失败，保存到本地: OSS配置不完整，请检查环境变量设置
+2026-04-10 00:15:31,141 - fastapi_app - INFO - 告警截图已保存到本地: C:\Users\cry\Desktop\SmartSafetyGuardSystemForPark-main\app\snapshots\34_20260410_001531.jpg
+2026-04-10 00:15:31,141 - fastapi_app - INFO - 告警截图上传成功: C:\Users\cry\Desktop\SmartSafetyGuardSystemForPark-main\app\snapshots\34_20260410_001531.jpg
+2026-04-10 00:15:31,160 - fastapi_app - INFO - 告警记录创建成功: alarm_id=88, camera_id=34, alarm_type=2, snapshot=C:\Users\cry\Desktop\SmartSafetyGuardSystemForPark-main\app\snapshots\34_20260410_001531.jpg
+2026-04-10 00:15:31,160 - fastapi_app - INFO - 广播告警: Alarm ID=88, 类型=火警(火焰、烟雾)
+2026-04-10 00:15:31,161 - fastapi_app - INFO - 广播消息完成，有效连接数: 1
+2026-04-10 00:15:31,167 - fastapi_app - INFO - 分析结果已发送: 人员1人, 车辆0辆, 安全帽检测到, 反光衣检测到
+2026-04-10 00:15:32,578 - fastapi_app - WARNING - OSS上传失败，保存到本地: OSS配置不完整，请检查环境变量设置
+2026-04-10 00:15:32,584 - fastapi_app - INFO - 告警截图已保存到本地: C:\Users\cry\Desktop\SmartSafetyGuardSystemForPark-main\app\snapshots\34_20260410_001532.jpg
+2026-04-10 00:15:32,584 - fastapi_app - INFO - 告警截图上传成功: C:\Users\cry\Desktop\SmartSafetyGuardSystemForPark-main\app\snapshots\34_20260410_001532.jpg
+2026-04-10 00:15:32,607 - fastapi_app - INFO - 告警记录创建成功: alarm_id=89, camera_id=34, alarm_type=2, snapshot=C:\Users\cry\Desktop\SmartSafetyGuardSystemForPark-main\app\snapshots\34_20260410_001532.jpg
+2026-04-10 00:15:32,611 - fastapi_app - INFO - 广播告警: Alarm ID=89, 类型=火警(火焰、烟雾)
+2026-04-10 00:15:32,613 - fastapi_app - INFO - 广播消息完成，有效连接数: 1
+2026-04-10 00:15:32,618 - fastapi_app - INFO - 分析结果已发送: 人员1人, 车辆0辆, 安全帽未检测到, 反光衣未检测到
+2026-04-10 00:15:33,982 - fastapi_app - WARNING - OSS上传失败，保存到本地: OSS配置不完整，请检查环境变量设置
+2026-04-10 00:15:33,988 - fastapi_app - INFO - 告警截图已保存到本地: C:\Users\cry\Desktop\SmartSafetyGuardSystemForPark-main\app\snapshots\34_20260410_001533.jpg
+2026-04-10 00:15:33,988 - fastapi_app - INFO - 告警截图上传成功: C:\Users\cry\Desktop\SmartSafetyGuardSystemForPark-main\app\snapshots\34_20260410_001533.jpg
+2026-04-10 00:15:34,014 - fastapi_app - INFO - 告警记录创建成功: alarm_id=90, camera_id=34, alarm_type=2, snapshot=C:\Users\cry\Desktop\SmartSafetyGuardSystemForPark-main\app\snapshots\34_20260410_001533.jpg
+2026-04-10 00:15:34,025 - fastapi_app - INFO - 广播告警: Alarm ID=90, 类型=火警(火焰、烟雾)
+2026-04-10 00:15:34,030 - fastapi_app - INFO - 广播消息完成，有效连接数: 1
+2026-04-10 00:15:34,036 - fastapi_app - INFO - 分析结果已发送: 人员1人, 车辆0辆, 安全帽未检测到, 反光衣检测到
+2026-04-10 00:15:35,323 - fastapi_app - WARNING - OSS上传失败，保存到本地: OSS配置不完整，请检查环境变量设置
+2026-04-10 00:15:35,328 - fastapi_app - INFO - 告警截图已保存到本地: C:\Users\cry\Desktop\SmartSafetyGuardSystemForPark-main\app\snapshots\34_20260410_001535.jpg
+2026-04-10 00:15:35,329 - fastapi_app - INFO - 告警截图上传成功: C:\Users\cry\Desktop\SmartSafetyGuardSystemForPark-main\app\snapshots\34_20260410_001535.jpg
+2026-04-10 00:15:35,351 - fastapi_app - INFO - 告警记录创建成功: alarm_id=91, camera_id=34, alarm_type=2, snapshot=C:\Users\cry\Desktop\SmartSafetyGuardSystemForPark-main\app\snapshots\34_20260410_001535.jpg
+2026-04-10 00:15:35,351 - fastapi_app - INFO - 广播告警: Alarm ID=91, 类型=火警(火焰、烟雾)
+2026-04-10 00:15:35,352 - fastapi_app - ERROR - 发送WebSocket消息失败: 
+2026-04-10 00:15:35,353 - fastapi_app - INFO - 广播消息完成，有效连接数: 1
+2026-04-10 00:17:47,522 - fastapi_app - INFO - WebSocket连接已断开，当前连接数: 0
+2026-04-10 00:17:53,233 - fastapi_app - INFO - WebSocket连接已建立，当前连接数: 1
+2026-04-10 00:18:00,381 - fastapi_app - INFO - WebSocket连接已断开，当前连接数: 0
+2026-04-10 00:18:00,849 - fastapi_app - INFO - WebSocket连接已建立，当前连接数: 1
+2026-04-10 00:18:09,116 - fastapi_app - INFO - 分析结果已发送: 人员1人, 车辆0辆, 安全帽未检测到, 反光衣未检测到
+2026-04-10 00:18:10,072 - fastapi_app - INFO - 分析结果已发送: 人员1人, 车辆0辆, 安全帽未检测到, 反光衣检测到
+2026-04-10 00:18:10,896 - fastapi_app - INFO - 分析结果已发送: 人员1人, 车辆0辆, 安全帽未检测到, 反光衣检测到
+2026-04-10 00:18:11,903 - fastapi_app - INFO - 分析结果已发送: 人员1人, 车辆0辆, 安全帽检测到, 反光衣检测到
+2026-04-10 00:18:12,738 - fastapi_app - INFO - 分析结果已发送: 人员1人, 车辆0辆, 安全帽未检测到, 反光衣检测到
+2026-04-10 00:18:13,701 - fastapi_app - INFO - 分析结果已发送: 人员1人, 车辆0辆, 安全帽未检测到, 反光衣检测到
+2026-04-10 00:18:14,489 - fastapi_app - INFO - 分析结果已发送: 人员1人, 车辆0辆, 安全帽检测到, 反光衣检测到
+2026-04-10 00:18:15,470 - fastapi_app - INFO - 分析结果已发送: 人员1人, 车辆0辆, 安全帽检测到, 反光衣检测到
+2026-04-10 00:18:16,249 - fastapi_app - INFO - 分析结果已发送: 人员1人, 车辆0辆, 安全帽检测到, 反光衣检测到
+2026-04-10 00:18:17,236 - fastapi_app - INFO - 分析结果已发送: 人员1人, 车辆0辆, 安全帽检测到, 反光衣检测到
+2026-04-10 00:18:18,043 - fastapi_app - INFO - 分析结果已发送: 人员1人, 车辆0辆, 安全帽检测到, 反光衣未检测到
+2026-04-10 00:18:18,964 - fastapi_app - INFO - 分析结果已发送: 人员1人, 车辆0辆, 安全帽检测到, 反光衣未检测到
+2026-04-10 00:18:19,745 - fastapi_app - ERROR - 发送WebSocket消息失败: 
+2026-04-10 00:20:29,441 - fastapi_app - INFO - WebSocket连接已断开，当前连接数: 0
+2026-04-10 00:20:35,220 - fastapi_app - INFO - WebSocket连接已建立，当前连接数: 1
+2026-04-10 00:20:36,843 - fastapi_app - INFO - WebSocket连接已断开，当前连接数: 0
+2026-04-10 00:20:37,374 - fastapi_app - INFO - WebSocket连接已建立，当前连接数: 1
+2026-04-10 00:20:50,414 - fastapi_app - INFO - 分析结果已发送: 人员1人, 车辆0辆, 安全帽检测到, 反光衣检测到
+2026-04-10 00:20:51,572 - fastapi_app - INFO - 分析结果已发送: 人员1人, 车辆0辆, 安全帽检测到, 反光衣检测到
+2026-04-10 00:20:52,579 - fastapi_app - INFO - 分析结果已发送: 人员1人, 车辆0辆, 安全帽检测到, 反光衣检测到
+2026-04-10 00:20:53,696 - fastapi_app - INFO - 分析结果已发送: 人员1人, 车辆0辆, 安全帽检测到, 反光衣检测到
+2026-04-10 00:20:54,824 - fastapi_app - INFO - 分析结果已发送: 人员1人, 车辆0辆, 安全帽检测到, 反光衣检测到
+2026-04-10 00:20:55,826 - fastapi_app - INFO - 分析结果已发送: 人员1人, 车辆0辆, 安全帽检测到, 反光衣检测到
+2026-04-10 00:20:56,860 - fastapi_app - INFO - 分析结果已发送: 人员1人, 车辆0辆, 安全帽检测到, 反光衣检测到
+2026-04-10 00:20:57,806 - fastapi_app - INFO - 分析结果已发送: 人员1人, 车辆0辆, 安全帽检测到, 反光衣检测到
+2026-04-10 00:20:58,920 - fastapi_app - INFO - 分析结果已发送: 人员1人, 车辆0辆, 安全帽检测到, 反光衣检测到
+2026-04-10 00:20:59,798 - fastapi_app - INFO - 分析结果已发送: 人员1人, 车辆0辆, 安全帽检测到, 反光衣检测到
+2026-04-10 00:21:00,871 - fastapi_app - INFO - 分析结果已发送: 人员1人, 车辆0辆, 安全帽检测到, 反光衣检测到
+2026-04-10 00:21:01,860 - fastapi_app - INFO - 分析结果已发送: 人员1人, 车辆0辆, 安全帽检测到, 反光衣检测到
+2026-04-10 00:21:02,898 - fastapi_app - INFO - 分析结果已发送: 人员1人, 车辆0辆, 安全帽检测到, 反光衣检测到
+2026-04-10 00:21:03,983 - fastapi_app - INFO - 分析结果已发送: 人员1人, 车辆0辆, 安全帽检测到, 反光衣检测到
+2026-04-10 00:21:04,882 - fastapi_app - INFO - 分析结果已发送: 人员1人, 车辆0辆, 安全帽检测到, 反光衣检测到
+2026-04-10 00:21:05,997 - fastapi_app - INFO - 分析结果已发送: 人员1人, 车辆0辆, 安全帽检测到, 反光衣检测到
+2026-04-10 00:21:07,016 - fastapi_app - INFO - 分析结果已发送: 人员1人, 车辆0辆, 安全帽未检测到, 反光衣检测到
+2026-04-10 00:21:08,045 - fastapi_app - INFO - 分析结果已发送: 人员1人, 车辆0辆, 安全帽检测到, 反光衣检测到
+2026-04-10 00:21:09,079 - fastapi_app - ERROR - 发送WebSocket消息失败: 
+2026-04-10 00:22:28,557 - fastapi_app - INFO - WebSocket连接已断开，当前连接数: 0
+2026-04-10 00:22:34,228 - fastapi_app - INFO - WebSocket连接已建立，当前连接数: 1
+2026-04-10 00:22:36,154 - fastapi_app - INFO - WebSocket连接已断开，当前连接数: 0
+2026-04-10 00:22:36,679 - fastapi_app - INFO - WebSocket连接已建立，当前连接数: 1
+2026-04-10 00:22:47,240 - fastapi_app - INFO - 分析结果已发送: 人员1人, 车辆0辆, 安全帽未检测到, 反光衣检测到
+2026-04-10 00:22:48,012 - fastapi_app - INFO - 分析结果已发送: 人员1人, 车辆0辆, 安全帽未检测到, 反光衣检测到
+2026-04-10 00:22:48,985 - fastapi_app - INFO - 分析结果已发送: 人员1人, 车辆0辆, 安全帽未检测到, 反光衣检测到
+2026-04-10 00:22:49,798 - fastapi_app - INFO - 分析结果已发送: 人员1人, 车辆0辆, 安全帽未检测到, 反光衣检测到
+2026-04-10 00:22:50,734 - fastapi_app - INFO - 分析结果已发送: 人员1人, 车辆0辆, 安全帽未检测到, 反光衣检测到
+2026-04-10 00:22:51,524 - fastapi_app - INFO - 分析结果已发送: 人员1人, 车辆0辆, 安全帽未检测到, 反光衣检测到
+2026-04-10 00:22:52,448 - fastapi_app - INFO - 分析结果已发送: 人员1人, 车辆0辆, 安全帽未检测到, 反光衣检测到
+2026-04-10 00:22:53,222 - fastapi_app - INFO - 分析结果已发送: 人员1人, 车辆0辆, 安全帽检测到, 反光衣未检测到
+2026-04-10 00:22:54,155 - fastapi_app - INFO - 分析结果已发送: 人员1人, 车辆0辆, 安全帽检测到, 反光衣检测到
+2026-04-10 00:22:54,949 - fastapi_app - INFO - 分析结果已发送: 人员1人, 车辆0辆, 安全帽检测到, 反光衣检测到
+2026-04-10 00:22:55,847 - fastapi_app - INFO - 分析结果已发送: 人员1人, 车辆0辆, 安全帽检测到, 反光衣检测到
+2026-04-10 00:22:56,852 - fastapi_app - INFO - 分析结果已发送: 人员1人, 车辆0辆, 安全帽检测到, 反光衣检测到
+2026-04-10 00:22:57,705 - fastapi_app - INFO - 分析结果已发送: 人员1人, 车辆0辆, 安全帽检测到, 反光衣检测到
+2026-04-10 00:22:58,557 - fastapi_app - INFO - 分析结果已发送: 人员1人, 车辆0辆, 安全帽检测到, 反光衣检测到
+2026-04-10 00:22:59,408 - fastapi_app - INFO - 分析结果已发送: 人员1人, 车辆0辆, 安全帽检测到, 反光衣检测到
+2026-04-10 00:22:59,528 - fastapi_app - INFO - 更新write_to_database值为: True
+2026-04-10 00:23:00,293 - fastapi_app - INFO - 分析结果已发送: 人员1人, 车辆0辆, 安全帽检测到, 反光衣检测到
+2026-04-10 00:23:00,298 - fastapi_app - WARNING - OSS上传失败，保存到本地: OSS配置不完整，请检查环境变量设置
+2026-04-10 00:23:00,303 - fastapi_app - INFO - 告警截图已保存到本地: C:\Users\cry\Desktop\SmartSafetyGuardSystemForPark-main\app\snapshots\34_20260410_002300.jpg
+2026-04-10 00:23:00,304 - fastapi_app - INFO - 告警截图上传成功: C:\Users\cry\Desktop\SmartSafetyGuardSystemForPark-main\app\snapshots\34_20260410_002300.jpg
+2026-04-10 00:23:00,370 - fastapi_app - INFO - 告警记录创建成功: alarm_id=92, camera_id=34, alarm_type=2, snapshot=C:\Users\cry\Desktop\SmartSafetyGuardSystemForPark-main\app\snapshots\34_20260410_002300.jpg
+2026-04-10 00:23:00,371 - fastapi_app - INFO - 广播告警: Alarm ID=92, 类型=火警(火焰、烟雾)
+2026-04-10 00:23:00,371 - fastapi_app - INFO - 广播消息完成，有效连接数: 1
+2026-04-10 00:23:01,106 - fastapi_app - INFO - 分析结果已发送: 人员1人, 车辆0辆, 安全帽检测到, 反光衣检测到
+2026-04-10 00:23:01,110 - fastapi_app - WARNING - OSS上传失败，保存到本地: OSS配置不完整，请检查环境变量设置
+2026-04-10 00:23:01,115 - fastapi_app - INFO - 告警截图已保存到本地: C:\Users\cry\Desktop\SmartSafetyGuardSystemForPark-main\app\snapshots\34_20260410_002301.jpg
+2026-04-10 00:23:01,115 - fastapi_app - INFO - 告警截图上传成功: C:\Users\cry\Desktop\SmartSafetyGuardSystemForPark-main\app\snapshots\34_20260410_002301.jpg
+2026-04-10 00:23:01,129 - fastapi_app - INFO - 告警记录创建成功: alarm_id=93, camera_id=34, alarm_type=2, snapshot=C:\Users\cry\Desktop\SmartSafetyGuardSystemForPark-main\app\snapshots\34_20260410_002301.jpg
+2026-04-10 00:23:01,130 - fastapi_app - INFO - 广播告警: Alarm ID=93, 类型=火警(火焰、烟雾)
+2026-04-10 00:23:01,130 - fastapi_app - INFO - 广播消息完成，有效连接数: 1
+2026-04-10 00:23:01,998 - fastapi_app - INFO - 分析结果已发送: 人员1人, 车辆0辆, 安全帽检测到, 反光衣检测到
+2026-04-10 00:23:02,002 - fastapi_app - WARNING - OSS上传失败，保存到本地: OSS配置不完整，请检查环境变量设置
+2026-04-10 00:23:02,008 - fastapi_app - INFO - 告警截图已保存到本地: C:\Users\cry\Desktop\SmartSafetyGuardSystemForPark-main\app\snapshots\34_20260410_002302.jpg
+2026-04-10 00:23:02,008 - fastapi_app - INFO - 告警截图上传成功: C:\Users\cry\Desktop\SmartSafetyGuardSystemForPark-main\app\snapshots\34_20260410_002302.jpg
+2026-04-10 00:23:02,018 - fastapi_app - INFO - 告警记录创建成功: alarm_id=94, camera_id=34, alarm_type=2, snapshot=C:\Users\cry\Desktop\SmartSafetyGuardSystemForPark-main\app\snapshots\34_20260410_002302.jpg
+2026-04-10 00:23:02,018 - fastapi_app - INFO - 广播告警: Alarm ID=94, 类型=火警(火焰、烟雾)
+2026-04-10 00:23:02,020 - fastapi_app - INFO - 广播消息完成，有效连接数: 1
+2026-04-10 00:23:02,792 - fastapi_app - INFO - 分析结果已发送: 人员1人, 车辆0辆, 安全帽检测到, 反光衣检测到
+2026-04-10 00:23:02,796 - fastapi_app - WARNING - OSS上传失败，保存到本地: OSS配置不完整，请检查环境变量设置
+2026-04-10 00:23:02,801 - fastapi_app - INFO - 告警截图已保存到本地: C:\Users\cry\Desktop\SmartSafetyGuardSystemForPark-main\app\snapshots\34_20260410_002302.jpg
+2026-04-10 00:23:02,801 - fastapi_app - INFO - 告警截图上传成功: C:\Users\cry\Desktop\SmartSafetyGuardSystemForPark-main\app\snapshots\34_20260410_002302.jpg
+2026-04-10 00:23:02,811 - fastapi_app - INFO - 告警记录创建成功: alarm_id=95, camera_id=34, alarm_type=2, snapshot=C:\Users\cry\Desktop\SmartSafetyGuardSystemForPark-main\app\snapshots\34_20260410_002302.jpg
+2026-04-10 00:23:02,813 - fastapi_app - INFO - 广播告警: Alarm ID=95, 类型=火警(火焰、烟雾)
+2026-04-10 00:23:02,813 - fastapi_app - INFO - 广播消息完成，有效连接数: 1
+2026-04-10 00:23:03,690 - fastapi_app - INFO - 分析结果已发送: 人员1人, 车辆0辆, 安全帽检测到, 反光衣检测到
+2026-04-10 00:23:03,693 - fastapi_app - WARNING - OSS上传失败，保存到本地: OSS配置不完整，请检查环境变量设置
+2026-04-10 00:23:03,698 - fastapi_app - INFO - 告警截图已保存到本地: C:\Users\cry\Desktop\SmartSafetyGuardSystemForPark-main\app\snapshots\34_20260410_002303.jpg
+2026-04-10 00:23:03,699 - fastapi_app - INFO - 告警截图上传成功: C:\Users\cry\Desktop\SmartSafetyGuardSystemForPark-main\app\snapshots\34_20260410_002303.jpg
+2026-04-10 00:23:03,721 - fastapi_app - INFO - 告警记录创建成功: alarm_id=96, camera_id=34, alarm_type=2, snapshot=C:\Users\cry\Desktop\SmartSafetyGuardSystemForPark-main\app\snapshots\34_20260410_002303.jpg
+2026-04-10 00:23:03,722 - fastapi_app - INFO - 广播告警: Alarm ID=96, 类型=火警(火焰、烟雾)
+2026-04-10 00:23:03,723 - fastapi_app - INFO - 广播消息完成，有效连接数: 1
+2026-04-10 00:23:04,507 - fastapi_app - INFO - 分析结果已发送: 人员1人, 车辆0辆, 安全帽检测到, 反光衣检测到
+2026-04-10 00:23:04,511 - fastapi_app - WARNING - OSS上传失败，保存到本地: OSS配置不完整，请检查环境变量设置
+2026-04-10 00:23:04,516 - fastapi_app - INFO - 告警截图已保存到本地: C:\Users\cry\Desktop\SmartSafetyGuardSystemForPark-main\app\snapshots\34_20260410_002304.jpg
+2026-04-10 00:23:04,517 - fastapi_app - INFO - 告警截图上传成功: C:\Users\cry\Desktop\SmartSafetyGuardSystemForPark-main\app\snapshots\34_20260410_002304.jpg
+2026-04-10 00:23:04,531 - fastapi_app - INFO - 告警记录创建成功: alarm_id=97, camera_id=34, alarm_type=2, snapshot=C:\Users\cry\Desktop\SmartSafetyGuardSystemForPark-main\app\snapshots\34_20260410_002304.jpg
+2026-04-10 00:23:04,531 - fastapi_app - INFO - 广播告警: Alarm ID=97, 类型=火警(火焰、烟雾)
+2026-04-10 00:23:04,532 - fastapi_app - INFO - 广播消息完成，有效连接数: 1
+2026-04-10 00:23:04,606 - fastapi_app - INFO - 更新write_to_database值为: False
+2026-04-10 00:23:05,363 - fastapi_app - INFO - 分析结果已发送: 人员1人, 车辆0辆, 安全帽检测到, 反光衣检测到
+2026-04-10 00:23:06,147 - fastapi_app - INFO - 分析结果已发送: 人员1人, 车辆0辆, 安全帽检测到, 反光衣检测到
+2026-04-10 00:23:07,042 - fastapi_app - INFO - 分析结果已发送: 人员1人, 车辆0辆, 安全帽检测到, 反光衣检测到
+2026-04-10 00:23:07,826 - fastapi_app - INFO - 分析结果已发送: 人员1人, 车辆0辆, 安全帽检测到, 反光衣检测到
+2026-04-10 00:23:08,661 - fastapi_app - INFO - 分析结果已发送: 人员1人, 车辆0辆, 安全帽检测到, 反光衣检测到
+2026-04-10 00:23:09,512 - fastapi_app - INFO - 分析结果已发送: 人员1人, 车辆0辆, 安全帽未检测到, 反光衣检测到
+2026-04-10 00:23:10,326 - fastapi_app - INFO - 分析结果已发送: 人员1人, 车辆0辆, 安全帽检测到, 反光衣检测到
+2026-04-10 00:23:11,118 - fastapi_app - ERROR - 发送WebSocket消息失败: 
+2026-04-10 00:24:33,508 - fastapi_app - INFO - WebSocket连接已断开，当前连接数: 0
+2026-04-10 00:24:41,240 - fastapi_app - INFO - WebSocket连接已建立，当前连接数: 1
+2026-04-10 00:24:45,763 - fastapi_app - INFO - WebSocket连接已断开，当前连接数: 0
+2026-04-10 00:24:46,295 - fastapi_app - INFO - WebSocket连接已建立，当前连接数: 1
+2026-04-10 00:25:44,437 - fastapi_app - INFO - WebSocket连接已建立，当前连接数: 1
+2026-04-10 00:26:00,102 - fastapi_app - INFO - 分析结果已发送: 人员1人, 车辆0辆, 安全帽检测到, 反光衣检测到
+2026-04-10 00:26:00,999 - fastapi_app - INFO - 分析结果已发送: 人员1人, 车辆0辆, 安全帽检测到, 反光衣检测到
+2026-04-10 00:26:01,795 - fastapi_app - INFO - 分析结果已发送: 人员1人, 车辆0辆, 安全帽检测到, 反光衣检测到
+2026-04-10 00:26:02,717 - fastapi_app - INFO - 分析结果已发送: 人员1人, 车辆0辆, 安全帽检测到, 反光衣检测到
+2026-04-10 00:26:03,479 - fastapi_app - INFO - 分析结果已发送: 人员1人, 车辆0辆, 安全帽检测到, 反光衣检测到
+2026-04-10 00:26:04,377 - fastapi_app - INFO - 分析结果已发送: 人员1人, 车辆0辆, 安全帽检测到, 反光衣检测到
+2026-04-10 00:26:05,167 - fastapi_app - INFO - 分析结果已发送: 人员1人, 车辆0辆, 安全帽未检测到, 反光衣检测到
+2026-04-10 00:26:06,051 - fastapi_app - INFO - 分析结果已发送: 人员1人, 车辆0辆, 安全帽检测到, 反光衣检测到
+2026-04-10 00:26:06,829 - fastapi_app - INFO - 分析结果已发送: 人员1人, 车辆0辆, 安全帽检测到, 反光衣检测到
+2026-04-10 00:26:07,730 - fastapi_app - INFO - 分析结果已发送: 人员1人, 车辆0辆, 安全帽检测到, 反光衣检测到
+2026-04-10 00:26:08,558 - fastapi_app - INFO - 分析结果已发送: 人员1人, 车辆0辆, 安全帽检测到, 反光衣检测到
+2026-04-10 00:26:09,419 - fastapi_app - INFO - 分析结果已发送: 人员1人, 车辆0辆, 安全帽检测到, 反光衣检测到
+2026-04-10 00:26:10,185 - fastapi_app - INFO - 分析结果已发送: 人员1人, 车辆0辆, 安全帽检测到, 反光衣检测到
+2026-04-10 00:26:11,052 - fastapi_app - INFO - 分析结果已发送: 人员1人, 车辆0辆, 安全帽检测到, 反光衣检测到
+2026-04-10 00:26:11,809 - fastapi_app - INFO - 分析结果已发送: 人员1人, 车辆0辆, 安全帽检测到, 反光衣检测到
+2026-04-10 00:26:12,894 - fastapi_app - ERROR - 发送WebSocket消息失败: 
+2026-04-10 00:26:14,471 - fastapi_app - INFO - WebSocket连接已断开，当前连接数: 0
+2026-04-10 00:26:19,482 - fastapi_app - INFO - WebSocket连接已建立，当前连接数: 1
+2026-04-10 00:28:24,207 - fastapi_app - INFO - WebSocket连接已断开，当前连接数: 0
+2026-04-10 00:28:24,652 - fastapi_app - INFO - WebSocket连接已建立，当前连接数: 1
+2026-04-10 00:28:51,771 - fastapi_app - INFO - WebSocket连接已断开，当前连接数: 0
+2026-04-10 00:28:52,213 - fastapi_app - INFO - WebSocket连接已建立，当前连接数: 1
+2026-04-10 00:29:27,026 - fastapi_app - INFO - WebSocket连接已断开，当前连接数: 0
+2026-04-10 00:29:27,416 - fastapi_app - INFO - WebSocket连接已建立，当前连接数: 1
+2026-04-10 00:30:25,738 - fastapi_app - INFO - WebSocket连接已断开，当前连接数: 0
+2026-04-10 00:30:26,184 - fastapi_app - INFO - WebSocket连接已建立，当前连接数: 1
+2026-04-10 00:30:39,047 - fastapi_app - INFO - WebSocket连接已断开，当前连接数: 0
+2026-04-10 00:30:39,492 - fastapi_app - INFO - WebSocket连接已建立，当前连接数: 1
+2026-04-10 00:30:51,252 - fastapi_app - INFO - WebSocket连接已断开，当前连接数: 0
+2026-04-10 00:30:51,675 - fastapi_app - INFO - WebSocket连接已建立，当前连接数: 1
+2026-04-10 00:32:25,430 - fastapi_app - INFO - WebSocket连接已断开，当前连接数: 0
+2026-04-10 00:32:25,883 - fastapi_app - INFO - WebSocket连接已建立，当前连接数: 1
+2026-04-10 00:32:36,567 - fastapi_app - INFO - WebSocket连接已断开，当前连接数: 0
+2026-04-10 00:32:37,005 - fastapi_app - INFO - WebSocket连接已建立，当前连接数: 1
+2026-04-10 00:32:56,972 - fastapi_app - INFO - WebSocket连接已断开，当前连接数: 0
+2026-04-10 00:32:57,472 - fastapi_app - INFO - WebSocket连接已建立，当前连接数: 1
+2026-04-10 00:33:06,975 - fastapi_app - INFO - WebSocket连接已断开，当前连接数: 0
+2026-04-10 00:33:07,473 - fastapi_app - INFO - WebSocket连接已建立，当前连接数: 1
+2026-04-10 00:33:26,119 - fastapi_app - INFO - WebSocket连接已断开，当前连接数: 0
+2026-04-10 00:33:26,527 - fastapi_app - INFO - WebSocket连接已建立，当前连接数: 1
+2026-04-10 00:33:30,964 - fastapi_app - INFO - WebSocket连接已断开，当前连接数: 0
+2026-04-10 00:33:31,462 - fastapi_app - INFO - WebSocket连接已建立，当前连接数: 1
+2026-04-10 00:33:31,994 - fastapi_app - INFO - WebSocket连接已断开，当前连接数: 0
+2026-04-10 00:33:32,474 - fastapi_app - INFO - WebSocket连接已建立，当前连接数: 1
+2026-04-10 00:33:32,972 - fastapi_app - INFO - WebSocket连接已断开，当前连接数: 0
+2026-04-10 00:33:33,475 - fastapi_app - INFO - WebSocket连接已建立，当前连接数: 1
+2026-04-10 00:33:33,964 - fastapi_app - INFO - WebSocket连接已断开，当前连接数: 0
+2026-04-10 00:33:34,459 - fastapi_app - INFO - WebSocket连接已建立，当前连接数: 1
+2026-04-10 00:33:34,952 - fastapi_app - INFO - WebSocket连接已断开，当前连接数: 0
+2026-04-10 00:33:35,408 - fastapi_app - INFO - WebSocket连接已建立，当前连接数: 1
+2026-04-10 00:33:36,518 - fastapi_app - INFO - WebSocket连接已断开，当前连接数: 0
+2026-04-10 00:33:36,900 - fastapi_app - INFO - WebSocket连接已建立，当前连接数: 1
+2026-04-10 00:33:42,973 - fastapi_app - INFO - WebSocket连接已断开，当前连接数: 0
+2026-04-10 00:33:43,454 - fastapi_app - INFO - WebSocket连接已建立，当前连接数: 1
+2026-04-10 00:33:44,956 - fastapi_app - INFO - WebSocket连接已断开，当前连接数: 0
+2026-04-10 00:33:45,426 - fastapi_app - INFO - WebSocket连接已建立，当前连接数: 1
+2026-04-10 00:33:45,973 - fastapi_app - INFO - WebSocket连接已断开，当前连接数: 0
+2026-04-10 00:33:46,474 - fastapi_app - INFO - WebSocket连接已建立，当前连接数: 1
+2026-04-10 00:33:49,522 - fastapi_app - INFO - WebSocket连接已断开，当前连接数: 0
+2026-04-10 00:33:49,944 - fastapi_app - INFO - WebSocket连接已建立，当前连接数: 1
+2026-04-10 00:33:59,454 - fastapi_app - INFO - WebSocket连接已断开，当前连接数: 0
+2026-04-10 00:34:00,094 - fastapi_app - INFO - WebSocket连接已建立，当前连接数: 1
+2026-04-10 00:34:01,175 - fastapi_app - INFO - WebSocket连接已断开，当前连接数: 0
+2026-04-10 00:34:01,579 - fastapi_app - INFO - WebSocket连接已建立，当前连接数: 1
+2026-04-10 00:34:04,961 - fastapi_app - INFO - WebSocket连接已断开，当前连接数: 0
+2026-04-10 00:34:05,442 - fastapi_app - INFO - WebSocket连接已建立，当前连接数: 1
+2026-04-10 00:34:05,981 - fastapi_app - INFO - WebSocket连接已断开，当前连接数: 0
+2026-04-10 00:34:06,500 - fastapi_app - INFO - WebSocket连接已建立，当前连接数: 1
+2026-04-10 00:34:11,627 - fastapi_app - INFO - WebSocket连接已断开，当前连接数: 0

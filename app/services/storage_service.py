@@ -1,0 +1,71 @@
+import base64
+import os
+from datetime import datetime
+from pathlib import Path
+import cv2
+from app.utils.logger import get_logger
+from app.utils.oss_utils import upload_file_on_OSS, get_now_str, generate_unique_object_name
+project_root = Path(__file__).parent.parent.parent
+SNAPSHOT_PATH = project_root / 'app' / 'snapshots'
+
+# 确保截图目录存在
+os.makedirs(SNAPSHOT_PATH, exist_ok=True)
+
+
+class StorageService:
+    @staticmethod
+    def save_alarm_snapshot_locally(frame, camera_id):
+        """保存告警截图并返回存储路径"""
+        # 生成唯一文件名
+        timestamp = datetime.now().strftime("%Y%m%d_%H%M%S")
+        filename = f"{camera_id}_{timestamp}.jpg"
+        filepath = os.path.join(SNAPSHOT_PATH, filename)
+
+        # 保存图像
+        cv2.imwrite(filepath, frame)
+        return filepath
+
+    @staticmethod
+    def upload_alarm_snapshot(annotated_frame, camera_id):
+        """上传告警截图到云存储，如果OSS上传失败则保存到本地"""
+        try:
+            _, buffer = cv2.imencode('.jpg', annotated_frame)
+            frame_bytes = buffer.tobytes()
+            img_name = f"{camera_id}_{get_now_str()}.jpg"
+            object_key= generate_unique_object_name(img_name)
+            file_url = upload_file_on_OSS(frame_bytes, object_key)
+            return file_url
+        except Exception as e:
+            # OSS上传失败，保存到本地
+            logger = get_logger()
+            logger.warning(f"OSS上传失败，保存到本地: {str(e)}")
+            try:
+                local_path = StorageService.save_alarm_snapshot_locally(annotated_frame, camera_id)
+                logger.info(f"告警截图已保存到本地: {local_path}")
+                return local_path
+            except Exception as local_e:
+                logger.error(f"本地保存截图也失败: {str(local_e)}")
+                raise
+
+    @classmethod
+    def upload_alarm_attachment(cls, file_content: str, file_extension: str) -> str:
+        """
+        上传告警处理附件到云存储并返回URL
+
+        参数:
+        file_content: Base64编码的文件内容
+        file_extension: 文件扩展名，例如 ".jpg", ".png"
+
+        返回:
+        文件的URL
+        """
+        # 解码Base64内容
+        file_bytes = base64.b64decode(file_content)
+
+        # 生成文件名
+        filename = f"attachment_{get_now_str()}{file_extension}"
+        object_key = generate_unique_object_name(filename)
+
+        # 上传到OSS并返回URL
+        file_url = upload_file_on_OSS(file_bytes, object_key)
+        return file_url
