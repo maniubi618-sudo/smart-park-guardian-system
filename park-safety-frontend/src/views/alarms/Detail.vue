@@ -270,7 +270,7 @@ onMounted(() => {
   }
   
   .detail-card :deep(el-descriptions) {
-    :column="1";
+    grid-template-columns: 1fr;
   }
   
   .action-buttons .el-button {

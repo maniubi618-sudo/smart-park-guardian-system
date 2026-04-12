@@ -29,6 +29,17 @@ api.interceptors.response.use(
       localStorage.removeItem('token')
       window.location.href = '/login'
     }
+    // 改进错误处理，提供更具体的错误消息
+    if (error.response) {
+      // 服务器返回了错误状态码
+      console.error('API Error:', error.response.status, error.response.data)
+    } else if (error.request) {
+      // 请求已发送但没有收到响应
+      console.error('Network Error: No response received')
+    } else {
+      // 请求配置出错
+      console.error('Request Error:', error.message)
+    }
     return Promise.reject(error)
   }
 )

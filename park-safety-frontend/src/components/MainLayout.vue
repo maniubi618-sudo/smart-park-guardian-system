@@ -39,6 +39,12 @@
             <span v-if="!isCollapsed">用户管理</span>
           </router-link>
         </li>
+        <li class="sidebar-menu-item" :class="{ active: $route.path === '/settings' }">
+          <router-link to="/settings">
+            <el-icon class="icon"><Setting /></el-icon>
+            <span v-if="!isCollapsed">系统设置</span>
+          </router-link>
+        </li>
       </ul>
       <div class="sidebar-footer">
         <el-button link @click="handleLogout" class="logout-btn">
@@ -68,7 +74,7 @@ import { computed } from 'vue'
 import { useRouter } from 'vue-router'
 import { useAuthStore } from '../stores/auth'
 import { useLayoutStore } from '../stores/layout'
-import { HomeFilled, WarningFilled, VideoCamera, LocationFilled, UserFilled, SwitchButton } from '@element-plus/icons-vue'
+import { HomeFilled, WarningFilled, VideoCamera, LocationFilled, UserFilled, SwitchButton, Setting } from '@element-plus/icons-vue'
 
 const router = useRouter()
 const authStore = useAuthStore()
@@ -86,7 +92,8 @@ const pageTitle = computed(() => {
     '/alarms': '告警管理',
     '/cameras': '摄像头管理',
     '/areas': '园区管理',
-    '/users': '用户管理'
+    '/users': '用户管理',
+    '/settings': '系统设置'
   }
   return pathMap[router.currentRoute.value.path] || '园区智能安防系统'
 })

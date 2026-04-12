@@ -17,8 +17,8 @@ class AppSettings(BaseSettings):
     MYSQL_HOST: str = 'localhost'
     MYSQL_PORT: int = 3306
     MYSQL_USER: str = 'root'
-    MYSQL_PASSWORD: str = 'your_password'
-    MYSQL_DATABASE: str = 'your_db_name'
+    MYSQL_PASSWORD: str = ''
+    MYSQL_DATABASE: str = 'yolo_safety'
     
     # 安全配置
     SECRET_KEY: str = 'da3178e5264bff377e57d669c7143baf0b37264ceb3b8a0e976a7636039e7bc6'
