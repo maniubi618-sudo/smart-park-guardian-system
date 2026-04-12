@@ -140,6 +140,8 @@ class SafetyAnalysisService:
         logger.info(f"安防分析线程已启动，线程名：{thread_name}")
         frame_count = 0
         read_failure_count = 0
+        # 帧采样参数，每N帧分析一次
+        frame_sample_rate = 10  # 每10帧分析一次
         try:
             # 检测是否为本地摄像头（整数0表示本地摄像头）
             is_local_camera = rtsp_url == 0
@@ -165,23 +167,25 @@ class SafetyAnalysisService:
                     if read_failure_count>0:
                         logger.info(f"已连续{read_failure_count}次读取失败，现重置read_failure_count为0")
 
-                    if analysis_mode>=2: # 只分析一种告警场景
-                        alarm_type = analysis_mode - 2
-                        alarm_case_detected, annotated_frames = DetectionService.detect_alarm_case(frame,alarm_type)
-                        if alarm_case_detected is not None:
-                            alarm_case_source = f"{camera_id}_{alarm_type}"
-                            state_result = cls.alarm_tracker.update_state(alarm_case_source, alarm_case_detected)
-                            # 处理本次状态分析结果
-                            cls.handle_state_result_v2(state_result, camera_id, alarm_type, alarm_case_source, annotated_frames, db)
-                    elif analysis_mode==1: # 分析3种告警场景
-                        for analysis_mode_temp in range(2,5):
-                            alarm_type = analysis_mode_temp - 2
-                            alarm_case_detected, annotated_frames = DetectionService.detect_alarm_case(frame, alarm_type)
+                    # 帧采样，每N帧分析一次
+                    if frame_count % frame_sample_rate == 0:
+                        if analysis_mode>=2: # 只分析一种告警场景
+                            alarm_type = analysis_mode - 2
+                            alarm_case_detected, annotated_frames = DetectionService.detect_alarm_case(frame,alarm_type)
                             if alarm_case_detected is not None:
                                 alarm_case_source = f"{camera_id}_{alarm_type}"
                                 state_result = cls.alarm_tracker.update_state(alarm_case_source, alarm_case_detected)
                                 # 处理本次状态分析结果
                                 cls.handle_state_result_v2(state_result, camera_id, alarm_type, alarm_case_source, annotated_frames, db)
+                        elif analysis_mode==1: # 分析3种告警场景
+                            for analysis_mode_temp in range(2,5):
+                                alarm_type = analysis_mode_temp - 2
+                                alarm_case_detected, annotated_frames = DetectionService.detect_alarm_case(frame, alarm_type)
+                                if alarm_case_detected is not None:
+                                    alarm_case_source = f"{camera_id}_{alarm_type}"
+                                    state_result = cls.alarm_tracker.update_state(alarm_case_source, alarm_case_detected)
+                                    # 处理本次状态分析结果
+                                    cls.handle_state_result_v2(state_result, camera_id, alarm_type, alarm_case_source, annotated_frames, db)
                 else:
                     logger.info(f"{thread_name} 本次获取视频帧（监控帧）失败")
                     read_failure_count += 1

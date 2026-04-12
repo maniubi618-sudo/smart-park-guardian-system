@@ -143,6 +143,9 @@
               <p v-else class="streaming-indicator">
                 <el-icon color="#E6A23C"><VideoCamera /></el-icon> 已暂停
               </p>
+              <p v-if="isStreaming" class="fps-indicator">
+                <strong>FPS:</strong> {{ previewFps.toFixed(1) }}
+              </p>
             </div>
           </div>
           <div v-else class="preview-error">
@@ -186,6 +189,9 @@
               </p>
               <p v-else class="streaming-indicator">
                 <el-icon color="#E6A23C"><VideoCamera /></el-icon> 已暂停
+              </p>
+              <p v-if="isAnalysisStreaming" class="fps-indicator">
+                <strong>FPS:</strong> {{ analysisFps.toFixed(1) }}
               </p>
               <div class="write-to-db-option" style="margin-top: 15px; display: flex; align-items: center; justify-content: space-between;">
                 <span style="font-size: 14px; color: #606266;">将警告信息写入数据库</span>
@@ -462,6 +468,10 @@ const previewLoading = ref(false)
 const previewError = ref('')
 const isStreaming = ref(false)
 const wsConnection = ref(null)
+// FPS相关
+const previewFps = ref(0)
+const previewFrameCount = ref(0)
+const previewLastTime = ref(0)
 
 // 分析测试相关
 const analysisDialogVisible = ref(false)
@@ -475,6 +485,10 @@ const isAnalysisStreaming = ref(false)
 const analysisLoading = ref(false)
 const analysisWsConnection = ref(null)
 const writeToDatabase = ref(false)
+// FPS相关
+const analysisFps = ref(0)
+const analysisFrameCount = ref(0)
+const analysisLastTime = ref(0)
 
 // 监听writeToDatabase变化，通过WebSocket发送消息更新值
 watch(writeToDatabase, (newValue) => {
@@ -821,6 +835,15 @@ const startStream = async () => {
         } else if (data.image) {
           previewImage.value = data.image
           previewTimestamp.value = data.timestamp
+          
+          // 计算FPS
+          const now = Date.now()
+          previewFrameCount.value++
+          if (now - previewLastTime.value >= 1000) {
+            previewFps.value = previewFrameCount.value * 1000 / (now - previewLastTime.value)
+            previewFrameCount.value = 0
+            previewLastTime.value = now
+          }
         }
       } catch (error) {
         console.error('解析WebSocket消息失败:', error)
@@ -924,6 +947,15 @@ const startAnalysisTest = async () => {
                 if (pendingUpdate.image) {
                   analysisImage.value = pendingUpdate.image
                   analysisTimestamp.value = pendingUpdate.timestamp
+                  
+                  // 计算FPS
+                  const now = Date.now()
+                  analysisFrameCount.value++
+                  if (now - analysisLastTime.value >= 1000) {
+                    analysisFps.value = analysisFrameCount.value * 1000 / (now - analysisLastTime.value)
+                    analysisFrameCount.value = 0
+                    analysisLastTime.value = now
+                  }
                 }
                 if (pendingUpdate.results) {
                   analysisResults.value = pendingUpdate.results
@@ -1665,6 +1697,14 @@ onMounted(async () => {
   display: flex;
   flex-direction: column;
   gap: 20px;
+}
+
+/* FPS指示器样式 */
+.fps-indicator {
+  margin-top: 8px;
+  font-size: 14px;
+  color: #409eff;
+  font-weight: 500;
 }
 
 .video-player {

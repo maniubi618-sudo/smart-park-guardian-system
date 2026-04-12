@@ -631,6 +631,11 @@ class CameraInfoService:
                 await websocket.send_json({"error": "无法打开摄像头"})
                 return
 
+            # 帧采样参数，每N帧分析一次
+            frame_count = 0
+            frame_sample_rate = 10  # 每10帧分析一次
+            last_analysis_results = []
+            
             # 持续发送视频帧和分析结果
             while True:
                 # 检查是否有WebSocket消息需要处理
@@ -654,148 +659,157 @@ class CameraInfoService:
                     await asyncio.sleep(0.1)
                     continue
 
-                # 转换为RGB
-                frame_rgb = cv2.cvtColor(frame, cv2.COLOR_BGR2RGB)
+                # 直接使用OpenCV调整图像大小，减少转换步骤
+                max_size = (400, 300)  # 进一步减小图像尺寸
+                frame_resized = cv2.resize(frame, max_size)
 
-                # 转换为PIL Image并调整大小，减小图像尺寸以提高传输速度
-                pil_image = Image.fromarray(frame_rgb)
-                max_size = (480, 360)  # 减小图像尺寸
-                pil_image.thumbnail(max_size, Image.Resampling.LANCZOS)
+                # 直接使用OpenCV编码为JPEG，降低质量以减小数据量
+                encode_param = [int(cv2.IMWRITE_JPEG_QUALITY), 60]  # 进一步降低图像质量
+                _, buffer = cv2.imencode('.jpg', frame_resized, encode_param)
+                img_base64 = base64.b64encode(buffer).decode('utf-8')
 
-                # 转换为Base64，降低质量以减小数据量
-                buffer = BytesIO()
-                pil_image.save(buffer, format='JPEG', quality=75)  # 降低图像质量
-                img_base64 = base64.b64encode(buffer.getvalue()).decode('utf-8')
-
-                # 使用真实的检测服务进行分析
-                analysis_results = []
-                helmet_detected = False
-                vest_detected = False
-                fire_detected = False
-                smoke_detected = False
-                person_count = 0
-                vehicle_count = 0
-                intrusion_detected = False
-                
-                # 转换为OpenCV格式
-                frame_cv = cv2.cvtColor(frame_rgb, cv2.COLOR_RGB2BGR)
-                
-                # 并行执行所有检测任务
-                try:
-                    def detect_helmet():
-                        result = DetectionService.helmet_model(frame_cv, imgsz=640)[0]
-                        head_class_id = 0
-                        for box in result.boxes:
-                            class_id = int(box.cls[0])
-                            if class_id == head_class_id:
-                                return True
-                        return False
-                    
-                    def detect_vest():
-                        result = DetectionService.vest_model(frame_cv, imgsz=640)[0]
-                        no_vest_class_id = 0
-                        for box in result.boxes:
-                            class_id = int(box.cls[0])
-                            if class_id == no_vest_class_id:
-                                return True
-                        return False
-                    
-                    def detect_fire_smoke():
-                        result = DetectionService.fire_smoke_model(frame_cv, imgsz=640)[0]
-                        for box in result.boxes:
-                            return True, True
-                        return False, False
-                    
-                    def detect_person_vehicle():
-                        result = DetectionService.person_vehicle_model(frame_cv, classes=[0,1,2,3,4,5,6,7], imgsz=640)[0]
-                        p_count = 0
-                        v_count = 0
-                        for box in result.boxes:
-                            class_id = int(box.cls[0])
-                            if class_id == 0:
-                                p_count += 1
-                            elif class_id in [1, 2, 3, 4, 5, 6, 7]:
-                                v_count += 1
-                        return p_count, v_count
-                    
-                    # 并行执行所有检测任务
-                    helmet_detected, vest_detected, (fire_detected, smoke_detected), (person_count, vehicle_count) = await asyncio.gather(
-                        asyncio.to_thread(detect_helmet),
-                        asyncio.to_thread(detect_vest),
-                        asyncio.to_thread(detect_fire_smoke),
-                        asyncio.to_thread(detect_person_vehicle)
-                    )
-                except Exception as e:
-                    logger.error(f"检测任务执行失败: {str(e)}")
-                    # 发生错误时设置默认值
+                # 帧采样，每N帧分析一次
+                analysis_results = last_analysis_results
+                if frame_count % frame_sample_rate == 0:
+                    # 使用真实的检测服务进行分析
                     helmet_detected = False
                     vest_detected = False
                     fire_detected = False
                     smoke_detected = False
                     person_count = 0
                     vehicle_count = 0
-                
-                # 检测区域入侵（人员或车辆）
-                intrusion_detected = person_count > 0 or vehicle_count > 0
-                
-                # 生成分析结果
-                analysis_results = [
-                    {"label": "未戴安全帽", "value": "检测到" if helmet_detected else "未检测到"},
-                    {"label": "未穿反光衣", "value": "检测到" if vest_detected else "未检测到"},
-                    {"label": "火焰检测", "value": "检测到" if fire_detected else "未检测到"},
-                    {"label": "烟雾检测", "value": "检测到" if smoke_detected else "未检测到"},
-                    {"label": "人员检测", "value": f"{person_count}人"},
-                    {"label": "车辆检测", "value": f"{vehicle_count}辆"},
-                    {"label": "区域入侵", "value": "检测到" if intrusion_detected else "未检测到"}
-                ]
-                
-                # 检测告警情况并创建告警记录
-                if write_to_database and (helmet_detected or vest_detected or fire_detected or intrusion_detected or person_count > 0):
-                    # 将告警处理放到后台执行，避免阻塞视频流
-                    async def process_alarm():
-                        # 保存告警截图
-                        snapshot_url = ""
-                        try:
-                            snapshot_url = StorageService.upload_alarm_snapshot(frame_cv, camera_id)
-                            logger.info(f"告警截图上传成功: {snapshot_url}")
-                        except Exception as e:
-                            logger.error(f"上传告警截图失败: {str(e)}")
-                            snapshot_url = ""
-                        
-                        # 确定告警类型
-                        alarm_type = 0  # 默认为安全规范
-                        if fire_detected or smoke_detected:
-                            alarm_type = 2  # 火警
-                        elif person_count > 0 or vehicle_count > 0:
-                            alarm_type = 1  # 区域入侵
-                        elif helmet_detected or vest_detected:
-                            alarm_type = 0  # 安全规范
-                        
-                        # 创建告警记录（无论是否有截图都创建）
-                        try:
-                            alarm = create_alarm(db, camera_id, alarm_type, 0, get_now(), snapshot_url if snapshot_url else "")
-                            logger.info(f"告警记录创建成功: alarm_id={alarm.alarm_id}, camera_id={camera_id}, alarm_type={alarm_type}, snapshot={snapshot_url}")
-                            # 广播告警
-                            sync_broadcast_alarm(alarm)
-                        except Exception as e:
-                            logger.error(f"创建告警记录失败: {str(e)}")
-                            import traceback
-                            logger.error(traceback.format_exc())
+                    intrusion_detected = False
                     
-                    # 创建后台任务处理告警
-                    asyncio.create_task(process_alarm())
-
+                    # 直接使用原始帧，不需要转换
+                    frame_cv = frame
+                    
+                    # 并行执行所有检测任务
+                    try:
+                        def detect_helmet():
+                            result = DetectionService.helmet_model(frame_cv, imgsz=320)[0]  # 减小推理尺寸
+                            head_class_id = 0
+                            for box in result.boxes:
+                                class_id = int(box.cls[0])
+                                if class_id == head_class_id:
+                                    return True
+                            return False
+                        
+                        def detect_vest():
+                            result = DetectionService.vest_model(frame_cv, imgsz=320)[0]  # 减小推理尺寸
+                            no_vest_class_id = 0
+                            for box in result.boxes:
+                                class_id = int(box.cls[0])
+                                if class_id == no_vest_class_id:
+                                    return True
+                            return False
+                        
+                        def detect_fire_smoke():
+                            result = DetectionService.fire_smoke_model(frame_cv, imgsz=320)[0]  # 减小推理尺寸
+                            fire_detected = False
+                            smoke_detected = False
+                            for box in result.boxes:
+                                class_id = int(box.cls[0])
+                                if class_id == 0:
+                                    fire_detected = True
+                                elif class_id == 1:
+                                    smoke_detected = True
+                            return fire_detected, smoke_detected
+                        
+                        def detect_person_vehicle():
+                            result = DetectionService.person_vehicle_model(frame_cv, classes=[0,1,2,3,4,5,6,7], imgsz=320)[0]  # 减小推理尺寸
+                            p_count = 0
+                            v_count = 0
+                            for box in result.boxes:
+                                class_id = int(box.cls[0])
+                                if class_id == 0:
+                                    p_count += 1
+                                elif class_id in [1, 2, 3, 4, 5, 6, 7]:
+                                    v_count += 1
+                            return p_count, v_count
+                        
+                        # 并行执行所有检测任务
+                        helmet_detected, vest_detected, (fire_detected, smoke_detected), (person_count, vehicle_count) = await asyncio.gather(
+                            asyncio.to_thread(detect_helmet),
+                            asyncio.to_thread(detect_vest),
+                            asyncio.to_thread(detect_fire_smoke),
+                            asyncio.to_thread(detect_person_vehicle)
+                        )
+                    except Exception as e:
+                        logger.error(f"检测任务执行失败: {str(e)}")
+                        # 发生错误时设置默认值
+                        helmet_detected = False
+                        vest_detected = False
+                        fire_detected = False
+                        smoke_detected = False
+                        person_count = 0
+                        vehicle_count = 0
+                    
+                    # 检测区域入侵（人员或车辆）
+                    intrusion_detected = person_count > 0 or vehicle_count > 0
+                    
+                    # 生成分析结果
+                    analysis_results = [
+                        {"label": "未戴安全帽", "value": "检测到" if helmet_detected else "未检测到"},
+                        {"label": "未穿反光衣", "value": "检测到" if vest_detected else "未检测到"},
+                        {"label": "火焰检测", "value": "检测到" if fire_detected else "未检测到"},
+                        {"label": "烟雾检测", "value": "检测到" if smoke_detected else "未检测到"},
+                        {"label": "人员检测", "value": f"{person_count}人"},
+                        {"label": "车辆检测", "value": f"{vehicle_count}辆"},
+                        {"label": "区域入侵", "value": "检测到" if intrusion_detected else "未检测到"}
+                    ]
+                    
+                    # 保存分析结果，用于未分析的帧
+                    last_analysis_results = analysis_results
+                    
+                    # 检测告警情况并创建告警记录
+                    if write_to_database and (helmet_detected or vest_detected or fire_detected or intrusion_detected or person_count > 0):
+                        # 将告警处理放到后台执行，避免阻塞视频流
+                        async def process_alarm():
+                            # 保存告警截图
+                            snapshot_url = ""
+                            try:
+                                snapshot_url = StorageService.upload_alarm_snapshot(frame_cv, camera_id)
+                                logger.info(f"告警截图上传成功: {snapshot_url}")
+                            except Exception as e:
+                                logger.error(f"上传告警截图失败: {str(e)}")
+                                snapshot_url = ""
+                            
+                            # 确定告警类型
+                            alarm_type = 0  # 默认为安全规范
+                            if fire_detected or smoke_detected:
+                                alarm_type = 2  # 火警
+                            elif person_count > 0 or vehicle_count > 0:
+                                alarm_type = 1  # 区域入侵
+                            elif helmet_detected or vest_detected:
+                                alarm_type = 0  # 安全规范
+                            
+                            # 创建告警记录（无论是否有截图都创建）
+                            try:
+                                alarm = create_alarm(db, camera_id, alarm_type, 0, get_now(), snapshot_url if snapshot_url else "")
+                                logger.info(f"告警记录创建成功: alarm_id={alarm.alarm_id}, camera_id={camera_id}, alarm_type={alarm_type}, snapshot={snapshot_url}")
+                                # 广播告警
+                                sync_broadcast_alarm(alarm)
+                            except Exception as e:
+                                logger.error(f"创建告警记录失败: {str(e)}")
+                                import traceback
+                                logger.error(traceback.format_exc())
+                        
+                        # 创建后台任务处理告警
+                        asyncio.create_task(process_alarm())
+                
                 # 确保 analysis_results 有值
                 if not analysis_results:
                     analysis_results = [
-                        {"label": "未戴安全帽", "value": "未检测到" if not helmet_detected else "检测到"},
-                        {"label": "未穿反光衣", "value": "未检测到" if not vest_detected else "检测到"},
-                        {"label": "火焰检测", "value": "未检测到" if not fire_detected else "检测到"},
-                        {"label": "烟雾检测", "value": "未检测到" if not smoke_detected else "检测到"},
-                        {"label": "人员检测", "value": f"{person_count}人"},
-                        {"label": "车辆检测", "value": f"{vehicle_count}辆"},
-                        {"label": "区域入侵", "value": "未检测到" if not intrusion_detected else "检测到"}
+                        {"label": "未戴安全帽", "value": "未检测到"},
+                        {"label": "未穿反光衣", "value": "未检测到"},
+                        {"label": "火焰检测", "value": "未检测到"},
+                        {"label": "烟雾检测", "value": "未检测到"},
+                        {"label": "人员检测", "value": "0人"},
+                        {"label": "车辆检测", "value": "0辆"},
+                        {"label": "区域入侵", "value": "未检测到"}
                     ]
+                
+                frame_count += 1
 
                 # 发送到WebSocket
                 try:

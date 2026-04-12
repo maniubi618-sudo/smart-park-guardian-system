@@ -50,7 +50,8 @@ class DetectionService:
 
             head_detected=False
             head_class_id=0 # 未戴安全帽的头部在模型训练集中的类别id
-            helmet_result=cls.helmet_model(frame,imgsz=640)[0]
+            # 减小推理尺寸，提高速度
+            helmet_result=cls.helmet_model(frame,imgsz=320)[0]
             for box in helmet_result.boxes:
                 class_id = int(box.cls[0])
                 if class_id == head_class_id:
@@ -58,7 +59,8 @@ class DetectionService:
 
             no_vest_detected=False
             no_vest_class_id=0 # 未穿反光衣在模型训练集中的类别id
-            vest_result=cls.vest_model(frame,imgsz=640)[0]
+            # 减小推理尺寸，提高速度
+            vest_result=cls.vest_model(frame,imgsz=320)[0]
             for box in vest_result.boxes:
                 class_id = int(box.cls[0])
                 if class_id == no_vest_class_id:
@@ -75,13 +77,15 @@ class DetectionService:
                 return False, []
         elif alarm_case_code==1:
             # logger.info("本次帧分析的目标告警场景：区域入侵（是否存在人体、车辆）")
-            person_vehicle_result=cls.person_vehicle_model(frame, classes=[0,1,2,3,4,5,6,7], imgsz=640)[0]
+            # 减小推理尺寸，提高速度
+            person_vehicle_result=cls.person_vehicle_model(frame, classes=[0,1,2,3,4,5,6,7], imgsz=320)[0]
             person_detected=len(person_vehicle_result.boxes)>0
             annotated_frames=[person_vehicle_result.plot()]
             return person_detected, annotated_frames
         elif alarm_case_code==2:
             # logger.info("本次帧分析的目标告警场景：火警（是否存在火焰、烟雾）")
-            fire_smoke_result=cls.fire_smoke_model(frame, imgsz=640)[0]
+            # 减小推理尺寸，提高速度
+            fire_smoke_result=cls.fire_smoke_model(frame, imgsz=320)[0]
             fire_or_smoke_detected=len(fire_smoke_result.boxes)>0
             annotated_frames=[fire_smoke_result.plot()]
             return fire_or_smoke_detected, annotated_frames
