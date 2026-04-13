@@ -241,28 +241,37 @@
         <div class="local-video-analysis">
           <!-- 视频选择区域 -->
           <div v-if="!isLocalAnalysisStarted" class="video-upload-section">
-            <el-upload
-              class="upload-demo"
-              drag
-              action=""
-              :auto-upload="false"
-              :on-change="handleVideoUpload"
-              :limit="1"
-              accept=".mp4,.avi,.mov,.wmv"
-            >
-              <el-icon class="el-icon--upload"><Upload /></el-icon>
-              <div class="el-upload__text">将视频文件拖到此处，或 <em>点击上传</em></div>
-              <template #tip>
-                <div class="el-upload__tip">
-                  请上传 MP4、AVI、MOV、WMV 格式的视频文件
-                </div>
-              </template>
-            </el-upload>
-            <div v-if="selectedVideoFile" class="selected-file">
-              <el-tag>{{ selectedVideoFile.name }}</el-tag>
-              <el-button type="danger" size="small" @click="selectedVideoFile = null">
-                移除
-              </el-button>
+            <!-- 上传区域 -->
+            <div v-if="!selectedVideoFile" class="upload-area">
+              <el-upload
+                class="upload-demo"
+                drag
+                action=""
+                :auto-upload="false"
+                :on-change="handleVideoUpload"
+                :limit="1"
+                accept=".mp4,.avi,.mov,.wmv"
+              >
+                <el-icon class="el-icon--upload"><Upload /></el-icon>
+                <div class="el-upload__text">将视频文件拖到此处，或 <em>点击上传</em></div>
+                <template #tip>
+                  <div class="el-upload__tip">
+                    请上传 MP4、AVI、MOV、WMV 格式的视频文件
+                  </div>
+                </template>
+              </el-upload>
+            </div>
+            <!-- 视频预览区域 -->
+            <div v-else class="video-preview-area">
+              <div class="video-preview">
+                <video :src="videoUrl" controls style="width: 100%; max-height: 300px;"></video>
+              </div>
+              <div class="selected-file" style="margin-top: 10px;">
+                <el-tag>{{ selectedVideoFile.name }}</el-tag>
+                <el-button type="danger" size="small" @click="selectedVideoFile = null; videoUrl = ''">
+                  移除
+                </el-button>
+              </div>
             </div>
             <el-form :model="localAnalysisForm" style="margin-top: 20px;">
               <el-form-item label="分析模式">
@@ -489,6 +498,10 @@ const writeToDatabase = ref(false)
 const analysisFps = ref(0)
 const analysisFrameCount = ref(0)
 const analysisLastTime = ref(0)
+// 告警状态管理
+const lastAlertState = ref('') // 初始化为空字符串，与currentAlertKey类型一致
+const alertDebounceTimer = ref(null)
+const ALERT_DEBOUNCE_TIME = 500 // 500毫秒防抖，提高响应速度
 
 // 监听writeToDatabase变化，通过WebSocket发送消息更新值
 watch(writeToDatabase, (newValue) => {
@@ -906,6 +919,8 @@ const startAnalysisTest = async () => {
   analysisLoading.value = true
   analysisError.value = ''
   analysisResults.value = null
+  // 重置告警状态，确保每次开始分析时都能正确检测新的告警
+  lastAlertState.value = ''
 
   try {
     // 关闭之前的连接
@@ -959,6 +974,9 @@ const startAnalysisTest = async () => {
                 }
                 if (pendingUpdate.results) {
                   analysisResults.value = pendingUpdate.results
+                  
+                  // 检查是否有告警并显示弹窗
+                  checkForAlerts(pendingUpdate.results)
                 }
                 pendingUpdate = null
               }
@@ -1010,9 +1028,129 @@ const stopAnalysisTest = () => {
   console.log('分析测试已停止')
 }
 
+// 检查分析结果是否有告警并显示弹窗
+const checkForAlerts = (results) => {
+  if (!results || !Array.isArray(results)) return
+  
+  // 检查是否有告警
+  const alerts = []
+  
+  results.forEach(result => {
+    // 检查安全规范告警
+    if ((result.label === '未戴安全帽' || result.label === '未穿反光衣') && result.value === '检测到') {
+      alerts.push(result.label)
+    }
+    // 检查火警告警
+    else if ((result.label === '火焰检测' || result.label === '烟雾检测') && result.value === '检测到') {
+      alerts.push(result.label)
+    }
+    // 检查区域入侵告警
+    else if (result.label === '区域入侵' && result.value === '检测到') {
+      alerts.push(result.label)
+    }
+    // 检查人员和车辆检测
+    else if (result.label === '人员检测') {
+      // 提取数字部分，处理"X人"格式的字符串
+      const count = parseInt(result.value.replace(/[^0-9]/g, ''))
+      if (count > 0) {
+        alerts.push(`${result.label} (${result.value})`)
+      }
+    }
+    else if (result.label === '车辆检测') {
+      // 提取数字部分，处理"X辆"格式的字符串
+      const count = parseInt(result.value.replace(/[^0-9]/g, ''))
+      if (count > 0) {
+        alerts.push(`${result.label} (${result.value})`)
+      }
+    }
+  })
+  
+  // 生成当前告警状态的唯一标识
+  const currentAlertKey = alerts.sort().join('|')
+  
+  // 检查告警状态是否发生变化
+  if (currentAlertKey !== lastAlertState.value) {
+    // 清除之前的防抖定时器
+    if (alertDebounceTimer.value) {
+      clearTimeout(alertDebounceTimer.value)
+    }
+    
+    // 设置防抖定时器
+    alertDebounceTimer.value = setTimeout(() => {
+      // 如果有告警，显示弹窗
+      if (alerts.length > 0) {
+        ElMessage({
+          message: `检测到以下告警: ${alerts.join('、')}`,
+          type: 'warning',
+          duration: 5000,
+          showClose: true
+        })
+      }
+      
+      // 更新上次告警状态
+      lastAlertState.value = currentAlertKey
+    }, ALERT_DEBOUNCE_TIME)
+  }
+}
+
+// 检查本地视频分析结果是否有告警并显示弹窗
+const checkLocalVideoAlerts = (results) => {
+  if (!results || !Array.isArray(results)) return
+  
+  // 检查是否有告警
+  const alerts = []
+  
+  results.forEach(result => {
+    // 检查安全规范告警
+    if ((result.label === '未戴安全帽' || result.label === '未穿反光衣') && result.value === '检测到') {
+      alerts.push(result.label)
+    }
+    // 检查火警告警
+    else if ((result.label === '火焰检测' || result.label === '烟雾检测') && result.value === '检测到') {
+      alerts.push(result.label)
+    }
+    // 检查区域入侵告警
+    else if (result.label === '区域入侵' && result.value === '检测到') {
+      alerts.push(result.label)
+    }
+    // 检查人员和车辆检测
+    else if (result.label === '人员检测') {
+      // 提取数字部分，处理"X人"格式的字符串
+      const count = parseInt(result.value.replace(/[^0-9]/g, ''))
+      if (count > 0) {
+        alerts.push(`${result.label} (${result.value})`)
+      }
+    }
+    else if (result.label === '车辆检测') {
+      // 提取数字部分，处理"X辆"格式的字符串
+      const count = parseInt(result.value.replace(/[^0-9]/g, ''))
+      if (count > 0) {
+        alerts.push(`${result.label} (${result.value})`)
+      }
+    }
+  })
+  
+  // 如果有告警，显示弹窗
+  if (alerts.length > 0) {
+    ElMessage({
+      message: `检测到以下告警: ${alerts.join('、')}`,
+      type: 'warning',
+      duration: 5000,
+      showClose: true
+    })
+  }
+}
+
 // 处理分析测试对话框关闭
 const handleAnalysisDialogClose = () => {
   stopAnalysisTest()
+  // 清除告警防抖定时器
+  if (alertDebounceTimer.value) {
+    clearTimeout(alertDebounceTimer.value)
+    alertDebounceTimer.value = null
+  }
+  // 重置告警状态
+  lastAlertState.value = ''
   analysisDialogVisible.value = false
   currentAnalysisCameraId.value = null
   analysisCameraName.value = ''
@@ -1200,6 +1338,9 @@ const startLocalVideoAnalysis = async () => {
           if (result.results) {
             localAnalysisResults.value = result.results
             
+            // 检查是否有告警并显示提示
+            checkLocalVideoAlerts(result.results)
+            
             // 更新总的分析结果
             result.results.forEach(item => {
               if (item.label === '未戴安全帽' && item.value === '检测到') {
@@ -1211,14 +1352,22 @@ const startLocalVideoAnalysis = async () => {
               } else if (item.label === '烟雾检测' && item.value === '检测到') {
                 totalAnalysisResults.value.smoke++
               } else if (item.label === '人员检测') {
-                const count = parseInt(item.value)
+                // 提取数字部分，处理"X人"格式的字符串
+                const count = parseInt(item.value.replace(/[^0-9]/g, ''))
                 if (!isNaN(count)) {
-                  totalAnalysisResults.value.person += count
+                  // 取最大值而不是累加，减少重复计数误差
+                  if (count > totalAnalysisResults.value.person) {
+                    totalAnalysisResults.value.person = count
+                  }
                 }
               } else if (item.label === '车辆检测') {
-                const count = parseInt(item.value)
+                // 提取数字部分，处理"X辆"格式的字符串
+                const count = parseInt(item.value.replace(/[^0-9]/g, ''))
                 if (!isNaN(count)) {
-                  totalAnalysisResults.value.vehicle += count
+                  // 取最大值而不是累加，减少重复计数误差
+                  if (count > totalAnalysisResults.value.vehicle) {
+                    totalAnalysisResults.value.vehicle = count
+                  }
                 }
               } else if (item.label === '区域入侵' && item.value === '检测到') {
                 totalAnalysisResults.value.intrusion++
@@ -1241,6 +1390,9 @@ const startLocalVideoAnalysis = async () => {
           { label: '区域入侵', value: Math.random() > 0.6 ? '检测到' : '未检测到' }
         ]
         
+        // 检查是否有告警并显示提示
+        checkLocalVideoAlerts(localAnalysisResults.value)
+        
         // 更新总的分析结果（模拟情况）
         localAnalysisResults.value.forEach(item => {
           if (item.label === '未戴安全帽' && item.value === '检测到') {
@@ -1252,14 +1404,22 @@ const startLocalVideoAnalysis = async () => {
           } else if (item.label === '烟雾检测' && item.value === '检测到') {
             totalAnalysisResults.value.smoke++
           } else if (item.label === '人员检测') {
-            const count = parseInt(item.value)
+            // 提取数字部分，处理"X人"格式的字符串
+            const count = parseInt(item.value.replace(/[^0-9]/g, ''))
             if (!isNaN(count)) {
-              totalAnalysisResults.value.person += count
+              // 取最大值而不是累加，减少重复计数误差
+              if (count > totalAnalysisResults.value.person) {
+                totalAnalysisResults.value.person = count
+              }
             }
           } else if (item.label === '车辆检测') {
-            const count = parseInt(item.value)
+            // 提取数字部分，处理"X辆"格式的字符串
+            const count = parseInt(item.value.replace(/[^0-9]/g, ''))
             if (!isNaN(count)) {
-              totalAnalysisResults.value.vehicle += count
+              // 取最大值而不是累加，减少重复计数误差
+              if (count > totalAnalysisResults.value.vehicle) {
+                totalAnalysisResults.value.vehicle = count
+              }
             }
           } else if (item.label === '区域入侵' && item.value === '检测到') {
             totalAnalysisResults.value.intrusion++

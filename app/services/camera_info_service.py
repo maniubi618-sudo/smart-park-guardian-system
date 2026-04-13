@@ -633,7 +633,7 @@ class CameraInfoService:
 
             # 帧采样参数，每N帧分析一次
             frame_count = 0
-            frame_sample_rate = 10  # 每10帧分析一次
+            frame_sample_rate = 15  # 每15帧分析一次，减少分析频率以提高FPS
             last_analysis_results = []
             
             # 持续发送视频帧和分析结果
@@ -660,11 +660,11 @@ class CameraInfoService:
                     continue
 
                 # 直接使用OpenCV调整图像大小，减少转换步骤
-                max_size = (400, 300)  # 进一步减小图像尺寸
+                max_size = (320, 240)  # 进一步减小图像尺寸以提高传输速度
                 frame_resized = cv2.resize(frame, max_size)
 
                 # 直接使用OpenCV编码为JPEG，降低质量以减小数据量
-                encode_param = [int(cv2.IMWRITE_JPEG_QUALITY), 60]  # 进一步降低图像质量
+                encode_param = [int(cv2.IMWRITE_JPEG_QUALITY), 50]  # 进一步降低图像质量以提高传输速度
                 _, buffer = cv2.imencode('.jpg', frame_resized, encode_param)
                 img_base64 = base64.b64encode(buffer).decode('utf-8')
 
@@ -704,27 +704,35 @@ class CameraInfoService:
                             return False
                         
                         def detect_fire_smoke():
-                            result = DetectionService.fire_smoke_model(frame_cv, imgsz=320)[0]  # 减小推理尺寸
+                            # 增加推理尺寸并设置较低的置信度阈值，提高火灾检测灵敏度
+                            result = DetectionService.fire_smoke_model(frame_cv, imgsz=960, conf=0.2)[0]  # 增加推理尺寸，降低置信度阈值
                             fire_detected = False
                             smoke_detected = False
+                            confidence_threshold = 0.2  # 降低置信度阈值以提高灵敏度
                             for box in result.boxes:
                                 class_id = int(box.cls[0])
-                                if class_id == 0:
-                                    fire_detected = True
-                                elif class_id == 1:
-                                    smoke_detected = True
+                                confidence = float(box.conf[0])
+                                if confidence >= confidence_threshold:
+                                    if class_id == 0:
+                                        fire_detected = True
+                                    elif class_id == 1:
+                                        smoke_detected = True
                             return fire_detected, smoke_detected
                         
                         def detect_person_vehicle():
-                            result = DetectionService.person_vehicle_model(frame_cv, classes=[0,1,2,3,4,5,6,7], imgsz=320)[0]  # 减小推理尺寸
+                            # 增加推理尺寸并设置置信度阈值，提高人员检测的准确性
+                            result = DetectionService.person_vehicle_model(frame_cv, classes=[0,1,2,3,4,5,6,7], imgsz=960)[0]  # 增加推理尺寸
                             p_count = 0
                             v_count = 0
+                            confidence_threshold = 0.3  # 降低置信度阈值以提高检测灵敏度
                             for box in result.boxes:
                                 class_id = int(box.cls[0])
-                                if class_id == 0:
-                                    p_count += 1
-                                elif class_id in [1, 2, 3, 4, 5, 6, 7]:
-                                    v_count += 1
+                                confidence = float(box.conf[0])
+                                if confidence >= confidence_threshold:
+                                    if class_id == 0:
+                                        p_count += 1
+                                    elif class_id in [1, 2, 3, 4, 5, 6, 7]:
+                                        v_count += 1
                             return p_count, v_count
                         
                         # 并行执行所有检测任务
@@ -824,8 +832,8 @@ class CameraInfoService:
                     # 发送失败，说明客户端已断开连接，跳出循环
                     break
 
-                # 控制帧率（约10fps）
-                await asyncio.sleep(0.1)
+                # 控制帧率（约20fps）
+                await asyncio.sleep(0.05)
 
         except WebSocketDisconnect:
             # 客户端断开连接
@@ -915,10 +923,11 @@ class CameraInfoService:
             # 检测火焰和烟雾 - 在线程中运行避免阻塞
             try:
                 def detect_fire_smoke():
-                    result = DetectionService.fire_smoke_model(frame_cv, imgsz=640)[0]
+                    # 增加推理尺寸并设置较低的置信度阈值，提高火灾检测灵敏度
+                    result = DetectionService.fire_smoke_model(frame_cv, imgsz=960, conf=0.2)[0]  # 增加推理尺寸，降低置信度阈值
                     fire_detected = False
                     smoke_detected = False
-                    confidence_threshold = 0.5
+                    confidence_threshold = 0.2  # 降低置信度阈值以提高灵敏度
                     for box in result.boxes:
                         class_id = int(box.cls[0])
                         confidence = float(box.conf[0])
@@ -935,10 +944,11 @@ class CameraInfoService:
             # 检测人员和车辆 - 在线程中运行避免阻塞
             try:
                 def detect_person_vehicle():
-                    result = DetectionService.person_vehicle_model(frame_cv, classes=[0,1,2,3,4,5,6,7], imgsz=640)[0]
+                    # 增加推理尺寸并降低置信度阈值，提高人员检测的准确性
+                    result = DetectionService.person_vehicle_model(frame_cv, classes=[0,1,2,3,4,5,6,7], imgsz=960)[0]  # 增加推理尺寸
                     person_count = 0
                     vehicle_count = 0
-                    confidence_threshold = 0.5
+                    confidence_threshold = 0.3  # 降低置信度阈值以提高检测灵敏度
                     for box in result.boxes:
                         class_id = int(box.cls[0])
                         confidence = float(box.conf[0])
