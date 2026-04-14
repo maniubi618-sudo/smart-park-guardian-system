@@ -9472,6 +9472,7 @@
 2026-04-13 12:52:28,439 - fastapi_app - INFO - WebSocket连接已断开，当前连接数: 0
 2026-04-13 12:52:51,321 - fastapi_app - INFO - WebSocket连接已建立，当前连接数: 1
 2026-04-13 13:02:49,614 - fastapi_app - INFO - WebSocket连接已断开，当前连接数: 0
+<<<<<<< HEAD
 2026-04-13 23:55:36,377 - fastapi_app - INFO - WebSocket连接已建立，当前连接数: 1
 2026-04-13 23:55:54,914 - fastapi_app - INFO - WebSocket连接已断开，当前连接数: 0
 2026-04-14 22:32:12,693 - fastapi_app - INFO - WebSocket连接已建立，当前连接数: 1
@@ -9570,3 +9571,5 @@
 2026-04-15 00:15:35,700 - fastapi_app - ERROR - 转发数据到观看端失败: 
 2026-04-15 00:15:39,547 - fastapi_app - INFO - 手机摄像头已断开
 2026-04-15 00:15:45,957 - fastapi_app - INFO - WebSocket连接已断开，当前连接数: 0
+=======
+>>>>>>> d65f0e9e6f3d506a2b38a4e8d51e67136241f6f7
