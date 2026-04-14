@@ -32,6 +32,9 @@
             <el-button type="primary" :icon="VideoCamera" @click="localVideoAnalysis">
               本地视频分析
             </el-button>
+            <el-button type="warning" :icon="VideoCamera" @click="openPhoneCamera">
+              手机摄像头
+            </el-button>
           </el-form-item>
         </el-form>
       </el-card>
@@ -241,28 +244,37 @@
         <div class="local-video-analysis">
           <!-- 视频选择区域 -->
           <div v-if="!isLocalAnalysisStarted" class="video-upload-section">
-            <el-upload
-              class="upload-demo"
-              drag
-              action=""
-              :auto-upload="false"
-              :on-change="handleVideoUpload"
-              :limit="1"
-              accept=".mp4,.avi,.mov,.wmv"
-            >
-              <el-icon class="el-icon--upload"><Upload /></el-icon>
-              <div class="el-upload__text">将视频文件拖到此处，或 <em>点击上传</em></div>
-              <template #tip>
-                <div class="el-upload__tip">
-                  请上传 MP4、AVI、MOV、WMV 格式的视频文件
-                </div>
-              </template>
-            </el-upload>
-            <div v-if="selectedVideoFile" class="selected-file">
-              <el-tag>{{ selectedVideoFile.name }}</el-tag>
-              <el-button type="danger" size="small" @click="selectedVideoFile = null">
-                移除
-              </el-button>
+            <!-- 上传区域 -->
+            <div v-if="!selectedVideoFile" class="upload-area">
+              <el-upload
+                class="upload-demo"
+                drag
+                action=""
+                :auto-upload="false"
+                :on-change="handleVideoUpload"
+                :limit="1"
+                accept=".mp4,.avi,.mov,.wmv"
+              >
+                <el-icon class="el-icon--upload"><Upload /></el-icon>
+                <div class="el-upload__text">将视频文件拖到此处，或 <em>点击上传</em></div>
+                <template #tip>
+                  <div class="el-upload__tip">
+                    请上传 MP4、AVI、MOV、WMV 格式的视频文件
+                  </div>
+                </template>
+              </el-upload>
+            </div>
+            <!-- 视频预览区域 -->
+            <div v-else class="video-preview-area">
+              <div class="video-preview">
+                <video :src="videoUrl" controls style="width: 100%; max-height: 300px;"></video>
+              </div>
+              <div class="selected-file" style="margin-top: 10px;">
+                <el-tag>{{ selectedVideoFile.name }}</el-tag>
+                <el-button type="danger" size="small" @click="selectedVideoFile = null; videoUrl = ''">
+                  移除
+                </el-button>
+              </div>
             </div>
             <el-form :model="localAnalysisForm" style="margin-top: 20px;">
               <el-form-item label="分析模式">
@@ -361,6 +373,129 @@
             >
               停止分析
             </el-button>
+          </span>
+        </template>
+      </el-dialog>
+
+      <!-- 手机摄像头对话框 -->
+      <el-dialog
+        v-model="phoneCameraDialogVisible"
+        title="手机摄像头"
+        width="900px"
+        :close-on-click-modal="false"
+        @close="handlePhoneCameraDialogClose"
+      >
+        <el-tabs v-model="phoneCameraMode" type="border-card">
+          <el-tab-pane label="PC观看模式" name="pc">
+            <div class="phone-camera-pc-mode">
+              <div class="video-container-wrapper">
+                <div class="video-container" :class="{ 'mirror': phoneCameraMirror }">
+                  <video ref="phoneCameraVideo" autoplay playsinline muted class="phone-camera-video"></video>
+                </div>
+                <div v-if="!phoneCameraStreaming" class="phone-camera-placeholder">
+                  <el-icon :size="60" color="#909399"><VideoCamera /></el-icon>
+                  <p>点击下方按钮开启摄像头</p>
+                </div>
+              </div>
+              <div class="phone-camera-controls">
+                <el-button type="primary" @click="startPhoneCamera" :disabled="phoneCameraStreaming">
+                  开启摄像头
+                </el-button>
+                <el-button type="danger" @click="stopPhoneCamera" :disabled="!phoneCameraStreaming">
+                  关闭摄像头
+                </el-button>
+                <el-button @click="flipPhoneCamera" :disabled="!phoneCameraStreaming">
+                  切换摄像头
+                </el-button>
+                <el-button @click="togglePhoneCameraMirror" :disabled="!phoneCameraStreaming">
+                  {{ phoneCameraMirror ? '取消镜像' : '水平镜像' }}
+                </el-button>
+              </div>
+              <div v-if="phoneCameraStreaming" class="phone-camera-info">
+                <el-descriptions :column="3" border size="small">
+                  <el-descriptions-item label="分辨率">{{ phoneCameraResolution }}</el-descriptions-item>
+                  <el-descriptions-item label="帧率">{{ phoneCameraFps }} fps</el-descriptions-item>
+                  <el-descriptions-item label="摄像头">{{ phoneCameraFacing === 'user' ? '前置' : '后置' }}</el-descriptions-item>
+                </el-descriptions>
+              </div>
+            </div>
+          </el-tab-pane>
+          <el-tab-pane label="手机推流观看" name="phone-viewer">
+            <div class="phone-camera-phone-viewer-mode">
+              <div class="video-container-wrapper">
+                <div class="video-container" :class="{ 'mirror': phoneViewerMirror }">
+                  <canvas ref="phoneViewerCanvas" class="phone-viewer-canvas"></canvas>
+                </div>
+                <div v-if="!phoneViewerConnected" class="phone-camera-placeholder">
+                  <el-icon :size="60" color="#909399"><VideoCamera /></el-icon>
+                  <p>等待手机连接...</p>
+                  <p style="font-size: 12px; color: #909399;">请先切换到"手机连接"标签页</p>
+                </div>
+              </div>
+              <div class="phone-camera-controls">
+                <el-button type="primary" @click="startPhoneViewer" :disabled="phoneViewerConnected">
+                  连接观看
+                </el-button>
+                <el-button type="danger" @click="stopPhoneViewer" :disabled="!phoneViewerConnected">
+                  断开连接
+                </el-button>
+                <el-button @click="togglePhoneViewerMirror" :disabled="!phoneViewerConnected">
+                  {{ phoneViewerMirror ? '取消镜像' : '水平镜像' }}
+                </el-button>
+              </div>
+              <div v-if="phoneViewerConnected" class="phone-camera-info">
+                <el-descriptions :column="3" border size="small">
+                  <el-descriptions-item label="分辨率">{{ phoneViewerResolution }}</el-descriptions-item>
+                  <el-descriptions-item label="帧率">{{ phoneViewerFps }} fps</el-descriptions-item>
+                  <el-descriptions-item label="延迟">{{ phoneViewerLatency }} ms</el-descriptions-item>
+                </el-descriptions>
+              </div>
+            </div>
+          </el-tab-pane>
+          <el-tab-pane label="手机连接" name="phone">
+            <div class="phone-camera-phone-mode">
+              <el-alert type="info" :closable="false" style="margin-bottom: 20px;">
+                <template #title>
+                  请确保您的手机和电脑在同一局域网内
+                </template>
+              </el-alert>
+              
+              <div class="connection-info">
+                <div class="info-item">
+                  <span class="info-label">本机IP地址:</span>
+                  <el-tag type="success" size="large">{{ localIPAddress }}</el-tag>
+                  <el-button size="small" @click="copyLocalIP">复制</el-button>
+                </div>
+                <div class="info-item">
+                  <span class="info-label">手机连接地址:</span>
+                  <el-input :value="phonePushUrl" readonly style="width: 400px; margin-right: 10px;" />
+                  <el-button size="small" @click="copyPhonePushUrl">复制</el-button>
+                </div>
+              </div>
+
+              <div class="qr-code-section" v-if="phonePushQrCodeUrl">
+                <h4>扫描二维码连接:</h4>
+                <div class="qr-code-wrapper">
+                  <img :src="phonePushQrCodeUrl" alt="QR Code" class="qr-code" />
+                </div>
+                <p style="color: #909399; font-size: 12px; margin-top: 10px;">使用手机浏览器扫描二维码访问</p>
+              </div>
+
+              <div class="instructions">
+                <h4>连接步骤:</h4>
+                <ol>
+                  <li>确保手机和电脑连接到同一Wi-Fi网络</li>
+                  <li>在手机浏览器中输入上方连接地址，或扫描二维码</li>
+                  <li>允许浏览器访问摄像头权限</li>
+                  <li>切换到"手机推流观看"标签页查看画面</li>
+                </ol>
+              </div>
+            </div>
+          </el-tab-pane>
+        </el-tabs>
+        <template #footer>
+          <span class="dialog-footer">
+            <el-button @click="handlePhoneCameraDialogClose">关闭</el-button>
           </span>
         </template>
       </el-dialog>
@@ -489,6 +624,10 @@ const writeToDatabase = ref(false)
 const analysisFps = ref(0)
 const analysisFrameCount = ref(0)
 const analysisLastTime = ref(0)
+// 告警状态管理
+const lastAlertState = ref('') // 初始化为空字符串，与currentAlertKey类型一致
+const alertDebounceTimer = ref(null)
+const ALERT_DEBOUNCE_TIME = 500 // 500毫秒防抖，提高响应速度
 
 // 监听writeToDatabase变化，通过WebSocket发送消息更新值
 watch(writeToDatabase, (newValue) => {
@@ -527,6 +666,39 @@ const totalAnalysisResults = ref({
   vehicle: 0,
   intrusion: 0
 })
+
+// 手机摄像头相关状态
+const phoneCameraDialogVisible = ref(false)
+const phoneCameraMode = ref('pc')
+const phoneCameraVideo = ref(null)
+const phoneCameraStreaming = ref(false)
+const phoneCameraStream = ref(null)
+const phoneCameraFacing = ref('environment')
+const phoneCameraMirror = ref(false)
+const phoneCameraResolution = ref('')
+const phoneCameraFps = ref(0)
+const phoneCameraFrameCount = ref(0)
+const phoneCameraLastTime = ref(0)
+const phoneCameraFpsInterval = ref(null)
+
+// IP地址和连接相关
+const localIPAddress = ref('')
+const phoneConnectionUrl = ref('')
+const qrCodeUrl = ref('')
+const phonePushUrl = ref('')
+const phonePushQrCodeUrl = ref('')
+
+// 手机推流观看相关
+const phoneViewerCanvas = ref(null)
+const phoneViewerConnected = ref(false)
+const phoneViewerWs = ref(null)
+const phoneViewerMirror = ref(false)
+const phoneViewerResolution = ref('')
+const phoneViewerFps = ref(0)
+const phoneViewerLatency = ref(0)
+const phoneViewerFrameCount = ref(0)
+const phoneViewerLastTime = ref(0)
+const phoneViewerFpsInterval = ref(null)
 
 // 进度条颜色
 const progressColor = computed(() => {
@@ -906,6 +1078,8 @@ const startAnalysisTest = async () => {
   analysisLoading.value = true
   analysisError.value = ''
   analysisResults.value = null
+  // 重置告警状态，确保每次开始分析时都能正确检测新的告警
+  lastAlertState.value = ''
 
   try {
     // 关闭之前的连接
@@ -959,6 +1133,9 @@ const startAnalysisTest = async () => {
                 }
                 if (pendingUpdate.results) {
                   analysisResults.value = pendingUpdate.results
+                  
+                  // 检查是否有告警并显示弹窗
+                  checkForAlerts(pendingUpdate.results)
                 }
                 pendingUpdate = null
               }
@@ -1010,9 +1187,129 @@ const stopAnalysisTest = () => {
   console.log('分析测试已停止')
 }
 
+// 检查分析结果是否有告警并显示弹窗
+const checkForAlerts = (results) => {
+  if (!results || !Array.isArray(results)) return
+  
+  // 检查是否有告警
+  const alerts = []
+  
+  results.forEach(result => {
+    // 检查安全规范告警
+    if ((result.label === '未戴安全帽' || result.label === '未穿反光衣') && result.value === '检测到') {
+      alerts.push(result.label)
+    }
+    // 检查火警告警
+    else if ((result.label === '火焰检测' || result.label === '烟雾检测') && result.value === '检测到') {
+      alerts.push(result.label)
+    }
+    // 检查区域入侵告警
+    else if (result.label === '区域入侵' && result.value === '检测到') {
+      alerts.push(result.label)
+    }
+    // 检查人员和车辆检测
+    else if (result.label === '人员检测') {
+      // 提取数字部分，处理"X人"格式的字符串
+      const count = parseInt(result.value.replace(/[^0-9]/g, ''))
+      if (count > 0) {
+        alerts.push(`${result.label} (${result.value})`)
+      }
+    }
+    else if (result.label === '车辆检测') {
+      // 提取数字部分，处理"X辆"格式的字符串
+      const count = parseInt(result.value.replace(/[^0-9]/g, ''))
+      if (count > 0) {
+        alerts.push(`${result.label} (${result.value})`)
+      }
+    }
+  })
+  
+  // 生成当前告警状态的唯一标识
+  const currentAlertKey = alerts.sort().join('|')
+  
+  // 检查告警状态是否发生变化
+  if (currentAlertKey !== lastAlertState.value) {
+    // 清除之前的防抖定时器
+    if (alertDebounceTimer.value) {
+      clearTimeout(alertDebounceTimer.value)
+    }
+    
+    // 设置防抖定时器
+    alertDebounceTimer.value = setTimeout(() => {
+      // 如果有告警，显示弹窗
+      if (alerts.length > 0) {
+        ElMessage({
+          message: `检测到以下告警: ${alerts.join('、')}`,
+          type: 'warning',
+          duration: 5000,
+          showClose: true
+        })
+      }
+      
+      // 更新上次告警状态
+      lastAlertState.value = currentAlertKey
+    }, ALERT_DEBOUNCE_TIME)
+  }
+}
+
+// 检查本地视频分析结果是否有告警并显示弹窗
+const checkLocalVideoAlerts = (results) => {
+  if (!results || !Array.isArray(results)) return
+  
+  // 检查是否有告警
+  const alerts = []
+  
+  results.forEach(result => {
+    // 检查安全规范告警
+    if ((result.label === '未戴安全帽' || result.label === '未穿反光衣') && result.value === '检测到') {
+      alerts.push(result.label)
+    }
+    // 检查火警告警
+    else if ((result.label === '火焰检测' || result.label === '烟雾检测') && result.value === '检测到') {
+      alerts.push(result.label)
+    }
+    // 检查区域入侵告警
+    else if (result.label === '区域入侵' && result.value === '检测到') {
+      alerts.push(result.label)
+    }
+    // 检查人员和车辆检测
+    else if (result.label === '人员检测') {
+      // 提取数字部分，处理"X人"格式的字符串
+      const count = parseInt(result.value.replace(/[^0-9]/g, ''))
+      if (count > 0) {
+        alerts.push(`${result.label} (${result.value})`)
+      }
+    }
+    else if (result.label === '车辆检测') {
+      // 提取数字部分，处理"X辆"格式的字符串
+      const count = parseInt(result.value.replace(/[^0-9]/g, ''))
+      if (count > 0) {
+        alerts.push(`${result.label} (${result.value})`)
+      }
+    }
+  })
+  
+  // 如果有告警，显示弹窗
+  if (alerts.length > 0) {
+    ElMessage({
+      message: `检测到以下告警: ${alerts.join('、')}`,
+      type: 'warning',
+      duration: 5000,
+      showClose: true
+    })
+  }
+}
+
 // 处理分析测试对话框关闭
 const handleAnalysisDialogClose = () => {
   stopAnalysisTest()
+  // 清除告警防抖定时器
+  if (alertDebounceTimer.value) {
+    clearTimeout(alertDebounceTimer.value)
+    alertDebounceTimer.value = null
+  }
+  // 重置告警状态
+  lastAlertState.value = ''
   analysisDialogVisible.value = false
   currentAnalysisCameraId.value = null
   analysisCameraName.value = ''
@@ -1200,6 +1497,9 @@ const startLocalVideoAnalysis = async () => {
           if (result.results) {
             localAnalysisResults.value = result.results
             
+            // 检查是否有告警并显示提示
+            checkLocalVideoAlerts(result.results)
+            
             // 更新总的分析结果
             result.results.forEach(item => {
               if (item.label === '未戴安全帽' && item.value === '检测到') {
@@ -1211,14 +1511,22 @@ const startLocalVideoAnalysis = async () => {
               } else if (item.label === '烟雾检测' && item.value === '检测到') {
                 totalAnalysisResults.value.smoke++
               } else if (item.label === '人员检测') {
-                const count = parseInt(item.value)
+                // 提取数字部分，处理"X人"格式的字符串
+                const count = parseInt(item.value.replace(/[^0-9]/g, ''))
                 if (!isNaN(count)) {
-                  totalAnalysisResults.value.person += count
+                  // 取最大值而不是累加，减少重复计数误差
+                  if (count > totalAnalysisResults.value.person) {
+                    totalAnalysisResults.value.person = count
+                  }
                 }
               } else if (item.label === '车辆检测') {
-                const count = parseInt(item.value)
+                // 提取数字部分，处理"X辆"格式的字符串
+                const count = parseInt(item.value.replace(/[^0-9]/g, ''))
                 if (!isNaN(count)) {
-                  totalAnalysisResults.value.vehicle += count
+                  // 取最大值而不是累加，减少重复计数误差
+                  if (count > totalAnalysisResults.value.vehicle) {
+                    totalAnalysisResults.value.vehicle = count
+                  }
                 }
               } else if (item.label === '区域入侵' && item.value === '检测到') {
                 totalAnalysisResults.value.intrusion++
@@ -1241,6 +1549,9 @@ const startLocalVideoAnalysis = async () => {
           { label: '区域入侵', value: Math.random() > 0.6 ? '检测到' : '未检测到' }
         ]
         
+        // 检查是否有告警并显示提示
+        checkLocalVideoAlerts(localAnalysisResults.value)
+        
         // 更新总的分析结果（模拟情况）
         localAnalysisResults.value.forEach(item => {
           if (item.label === '未戴安全帽' && item.value === '检测到') {
@@ -1252,14 +1563,22 @@ const startLocalVideoAnalysis = async () => {
           } else if (item.label === '烟雾检测' && item.value === '检测到') {
             totalAnalysisResults.value.smoke++
           } else if (item.label === '人员检测') {
-            const count = parseInt(item.value)
+            // 提取数字部分，处理"X人"格式的字符串
+            const count = parseInt(item.value.replace(/[^0-9]/g, ''))
             if (!isNaN(count)) {
-              totalAnalysisResults.value.person += count
+              // 取最大值而不是累加，减少重复计数误差
+              if (count > totalAnalysisResults.value.person) {
+                totalAnalysisResults.value.person = count
+              }
             }
           } else if (item.label === '车辆检测') {
-            const count = parseInt(item.value)
+            // 提取数字部分，处理"X辆"格式的字符串
+            const count = parseInt(item.value.replace(/[^0-9]/g, ''))
             if (!isNaN(count)) {
-              totalAnalysisResults.value.vehicle += count
+              // 取最大值而不是累加，减少重复计数误差
+              if (count > totalAnalysisResults.value.vehicle) {
+                totalAnalysisResults.value.vehicle = count
+              }
             }
           } else if (item.label === '区域入侵' && item.value === '检测到') {
             totalAnalysisResults.value.intrusion++
@@ -1324,6 +1643,397 @@ const handleLocalVideoDialogClose = () => {
   totalFrames.value = 0
   remainingTime.value = 0
   localAnalysisResults.value = []
+}
+
+// ========== 手机摄像头相关方法 ==========
+
+// 打开手机摄像头对话框
+const openPhoneCamera = async () => {
+  phoneCameraDialogVisible.value = true
+  await detectLocalIP()
+  updatePhonePushUrl()
+}
+
+// 检测本机IP地址
+const detectLocalIP = async () => {
+  try {
+    // 方法1: 使用WebRTC STUN服务器获取本机IP
+    const pc = new RTCPeerConnection({
+      iceServers: [{ urls: 'stun:stun.l.google.com:19302' }]
+    })
+    
+    pc.createDataChannel('')
+    const offer = await pc.createOffer()
+    await pc.setLocalDescription(offer)
+    
+    return new Promise((resolve) => {
+      pc.onicecandidate = (ice) => {
+        if (ice.candidate) {
+          const ipMatch = ice.candidate.candidate.match(/([0-9]{1,3}(\.[0-9]{1,3}){3})/)
+          if (ipMatch && !ipMatch[1].startsWith('127.')) {
+            localIPAddress.value = ipMatch[1]
+            updateConnectionUrl()
+            pc.close()
+            resolve(ipMatch[1])
+          }
+        } else {
+          // 方法2: 回退到使用location.hostname
+          localIPAddress.value = window.location.hostname
+          updateConnectionUrl()
+          pc.close()
+          resolve(window.location.hostname)
+        }
+      }
+      
+      // 超时处理
+      setTimeout(() => {
+        if (!localIPAddress.value) {
+          localIPAddress.value = window.location.hostname
+          updateConnectionUrl()
+          pc.close()
+          resolve(window.location.hostname)
+        }
+      }, 2000)
+    })
+  } catch (error) {
+    console.error('检测IP地址失败:', error)
+    localIPAddress.value = window.location.hostname
+    updateConnectionUrl()
+    return window.location.hostname
+  }
+}
+
+// 更新连接地址
+const updateConnectionUrl = () => {
+  const protocol = window.location.protocol
+  const port = window.location.port
+  const hostname = localIPAddress.value || window.location.hostname
+  phoneConnectionUrl.value = `${protocol}//${hostname}${port ? ':' + port : ''}`
+  generateQRCode(phoneConnectionUrl.value)
+}
+
+// 生成二维码
+const generateQRCode = (url) => {
+  // 使用简单的API生成二维码
+  qrCodeUrl.value = `https://api.qrserver.com/v1/create-qr-code/?size=200x200&data=${encodeURIComponent(url)}`
+}
+
+// 复制本机IP
+const copyLocalIP = () => {
+  navigator.clipboard.writeText(localIPAddress.value).then(() => {
+    ElMessage.success('IP地址已复制')
+  }).catch(() => {
+    ElMessage.error('复制失败')
+  })
+}
+
+// 复制连接地址
+const copyConnectionUrl = () => {
+  navigator.clipboard.writeText(phoneConnectionUrl.value).then(() => {
+    ElMessage.success('连接地址已复制')
+  }).catch(() => {
+    ElMessage.error('复制失败')
+  })
+}
+
+// 开启手机摄像头（PC模式）
+const startPhoneCamera = async () => {
+  try {
+    const constraints = [
+      { video: { facingMode: phoneCameraFacing.value, width: { ideal: 1280 }, height: { ideal: 720 } } },
+      { video: { facingMode: phoneCameraFacing.value } },
+      { video: true }
+    ]
+
+    let stream = null
+    for (const constraint of constraints) {
+      try {
+        stream = await navigator.mediaDevices.getUserMedia(constraint)
+        if (stream) break
+      } catch (e) {
+        continue
+      }
+    }
+
+    if (!stream) {
+      throw new Error('无法访问摄像头')
+    }
+
+    phoneCameraStream.value = stream
+    if (phoneCameraVideo.value) {
+      phoneCameraVideo.value.srcObject = stream
+    }
+
+    phoneCameraStreaming.value = true
+    
+    // 获取分辨率信息
+    const track = stream.getVideoTracks()[0]
+    const settings = track.getSettings()
+    phoneCameraResolution.value = `${settings.width || '?'}×${settings.height || '?'}`
+    
+    // 开始计算FPS
+    startPhoneCameraFpsCounter()
+    
+    ElMessage.success('摄像头已开启')
+  } catch (error) {
+    console.error('开启摄像头失败:', error)
+    ElMessage.error('无法访问摄像头，请检查权限设置')
+  }
+}
+
+// 关闭手机摄像头
+const stopPhoneCamera = () => {
+  if (phoneCameraStream.value) {
+    phoneCameraStream.value.getTracks().forEach(track => track.stop())
+    phoneCameraStream.value = null
+  }
+  if (phoneCameraVideo.value) {
+    phoneCameraVideo.value.srcObject = null
+  }
+  phoneCameraStreaming.value = false
+  stopPhoneCameraFpsCounter()
+  phoneCameraFps.value = 0
+  phoneCameraFrameCount.value = 0
+  phoneCameraResolution.value = ''
+}
+
+// 切换摄像头（前置/后置）
+const flipPhoneCamera = async () => {
+  phoneCameraFacing.value = phoneCameraFacing.value === 'user' ? 'environment' : 'user'
+  if (phoneCameraStreaming.value) {
+    stopPhoneCamera()
+    await startPhoneCamera()
+  }
+}
+
+// 切换镜像
+const togglePhoneCameraMirror = () => {
+  phoneCameraMirror.value = !phoneCameraMirror.value
+}
+
+// 开始FPS计数
+const startPhoneCameraFpsCounter = () => {
+  phoneCameraLastTime.value = Date.now()
+  phoneCameraFrameCount.value = 0
+  
+  const videoEl = phoneCameraVideo.value
+  if (!videoEl) return
+  
+  const updateFps = () => {
+    if (!phoneCameraStreaming.value) return
+    
+    phoneCameraFrameCount.value++
+    const now = Date.now()
+    if (now - phoneCameraLastTime.value >= 1000) {
+      phoneCameraFps.value = phoneCameraFrameCount.value
+      phoneCameraFrameCount.value = 0
+      phoneCameraLastTime.value = now
+    }
+    
+    phoneCameraFpsInterval.value = requestAnimationFrame(updateFps)
+  }
+  
+  phoneCameraFpsInterval.value = requestAnimationFrame(updateFps)
+}
+
+// 停止FPS计数
+const stopPhoneCameraFpsCounter = () => {
+  if (phoneCameraFpsInterval.value) {
+    cancelAnimationFrame(phoneCameraFpsInterval.value)
+    phoneCameraFpsInterval.value = null
+  }
+}
+
+// 处理手机摄像头对话框关闭
+const handlePhoneCameraDialogClose = () => {
+  stopPhoneCamera()
+  stopPhoneViewer()
+  phoneCameraDialogVisible.value = false
+  phoneCameraMode.value = 'pc'
+  phoneCameraMirror.value = false
+  phoneViewerMirror.value = false
+}
+
+// ========== 手机推流观看相关方法 ==========
+
+// 更新连接地址
+const updatePhonePushUrl = () => {
+  const protocol = 'https:' // 强制使用 HTTPS
+  const port = '8443' // HTTPS 后端端口
+  const hostname = localIPAddress.value || window.location.hostname
+  phonePushUrl.value = `${protocol}//${hostname}:${port}/phone-camera`
+  generatePhonePushQRCode(phonePushUrl.value)
+}
+
+// 生成手机推流二维码
+const generatePhonePushQRCode = (url) => {
+  phonePushQrCodeUrl.value = `https://api.qrserver.com/v1/create-qr-code/?size=200x200&data=${encodeURIComponent(url)}`
+}
+
+// 复制手机推流地址
+const copyPhonePushUrl = () => {
+  navigator.clipboard.writeText(phonePushUrl.value).then(() => {
+    ElMessage.success('连接地址已复制')
+  }).catch(() => {
+    ElMessage.error('复制失败')
+  })
+}
+
+// 开始手机推流观看
+const startPhoneViewer = () => {
+  try {
+    // 先关闭旧的连接
+    if (phoneViewerWs.value) {
+      try {
+        phoneViewerWs.value.close()
+      } catch (e) {
+        console.log('关闭旧连接失败:', e)
+      }
+      phoneViewerWs.value = null
+    }
+    
+    const protocol = 'wss://' // 强制使用 wss，带冒号
+    const port = '8443'
+    const hostname = 'localhost' // 使用localhost连接本地后端
+    const wsUrl = `${protocol}${hostname}:${port}/api/v1/camera_infos/phone_camera/viewer`
+    
+    console.log('开始连接手机摄像头观看端:', wsUrl)
+    phoneViewerWs.value = new WebSocket(wsUrl)
+    
+    phoneViewerWs.value.onopen = () => {
+      console.log('手机摄像头观看端连接成功')
+      phoneViewerConnected.value = true
+      ElMessage.success('已连接到手机摄像头')
+      startPhoneViewerFpsCounter()
+    }
+    
+    phoneViewerWs.value.onmessage = (event) => {
+      console.log('收到手机摄像头数据:', event.data instanceof Blob ? 'Blob数据' : '文本数据')
+      if (event.data instanceof Blob) {
+        // 二进制数据是JPEG帧
+        const t0 = Date.now()
+        const url = URL.createObjectURL(event.data)
+        const img = new Image()
+        img.onload = () => {
+          const canvas = phoneViewerCanvas.value
+          if (!canvas) {
+            console.error('Canvas元素不存在')
+            URL.revokeObjectURL(url)
+            return
+          }
+          
+          const ctx = canvas.getContext('2d')
+          canvas.width = img.naturalWidth
+          canvas.height = img.naturalHeight
+          
+          // 镜像由CSS处理，Canvas只需要直接绘制
+          ctx.drawImage(img, 0, 0)
+          
+          URL.revokeObjectURL(url)
+          
+          // 更新统计
+          phoneViewerFrameCount.value++
+          phoneViewerLatency.value = Date.now() - t0
+          phoneViewerResolution.value = `${canvas.width}×${canvas.height}`
+          console.log('渲染帧完成，分辨率:', phoneViewerResolution.value, '延迟:', phoneViewerLatency.value, 'ms')
+        }
+        img.src = url
+      } else {
+        // 文本数据是JSON
+        try {
+          // 检查是否为空字符串（手机端保活消息）
+          if (!event.data || event.data.trim() === '') {
+            console.log('收到保活消息，忽略')
+            return
+          }
+          const data = JSON.parse(event.data)
+          console.log('收到JSON数据:', data)
+          if (data.type === 'phone_connected') {
+            if (data.meta) {
+              phoneViewerResolution.value = `${data.meta.width || '?'}×${data.meta.height || '?'}`
+            }
+          } else if (data.type === 'phone_disconnected') {
+            ElMessage.warning('手机已断开连接')
+          }
+        } catch (e) {
+          console.error('解析JSON失败:', e)
+          // 不是JSON，忽略
+        }
+      }
+    }
+    
+    phoneViewerWs.value.onclose = (event) => {
+      console.log('手机摄像头观看端连接关闭:', event)
+      phoneViewerConnected.value = false
+      stopPhoneViewerFpsCounter()
+      ElMessage.info('已断开连接')
+    }
+    
+    phoneViewerWs.value.onerror = (error) => {
+      console.error('手机观看WebSocket错误:', error)
+      ElMessage.error('连接失败')
+    }
+  } catch (error) {
+    console.error('建立手机观看连接失败:', error)
+    ElMessage.error('连接失败')
+  }
+}
+
+// 停止手机推流观看
+const stopPhoneViewer = () => {
+  if (phoneViewerWs.value) {
+    try {
+      phoneViewerWs.value.close()
+    } catch (e) {}
+    phoneViewerWs.value = null
+  }
+  phoneViewerConnected.value = false
+  stopPhoneViewerFpsCounter()
+  phoneViewerResolution.value = ''
+  phoneViewerFps.value = 0
+  phoneViewerLatency.value = 0
+  phoneViewerFrameCount.value = 0
+  
+  // 清空Canvas
+  const canvas = phoneViewerCanvas.value
+  if (canvas) {
+    const ctx = canvas.getContext('2d')
+    ctx.clearRect(0, 0, canvas.width, canvas.height)
+  }
+}
+
+// 切换镜像
+const togglePhoneViewerMirror = () => {
+  phoneViewerMirror.value = !phoneViewerMirror.value
+}
+
+// 开始FPS计数
+const startPhoneViewerFpsCounter = () => {
+  phoneViewerLastTime.value = Date.now()
+  phoneViewerFrameCount.value = 0
+  
+  const updateFps = () => {
+    if (!phoneViewerConnected.value) return
+    
+    const now = Date.now()
+    if (now - phoneViewerLastTime.value >= 1000) {
+      phoneViewerFps.value = phoneViewerFrameCount.value
+      phoneViewerFrameCount.value = 0
+      phoneViewerLastTime.value = now
+    }
+    
+    phoneViewerFpsInterval.value = requestAnimationFrame(updateFps)
+  }
+  
+  phoneViewerFpsInterval.value = requestAnimationFrame(updateFps)
+}
+
+// 停止FPS计数
+const stopPhoneViewerFpsCounter = () => {
+  if (phoneViewerFpsInterval.value) {
+    cancelAnimationFrame(phoneViewerFpsInterval.value)
+    phoneViewerFpsInterval.value = null
+  }
 }
 
 const submitCamera = async () => {
@@ -2221,5 +2931,172 @@ onMounted(async () => {
 :deep(.total-analysis-popup .el-button--primary:hover) {
   background-color: #40a9ff;
   border-color: #40a9ff;
+}
+
+/* ========== 手机摄像头样式 ========== */
+
+.phone-camera-pc-mode,
+.phone-camera-phone-mode,
+.phone-camera-phone-viewer-mode {
+  padding: 10px;
+}
+
+.phone-viewer-canvas {
+  max-width: 100%;
+  max-height: 100%;
+  object-fit: contain;
+}
+
+.video-container-wrapper {
+  position: relative;
+  width: 100%;
+  min-height: 400px;
+  background-color: #000;
+  border-radius: 8px;
+  overflow: hidden;
+  margin-bottom: 20px;
+}
+
+.video-container {
+  width: 100%;
+  height: 400px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.video-container.mirror {
+  transform: scaleX(-1);
+}
+
+.phone-camera-video {
+  max-width: 100%;
+  max-height: 100%;
+  object-fit: contain;
+}
+
+.phone-camera-placeholder {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 15px;
+  color: #909399;
+}
+
+.phone-camera-placeholder p {
+  margin: 0;
+  font-size: 14px;
+}
+
+.phone-camera-controls {
+  display: flex;
+  justify-content: center;
+  gap: 10px;
+  margin-bottom: 20px;
+  flex-wrap: wrap;
+}
+
+.phone-camera-info {
+  margin-top: 10px;
+}
+
+.connection-info {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+  margin-bottom: 25px;
+}
+
+.info-item {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  flex-wrap: wrap;
+}
+
+.info-label {
+  font-size: 14px;
+  color: #606266;
+  font-weight: 500;
+  min-width: 100px;
+}
+
+.qr-code-section {
+  text-align: center;
+  padding: 20px;
+  background-color: #f8f9fa;
+  border-radius: 8px;
+  margin-bottom: 25px;
+}
+
+.qr-code-section h4 {
+  margin-top: 0;
+  margin-bottom: 15px;
+  color: #303133;
+}
+
+.qr-code-wrapper {
+  display: flex;
+  justify-content: center;
+}
+
+.qr-code {
+  width: 200px;
+  height: 200px;
+  border-radius: 8px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+.instructions {
+  padding: 20px;
+  background-color: #f0f9ff;
+  border-radius: 8px;
+  border: 1px solid #b3d8ff;
+}
+
+.instructions h4 {
+  margin-top: 0;
+  margin-bottom: 15px;
+  color: #409eff;
+}
+
+.instructions ol {
+  margin: 0;
+  padding-left: 20px;
+  color: #606266;
+}
+
+.instructions li {
+  margin-bottom: 10px;
+  line-height: 1.6;
+}
+
+/* 手机摄像头对话框响应式设计 */
+@media screen and (max-width: 768px) {
+  .video-container-wrapper {
+    min-height: 300px;
+  }
+  
+  .video-container {
+    height: 300px;
+  }
+  
+  .phone-camera-controls {
+    gap: 8px;
+  }
+  
+  .info-item {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 5px;
+  }
+  
+  .qr-code {
+    width: 150px;
+    height: 150px;
+  }
 }
 </style>

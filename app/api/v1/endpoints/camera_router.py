@@ -6,6 +6,7 @@ from app.JSON_schemas.camera_info_pydantic import CameraInfoResponse, CameraInfo
 from app.dependencies.db import get_db  # 获取数据库会话的依赖
 from app.services.camera_info_service import CameraInfoService  # 导入service层代码负责业务逻辑
 from app.dependencies.security import get_current_active_user, User
+from app.services.phone_camera_manager import phone_camera_manager
 
 # 创建路由实例（tags 用于 API 文档分类）
 router = APIRouter()
@@ -246,3 +247,60 @@ async def analyze_frame(
     """
     result = await CameraInfoService.analyze_single_frame(request.image, request.analysis_mode, db)
     return result
+
+
+# ========== 手机摄像头相关路由 ==========
+
+# 12. GET /api/v1/camera_infos/phone_camera/status: 获取手机摄像头状态
+@router.get("/phone_camera/status", summary="获取手机摄像头状态")
+async def get_phone_camera_status():
+    """
+    获取手机摄像头的连接状态和观看端数量
+    """
+    return Result.SUCCESS(data=phone_camera_manager.get_status())
+
+
+# 13. ws://后端服务器IP:运行端口/api/v1/camera_infos/phone_camera/phone: 手机端推流WebSocket端点
+@router.websocket("/phone_camera/phone")
+async def websocket_phone_camera_phone(websocket: WebSocket):
+    """
+    手机端WebSocket端点，用于推送摄像头画面
+    """
+    await phone_camera_manager.connect_phone(websocket)
+    try:
+        while True:
+            data = await websocket.receive()
+            if "text" in data:
+                try:
+                    import json
+                    msg = json.loads(data["text"])
+                    if msg.get("type") == "meta":
+                        phone_camera_manager.update_phone_meta(msg.get("data", {}))
+                except:
+                    pass
+                await phone_camera_manager.forward_from_phone(data["text"])
+            elif "bytes" in data:
+                await phone_camera_manager.forward_from_phone(data["bytes"])
+    except WebSocketDisconnect:
+        phone_camera_manager.disconnect_phone()
+    except Exception as e:
+        phone_camera_manager.disconnect_phone()
+
+
+# 14. ws://后端服务器IP:运行端口/api/v1/camera_infos/phone_camera/viewer: 观看端WebSocket端点
+@router.websocket("/phone_camera/viewer")
+async def websocket_phone_camera_viewer(websocket: WebSocket):
+    """
+    观看端WebSocket端点，用于接收手机摄像头画面
+    """
+    await phone_camera_manager.connect_viewer(websocket)
+    try:
+        # 观看端只接收，不发送，所以使用一个无限循环来保持连接
+        while True:
+            # 使用 asyncio.sleep 来避免阻塞
+            import asyncio
+            await asyncio.sleep(3600)  # 每小时检查一次
+    except WebSocketDisconnect:
+        phone_camera_manager.disconnect_viewer(websocket)
+    except Exception as e:
+        phone_camera_manager.disconnect_viewer(websocket)

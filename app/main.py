@@ -7,6 +7,9 @@
 from contextlib import asynccontextmanager
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
+from fastapi.staticfiles import StaticFiles
+from fastapi.responses import FileResponse
+import os
 from app.api.v1.endpoints import alarm_handle_record_router  # 导入报警记录接口路由
 from app.api.v1.endpoints import alarm_router  # 导入告警记录接口路由
 from app.api.v1.endpoints import camera_router  # 导入商品接口路由
@@ -44,11 +47,25 @@ origins = [
 # 添加 CORS 中间件
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=origins,  # 允许指定的源
+    allow_origins=["*"],  # 允许所有源，方便局域网访问
     allow_credentials=True,
     allow_methods=["*"],    # 允许所有 HTTP 方法（GET/POST 等）
     allow_headers=["*"],    # 允许所有请求头
 )
+
+# 静态文件目录
+static_dir = os.path.join(os.path.dirname(__file__), "static")
+if os.path.exists(static_dir):
+    app.mount("/static", StaticFiles(directory=static_dir), name="static")
+
+# 手机摄像头页面路由
+@app.get("/phone-camera")
+async def get_phone_camera_page():
+    """手机摄像头推流页面"""
+    html_path = os.path.join(os.path.dirname(__file__), "static", "phone-camera.html")
+    if os.path.exists(html_path):
+        return FileResponse(html_path, media_type="text/html")
+    return {"error": "页面不存在"}
 
 # # 添加 JWT 中间件
 # app.add_middleware(JWTMiddleware)

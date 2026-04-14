@@ -1,0 +1,737 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>摄像头监控台</title>
+  <link rel="preconnect" href="https://cdn.jsdelivr.net" />
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fontsource/share-tech-mono@5/index.min.css" />
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fontsource/orbitron@5/index.min.css" />
+  <style>
+    :root {
+      --bg-deep: #060a0e;
+      --bg-panel: #0c1319;
+      --bg-card: #111920;
+      --border: #1a2a38;
+      --accent: #00ff88;
+      --accent-dim: #00ff8833;
+      --accent-glow: #00ff8855;
+      --warn: #ff6b35;
+      --text: #c8d8e4;
+      --text-dim: #4a6070;
+    }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      background: var(--bg-deep);
+      color: var(--text);
+      font-family: 'Share Tech Mono', monospace;
+      min-height: 100vh;
+      overflow-x: hidden;
+    }
+    body::before {
+      content: '';
+      position: fixed;
+      inset: 0;
+      background: repeating-linear-gradient(0deg, transparent, transparent 2px, rgba(0,255,136,0.02) 2px, rgba(0,255,136,0.02) 4px);
+      pointer-events: none;
+      z-index: 1000;
+    }
+    body::after {
+      content: '';
+      position: fixed;
+      inset: 0;
+      background: radial-gradient(ellipse at center, transparent 60%, rgba(0,0,0,0.7) 100%);
+      pointer-events: none;
+      z-index: 999;
+    }
+    @keyframes flicker {
+      0%, 100% { opacity: 1; }
+      92% { opacity: 1; }
+      93% { opacity: 0.88; }
+      94% { opacity: 1; }
+    }
+    .app { animation: flicker 8s infinite; }
+
+    /* Header */
+    header {
+      border-bottom: 1px solid var(--border);
+      padding: 0 32px;
+      height: 64px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      background: linear-gradient(180deg, var(--bg-panel) 0%, var(--bg-deep) 100%);
+      position: relative;
+    }
+    .header-brand { display: flex; align-items: center; gap: 12px; }
+    .rec-dot {
+      width: 10px; height: 10px;
+      background: var(--text-dim);
+      border-radius: 50%;
+      transition: all 0.5s;
+    }
+    .rec-dot.live {
+      background: var(--accent);
+      box-shadow: 0 0 8px var(--accent), 0 0 16px var(--accent-glow);
+      animation: pulse-rec 1.2s ease-in-out infinite;
+    }
+    @keyframes pulse-rec {
+      0%, 100% { opacity: 1; transform: scale(1); }
+      50% { opacity: 0.4; transform: scale(0.85); }
+    }
+    .header-title {
+      font-family: 'Orbitron', sans-serif;
+      font-size: 15px; font-weight: 700;
+      letter-spacing: 3px;
+      color: var(--accent);
+      text-transform: uppercase;
+    }
+    .header-meta { display: flex; align-items: center; gap: 24px; font-size: 11px; color: var(--text-dim); letter-spacing: 1px; }
+    .meta-dot {
+      width: 7px; height: 7px; border-radius: 50%; background: var(--text-dim); transition: all 0.5s;
+    }
+    .meta-dot.online { background: var(--accent); box-shadow: 0 0 6px var(--accent); }
+    .meta-dot.offline { background: var(--warn); }
+
+    /* Layout */
+    .main-layout { display: grid; grid-template-columns: 1fr 300px; height: calc(100vh - 64px); }
+
+    /* Video area */
+    .video-section {
+      display: flex; flex-direction: column;
+      border-right: 1px solid var(--border);
+      position: relative;
+      background: #000;
+      overflow: hidden;
+    }
+    .video-container {
+      flex: 1;
+      position: relative;
+      display: flex; align-items: center; justify-content: center;
+      background: #000;
+    }
+    .video-container canvas,
+    .video-container video,
+    .video-container img {
+      max-width: 100%;
+      max-height: 100%;
+      object-fit: contain;
+      display: block;
+    }
+    /* Corner brackets */
+    .corner { position: absolute; width: 24px; height: 24px; border-color: var(--accent); border-style: solid; opacity: 0.5; }
+    .corner.tl { top: 16px; left: 16px; border-width: 2px 0 0 2px; }
+    .corner.tr { top: 16px; right: 16px; border-width: 2px 2px 0 0; }
+    .corner.bl { bottom: 16px; left: 16px; border-width: 0 0 2px 2px; }
+    .corner.br { bottom: 16px; right: 16px; border-width: 0 2px 2px 0; }
+
+    /* No signal */
+    .no-signal {
+      position: absolute; inset: 0;
+      display: flex; flex-direction: column; align-items: center; justify-content: center;
+      gap: 16px; color: var(--text-dim); text-align: center;
+    }
+    .no-signal-icon { font-size: 56px; opacity: 0.3; line-height: 1; }
+    .no-signal-text { font-size: 13px; letter-spacing: 2px; text-transform: uppercase; }
+    .no-signal-sub { font-size: 11px; opacity: 0.5; }
+    .no-signal.hidden { display: none; }
+
+    /* Status bar */
+    .status-bar {
+      height: 40px; border-top: 1px solid var(--border);
+      display: flex; align-items: center;
+      padding: 0 20px; gap: 24px;
+      background: var(--bg-panel);
+      font-size: 11px; color: var(--text-dim);
+    }
+    .status-item { display: flex; align-items: center; gap: 6px; }
+    .status-value { color: var(--accent); font-weight: 600; }
+    .status-bar-left { display: flex; gap: 24px; flex: 1; }
+    .status-bar-right { display: flex; gap: 20px; }
+
+    /* Sidebar */
+    .sidebar { background: var(--bg-panel); display: flex; flex-direction: column; overflow-y: auto; }
+    .sidebar-section { padding: 20px; border-bottom: 1px solid var(--border); }
+    .sidebar-section:last-child { flex: 1; overflow-y: auto; }
+    .sidebar-title {
+      font-size: 10px; letter-spacing: 3px; text-transform: uppercase; color: var(--text-dim);
+      margin-bottom: 16px; display: flex; align-items: center; gap: 8px;
+    }
+    .sidebar-title::after { content: ''; flex: 1; height: 1px; background: var(--border); }
+
+    /* Connection card */
+    .conn-card {
+      background: var(--bg-card); border: 1px solid var(--border); border-radius: 6px;
+      padding: 14px; position: relative; overflow: hidden;
+    }
+    .conn-card::before {
+      content: ''; position: absolute; top: 0; left: 0; right: 0; height: 2px;
+      background: var(--warn); transition: background 0.5s;
+    }
+    .conn-card.connected::before { background: var(--accent); }
+    .conn-status-row { display: flex; justify-content: space-between; align-items: center; margin-bottom: 10px; }
+    .conn-label { font-size: 11px; color: var(--text-dim); letter-spacing: 1px; }
+    .conn-badge {
+      font-size: 9px; letter-spacing: 2px; text-transform: uppercase;
+      padding: 3px 8px; border-radius: 3px; border: 1px solid;
+      color: var(--warn); border-color: var(--warn); transition: all 0.5s;
+    }
+    .conn-badge.connected { color: var(--accent); border-color: var(--accent); background: var(--accent-dim); }
+    .conn-ip { font-size: 13px; color: var(--text); font-weight: 600; margin-bottom: 4px; }
+    .conn-meta { font-size: 10px; color: var(--text-dim); }
+
+    .url-box {
+      background: var(--bg-deep); border: 1px solid var(--border); border-radius: 4px;
+      padding: 10px 12px; margin-top: 12px;
+    }
+    .url-label { font-size: 9px; letter-spacing: 2px; color: var(--text-dim); margin-bottom: 6px; text-transform: uppercase; }
+    .url-value { font-size: 11px; color: var(--accent); word-break: break-all; line-height: 1.5; cursor: pointer; }
+    .url-value:hover { text-decoration: underline; }
+
+    /* Info grid */
+    .info-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
+    .info-cell {
+      background: var(--bg-card); border: 1px solid var(--border); border-radius: 4px;
+      padding: 10px; text-align: center;
+    }
+    .info-value { font-size: 18px; font-family: 'Orbitron', sans-serif; color: var(--accent); margin-bottom: 4px; }
+    .info-label { font-size: 9px; letter-spacing: 2px; color: var(--text-dim); text-transform: uppercase; }
+
+    /* Controls */
+    .controls-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; }
+    .ctrl-btn {
+      background: var(--bg-card); border: 1px solid var(--border); border-radius: 4px;
+      padding: 10px 8px; color: var(--text);
+      font-family: 'Share Tech Mono', monospace; font-size: 11px;
+      cursor: pointer; transition: all 0.2s;
+      display: flex; flex-direction: column; align-items: center; gap: 6px; letter-spacing: 1px;
+    }
+    .ctrl-btn:hover, .ctrl-btn.active { border-color: var(--accent); background: var(--accent-dim); color: var(--accent); }
+    .ctrl-icon { font-size: 18px; }
+
+    /* Setup guide */
+    .step-list { display: flex; flex-direction: column; gap: 10px; }
+    .step { display: flex; gap: 10px; align-items: flex-start; font-size: 11px; color: var(--text-dim); line-height: 1.5; }
+    .step-num {
+      width: 20px; height: 20px; border-radius: 50%; border: 1px solid var(--border);
+      display: flex; align-items: center; justify-content: center;
+      font-size: 9px; flex-shrink: 0; margin-top: 1px; transition: all 0.3s;
+    }
+    .step.done .step-num { border-color: var(--accent); background: var(--accent-dim); color: var(--accent); }
+    .step-code {
+      background: var(--bg-deep); border: 1px solid var(--border); border-radius: 3px;
+      padding: 2px 8px; font-size: 10px; color: var(--accent); margin-top: 4px; display: inline-block;
+    }
+
+    /* Toast */
+    .toast {
+      position: fixed; bottom: 24px; left: 50%; transform: translateX(-50%) translateY(100px);
+      background: var(--bg-card); border: 1px solid var(--accent); border-radius: 6px;
+      padding: 12px 24px; font-size: 13px; color: var(--accent); z-index: 2000;
+      transition: transform 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
+      box-shadow: 0 4px 24px rgba(0,255,136,0.15);
+    }
+    .toast.show { transform: translateX(-50%) translateY(0); }
+
+    .fullscreen-btn {
+      position: absolute; top: 12px; right: 12px; z-index: 100;
+      background: rgba(0,0,0,0.6); border: 1px solid var(--border); border-radius: 4px;
+      padding: 8px 10px; color: var(--text-dim); font-family: 'Share Tech Mono', monospace;
+      font-size: 11px; cursor: pointer; display: flex; align-items: center; gap: 6px; transition: all 0.2s;
+    }
+    .fullscreen-btn:hover { border-color: var(--accent); color: var(--accent); background: var(--accent-dim); }
+
+    .watermark {
+      position: absolute; bottom: 8px; right: 12px;
+      font-size: 9px; letter-spacing: 2px; color: var(--text-dim); opacity: 0.3; text-transform: uppercase;
+    }
+
+    /* Log */
+    .log-section { display: flex; flex-direction: column; }
+    .log-list { flex: 1; overflow-y: auto; display: flex; flex-direction: column; gap: 4px; max-height: 200px; }
+    .log-entry { font-size: 10px; color: var(--text-dim); padding: 3px 0; border-bottom: 1px solid var(--border); display: flex; gap: 8px; }
+    .log-time { color: var(--text-dim); opacity: 0.5; flex-shrink: 0; }
+    .log-msg { flex: 1; }
+    .log-entry.info .log-msg { color: var(--accent); }
+    .log-entry.warn .log-msg { color: var(--warn); }
+
+    @media (max-width: 768px) {
+      .main-layout { grid-template-columns: 1fr; }
+      .sidebar { display: none; }
+      .header-meta { display: none; }
+    }
+  </style>
+</head>
+<body>
+<div class="app">
+
+<header>
+  <div class="header-brand">
+    <div class="rec-dot" id="recDot"></div>
+    <span class="header-title">Camera Monitor</span>
+  </div>
+  <div class="header-meta">
+    <div class="meta-item">
+      <div class="meta-dot" id="connDot"></div>
+      <span id="connLabel">待机</span>
+    </div>
+    <div class="meta-item">
+      <span>本机</span>
+      <span id="localIP">—</span>
+    </div>
+    <div class="meta-item">
+      <span id="currentTime">—:—:—</span>
+    </div>
+  </div>
+</header>
+
+<div class="main-layout">
+
+  <!-- Video area -->
+  <div class="video-section">
+    <div class="video-container" id="videoContainer">
+      <div class="corner tl"></div>
+      <div class="corner tr"></div>
+      <div class="corner bl"></div>
+      <div class="corner br"></div>
+
+      <div class="no-signal" id="noSignal">
+        <div class="no-signal-icon">📷</div>
+        <div class="no-signal-text">等待摄像头信号</div>
+        <div class="no-signal-sub">手机端打开摄像头后画面将显示在此</div>
+      </div>
+
+      <!-- Canvas 用于显示 JPEG 帧 -->
+      <canvas id="mainCanvas"></canvas>
+
+      <button class="fullscreen-btn" id="fullscreenBtn">
+        <span>⛶</span> 全屏
+      </button>
+      <div class="watermark" id="watermark">CAM-01 / STANDBY</div>
+    </div>
+
+    <!-- Status bar -->
+    <div class="status-bar">
+      <div class="status-bar-left">
+        <div class="status-item"><span>状态</span><span class="status-value" id="statusText">待机</span></div>
+        <div class="status-item"><span>帧率</span><span class="status-value" id="fpsValue">-- fps</span></div>
+        <div class="status-item"><span>分辨率</span><span class="status-value" id="resValue">--</span></div>
+        <div class="status-item"><span>延迟</span><span class="status-value" id="latencyValue">--</span></div>
+      </div>
+      <div class="status-bar-right">
+        <div class="status-item"><span>观看端</span><span class="status-value" id="viewerCountVal">0</span></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Sidebar -->
+  <div class="sidebar">
+    <div class="sidebar-section">
+      <div class="sidebar-title">信号状态</div>
+      <div class="conn-card" id="connCard">
+        <div class="conn-status-row">
+          <span class="conn-label">摄像头</span>
+          <span class="conn-badge" id="connBadge">离线</span>
+        </div>
+        <div class="conn-ip" id="phoneIP">等待连接...</div>
+        <div class="conn-meta" id="phoneMetaEl">—</div>
+      </div>
+      <div class="url-box">
+        <div class="url-label">手机连接地址</div>
+        <div class="url-value" id="phoneURL" title="点击复制">—</div>
+      </div>
+    </div>
+
+    <div class="sidebar-section">
+      <div class="sidebar-title">实时数据</div>
+      <div class="info-grid">
+        <div class="info-cell"><div class="info-value" id="frameCountVal">0</div><div class="info-label">已收帧</div></div>
+        <div class="info-cell"><div class="info-value" id="bitrateVal">0</div><div class="info-label">KB/s</div></div>
+        <div class="info-cell"><div class="info-value" id="totalDataVal">0</div><div class="info-label">总流量</div></div>
+        <div class="info-cell"><div class="info-value" id="qualityVal">—</div><div class="info-label">状态</div></div>
+      </div>
+    </div>
+
+    <div class="sidebar-section">
+      <div class="sidebar-title">显示控制</div>
+      <div class="controls-grid">
+        <button class="ctrl-btn active" id="btnFit" onclick="setFit('contain')">
+          <span class="ctrl-icon">⬜</span>适应屏幕
+        </button>
+        <button class="ctrl-btn" id="btnFill" onclick="setFit('cover')">
+          <span class="ctrl-icon">⛶</span>拉伸填充
+        </button>
+        <button class="ctrl-btn" id="btnGrid" onclick="toggleGrid()">
+          <span class="ctrl-icon">⊞</span>网格线
+        </button>
+        <button class="ctrl-btn" id="btnMirror" onclick="toggleMirror()">
+          <span class="ctrl-icon">↔</span>水平翻转
+        </button>
+      </div>
+    </div>
+
+    <div class="sidebar-section">
+      <div class="sidebar-title">连接指南</div>
+      <div class="step-list">
+        <div class="step" id="step1">
+          <div class="step-num">1</div>
+          <div>
+            确保手机和PC在同一Wi-Fi网络<br/>
+            本机IP：<div class="step-code" id="localIP2">—</div>
+          </div>
+        </div>
+        <div class="step" id="step2">
+          <div class="step-num">2</div>
+          <div>
+            在手机浏览器输入：<br/>
+            <div class="step-code" id="phoneURL2">—</div>
+          </div>
+        </div>
+        <div class="step" id="step3">
+          <div class="step-num">3</div>
+          <div>允许摄像头权限即可开始监控</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="sidebar-section log-section">
+      <div class="sidebar-title">运行日志</div>
+      <div class="log-list" id="logList"></div>
+    </div>
+  </div>
+</div>
+</div>
+
+<div class="toast" id="toast"></div>
+
+<script>
+  // ── State ──
+  const canvas = document.getElementById('mainCanvas');
+  const ctx    = canvas.getContext('2d');
+  let ws           = null;
+  let phoneMeta    = {};
+  let frameCount   = 0;
+  let fpsFrames    = 0;
+  let lastFPS      = 0;
+  let totalBytes   = 0;
+  let lastByteTime = Date.now();
+  let lastByteAmt  = 0;
+  let fitMode      = 'contain';
+  let mirrorMode    = false;
+  let showGrid     = false;
+  let camID        = 1;
+  let phoneConnected = false;
+  let viewerCount   = 0;
+  let lastFrameTime = 0;
+
+  // Blob URL for display
+  let currentBlobURL = null;
+
+  // ── DOM refs ──
+  const noSignal    = document.getElementById('noSignal');
+  const recDot     = document.getElementById('recDot');
+  const connDot    = document.getElementById('connDot');
+  const connLabel  = document.getElementById('connLabel');
+  const connBadge  = document.getElementById('connBadge');
+  const connCard   = document.getElementById('connCard');
+  const phoneIP    = document.getElementById('phoneIP');
+  const phoneMetaEl = document.getElementById('phoneMetaEl');
+  const phoneURL   = document.getElementById('phoneURL');
+  const statusText = document.getElementById('statusText');
+  const watermark  = document.getElementById('watermark');
+  const fpsVal     = document.getElementById('fpsValue');
+  const resVal     = document.getElementById('resValue');
+  const latVal     = document.getElementById('latencyValue');
+
+  // ── Init ──
+  function init() {
+    const host = location.host;
+    const proto = location.protocol === 'https:' ? 'wss' : 'ws';
+    const localIP = location.hostname;
+
+    // Update UI with correct URL
+    const phoneURLVal = `${location.protocol}//${localIP}:${location.port}/phone.html`;
+    phoneURL.textContent  = phoneURLVal;
+    phoneURL2.textContent = phoneURLVal;
+    document.getElementById('localIP').textContent = localIP;
+    document.getElementById('localIP2').textContent = localIP;
+
+    // Canvas fit
+    canvas.style.objectFit = fitMode;
+
+    // Status poll
+    pollStatus();
+    setInterval(pollStatus, 3000);
+
+    // Connect WebSocket
+    connectWS();
+
+    // Clock
+    startClock();
+
+    // FPS timer
+    setInterval(() => {
+      lastFPS = fpsFrames;
+      fpsFrames = 0;
+      fpsVal.textContent = lastFPS + ' fps';
+    }, 1000);
+
+    // Bitrate timer
+    setInterval(() => {
+      const now = Date.now();
+      const elapsed = (now - lastByteTime) / 1000;
+      const diff = totalBytes - lastByteAmt;
+      lastByteAmt = diff;
+      lastByteTime = now;
+      if (elapsed > 0) {
+        document.getElementById('bitrateVal').textContent = Math.round(diff / elapsed / 1024) + ' KB/s';
+      }
+    }, 2000);
+
+    // Copy URL
+    phoneURL.addEventListener('click', () => {
+      navigator.clipboard.writeText(phoneURL.textContent).then(() => showToast('已复制到剪贴板'));
+    });
+
+    addLog('系统启动，等待摄像头连接...', 'info');
+  }
+
+  function pollStatus() {
+    fetch(`/api/status?t=${Date.now()}`)
+      .then(r => r.json())
+      .then(data => {
+        viewerCount = data.viewerCount || 0;
+        document.getElementById('viewerCountVal').textContent = viewerCount;
+        if (data.phoneConnected && !phoneConnected) {
+          setConnected(data.phoneMeta);
+        }
+      }).catch(() => {});
+  }
+
+  // ── WebSocket ──
+  function connectWS() {
+    const proto = location.protocol === 'https:' ? 'wss' : 'ws';
+    ws = new WebSocket(`${proto}://${location.host}/viewer`);
+
+    ws.onopen = () => {
+      addLog('已连接服务器', 'info');
+    };
+
+    ws.onmessage = (evt) => {
+      const t0 = performance.now();
+
+      if (typeof evt.data === 'string') {
+        // JSON 元数据
+        try {
+          const msg = JSON.parse(evt.data);
+          if (msg.type === 'meta') {
+            setConnected(msg.data);
+          }
+          if (msg.type === 'status') {
+            viewerCount = msg.data.viewerCount || 0;
+            document.getElementById('viewerCountVal').textContent = viewerCount;
+          }
+        } catch (e) {}
+      } else {
+        // 二进制 JPEG 帧
+        displayFrame(evt.data);
+        const latency = Math.round(performance.now() - t0);
+        latVal.textContent = latency + 'ms';
+      }
+    };
+
+    ws.onclose = () => {
+      addLog('连接断开，3秒后重连...', 'warn');
+      setTimeout(connectWS, 3000);
+    };
+
+    ws.onerror = () => ws.close();
+  }
+
+  // ── Display Frame ──
+  function displayFrame(blob) {
+    // Revoke previous URL
+    if (currentBlobURL) {
+      URL.revokeObjectURL(currentBlobURL);
+      currentBlobURL = null;
+    }
+
+    // Create object URL
+    const url = URL.createObjectURL(blob);
+    currentBlobURL = url;
+
+    // Create image and draw to canvas when ready
+    const img = new Image();
+    img.onload = () => {
+      canvas.width  = img.naturalWidth;
+      canvas.height = img.naturalHeight;
+
+      // Draw with optional mirror
+      ctx.save();
+      if (mirrorMode) {
+        ctx.translate(canvas.width, 0);
+        ctx.scale(-1, 1);
+      }
+      ctx.drawImage(img, 0, 0);
+      ctx.restore();
+
+      // Grid overlay
+      if (showGrid) drawGrid();
+
+      // Update stats
+      frameCount++;
+      fpsFrames++;
+      totalBytes += blob.size;
+      document.getElementById('frameCountVal').textContent = frameCount;
+      document.getElementById('resValue').textContent = `${img.naturalWidth}×${img.naturalHeight}`;
+      document.getElementById('totalDataVal').textContent = formatBytes(totalBytes);
+
+      // Hide no-signal, show live
+      noSignal.classList.add('hidden');
+      recDot.classList.add('live');
+      document.getElementById('qualityVal').textContent = 'LIVE';
+
+      // Watermark
+      watermark.textContent = `CAM-0${camID} / LIVE`;
+
+      URL.revokeObjectURL(url);
+      currentBlobURL = null;
+    };
+    img.onerror = () => {
+      if (currentBlobURL) {
+        URL.revokeObjectURL(currentBlobURL);
+        currentBlobURL = null;
+      }
+    };
+    img.src = url;
+  }
+
+  function drawGrid() {
+    if (!canvas.width || !canvas.height) return;
+    ctx.save();
+    ctx.strokeStyle = 'rgba(0,255,136,0.18)';
+    ctx.lineWidth = 1;
+    const w = canvas.width, h = canvas.height;
+    for (let x = 0; x <= w; x += 80) {
+      ctx.beginPath(); ctx.moveTo(x, 0); ctx.lineTo(x, h); ctx.stroke();
+    }
+    for (let y = 0; y <= h; y += 80) {
+      ctx.beginPath(); ctx.moveTo(0, y); ctx.lineTo(w, y); ctx.stroke();
+    }
+    ctx.restore();
+  }
+
+  // ── Connected / Disconnected ──
+  function setConnected(meta) {
+    phoneConnected = true;
+    phoneMeta = meta || {};
+
+    recDot.classList.add('live');
+    connDot.classList.remove('offline');
+    connDot.classList.add('online');
+    connLabel.textContent = '已连接';
+    connBadge.textContent = '在线';
+    connBadge.classList.add('connected');
+    connCard.classList.add('connected');
+    statusText.textContent = '直播中';
+
+    phoneIP.textContent = phoneMeta.ip || location.hostname;
+    phoneMetaEl.textContent = [
+      phoneMeta.facing === 'user' ? '前置' : '后置',
+      '摄像头',
+      phoneMeta.uid ? phoneMeta.uid.substring(0, 8) : ''
+    ].filter(Boolean).join(' ');
+
+    // Mark steps done
+    ['step1','step2','step3'].forEach(id => document.getElementById(id).classList.add('done'));
+
+    addLog('📷 摄像头已连接', 'info');
+  }
+
+  function setDisconnected() {
+    phoneConnected = false;
+    phoneMeta = {};
+    recDot.classList.remove('live');
+    connDot.classList.remove('online');
+    connDot.classList.add('offline');
+    connLabel.textContent = '待机';
+    connBadge.textContent = '离线';
+    connBadge.classList.remove('connected');
+    connCard.classList.remove('connected');
+    statusText.textContent = '待机';
+    phoneIP.textContent = '等待连接...';
+    phoneMetaEl.textContent = '—';
+    noSignal.classList.remove('hidden');
+    document.getElementById('qualityVal').textContent = '—';
+    watermark.textContent = `CAM-0${camID} / STANDBY`;
+
+    ['step1','step2','step3'].forEach(id => document.getElementById(id).classList.remove('done'));
+  }
+
+  // ── Controls ──
+  function setFit(mode) {
+    fitMode = mode;
+    canvas.style.objectFit = mode;
+    document.getElementById('btnFit').classList.toggle('active', mode === 'contain');
+    document.getElementById('btnFill').classList.toggle('active', mode === 'cover');
+  }
+
+  function toggleGrid() {
+    showGrid = !showGrid;
+    document.getElementById('btnGrid').classList.toggle('active', showGrid);
+    if (showGrid && canvas.width) drawGrid();
+    // Redraw current frame if any
+  }
+
+  function toggleMirror() {
+    mirrorMode = !mirrorMode;
+    document.getElementById('btnMirror').classList.toggle('active', mirrorMode);
+  }
+
+  // Fullscreen
+  document.getElementById('fullscreenBtn').addEventListener('click', () => {
+    const el = document.getElementById('videoContainer');
+    if (document.fullscreenElement) {
+      document.exitFullscreen();
+    } else {
+      el.requestFullscreen().catch(() => {});
+    }
+  });
+
+  // ── Clock ──
+  function startClock() {
+    function tick() {
+      document.getElementById('currentTime').textContent = new Date().toTimeString().split(' ')[0];
+    }
+    tick();
+    setInterval(tick, 1000);
+  }
+
+  // ── Utils ──
+  function formatBytes(b) {
+    if (b < 1024) return b + ' B';
+    if (b < 1048576) return (b / 1024).toFixed(1) + ' KB';
+    return (b / 1048576).toFixed(1) + ' MB';
+  }
+
+  function showToast(msg) {
+    const t = document.getElementById('toast');
+    t.textContent = msg;
+    t.classList.add('show');
+    setTimeout(() => t.classList.remove('show'), 2500);
+  }
+
+  function addLog(msg, type = 'info') {
+    const list = document.getElementById('logList');
+    const entry = document.createElement('div');
+    entry.className = `log-entry ${type}`;
+    const time = new Date().toTimeString().split(' ')[0];
+    entry.innerHTML = `<span class="log-time">${time}</span><span class="log-msg">${msg}</span>`;
+    list.prepend(entry);
+    while (list.children.length > 50) list.removeChild(list.lastChild);
+  }
+
+  init();
+</script>
+</body>
+</html>
