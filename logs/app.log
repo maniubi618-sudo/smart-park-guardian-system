@@ -9676,3 +9676,45 @@
 2026-04-15 21:56:57,068 - fastapi_app - ERROR - 转发数据到观看端失败: 
 2026-04-15 21:57:03,602 - fastapi_app - INFO - 手机摄像头已断开
 2026-04-15 21:57:08,400 - fastapi_app - INFO - WebSocket连接已断开，当前连接数: 0
+2026-04-15 23:11:40,755 - fastapi_app - INFO - WebSocket连接已建立，当前连接数: 1
+2026-04-15 23:12:44,624 - fastapi_app - INFO - WebSocket连接已建立，当前连接数: 2
+2026-04-15 23:15:48,740 - fastapi_app - INFO - WebSocket连接已断开，当前连接数: 1
+2026-04-15 23:15:49,179 - fastapi_app - INFO - WebSocket连接已建立，当前连接数: 2
+2026-04-15 23:17:38,315 - fastapi_app - INFO - WebSocket连接已断开，当前连接数: 1
+2026-04-15 23:17:38,733 - fastapi_app - INFO - WebSocket连接已建立，当前连接数: 2
+2026-04-15 23:19:07,209 - fastapi_app - INFO - 手机摄像头已连接
+2026-04-15 23:19:07,212 - fastapi_app - INFO - 手机元数据已更新: {'uid': 'afg2iy6kl', 'facing': {'isTrusted': True}, 'ip': 'localhost', 'width': 1280, 'height': 720}
+2026-04-15 23:19:24,111 - fastapi_app - INFO - 手机摄像头已断开
+2026-04-15 23:21:19,700 - fastapi_app - INFO - 手机摄像头已连接
+2026-04-15 23:21:19,763 - fastapi_app - INFO - 手机元数据已更新: {'uid': 't7wukj3ki', 'facing': {'isTrusted': True}, 'ip': '10.25.5.187', 'width': 720, 'height': 1280}
+2026-04-15 23:21:50,352 - fastapi_app - INFO - WebSocket连接已建立，当前连接数: 3
+2026-04-15 23:21:55,049 - fastapi_app - INFO - 手机摄像头已断开
+2026-04-15 23:22:58,849 - fastapi_app - INFO - WebSocket连接已断开，当前连接数: 2
+2026-04-15 23:22:59,397 - fastapi_app - INFO - WebSocket连接已建立，当前连接数: 3
+2026-04-15 23:24:06,985 - fastapi_app - INFO - 手机摄像头已连接
+2026-04-15 23:24:07,009 - fastapi_app - INFO - 手机元数据已更新: {'uid': 'eabq1laqz', 'facing': {'isTrusted': True}, 'ip': '10.25.5.187', 'width': 720, 'height': 1280}
+2026-04-15 23:24:10,674 - fastapi_app - INFO - 观看端已连接，当前观看端数: 1
+2026-04-15 23:24:14,602 - fastapi_app - INFO - 手机摄像头已断开
+2026-04-15 23:24:15,649 - fastapi_app - INFO - 手机摄像头已连接
+2026-04-15 23:24:15,663 - fastapi_app - INFO - 手机元数据已更新: {'uid': 'eabq1laqz', 'facing': 'environment', 'ip': '10.25.5.187', 'width': 720, 'height': 1280}
+2026-04-15 23:24:23,934 - fastapi_app - INFO - 手机摄像头已断开
+2026-04-15 23:24:42,809 - fastapi_app - INFO - WebSocket连接已断开，当前连接数: 2
+2026-04-15 23:24:43,201 - fastapi_app - INFO - WebSocket连接已建立，当前连接数: 3
+2026-04-15 23:25:58,095 - fastapi_app - INFO - 手机摄像头已连接
+2026-04-15 23:25:58,096 - fastapi_app - ERROR - 广播消息到观看端失败: 
+2026-04-15 23:25:58,115 - fastapi_app - INFO - 手机元数据已更新: {'uid': '0679hnnra', 'facing': {'isTrusted': True}, 'ip': '10.25.5.187', 'width': 720, 'height': 1280}
+2026-04-15 23:25:59,549 - fastapi_app - INFO - 手机摄像头已断开
+2026-04-15 23:27:35,516 - fastapi_app - INFO - WebSocket连接已断开，当前连接数: 2
+2026-04-15 23:27:42,551 - fastapi_app - INFO - WebSocket连接已建立，当前连接数: 3
+2026-04-15 23:27:43,345 - fastapi_app - INFO - WebSocket连接已断开，当前连接数: 2
+2026-04-15 23:27:43,713 - fastapi_app - INFO - WebSocket连接已建立，当前连接数: 3
+2026-04-15 23:27:49,285 - fastapi_app - INFO - WebSocket连接已断开，当前连接数: 2
+2026-04-15 23:27:49,662 - fastapi_app - INFO - WebSocket连接已建立，当前连接数: 3
+2026-04-15 23:33:26,662 - fastapi_app - INFO - WebSocket连接已断开，当前连接数: 2
+2026-04-15 23:33:27,092 - fastapi_app - INFO - WebSocket连接已建立，当前连接数: 3
+2026-04-15 23:34:03,575 - fastapi_app - INFO - WebSocket连接已断开，当前连接数: 2
+2026-04-15 23:34:03,962 - fastapi_app - INFO - WebSocket连接已建立，当前连接数: 3
+2026-04-15 23:39:36,021 - fastapi_app - INFO - WebSocket连接已断开，当前连接数: 2
+2026-04-15 23:39:36,390 - fastapi_app - INFO - WebSocket连接已建立，当前连接数: 3
+2026-04-15 23:47:34,244 - fastapi_app - INFO - WebSocket连接已断开，当前连接数: 2
+2026-04-15 23:47:34,612 - fastapi_app - INFO - WebSocket连接已建立，当前连接数: 3

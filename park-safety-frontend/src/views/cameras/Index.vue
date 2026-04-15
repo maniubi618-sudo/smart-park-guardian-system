@@ -1667,48 +1667,31 @@ const openPhoneCamera = async () => {
 // 检测本机IP地址
 const detectLocalIP = async () => {
   try {
-    // 方法1: 使用WebRTC STUN服务器获取本机IP
-    const pc = new RTCPeerConnection({
-      iceServers: [{ urls: 'stun:stun.l.google.com:19302' }]
+    // 方法1: 调用后端API获取本地IP地址
+    const response = await fetch('http://localhost:8089/api/v1/camera_infos/local_ip', {
+      method: 'GET'
     })
     
-    pc.createDataChannel('')
-    const offer = await pc.createOffer()
-    await pc.setLocalDescription(offer)
-    
-    return new Promise((resolve) => {
-      pc.onicecandidate = (ice) => {
-        if (ice.candidate) {
-          const ipMatch = ice.candidate.candidate.match(/([0-9]{1,3}(\.[0-9]{1,3}){3})/)
-          if (ipMatch && !ipMatch[1].startsWith('127.')) {
-            localIPAddress.value = ipMatch[1]
-            updateConnectionUrl()
-            pc.close()
-            resolve(ipMatch[1])
-          }
-        } else {
-          // 方法2: 回退到使用location.hostname
-          localIPAddress.value = window.location.hostname
-          updateConnectionUrl()
-          pc.close()
-          resolve(window.location.hostname)
-        }
+    if (response.ok) {
+      const result = await response.json()
+      if (result.code === 1 && result.data && result.data.ip) {
+        localIPAddress.value = result.data.ip
+        updateConnectionUrl()
+        updatePhonePushUrl()
+        return result.data.ip
       }
-      
-      // 超时处理
-      setTimeout(() => {
-        if (!localIPAddress.value) {
-          localIPAddress.value = window.location.hostname
-          updateConnectionUrl()
-          pc.close()
-          resolve(window.location.hostname)
-        }
-      }, 2000)
-    })
+    }
+    
+    // 方法2: 回退到使用location.hostname
+    localIPAddress.value = window.location.hostname
+    updateConnectionUrl()
+    updatePhonePushUrl()
+    return window.location.hostname
   } catch (error) {
     console.error('检测IP地址失败:', error)
     localIPAddress.value = window.location.hostname
     updateConnectionUrl()
+    updatePhonePushUrl()
     return window.location.hostname
   }
 }

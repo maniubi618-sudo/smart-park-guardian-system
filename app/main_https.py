@@ -87,12 +87,13 @@ if __name__ == "__main__":
             import socket
             import os
             
-            # 不同操作系统的命令
+            # 尝试使用ipconfig命令获取IP地址
             if os.name == 'nt':  # Windows
                 import subprocess
-                output = subprocess.check_output(['ipconfig', '/all'], universal_newlines=True)
+                output = subprocess.check_output(['ipconfig', '/all'], universal_newlines=True, stderr=subprocess.STDOUT)
                 lines = output.split('\n')
-                for i, line in enumerate(lines):
+                private_ips = []
+                for line in lines:
                     if 'IPv4 Address' in line or 'IPv4 地址' in line:
                         # 提取IP地址
                         parts = line.split(':')
@@ -105,15 +106,19 @@ if __name__ == "__main__":
                             if ip != '127.0.0.1' and not ip.startswith('169.254.'):
                                 # 优先选择192.168、10或172.16-31开头的私有IP
                                 if ip.startswith('192.168.') or ip.startswith('10.') or (ip.startswith('172.') and 16 <= int(ip.split('.')[1]) <= 31):
-                                    return ip
+                                    private_ips.append(ip)
+                # 如果找到私有IP，返回第一个
+                if private_ips:
+                    return private_ips[0]
             
-            # 如果Windows命令失败或其他系统，使用原方法
+            # 如果ipconfig命令失败或没有找到私有IP，使用socket方法
             s = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)
             s.connect(("8.8.8.8", 80))
             ip = s.getsockname()[0]
             s.close()
             return ip
-        except:
+        except Exception as e:
+            print(f"获取IP地址失败: {e}")
             return "127.0.0.1"
     
     local_ip = get_local_ip()

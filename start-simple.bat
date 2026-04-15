@@ -4,9 +4,9 @@ chcp 65001 >nul
 :: 园区智能安防系统 - 简易启动脚本
 :: 功能：启动所有服务
 
-set "ROOT=C:\Users\cry\Desktop\SmartSafetyGuardSystemForPark-main"
+set "ROOT=d:\新建文件夹\大数据\yolo"
 set "FRONTEND=%ROOT%\park-safety-frontend"
-set "VENV=%ROOT%\venv"
+set "VENV=%ROOT%\.venv"
 
 :: 检查虚拟环境
 if not exist "%VENV%" (

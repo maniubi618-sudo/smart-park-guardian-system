@@ -1,12 +1,46 @@
 from typing import List, Annotated, Optional
 from fastapi import APIRouter, Depends, status, Path, Query, WebSocket, WebSocketDisconnect
 from sqlalchemy.orm import Session
+import socket
+import os
 from app.JSON_schemas.Result_pydantic import Result
 from app.JSON_schemas.camera_info_pydantic import CameraInfoResponse, CameraInfoCreate, CameraInfoUpdate, CameraInfoPageResponse, CameraStatusReport
 from app.dependencies.db import get_db  # 获取数据库会话的依赖
 from app.services.camera_info_service import CameraInfoService  # 导入service层代码负责业务逻辑
 from app.dependencies.security import get_current_active_user, User
 from app.services.phone_camera_manager import phone_camera_manager
+
+# 获取本地IP地址
+def get_local_ip():
+    try:
+        # 不同操作系统的命令
+        if os.name == 'nt':  # Windows
+            import subprocess
+            output = subprocess.check_output(['ipconfig', '/all'], universal_newlines=True)
+            lines = output.split('\n')
+            for i, line in enumerate(lines):
+                if 'IPv4 Address' in line or 'IPv4 地址' in line:
+                    # 提取IP地址
+                    parts = line.split(':')
+                    if len(parts) > 1:
+                        ip = parts[1].strip()
+                        # 处理"(首选)"后缀
+                        if '(首选)' in ip:
+                            ip = ip.replace('(首选)', '').strip()
+                        # 排除环回地址和169.254开头的自动专用IP
+                        if ip != '127.0.0.1' and not ip.startswith('169.254.'):
+                            # 优先选择192.168、10或172.16-31开头的私有IP
+                            if ip.startswith('192.168.') or ip.startswith('10.') or (ip.startswith('172.') and 16 <= int(ip.split('.')[1]) <= 31):
+                                return ip
+        
+        # 如果Windows命令失败或其他系统，使用原方法
+        s = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)
+        s.connect(("8.8.8.8", 80))
+        ip = s.getsockname()[0]
+        s.close()
+        return ip
+    except:
+        return "127.0.0.1"
 
 # 创建路由实例（tags 用于 API 文档分类）
 router = APIRouter()
@@ -65,7 +99,19 @@ async def search_camera_infos(
     )
     return result
 
-# 3. GET /api/v1/camera_infos/{camera_info_id}：获取单个摄像头信息
+# 3. GET /api/v1/camera_infos/local_ip: 获取本地IP地址
+@router.get("/local_ip", summary="获取本地IP地址")
+async def get_local_ip_address():
+    """
+    获取本地IP地址，用于手机摄像头连接
+    
+    Returns:
+        Result: 包含本地IP地址的统一响应
+    """
+    ip = get_local_ip()
+    return Result.SUCCESS(data={"ip": ip})
+
+# 4. GET /api/v1/camera_infos/{camera_info_id}：获取单个摄像头信息
 @router.get("/{camera_info_id}", response_model=Result[CameraInfoResponse], summary="获取单个摄像头信息", status_code=status.HTTP_200_OK)
 async def read_camera_info(
     camera_info_id: Annotated[int, Path(title="摄像头信息ID", description="摄像头信息唯一标识")],
@@ -304,3 +350,5 @@ async def websocket_phone_camera_viewer(websocket: WebSocket):
         phone_camera_manager.disconnect_viewer(websocket)
     except Exception as e:
         phone_camera_manager.disconnect_viewer(websocket)
+
+
