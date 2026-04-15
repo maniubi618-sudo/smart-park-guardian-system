@@ -201,7 +201,11 @@ async function startCamera(facing) {
     ws = null;
   }
 
+  // 尝试包含torch控制的约束
   const constraints = [
+    { video: { facingMode: facing, width: { ideal: 1280 }, height: { ideal: 720 }, frameRate: { ideal: 20 }, torch: false } },
+    { video: { facingMode: facing, width: { ideal: 960 }, height: { ideal: 540 }, torch: false } },
+    { video: { facingMode: facing, torch: false } },
     { video: { facingMode: facing, width: { ideal: 1280 }, height: { ideal: 720 }, frameRate: { ideal: 20 } } },
     { video: { facingMode: facing, width: { ideal: 960 }, height: { ideal: 540 } } },
     { video: { facingMode: facing } },
@@ -212,9 +216,12 @@ async function startCamera(facing) {
 
   for (let i = 0; i < constraints.length; i++) {
     try {
+      console.log('尝试获取摄像头流，约束:', constraints[i]);
       stream = await navigator.mediaDevices.getUserMedia(constraints[i]);
+      console.log('成功获取摄像头流');
       break;
     } catch (e) {
+      console.error('获取摄像头流失败:', e);
       errMsg = e.message;
       if (i === constraints.length - 1) throw e;
     }
@@ -234,13 +241,22 @@ async function startCamera(facing) {
   const settings = track.getSettings();
   document.getElementById('resLabel').textContent = `${settings.width || video.videoWidth || '?'}×${settings.height || video.videoHeight || '?'}`;
 
-  // 闪光灯支持检测
-  if (track.getCapabilities && track.getCapabilities().torch) {
-    document.getElementById('torchBtn').style.opacity = '1';
+  // 闪光灯支持检测 - 保持按钮可用，让toggleTorch函数处理各种情况
+  console.log('检测闪光灯支持...');
+  if (track.getCapabilities) {
+    const capabilities = track.getCapabilities();
+    console.log('摄像头能力:', capabilities);
+    if (capabilities.torch) {
+      console.log('当前摄像头支持闪光灯');
+    } else {
+      console.log('当前摄像头可能不支持闪光灯，但保持按钮可用');
+    }
   } else {
-    document.getElementById('torchBtn').style.opacity = '0.3';
-    document.getElementById('torchBtn').style.pointerEvents = 'none';
+    console.log('浏览器不支持getCapabilities方法，但保持按钮可用');
   }
+  // 始终保持按钮可用
+  document.getElementById('torchBtn').style.opacity = '1';
+  document.getElementById('torchBtn').style.pointerEvents = 'auto';
 
   // UI
   document.getElementById('connectScreen').classList.add('hide');
@@ -398,19 +414,80 @@ function flipCamera() {
 
 // ── 闪光灯 ──
 function toggleTorch() {
-  if (!stream) return;
-  const track = stream.getVideoTracks()[0];
-  if (!track.getCapabilities || !track.getCapabilities().torch) {
-    showToast('当前摄像头不支持闪光灯');
+  console.log('toggleTorch被调用');
+  if (!stream) {
+    showToast('摄像头未初始化');
     return;
   }
-  torchOn = !torchOn;
-  track.applyConstraints({ advanced: [{ torch: torchOn }] })
-    .then(() => {
-      document.getElementById('torchBtn').classList.toggle('on', torchOn);
-      showToast(torchOn ? '闪光灯开启' : '闪光灯关闭');
-    })
-    .catch(() => showToast('闪光灯切换失败'));
+  
+  const tracks = stream.getVideoTracks();
+  if (!tracks || tracks.length === 0) {
+    showToast('无法获取摄像头轨道');
+    return;
+  }
+  
+  const track = tracks[0];
+  if (!track) {
+    showToast('无法获取摄像头轨道');
+    return;
+  }
+  
+  console.log('VideoTrack:', track);
+  
+  // 首先尝试检测闪光灯支持
+  if (track.getCapabilities) {
+    const capabilities = track.getCapabilities();
+    console.log('摄像头能力:', capabilities);
+    
+    // 直接尝试各种方法，不依赖capabilities.torch
+    torchOn = !torchOn;
+    
+    // 方法1: 直接使用applyConstraints，不带advanced
+    console.log('尝试方法1: 直接使用applyConstraints');
+    track.applyConstraints({ torch: torchOn })
+      .then(() => {
+        console.log('方法1成功');
+        document.getElementById('torchBtn').classList.toggle('on', torchOn);
+        showToast(torchOn ? '闪光灯开启' : '闪光灯关闭');
+      })
+      .catch((error) => {
+        console.error('方法1失败:', error);
+        
+        // 方法2: 使用advanced数组
+        console.log('尝试方法2: 使用advanced数组');
+        return track.applyConstraints({ advanced: [{ torch: torchOn }] });
+      })
+      .then(() => {
+        console.log('方法2成功');
+        document.getElementById('torchBtn').classList.toggle('on', torchOn);
+        showToast(torchOn ? '闪光灯开启' : '闪光灯关闭');
+      })
+      .catch((error) => {
+        console.error('方法2失败:', error);
+        
+        // 方法3: 尝试直接设置torch属性
+        console.log('尝试方法3: 直接设置torch属性');
+        if ('torch' in track) {
+          try {
+            track.torch = torchOn;
+            console.log('方法3成功');
+            document.getElementById('torchBtn').classList.toggle('on', torchOn);
+            showToast(torchOn ? '闪光灯开启' : '闪光灯关闭');
+          } catch (err) {
+            console.error('方法3失败:', err);
+            torchOn = !torchOn; // 恢复原来的状态
+            showToast('无法控制闪光灯: 设备或浏览器不支持');
+          }
+        } else {
+          console.error('track对象没有torch属性');
+          torchOn = !torchOn; // 恢复原来的状态
+          showToast('无法控制闪光灯: 设备或浏览器不支持');
+        }
+      });
+  } else {
+    console.log('浏览器不支持getCapabilities');
+    showToast('浏览器不支持闪光灯控制');
+  }
 }
 
 // ── 静音 ──

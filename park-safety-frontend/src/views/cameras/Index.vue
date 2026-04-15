@@ -386,40 +386,6 @@
         @close="handlePhoneCameraDialogClose"
       >
         <el-tabs v-model="phoneCameraMode" type="border-card">
-          <el-tab-pane label="PC观看模式" name="pc">
-            <div class="phone-camera-pc-mode">
-              <div class="video-container-wrapper">
-                <div class="video-container" :class="{ 'mirror': phoneCameraMirror }">
-                  <video ref="phoneCameraVideo" autoplay playsinline muted class="phone-camera-video"></video>
-                </div>
-                <div v-if="!phoneCameraStreaming" class="phone-camera-placeholder">
-                  <el-icon :size="60" color="#909399"><VideoCamera /></el-icon>
-                  <p>点击下方按钮开启摄像头</p>
-                </div>
-              </div>
-              <div class="phone-camera-controls">
-                <el-button type="primary" @click="startPhoneCamera" :disabled="phoneCameraStreaming">
-                  开启摄像头
-                </el-button>
-                <el-button type="danger" @click="stopPhoneCamera" :disabled="!phoneCameraStreaming">
-                  关闭摄像头
-                </el-button>
-                <el-button @click="flipPhoneCamera" :disabled="!phoneCameraStreaming">
-                  切换摄像头
-                </el-button>
-                <el-button @click="togglePhoneCameraMirror" :disabled="!phoneCameraStreaming">
-                  {{ phoneCameraMirror ? '取消镜像' : '水平镜像' }}
-                </el-button>
-              </div>
-              <div v-if="phoneCameraStreaming" class="phone-camera-info">
-                <el-descriptions :column="3" border size="small">
-                  <el-descriptions-item label="分辨率">{{ phoneCameraResolution }}</el-descriptions-item>
-                  <el-descriptions-item label="帧率">{{ phoneCameraFps }} fps</el-descriptions-item>
-                  <el-descriptions-item label="摄像头">{{ phoneCameraFacing === 'user' ? '前置' : '后置' }}</el-descriptions-item>
-                </el-descriptions>
-              </div>
-            </div>
-          </el-tab-pane>
           <el-tab-pane label="手机推流观看" name="phone-viewer">
             <div class="phone-camera-phone-viewer-mode">
               <div class="video-container-wrapper">
@@ -449,6 +415,41 @@
                   <el-descriptions-item label="帧率">{{ phoneViewerFps }} fps</el-descriptions-item>
                   <el-descriptions-item label="延迟">{{ phoneViewerLatency }} ms</el-descriptions-item>
                 </el-descriptions>
+              </div>
+              
+              <!-- 分析控制 -->
+              <div class="phone-camera-analysis-section" style="margin-top: 20px;">
+                <el-divider content-position="left">分析控制</el-divider>
+                <div style="margin-bottom: 15px;">
+                  <el-select v-model="phoneCameraAnalysisMode" placeholder="请选择分析模式" style="width: 200px; margin-right: 10px;">
+                    <el-option label="全部" value="1" />
+                    <el-option label="安全规范" value="2" />
+                    <el-option label="区域入侵" value="3" />
+                    <el-option label="火警" value="4" />
+                  </el-select>
+                  <el-button type="success" @click="startPhoneCameraAnalysis" :disabled="!phoneViewerConnected || isPhoneCameraAnalyzing">
+                    开始分析
+                  </el-button>
+                  <el-button type="warning" @click="stopPhoneCameraAnalysis" :disabled="!isPhoneCameraAnalyzing">
+                    停止分析
+                  </el-button>
+                </div>
+                
+                <!-- 分析结果 -->
+                <div v-if="phoneCameraAnalysisResults" class="analysis-results">
+                  <h4>分析结果:</h4>
+                  <div class="analysis-grid">
+                    <div 
+                      v-for="(result, index) in phoneCameraAnalysisResults" 
+                      :key="index"
+                      class="analysis-item"
+                      :class="{ 'warning': result.value.includes('检测到') || (result.value.includes('人') && parseInt(result.value) > 0) || (result.value.includes('辆') && parseInt(result.value) > 0) }"
+                    >
+                      <div class="analysis-label">{{ result.label }}</div>
+                      <div class="analysis-value">{{ result.value }}</div>
+                    </div>
+                  </div>
+                </div>
               </div>
             </div>
           </el-tab-pane>
@@ -488,6 +489,7 @@
                   <li>在手机浏览器中输入上方连接地址，或扫描二维码</li>
                   <li>允许浏览器访问摄像头权限</li>
                   <li>切换到"手机推流观看"标签页查看画面</li>
+                  <li>在手机端可点击闪光灯按钮开启/关闭闪光灯</li>
                 </ol>
               </div>
             </div>
@@ -669,7 +671,7 @@ const totalAnalysisResults = ref({
 
 // 手机摄像头相关状态
 const phoneCameraDialogVisible = ref(false)
-const phoneCameraMode = ref('pc')
+const phoneCameraMode = ref('phone')
 const phoneCameraVideo = ref(null)
 const phoneCameraStreaming = ref(false)
 const phoneCameraStream = ref(null)
@@ -699,6 +701,14 @@ const phoneViewerLatency = ref(0)
 const phoneViewerFrameCount = ref(0)
 const phoneViewerLastTime = ref(0)
 const phoneViewerFpsInterval = ref(null)
+
+// 手机摄像头分析相关
+const phoneCameraAnalysisMode = ref('1')
+const isPhoneCameraAnalyzing = ref(false)
+const phoneCameraAnalysisResults = ref(null)
+const phoneCameraAnalysisInterval = ref(null)
+const phoneCameraLastFrameData = ref(null)
+const phoneCameraLastAlertState = ref('') // 手机摄像头分析的告警状态
 
 // 进度条颜色
 const progressColor = computed(() => {
@@ -1736,122 +1746,138 @@ const copyConnectionUrl = () => {
   })
 }
 
-// 开启手机摄像头（PC模式）
-const startPhoneCamera = async () => {
-  try {
-    const constraints = [
-      { video: { facingMode: phoneCameraFacing.value, width: { ideal: 1280 }, height: { ideal: 720 } } },
-      { video: { facingMode: phoneCameraFacing.value } },
-      { video: true }
-    ]
-
-    let stream = null
-    for (const constraint of constraints) {
-      try {
-        stream = await navigator.mediaDevices.getUserMedia(constraint)
-        if (stream) break
-      } catch (e) {
-        continue
-      }
-    }
-
-    if (!stream) {
-      throw new Error('无法访问摄像头')
-    }
-
-    phoneCameraStream.value = stream
-    if (phoneCameraVideo.value) {
-      phoneCameraVideo.value.srcObject = stream
-    }
-
-    phoneCameraStreaming.value = true
-    
-    // 获取分辨率信息
-    const track = stream.getVideoTracks()[0]
-    const settings = track.getSettings()
-    phoneCameraResolution.value = `${settings.width || '?'}×${settings.height || '?'}`
-    
-    // 开始计算FPS
-    startPhoneCameraFpsCounter()
-    
-    ElMessage.success('摄像头已开启')
-  } catch (error) {
-    console.error('开启摄像头失败:', error)
-    ElMessage.error('无法访问摄像头，请检查权限设置')
-  }
-}
-
-// 关闭手机摄像头
-const stopPhoneCamera = () => {
-  if (phoneCameraStream.value) {
-    phoneCameraStream.value.getTracks().forEach(track => track.stop())
-    phoneCameraStream.value = null
-  }
-  if (phoneCameraVideo.value) {
-    phoneCameraVideo.value.srcObject = null
-  }
-  phoneCameraStreaming.value = false
-  stopPhoneCameraFpsCounter()
-  phoneCameraFps.value = 0
-  phoneCameraFrameCount.value = 0
-  phoneCameraResolution.value = ''
-}
-
-// 切换摄像头（前置/后置）
-const flipPhoneCamera = async () => {
-  phoneCameraFacing.value = phoneCameraFacing.value === 'user' ? 'environment' : 'user'
-  if (phoneCameraStreaming.value) {
-    stopPhoneCamera()
-    await startPhoneCamera()
-  }
-}
-
-// 切换镜像
-const togglePhoneCameraMirror = () => {
-  phoneCameraMirror.value = !phoneCameraMirror.value
-}
-
-// 开始FPS计数
-const startPhoneCameraFpsCounter = () => {
-  phoneCameraLastTime.value = Date.now()
-  phoneCameraFrameCount.value = 0
-  
-  const videoEl = phoneCameraVideo.value
-  if (!videoEl) return
-  
-  const updateFps = () => {
-    if (!phoneCameraStreaming.value) return
-    
-    phoneCameraFrameCount.value++
-    const now = Date.now()
-    if (now - phoneCameraLastTime.value >= 1000) {
-      phoneCameraFps.value = phoneCameraFrameCount.value
-      phoneCameraFrameCount.value = 0
-      phoneCameraLastTime.value = now
-    }
-    
-    phoneCameraFpsInterval.value = requestAnimationFrame(updateFps)
-  }
-  
-  phoneCameraFpsInterval.value = requestAnimationFrame(updateFps)
-}
-
-// 停止FPS计数
-const stopPhoneCameraFpsCounter = () => {
-  if (phoneCameraFpsInterval.value) {
-    cancelAnimationFrame(phoneCameraFpsInterval.value)
-    phoneCameraFpsInterval.value = null
-  }
-}
-
 // 处理手机摄像头对话框关闭
 const handlePhoneCameraDialogClose = () => {
-  stopPhoneCamera()
   stopPhoneViewer()
+  stopPhoneCameraAnalysis()
   phoneCameraDialogVisible.value = false
-  phoneCameraMode.value = 'pc'
-  phoneCameraMirror.value = false
+  phoneCameraMode.value = 'phone'
   phoneViewerMirror.value = false
+}
+
+// ========== 手机摄像头分析相关方法 ==========
+
+// 开始手机摄像头分析
+const startPhoneCameraAnalysis = () => {
+  if (!phoneViewerConnected.value) {
+    ElMessage.warning('请先连接手机摄像头')
+    return
+  }
+  
+  isPhoneCameraAnalyzing.value = true
+  phoneCameraLastAlertState.value = ''
+  phoneCameraAnalysisResults.value = null
+  
+  // 开始分析帧
+  phoneCameraAnalysisInterval.value = setInterval(analyzePhoneCameraFrame, 1500) // 每1.5秒分析一次
+  
+  ElMessage.success('分析已开始')
+}
+
+// 停止手机摄像头分析
+const stopPhoneCameraAnalysis = () => {
+  if (phoneCameraAnalysisInterval.value) {
+    clearInterval(phoneCameraAnalysisInterval.value)
+    phoneCameraAnalysisInterval.value = null
+  }
+  
+  isPhoneCameraAnalyzing.value = false
+  phoneCameraAnalysisResults.value = null
+  phoneCameraLastFrameData.value = null
+  phoneCameraLastAlertState.value = ''
+}
+
+// 分析手机摄像头当前帧
+const analyzePhoneCameraFrame = async () => {
+  if (!phoneViewerCanvas.value || !isPhoneCameraAnalyzing.value) return
+  
+  try {
+    // 从Canvas获取当前帧数据
+    const canvas = phoneViewerCanvas.value
+    const frameData = canvas.toDataURL('image/jpeg', 0.6)
+    phoneCameraLastFrameData.value = frameData
+    
+    // 调用后端API分析
+    const token = localStorage.getItem('token')
+    const response = await fetch('http://localhost:8089/api/v1/camera_infos/analyze_frame', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+        'Authorization': `Bearer ${token}`
+      },
+      body: JSON.stringify({
+        image: frameData,
+        analysis_mode: phoneCameraAnalysisMode.value
+      })
+    })
+    
+    if (response.ok) {
+      const result = await response.json()
+      if (result.results) {
+        phoneCameraAnalysisResults.value = result.results
+        
+        // 检查是否有告警并显示提示
+        checkPhoneCameraAlerts(result.results)
+      }
+    }
+  } catch (error) {
+    console.error('分析手机摄像头帧失败:', error)
+  }
+}
+
+// 检查手机摄像头分析结果是否有告警并显示弹窗
+const checkPhoneCameraAlerts = (results) => {
+  if (!results || !Array.isArray(results)) return
+  
+  // 检查是否有告警
+  const alerts = []
+  
+  results.forEach(result => {
+    // 检查安全规范告警
+    if ((result.label === '未戴安全帽' || result.label === '未穿反光衣') && result.value === '检测到') {
+      alerts.push(result.label)
+    }
+    // 检查火警告警
+    else if ((result.label === '火焰检测' || result.label === '烟雾检测') && result.value === '检测到') {
+      alerts.push(result.label)
+    }
+    // 检查区域入侵告警
+    else if (result.label === '区域入侵' && result.value === '检测到') {
+      alerts.push(result.label)
+    }
+    // 检查人员和车辆检测
+    else if (result.label === '人员检测') {
+      const count = parseInt(result.value.replace(/[^0-9]/g, ''))
+      if (count > 0) {
+        alerts.push(`${result.label} (${result.value})`)
+      }
+    }
+    else if (result.label === '车辆检测') {
+      const count = parseInt(result.value.replace(/[^0-9]/g, ''))
+      if (count > 0) {
+        alerts.push(`${result.label} (${result.value})`)
+      }
+    }
+  })
+  
+  // 生成当前告警状态的唯一标识
+  const currentAlertKey = alerts.sort().join('|')
+  
+  // 检查告警状态是否发生变化
+  if (currentAlertKey !== phoneCameraLastAlertState.value) {
+    // 更新上次告警状态
+    phoneCameraLastAlertState.value = currentAlertKey
+    
+    // 如果有告警，显示弹窗
+    if (alerts.length > 0) {
+      ElMessage({
+        message: `检测到以下告警: ${alerts.join('、')}`,
+        type: 'warning',
+        duration: 5000,
+        showClose: true
+      })
+    }
+  }
 }
 
 // ========== 手机推流观看相关方法 ==========
