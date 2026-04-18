@@ -164,4 +164,29 @@ export const userApi = {
   }
 }
 
+// AI智能问答相关
+export const aiApi = {
+  aiQuestion: (question) => {
+    return api.post('/v1/safety_analysis/ai-question', null, { params: { question } })
+  },
+  getStatistics: (days = 30) => {
+    return api.get('/v1/safety_analysis/statistics', { params: { days } })
+  },
+  getTrend: (days = 30) => {
+    return api.get('/v1/safety_analysis/trend', { params: { days } })
+  },
+  getHourlyDistribution: (days = 30) => {
+    return api.get('/v1/safety_analysis/hourly-distribution', { params: { days } })
+  },
+  getAreaRanking: (days = 30) => {
+    return api.get('/v1/safety_analysis/area-ranking', { params: { days } })
+  },
+  getPrediction: (days = 7) => {
+    return api.get('/v1/safety_analysis/prediction', { params: { days } })
+  },
+  getComprehensiveReport: () => {
+    return api.get('/v1/safety_analysis/report')
+  }
+}
+
 export default api

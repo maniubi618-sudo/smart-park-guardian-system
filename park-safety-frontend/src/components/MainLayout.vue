@@ -66,6 +66,9 @@
         <slot></slot>
       </div>
     </main>
+
+    <!-- AI助手组件 -->
+    <AIAssistant />
   </div>
 </template>
 
@@ -75,6 +78,7 @@ import { useRouter } from 'vue-router'
 import { useAuthStore } from '../stores/auth'
 import { useLayoutStore } from '../stores/layout'
 import { HomeFilled, WarningFilled, VideoCamera, LocationFilled, UserFilled, SwitchButton, Setting } from '@element-plus/icons-vue'
+import AIAssistant from './AIAssistant.vue'
 
 const router = useRouter()
 const authStore = useAuthStore()

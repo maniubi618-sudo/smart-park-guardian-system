@@ -4,6 +4,7 @@ import threading
 
 from app.objects.alarm_case import AlarmCase
 from app.services.websocket_manager import manager
+from app.services.voice_broadcast_service import VoiceBroadcastService
 from app.utils.logger import get_logger
 
 logger = get_logger()
@@ -38,3 +39,16 @@ def sync_broadcast_alarm(alarm):
         _async_broadcast_alarm(alarm),
         loop=broadcast_loop
     )
+    
+    # 同时触发语音播报（异步执行，不阻塞广播）
+    try:
+        import threading
+        voice_thread = threading.Thread(
+            target=VoiceBroadcastService.get_alarm_voice_text,
+            args=(alarm.alarm_type, getattr(alarm, 'camera_name', '')),
+            daemon=True,
+            name="Voice-Broadcast"
+        )
+        voice_thread.start()
+    except Exception as e:
+        logger.error(f"启动语音播报线程失败：{str(e)}")
