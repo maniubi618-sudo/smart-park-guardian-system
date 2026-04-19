@@ -99,9 +99,11 @@ if __name__ == "__main__":
                         parts = line.split(':')
                         if len(parts) > 1:
                             ip = parts[1].strip()
-                            # 处理"(首选)"后缀
+                            # 处理"(首选)"或"(Preferred)"后缀
                             if '(首选)' in ip:
                                 ip = ip.replace('(首选)', '').strip()
+                            if '(Preferred)' in ip:
+                                ip = ip.replace('(Preferred)', '').strip()
                             # 排除环回地址和169.254开头的自动专用IP
                             if ip != '127.0.0.1' and not ip.startswith('169.254.'):
                                 # 优先选择192.168、10或172.16-31开头的私有IP

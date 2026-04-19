@@ -24,7 +24,7 @@ timeout /t 2 /nobreak >nul
 
 :: 启动后端HTTPS服务
 echo [2/3] 启动后端HTTPS服务 (端口: 8443)...
-start "后端HTTPS服务" cmd /k "cd /d %PROJECT_ROOT% && echo 启动后端HTTPS服务 && python start_https.py"
+start "后端HTTPS服务" cmd /k "cd /d %PROJECT_ROOT% && echo 启动后端HTTPS服务 && python -m app.main_https"
 
 :: 等待2秒
 timeout /t 2 /nobreak >nul
@@ -48,7 +48,7 @@ echo.
 echo API文档 (HTTP):  http://localhost:8089/docs
 echo API文档 (HTTPS): https://localhost:8443/docs
 echo.
-echo 手机摄像头页面:  https://localhost:8443/phone-camera
+echo 手机摄像头页面:  https://[本机IP]:8443/phone-camera
 echo.
 echo 关闭弹出的命令窗口即可停止对应服务
 echo.

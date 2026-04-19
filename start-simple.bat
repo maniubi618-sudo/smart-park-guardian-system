@@ -4,17 +4,8 @@ chcp 65001 >nul
 :: 园区智能安防系统 - 简易启动脚本
 :: 功能：启动所有服务
 
-set "ROOT=d:\新建文件夹\大数据\yolo"
-set "FRONTEND=%ROOT%\park-safety-frontend"
-set "VENV=%ROOT%\.venv"
-
-:: 检查虚拟环境
-if not exist "%VENV%" (
-    echo 错误: 虚拟环境不存在
-    echo 请先创建虚拟环境并安装依赖
-    pause
-    exit /b 1
-)
+set "ROOT=%~dp0"
+set "FRONTEND=%ROOT%park-safety-frontend"
 
 echo ===========================
 echo 园区智能安防系统
@@ -23,7 +14,7 @@ echo.
 
 :: 启动HTTP后端
 echo [1/3] 启动后端服务 (HTTP)
-start "后端 HTTP" cmd /k "cd /d %ROOT% && call %VENV%\Scripts\activate.bat && python -m app.main"
+start "后端 HTTP" cmd /k "cd /d %ROOT% && python -m app.main"
 
 :: 等待
 echo 等待2秒...
@@ -31,7 +22,7 @@ timeout /t 2 /nobreak >nul
 
 :: 启动HTTPS后端
 echo [2/3] 启动后端服务 (HTTPS)
-start "后端 HTTPS" cmd /k "cd /d %ROOT% && call %VENV%\Scripts\activate.bat && python -m app.main_https"
+start "后端 HTTPS" cmd /k "cd /d %ROOT% && python -m app.main_https"
 
 :: 等待
 echo 等待3秒...
