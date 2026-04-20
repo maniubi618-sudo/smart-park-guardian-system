@@ -21,6 +21,12 @@
             <span v-if="!isCollapsed">告警管理</span>
           </router-link>
         </li>
+        <li class="sidebar-menu-item" :class="{ active: $route.path === '/map' }">
+          <router-link to="/map">
+            <el-icon class="icon"><MapLocation /></el-icon>
+            <span v-if="!isCollapsed">3D地图</span>
+          </router-link>
+        </li>
         <li class="sidebar-menu-item" :class="{ active: $route.path === '/cameras' }">
           <router-link to="/cameras">
             <el-icon class="icon"><VideoCamera /></el-icon>
@@ -77,7 +83,7 @@ import { computed } from 'vue'
 import { useRouter } from 'vue-router'
 import { useAuthStore } from '../stores/auth'
 import { useLayoutStore } from '../stores/layout'
-import { HomeFilled, WarningFilled, VideoCamera, LocationFilled, UserFilled, SwitchButton, Setting } from '@element-plus/icons-vue'
+import { HomeFilled, WarningFilled, VideoCamera, LocationFilled, UserFilled, SwitchButton, Setting, MapLocation } from '@element-plus/icons-vue'
 import AIAssistant from './AIAssistant.vue'
 
 const router = useRouter()
@@ -94,6 +100,7 @@ const pageTitle = computed(() => {
   const pathMap = {
     '/dashboard': '仪表盘',
     '/alarms': '告警管理',
+    '/map': '3D地图',
     '/cameras': '摄像头管理',
     '/areas': '园区管理',
     '/users': '用户管理',

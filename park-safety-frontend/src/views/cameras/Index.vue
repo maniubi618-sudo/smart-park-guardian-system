@@ -535,6 +535,30 @@
           <el-form-item label="摄像头IP" prop="camera_ip">
             <el-input v-model="cameraForm.camera_ip" placeholder="请输入摄像头IP" />
           </el-form-item>
+          <el-form-item label="经纬度" required>
+            <div style="display: flex; gap: 10px; width: 100%;">
+              <el-input 
+                v-model="cameraForm.latitude" 
+                placeholder="纬度" 
+                type="number"
+                :precision="6"
+                style="flex: 1;"
+              />
+              <el-input 
+                v-model="cameraForm.longitude" 
+                placeholder="经度" 
+                type="number"
+                :precision="6"
+                style="flex: 1;"
+              />
+              <el-button 
+                type="primary" 
+                :icon="VideoCamera" 
+                @click="openLocationQR"
+                title="扫描二维码获取位置"
+              />
+            </div>
+          </el-form-item>
           <el-form-item label="备注" prop="remark">
             <el-input v-model="cameraForm.remark" type="textarea" :rows="3" placeholder="请输入备注" />
           </el-form-item>
@@ -546,17 +570,39 @@
           </span>
         </template>
       </el-dialog>
+
+      <!-- 二维码对话框 -->
+      <el-dialog
+        v-model="qrDialogVisible"
+        title="扫描二维码获取位置"
+        width="450px"
+      >
+        <div style="text-align: center;">
+          <div class="qr-code-section" v-if="locationQrCodeUrl">
+            <img :src="locationQrCodeUrl" alt="QR Code" class="qr-code" />
+          </div>
+          <div style="margin-top: 20px;">
+            <el-button type="primary" @click="openLocationPage">
+              在浏览器打开
+            </el-button>
+          </div>
+          <div style="margin-top: 20px; color: #909399; font-size: 14px;">
+            <p>使用手机扫描二维码，获取位置后点击"发送位置"传回</p>
+          </div>
+        </div>
+      </el-dialog>
     </div>
   </MainLayout>
 </template>
 
 <script setup>
-import { ref, computed, onMounted, watch, reactive } from 'vue'
+import { ref, computed, onMounted, onUnmounted, watch, reactive } from 'vue'
 import { useCameraStore } from '../../stores/cameras'
 import { useAreaStore } from '../../stores/areas'
 import MainLayout from '../../components/MainLayout.vue'
 import { VideoCamera, Loading, CircleClose, Check, Upload } from '@element-plus/icons-vue'
 import { ElMessageBox, ElMessage } from 'element-plus'
+import QRCode from 'qrcode'
 
 const cameraStore = useCameraStore()
 const areaStore = useAreaStore()
@@ -590,8 +636,14 @@ const cameraForm = reactive({
   rtsp_url: '',
   analysis_mode: 0,
   camera_ip: '',
+  latitude: '',
+  longitude: '',
   remark: ''
 })
+
+const qrDialogVisible = ref(false)
+const locationQrCodeUrl = ref('')
+const locationWindow = ref(null)
 const cameraFormRef = ref(null)
 const submitLoading = ref(false)
 
@@ -709,6 +761,9 @@ const phoneCameraAnalysisResults = ref(null)
 const phoneCameraAnalysisInterval = ref(null)
 const phoneCameraLastFrameData = ref(null)
 const phoneCameraLastAlertState = ref('') // 手机摄像头分析的告警状态
+
+// 手机摄像头位置相关
+const phoneCameraLocation = ref(null) // { latitude, longitude }
 
 // 进度条颜色
 const progressColor = computed(() => {
@@ -838,6 +893,8 @@ const addCamera = () => {
   cameraForm.rtsp_url = ''
   cameraForm.analysis_mode = 0
   cameraForm.camera_ip = ''
+  cameraForm.latitude = ''
+  cameraForm.longitude = ''
   cameraForm.remark = ''
   // 重置表单验证状态
   if (cameraFormRef.value) {
@@ -855,9 +912,55 @@ const editCamera = (camera) => {
   cameraForm.rtsp_url = camera.rtsp_url
   cameraForm.analysis_mode = Number(camera.analysis_mode)
   cameraForm.camera_ip = camera.camera_ip
+  cameraForm.latitude = camera.latitude || ''
+  cameraForm.longitude = camera.longitude || ''
   cameraForm.remark = camera.remark
   dialogVisible.value = true
 }
+
+const openLocationQR = async () => {
+  try {
+    const locationUrl = `${window.location.origin}/phone-location`
+    locationQrCodeUrl.value = await QRCode.toDataURL(locationUrl, {
+      width: 300,
+      margin: 2
+    })
+    qrDialogVisible.value = true
+  } catch (error) {
+    console.error('QR Code generation error:', error)
+    ElMessage.error('生成二维码失败')
+  }
+}
+
+const openLocationPage = () => {
+  const locationUrl = `${window.location.origin}/phone-location`
+  locationWindow.value = window.open(locationUrl, '_blank', 'width=400,height=700')
+  qrDialogVisible.value = false
+}
+
+const handleMessage = (event) => {
+  if (event.data && event.data.type === 'location') {
+    const { latitude, longitude } = event.data.data
+    cameraForm.latitude = latitude
+    cameraForm.longitude = longitude
+    ElMessage.success('位置已获取！')
+    qrDialogVisible.value = false
+    if (locationWindow.value) {
+      locationWindow.value.close()
+    }
+  }
+}
+
+onMounted(() => {
+  window.addEventListener('message', handleMessage)
+})
+
+onUnmounted(() => {
+  window.removeEventListener('message', handleMessage)
+  if (locationWindow.value) {
+    locationWindow.value.close()
+  }
+})
 
 const deleteCamera = async (camera) => {
   // 确认删除
@@ -1867,7 +1970,7 @@ const checkPhoneCameraAlerts = (results) => {
 
 // 更新连接地址
 const updatePhonePushUrl = () => {
-  const protocol = 'https:' // 强制使用 HTTPS
+  const protocol = 'https:' // 手机访问必须用 HTTPS 才能获取摄像头
   const port = '8443' // HTTPS 后端端口
   const hostname = localIPAddress.value || window.location.hostname
   phonePushUrl.value = `${protocol}//${hostname}:${port}/phone-camera`
@@ -1901,9 +2004,11 @@ const startPhoneViewer = () => {
       phoneViewerWs.value = null
     }
     
-    const protocol = 'wss://' // 强制使用 wss，带冒号
+    // 重要！手机和观看端必须连接同一个后端！
+    // 都连HTTPS(8443)，摄像头权限才有效
+    const protocol = 'wss://'
     const port = '8443'
-    const hostname = 'localhost' // 使用localhost连接本地后端
+    const hostname = 'localhost'
     const wsUrl = `${protocol}${hostname}:${port}/api/v1/camera_infos/phone_camera/viewer`
     
     console.log('开始连接手机摄像头观看端:', wsUrl)
@@ -1917,13 +2022,15 @@ const startPhoneViewer = () => {
     }
     
     phoneViewerWs.value.onmessage = (event) => {
-      console.log('收到手机摄像头数据:', event.data instanceof Blob ? 'Blob数据' : '文本数据')
+      console.log('收到手机摄像头数据:', event.data instanceof Blob ? 'Blob数据' : '文本数据', '大小:', event.data.size || event.data.length)
       if (event.data instanceof Blob) {
         // 二进制数据是JPEG帧
+        console.log('收到Blob数据，大小:', event.data.size)
         const t0 = Date.now()
         const url = URL.createObjectURL(event.data)
         const img = new Image()
         img.onload = () => {
+          console.log('图片加载成功，原始尺寸:', img.naturalWidth, 'x', img.naturalHeight)
           const canvas = phoneViewerCanvas.value
           if (!canvas) {
             console.error('Canvas元素不存在')
@@ -1932,19 +2039,36 @@ const startPhoneViewer = () => {
           }
           
           const ctx = canvas.getContext('2d')
-          canvas.width = img.naturalWidth
-          canvas.height = img.naturalHeight
           
-          // 镜像由CSS处理，Canvas只需要直接绘制
-          ctx.drawImage(img, 0, 0)
+          // 简化逻辑：固定canvas尺寸
+          canvas.width = 640
+          canvas.height = 480
+          
+          // 清空画布
+          ctx.fillStyle = '#0f0' // 先用绿色测试一下canvas是否工作
+          ctx.fillRect(0, 0, canvas.width, canvas.height)
+          
+          // 计算缩放比例保持宽高比
+          const scale = Math.min(canvas.width / img.naturalWidth, canvas.height / img.naturalHeight)
+          const drawWidth = img.naturalWidth * scale
+          const drawHeight = img.naturalHeight * scale
+          const drawX = (canvas.width - drawWidth) / 2
+          const drawY = (canvas.height - drawHeight) / 2
+          
+          console.log('绘制尺寸:', drawWidth, 'x', drawHeight, '位置:', drawX, drawY)
+          ctx.drawImage(img, drawX, drawY, drawWidth, drawHeight)
           
           URL.revokeObjectURL(url)
           
           // 更新统计
           phoneViewerFrameCount.value++
           phoneViewerLatency.value = Date.now() - t0
-          phoneViewerResolution.value = `${canvas.width}×${canvas.height}`
+          phoneViewerResolution.value = `${img.naturalWidth}×${img.naturalHeight}`
           console.log('渲染帧完成，分辨率:', phoneViewerResolution.value, '延迟:', phoneViewerLatency.value, 'ms')
+        }
+        img.onerror = (err) => {
+          console.error('图片加载失败', err)
+          URL.revokeObjectURL(url)
         }
         img.src = url
       } else {
@@ -1960,9 +2084,27 @@ const startPhoneViewer = () => {
           if (data.type === 'phone_connected') {
             if (data.meta) {
               phoneViewerResolution.value = `${data.meta.width || '?'}×${data.meta.height || '?'}`
+              // 检查是否有位置信息
+              if (data.meta.location) {
+                phoneCameraLocation.value = {
+                  latitude: data.meta.location.latitude,
+                  longitude: data.meta.location.longitude
+                }
+                console.log('收到手机位置信息:', phoneCameraLocation.value)
+                // 发送事件通知地图页面
+                window.dispatchEvent(new CustomEvent('phoneCameraLocationUpdate', {
+                  detail: phoneCameraLocation.value
+                }))
+                ElMessage.success('已获取手机位置信息')
+              }
             }
           } else if (data.type === 'phone_disconnected') {
             ElMessage.warning('手机已断开连接')
+            // 清除位置信息
+            phoneCameraLocation.value = null
+            window.dispatchEvent(new CustomEvent('phoneCameraLocationUpdate', {
+              detail: null
+            }))
           }
         } catch (e) {
           console.error('解析JSON失败:', e)
@@ -2951,9 +3093,10 @@ onMounted(async () => {
 }
 
 .phone-viewer-canvas {
-  max-width: 100%;
-  max-height: 100%;
-  object-fit: contain;
+  width: 100%;
+  height: 100%;
+  display: block;
+  background-color: #000;
 }
 
 .video-container-wrapper {
@@ -2972,6 +3115,8 @@ onMounted(async () => {
   display: flex;
   align-items: center;
   justify-content: center;
+  background-color: #000;
+  overflow: hidden;
 }
 
 .video-container.mirror {

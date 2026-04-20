@@ -56,6 +56,16 @@ const router = createRouter({
       path: '/settings',
       component: () => import('../views/settings/Index.vue'),
       meta: { requiresAuth: true }
+    },
+    {
+      path: '/map',
+      component: () => import('../views/map/Index.vue'),
+      meta: { requiresAuth: true }
+    },
+    {
+      path: '/phone-location',
+      component: () => import('../views/PhoneLocation.vue'),
+      meta: { requiresAuth: false }
     }
   ]
 })

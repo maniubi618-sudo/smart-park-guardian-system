@@ -9,6 +9,9 @@ from app.dependencies.db import get_db  # 获取数据库会话的依赖
 from app.services.camera_info_service import CameraInfoService  # 导入service层代码负责业务逻辑
 from app.dependencies.security import get_current_active_user, User
 from app.services.phone_camera_manager import phone_camera_manager
+from app.utils.logger import get_logger
+
+logger = get_logger()
 
 # 获取本地IP地址
 def get_local_ip():
@@ -318,21 +321,24 @@ async def websocket_phone_camera_phone(websocket: WebSocket):
     try:
         while True:
             data = await websocket.receive()
+            logger.info(f"收到手机端数据: {'bytes' if 'bytes' in data else 'text'}, 大小: {len(data['bytes'] if 'bytes' in data else data['text'])}")
             if "text" in data:
                 try:
                     import json
                     msg = json.loads(data["text"])
                     if msg.get("type") == "meta":
                         phone_camera_manager.update_phone_meta(msg.get("data", {}))
-                except:
-                    pass
+                except Exception as parse_err:
+                    logger.debug(f"解析文本消息失败(可能是保活消息): {parse_err}")
                 await phone_camera_manager.forward_from_phone(data["text"])
             elif "bytes" in data:
                 await phone_camera_manager.forward_from_phone(data["bytes"])
     except WebSocketDisconnect:
         phone_camera_manager.disconnect_phone()
+        logger.info("手机端WebSocket断开连接")
     except Exception as e:
         phone_camera_manager.disconnect_phone()
+        logger.error(f"手机端WebSocket异常: {e}")
 
 
 # 14. ws://后端服务器IP:运行端口/api/v1/camera_infos/phone_camera/viewer: 观看端WebSocket端点

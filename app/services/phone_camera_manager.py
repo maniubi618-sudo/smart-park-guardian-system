@@ -58,7 +58,16 @@ class PhoneCameraManager:
 
     async def forward_from_phone(self, data):
         """将手机端的数据转发给所有观看端"""
+        if not self.viewer_connections:
+            logger.debug("没有观看端连接，跳过转发")
+            return
+        
         valid_viewers = []
+        data_type = "bytes" if isinstance(data, bytes) else "text"
+        data_size = len(data) if isinstance(data, bytes) else len(str(data))
+        
+        logger.info(f"转发{data_type}数据({data_size}字节)到{len(self.viewer_connections)}个观看端")
+        
         for viewer in self.viewer_connections:
             try:
                 if isinstance(data, bytes):
@@ -66,6 +75,7 @@ class PhoneCameraManager:
                 else:
                     await viewer.send_text(data)
                 valid_viewers.append(viewer)
+                logger.debug("成功转发数据到一个观看端")
             except Exception as e:
                 logger.error(f"转发数据到观看端失败: {e}")
                 continue
@@ -86,6 +96,12 @@ class PhoneCameraManager:
     def update_phone_meta(self, meta: dict):
         self.phone_meta = meta
         logger.info(f"手机元数据已更新: {meta}")
+        # 向所有观看端广播更新后的meta
+        import asyncio
+        asyncio.create_task(self.broadcast_to_viewers({
+            "type": "phone_connected",
+            "meta": self.phone_meta
+        }))
 
     def get_status(self):
         return {
