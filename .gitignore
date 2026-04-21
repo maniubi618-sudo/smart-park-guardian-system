@@ -22,31 +22,12 @@ __pycache__/
 *.pyc
 *.pyo
 *.pyd
-*.pycache
-
-# Virtual environment (all common venv names)
-venv/
-.venv/
-env/
-.env/
-
-# Node modules
-node_modules/
 
 # Snapshot files
 app/snapshots/
 
+# Virtual environment
+venv/
+
 # Log files
 logs/
-
-# IDE
-.vscode/
-.idea/
-
-# PyTorch model files
-*.pt
-*.pth
-
-# Database
-*.db
-*.sqlite
