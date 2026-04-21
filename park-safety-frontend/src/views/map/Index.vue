@@ -5,7 +5,7 @@
       <div class="map-toolbar">
         <el-button type="primary" @click="refreshData">
           <el-icon><Refresh /></el-icon>
-          刷新数据
+          刷新数
         </el-button>
       </div>
       <div class="camera-list-panel">
