@@ -200,6 +200,10 @@
                 <span style="font-size: 14px; color: #606266;">将警告信息写入数据库</span>
                 <el-switch v-model="writeToDatabase" active-text="是" inactive-text="否" />
               </div>
+              <div class="write-to-db-option" style="margin-top: 10px; display: flex; align-items: center; justify-content: space-between;">
+                <span style="font-size: 14px; color: #606266;">警告提示音</span>
+                <el-switch v-model="enableWarningSound" active-text="是" inactive-text="否" />
+              </div>
               <div v-if="analysisResults" class="analysis-results">
                 <h4>分析结果:</h4>
                 <div class="analysis-grid">
@@ -634,6 +638,25 @@ const analysisLastTime = ref(0)
 const lastAlertState = ref('') // 初始化为空字符串，与currentAlertKey类型一致
 const alertDebounceTimer = ref(null)
 const ALERT_DEBOUNCE_TIME = 500 // 500毫秒防抖，提高响应速度
+// 告警提示音管理
+const enableWarningSound = ref(true) // 默认开启提示音
+const currentAudio = ref(null) // 当前播放的音频
+
+// 停止当前播放的提示音
+const stopWarningSound = () => {
+  if (currentAudio.value) {
+    currentAudio.value.pause()
+    currentAudio.value.currentTime = 0
+    currentAudio.value = null
+  }
+}
+
+// 监听enableWarningSound变化，关闭时立即停止提示音
+watch(enableWarningSound, (newValue) => {
+  if (!newValue) {
+    stopWarningSound()
+  }
+})
 
 // 监听writeToDatabase变化，通过WebSocket发送消息更新值
 watch(writeToDatabase, (newValue) => {
@@ -1207,16 +1230,18 @@ const stopAnalysisTest = () => {
   isAnalysisStreaming.value = false
   analysisResults.value = null
   analysisLoading.value = false
+  // 停止警告提示音
+  stopWarningSound()
   console.log('分析测试已停止')
 }
 
 // 检查分析结果是否有告警并显示弹窗
 const checkForAlerts = (results) => {
   if (!results || !Array.isArray(results)) return
-  
+
   // 检查是否有告警
   const alerts = []
-  
+
   results.forEach(result => {
     // 检查安全规范告警
     if ((result.label === '未戴安全帽' || result.label === '未穿反光衣') && result.value === '检测到') {
@@ -1246,17 +1271,17 @@ const checkForAlerts = (results) => {
       }
     }
   })
-  
+
   // 生成当前告警状态的唯一标识
   const currentAlertKey = alerts.sort().join('|')
-  
+
   // 检查告警状态是否发生变化
   if (currentAlertKey !== lastAlertState.value) {
     // 清除之前的防抖定时器
     if (alertDebounceTimer.value) {
       clearTimeout(alertDebounceTimer.value)
     }
-    
+
     // 设置防抖定时器
     alertDebounceTimer.value = setTimeout(() => {
       // 如果有告警，显示弹窗
@@ -1267,21 +1292,76 @@ const checkForAlerts = (results) => {
           duration: 5000,
           showClose: true
         })
+        // 播放警告提示音（只播放最后一个告警对应的声音）
+        playWarningSound(alerts[alerts.length - 1])
+      } else {
+        // 没有告警时停止声音
+        stopWarningSound()
       }
-      
+
       // 更新上次告警状态
       lastAlertState.value = currentAlertKey
     }, ALERT_DEBOUNCE_TIME)
   }
 }
 
+// 根据告警类型播放对应的提示音
+const playWarningSound = (alertType) => {
+  // 如果提示音已关闭，不播放任何声音
+  if (!enableWarningSound.value) {
+    stopWarningSound()
+    return
+  }
+
+  // 停止之前播放的声音
+  stopWarningSound()
+
+  // 使用 Web Audio API 播放简短提示音
+  try {
+    const audioContext = new (window.AudioContext || window.webkitAudioContext)()
+    const oscillator = audioContext.createOscillator()
+    const gainNode = audioContext.createGain()
+
+    oscillator.connect(gainNode)
+    gainNode.connect(audioContext.destination)
+
+    // 根据告警类型设置不同的频率和音调
+    let frequency = 880 // 默认频率
+    let duration = 0.3 // 默认持续时间
+    let oscType = 'sine'
+
+    if (alertType.includes('火焰') || alertType.includes('烟雾') || alertType.includes('火警')) {
+      // 火警：急促的双音
+      frequency = 1000
+      duration = 0.5
+    } else if (alertType.includes('区域入侵') || alertType.includes('人员') || alertType.includes('车辆')) {
+      // 入侵告警：中等频率
+      frequency = 800
+      duration = 0.4
+    } else if (alertType.includes('安全帽') || alertType.includes('反光衣')) {
+      // 安全规范：较低频率
+      frequency = 660
+      duration = 0.3
+    }
+
+    oscillator.frequency.value = frequency
+    oscillator.type = oscType
+    gainNode.gain.value = 0.3 // 设置音量
+
+    oscillator.start()
+    oscillator.stop(audioContext.currentTime + duration)
+  } catch (e) {
+    console.error('播放提示音失败:', e)
+  }
+}
+
 // 检查本地视频分析结果是否有告警并显示弹窗
 const checkLocalVideoAlerts = (results) => {
   if (!results || !Array.isArray(results)) return
-  
+
   // 检查是否有告警
   const alerts = []
-  
+
   results.forEach(result => {
     // 检查安全规范告警
     if ((result.label === '未戴安全帽' || result.label === '未穿反光衣') && result.value === '检测到') {
@@ -1311,7 +1391,7 @@ const checkLocalVideoAlerts = (results) => {
       }
     }
   })
-  
+
   // 如果有告警，显示弹窗
   if (alerts.length > 0) {
     ElMessage({
@@ -1320,6 +1400,11 @@ const checkLocalVideoAlerts = (results) => {
       duration: 5000,
       showClose: true
     })
+    // 播放警告提示音（只播放最后一个告警对应的声音）
+    playWarningSound(alerts[alerts.length - 1])
+  } else {
+    // 没有告警时停止声音
+    stopWarningSound()
   }
 }
 
