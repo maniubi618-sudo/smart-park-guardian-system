@@ -21,7 +21,7 @@
             </el-button>
           </div>
         </div>
-        <el-scrollbar v-if="!cameraPanelCollapsed">
+        <el-scrollbar v-if="!cameraPanelCollapsed" style="height: 340px;">
           <div
             v-for="camera in cameras"
             :key="camera.camera_id"
@@ -55,7 +55,7 @@
             </el-button>
           </div>
         </div>
-        <el-scrollbar v-if="!alarmPanelCollapsed">
+        <el-scrollbar v-if="!alarmPanelCollapsed" style="height: 240px;">
           <div
             v-for="alarm in alarms"
             :key="alarm.alarm_id"
@@ -500,6 +500,7 @@ onUnmounted(() => {
 
 .el-scrollbar {
   height: calc(100% - 48px);
+  overflow-y: auto;
 }
 
 .panel-header {
