@@ -773,35 +773,41 @@ class CameraInfoService:
                     if write_to_database and (helmet_detected or vest_detected or fire_detected or intrusion_detected or person_count > 0):
                         # 将告警处理放到后台执行，避免阻塞视频流
                         async def process_alarm():
-                            # 保存告警截图
-                            snapshot_url = ""
+                            # 创建新的数据库会话，避免使用可能已关闭的会话
+                            from app.config.database import SessionLocal
+                            alarm_db = SessionLocal()
                             try:
-                                snapshot_url = StorageService.upload_alarm_snapshot(frame_cv, camera_id)
-                                logger.info(f"告警截图上传成功: {snapshot_url}")
-                            except Exception as e:
-                                logger.error(f"上传告警截图失败: {str(e)}")
+                                # 保存告警截图
                                 snapshot_url = ""
-                            
-                            # 确定告警类型
-                            alarm_type = 0  # 默认为安全规范
-                            if fire_detected or smoke_detected:
-                                alarm_type = 2  # 火警
-                            elif person_count > 0 or vehicle_count > 0:
-                                alarm_type = 1  # 区域入侵
-                            elif helmet_detected or vest_detected:
-                                alarm_type = 0  # 安全规范
-                            
-                            # 创建告警记录（无论是否有截图都创建）
-                            try:
-                                alarm = create_alarm(db, camera_id, alarm_type, 0, get_now(), snapshot_url if snapshot_url else "")
-                                logger.info(f"告警记录创建成功: alarm_id={alarm.alarm_id}, camera_id={camera_id}, alarm_type={alarm_type}, snapshot={snapshot_url}")
-                                # 广播告警
-                                sync_broadcast_alarm(alarm)
-                            except Exception as e:
-                                logger.error(f"创建告警记录失败: {str(e)}")
-                                import traceback
-                                logger.error(traceback.format_exc())
-                        
+                                try:
+                                    snapshot_url = StorageService.upload_alarm_snapshot(frame_cv, camera_id)
+                                    logger.info(f"告警截图上传成功: {snapshot_url}")
+                                except Exception as e:
+                                    logger.error(f"上传告警截图失败: {str(e)}")
+                                    snapshot_url = ""
+
+                                # 确定告警类型
+                                alarm_type = 0  # 默认为安全规范
+                                if fire_detected or smoke_detected:
+                                    alarm_type = 2  # 火警
+                                elif person_count > 0 or vehicle_count > 0:
+                                    alarm_type = 1  # 区域入侵
+                                elif helmet_detected or vest_detected:
+                                    alarm_type = 0  # 安全规范
+
+                                # 创建告警记录（无论是否有截图都创建）
+                                try:
+                                    alarm = create_alarm(alarm_db, camera_id, alarm_type, 0, datetime.now(pytz.timezone('Asia/Shanghai')), snapshot_url if snapshot_url else "")
+                                    logger.info(f"告警记录创建成功: alarm_id={alarm.alarm_id}, camera_id={camera_id}, alarm_type={alarm_type}, snapshot={snapshot_url}")
+                                    # 广播告警
+                                    sync_broadcast_alarm(alarm)
+                                except Exception as e:
+                                    logger.error(f"创建告警记录失败: {str(e)}")
+                                    import traceback
+                                    logger.error(traceback.format_exc())
+                            finally:
+                                alarm_db.close()
+
                         # 创建后台任务处理告警
                         asyncio.create_task(process_alarm())
                 

@@ -66,6 +66,15 @@ async def get_phone_camera_page():
     return {"error": "页面不存在"}
 
 
+@app.get("/phone-location")
+async def get_phone_location_page():
+    """手机位置获取页面"""
+    html_path = os.path.join(os.path.dirname(__file__), "static", "phone-location.html")
+    if os.path.exists(html_path):
+        return FileResponse(html_path, media_type="text/html")
+    return {"error": "页面不存在"}
+
+
 # # 添加 JWT 中间件
 # app.add_middleware(JWTMiddleware)
 

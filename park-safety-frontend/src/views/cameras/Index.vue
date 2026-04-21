@@ -535,30 +535,6 @@
           <el-form-item label="摄像头IP" prop="camera_ip">
             <el-input v-model="cameraForm.camera_ip" placeholder="请输入摄像头IP" />
           </el-form-item>
-          <el-form-item label="经纬度" required>
-            <div style="display: flex; gap: 10px; width: 100%;">
-              <el-input 
-                v-model="cameraForm.latitude" 
-                placeholder="纬度" 
-                type="number"
-                :precision="6"
-                style="flex: 1;"
-              />
-              <el-input 
-                v-model="cameraForm.longitude" 
-                placeholder="经度" 
-                type="number"
-                :precision="6"
-                style="flex: 1;"
-              />
-              <el-button 
-                type="primary" 
-                :icon="VideoCamera" 
-                @click="openLocationQR"
-                title="扫描二维码获取位置"
-              />
-            </div>
-          </el-form-item>
           <el-form-item label="备注" prop="remark">
             <el-input v-model="cameraForm.remark" type="textarea" :rows="3" placeholder="请输入备注" />
           </el-form-item>
@@ -571,26 +547,7 @@
         </template>
       </el-dialog>
 
-      <!-- 二维码对话框 -->
-      <el-dialog
-        v-model="qrDialogVisible"
-        title="扫描二维码获取位置"
-        width="450px"
-      >
-        <div style="text-align: center;">
-          <div class="qr-code-section" v-if="locationQrCodeUrl">
-            <img :src="locationQrCodeUrl" alt="QR Code" class="qr-code" />
-          </div>
-          <div style="margin-top: 20px;">
-            <el-button type="primary" @click="openLocationPage">
-              在浏览器打开
-            </el-button>
-          </div>
-          <div style="margin-top: 20px; color: #909399; font-size: 14px;">
-            <p>使用手机扫描二维码，获取位置后点击"发送位置"传回</p>
-          </div>
-        </div>
-      </el-dialog>
+      
     </div>
   </MainLayout>
 </template>
@@ -636,14 +593,9 @@ const cameraForm = reactive({
   rtsp_url: '',
   analysis_mode: 0,
   camera_ip: '',
-  latitude: '',
-  longitude: '',
   remark: ''
 })
 
-const qrDialogVisible = ref(false)
-const locationQrCodeUrl = ref('')
-const locationWindow = ref(null)
 const cameraFormRef = ref(null)
 const submitLoading = ref(false)
 
@@ -897,8 +849,6 @@ const addCamera = () => {
   cameraForm.rtsp_url = ''
   cameraForm.analysis_mode = 0
   cameraForm.camera_ip = ''
-  cameraForm.latitude = ''
-  cameraForm.longitude = ''
   cameraForm.remark = ''
   // 重置表单验证状态
   if (cameraFormRef.value) {
@@ -916,55 +866,9 @@ const editCamera = (camera) => {
   cameraForm.rtsp_url = camera.rtsp_url
   cameraForm.analysis_mode = Number(camera.analysis_mode)
   cameraForm.camera_ip = camera.camera_ip
-  cameraForm.latitude = camera.latitude || ''
-  cameraForm.longitude = camera.longitude || ''
   cameraForm.remark = camera.remark
   dialogVisible.value = true
 }
-
-const openLocationQR = async () => {
-  try {
-    const locationUrl = `${window.location.origin}/phone-location`
-    locationQrCodeUrl.value = await QRCode.toDataURL(locationUrl, {
-      width: 300,
-      margin: 2
-    })
-    qrDialogVisible.value = true
-  } catch (error) {
-    console.error('QR Code generation error:', error)
-    ElMessage.error('生成二维码失败')
-  }
-}
-
-const openLocationPage = () => {
-  const locationUrl = `${window.location.origin}/phone-location`
-  locationWindow.value = window.open(locationUrl, '_blank', 'width=400,height=700')
-  qrDialogVisible.value = false
-}
-
-const handleMessage = (event) => {
-  if (event.data && event.data.type === 'location') {
-    const { latitude, longitude } = event.data.data
-    cameraForm.latitude = latitude
-    cameraForm.longitude = longitude
-    ElMessage.success('位置已获取！')
-    qrDialogVisible.value = false
-    if (locationWindow.value) {
-      locationWindow.value.close()
-    }
-  }
-}
-
-onMounted(() => {
-  window.addEventListener('message', handleMessage)
-})
-
-onUnmounted(() => {
-  window.removeEventListener('message', handleMessage)
-  if (locationWindow.value) {
-    locationWindow.value.close()
-  }
-})
 
 const deleteCamera = async (camera) => {
   // 确认删除
@@ -1105,8 +1009,9 @@ const startStream = async () => {
     stopStream()
 
     // 建立WebSocket连接
-    const token = localStorage.getItem('token')
-    const wsUrl = `ws://localhost:8089/api/v1/camera_infos/preview/${currentPreviewCameraId.value}/ws`
+    const protocol = window.location.protocol === 'https:' ? 'wss:' : 'ws:'
+    const host = window.location.host
+    const wsUrl = `${protocol}//${host}/api/v1/camera_infos/preview/${currentPreviewCameraId.value}/ws`
     wsConnection.value = new WebSocket(wsUrl)
 
     wsConnection.value.onopen = () => {
@@ -1203,8 +1108,9 @@ const startAnalysisTest = async () => {
     stopAnalysisTest()
 
     // 建立WebSocket连接进行分析测试
-    const token = localStorage.getItem('token')
-    const wsUrl = `ws://localhost:8089/api/v1/camera_infos/analysis/${currentAnalysisCameraId.value}/ws?write_to_database=${writeToDatabase.value}`
+    const protocol = window.location.protocol === 'https:' ? 'wss:' : 'ws:'
+    const host = window.location.host
+    const wsUrl = `${protocol}//${host}/api/v1/camera_infos/analysis/${currentAnalysisCameraId.value}/ws?write_to_database=${writeToDatabase.value}`
     analysisWsConnection.value = new WebSocket(wsUrl)
 
     analysisWsConnection.value.onopen = () => {
@@ -1597,7 +1503,7 @@ const startLocalVideoAnalysis = async () => {
       // 调用后端分析API
       try {
         const token = localStorage.getItem('token')
-        const response = await fetch('http://localhost:8089/api/v1/camera_infos/analyze_frame', {
+        const response = await fetch('/api/v1/camera_infos/analyze_frame', {
           method: 'POST',
           headers: {
             'Content-Type': 'application/json',
@@ -1775,7 +1681,7 @@ const openPhoneCamera = async () => {
 const detectLocalIP = async () => {
   try {
     // 方法1: 调用后端API获取本地IP地址
-    const response = await fetch('http://localhost:8089/api/v1/camera_infos/local_ip', {
+    const response = await fetch('/api/v1/camera_infos/local_ip', {
       method: 'GET'
     })
     
@@ -1889,7 +1795,7 @@ const analyzePhoneCameraFrame = async () => {
     
     // 调用后端API分析
     const token = localStorage.getItem('token')
-    const response = await fetch('http://localhost:8089/api/v1/camera_infos/analyze_frame', {
+    const response = await fetch('/api/v1/camera_infos/analyze_frame', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',

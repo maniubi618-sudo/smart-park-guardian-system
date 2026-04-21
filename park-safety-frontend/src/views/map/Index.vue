@@ -102,10 +102,18 @@
             class="alarm-item"
             @click="focusAlarm(alarm)"
           >
-            <el-tag :type="getAlarmTypeTag(alarm.alarm_type)" size="small">
-              {{ getAlarmTypeName(alarm.alarm_type) }}
-            </el-tag>
-            <span class="alarm-time">{{ formatTime(alarm.alarm_time) }}</span>
+            <div class="alarm-item-header">
+              <el-tag :type="getAlarmTypeTag(alarm.alarm_type)" size="small">
+                {{ getAlarmTypeName(alarm.alarm_type) }}
+              </el-tag>
+              <span class="alarm-time">{{ formatTime(alarm.alarm_time) }}</span>
+            </div>
+            <div class="alarm-item-body" v-if="alarm.camera_name">
+              <span class="alarm-camera">{{ alarm.camera_name }}</span>
+            </div>
+            <div class="alarm-item-footer" v-if="alarm.alarm_desc">
+              <span class="alarm-desc">{{ alarm.alarm_desc }}</span>
+            </div>
           </div>
         </el-scrollbar>
       </div>
@@ -352,17 +360,19 @@ const renderPhoneCameraMarker = (uid, phone) => {
     map.remove(phoneCameraMarkers.value[uid])
   }
 
-  const icon = new AMap.Icon({
-    size: new AMap.Size(48, 48),
-    imageSize: new AMap.Size(48, 48),
-    image: `data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><circle cx="50" cy="50" r="45" fill="white" stroke="${phone.streaming ? '#67c23a' : '#909399'}" stroke-width="4"/><text x="50" y="65" text-anchor="middle" font-size="36" fill="${phone.streaming ? '#67c23a' : '#909399'}">📱</text></svg>`
-  })
+  const markerContent = document.createElement('div')
+  markerContent.innerHTML = `
+    <div style="width: 48px; height: 48px; background: white; border-radius: 50%; border: 4px solid ${phone.streaming ? '#67c23a' : '#909399'}; display: flex; align-items: center; justify-content: center; font-size: 24px; box-shadow: 0 2px 8px rgba(0,0,0,0.2);">
+      📱
+    </div>
+  `
 
   const marker = new AMap.Marker({
     position: [phone.location.longitude, phone.location.latitude],
-    icon: icon,
+    content: markerContent,
     title: `手机摄像头 CAM-${uid}`,
-    zIndex: 20
+    zIndex: 20,
+    offset: new AMap.Pixel(-24, -24)
   })
 
   const infoContent = `
@@ -942,6 +952,56 @@ const refreshData = async () => {
 @keyframes pulse {
   0%, 100% { opacity: 1; }
   50% { opacity: 0.5; }
+}
+
+.alarm-item {
+  padding: 12px 16px;
+  border-bottom: 1px solid #ebeef5;
+  cursor: pointer;
+  transition: background 0.2s;
+}
+
+.alarm-item:hover {
+  background: #f5f7fa;
+}
+
+.alarm-item:active {
+  background: #ecf5ff;
+}
+
+.alarm-item-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 8px;
+}
+
+.alarm-item-body {
+  margin-bottom: 4px;
+}
+
+.alarm-camera {
+  font-size: 13px;
+  color: #606266;
+}
+
+.alarm-item-footer {
+  margin-top: 4px;
+}
+
+.alarm-desc {
+  font-size: 12px;
+  color: #909399;
+  line-height: 1.4;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+.alarm-time {
+  font-size: 11px;
+  color: #c0c4cc;
 }
 
 .camera-info {

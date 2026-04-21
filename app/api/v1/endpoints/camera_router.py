@@ -278,6 +278,10 @@ async def websocket_camera_analysis(
         await CameraInfoService.stream_camera_analysis(websocket, camera_id, db, write_to_database)
     except WebSocketDisconnect:
         pass
+    except Exception as e:
+        logger.error(f"WebSocket分析异常: {str(e)}")
+        import traceback
+        logger.error(traceback.format_exc())
 
 
 # 11. POST /api/v1/camera_infos/analyze_frame：分析单个视频帧
