@@ -1,8 +1,12 @@
 import { defineConfig } from 'vite'
 import vue from '@vitejs/plugin-vue'
 import path from 'path'
+import { existsSync } from 'fs'
 
-// https://vite.dev/config/
+const certDir = path.resolve(__dirname, '../app')
+const certFile = path.join(certDir, 'server.crt')
+const keyFile = path.join(certDir, 'server.key')
+
 export default defineConfig({
   plugins: [vue()],
   resolve: {
@@ -13,10 +17,16 @@ export default defineConfig({
   server: {
     host: '0.0.0.0',
     port: 5173,
+    https: existsSync(certFile) && existsSync(keyFile) ? {
+      cert: certFile,
+      key: keyFile
+    } : false,
     proxy: {
       '/api': {
-        target: 'http://localhost:8089',
-        changeOrigin: true
+        target: 'https://localhost:8443',
+        changeOrigin: true,
+        secure: false,
+        ws: true
       }
     }
   }

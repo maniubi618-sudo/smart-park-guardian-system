@@ -2010,10 +2010,7 @@ const startPhoneViewer = () => {
     
     // 重要！手机和观看端必须连接同一个后端！
     // 都连HTTPS(8443)，摄像头权限才有效
-    const protocol = 'wss://'
-    const port = '8443'
-    const hostname = 'localhost'
-    const wsUrl = `${protocol}${hostname}:${port}/api/v1/camera_infos/phone_camera/viewer`
+    const wsUrl = `/api/v1/camera_infos/phone_camera/viewer`
     
     console.log('开始连接手机摄像头观看端:', wsUrl)
     phoneViewerWs.value = new WebSocket(wsUrl)

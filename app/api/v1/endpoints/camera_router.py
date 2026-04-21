@@ -321,17 +321,23 @@ async def websocket_phone_camera_phone(websocket: WebSocket):
     try:
         while True:
             data = await websocket.receive()
-            logger.info(f"收到手机端数据: {'bytes' if 'bytes' in data else 'text'}, 大小: {len(data['bytes'] if 'bytes' in data else data['text'])}")
+            if data.get("type") == "websocket.disconnect":
+                logger.info("收到WebSocket断开消息")
+                break
             if "text" in data:
-                try:
-                    import json
-                    msg = json.loads(data["text"])
-                    if msg.get("type") == "meta":
-                        phone_camera_manager.update_phone_meta(msg.get("data", {}))
-                except Exception as parse_err:
-                    logger.debug(f"解析文本消息失败(可能是保活消息): {parse_err}")
-                await phone_camera_manager.forward_from_phone(data["text"])
+                text_data = data["text"]
+                logger.info(f"收到手机端文本数据, 大小: {len(text_data)}")
+                if text_data:
+                    try:
+                        import json
+                        msg = json.loads(text_data)
+                        if msg.get("type") == "meta":
+                            phone_camera_manager.update_phone_meta(msg.get("data", {}))
+                    except Exception as parse_err:
+                        logger.debug(f"解析文本消息失败(可能是保活消息): {parse_err}")
+                    await phone_camera_manager.forward_from_phone(text_data)
             elif "bytes" in data:
+                logger.info(f"收到手机端字节数据, 大小: {len(data['bytes'])}")
                 await phone_camera_manager.forward_from_phone(data["bytes"])
     except WebSocketDisconnect:
         phone_camera_manager.disconnect_phone()
