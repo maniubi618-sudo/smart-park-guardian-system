@@ -10503,3 +10503,73 @@
 2026-04-21 17:38:24,731 - fastapi_app - INFO - 收到手机端字节数据, 大小: 44649
 2026-04-21 17:38:24,871 - fastapi_app - INFO - 收到手机端字节数据, 大小: 46252
 2026-04-21 17:38:24,955 - fastapi_app - INFO - 收到WebSocket断开消息
+2026-04-21 17:42:08,193 - fastapi_app - INFO - WebSocket连接已建立，当前连接数: 1
+2026-04-21 17:47:34,054 - fastapi_app - INFO - WebSocket连接已断开，当前连接数: 0
+2026-04-21 17:47:34,614 - fastapi_app - INFO - WebSocket连接已建立，当前连接数: 1
+2026-04-21 17:58:47,256 - fastapi_app - INFO - WebSocket连接已建立，当前连接数: 1
+2026-04-21 17:58:52,559 - fastapi_app - INFO - 观看端已连接，当前观看端数: 1
+2026-04-21 17:58:56,146 - fastapi_app - INFO - WebSocket连接已断开，当前连接数: 0
+2026-04-21 17:58:57,134 - fastapi_app - INFO - WebSocket连接已建立，当前连接数: 1
+2026-04-21 17:58:58,008 - fastapi_app - INFO - 观看端已连接，当前观看端数: 2
+2026-04-21 17:59:08,187 - fastapi_app - INFO - 观看端已连接，当前观看端数: 3
+2026-04-21 17:59:38,011 - fastapi_app - INFO - WebSocket连接已断开，当前连接数: 0
+2026-04-21 17:59:38,608 - fastapi_app - INFO - WebSocket连接已建立，当前连接数: 1
+2026-04-21 18:02:13,868 - fastapi_app - INFO - WebSocket连接已断开，当前连接数: 0
+2026-04-21 18:02:14,441 - fastapi_app - INFO - WebSocket连接已建立，当前连接数: 1
+2026-04-21 18:02:57,158 - fastapi_app - WARNING - 手机连接但没有提供UID
+2026-04-21 18:02:57,244 - fastapi_app - INFO - 手机 AY0NO9 元数据已更新: {'uid': 'AY0NO9', 'facing': {'isTrusted': True}, 'ip': '10.25.4.228', 'width': 720, 'height': 1280, 'location': {'latitude': 20.044125, 'longitude': 110.404843, 'accuracy': 32}}
+2026-04-21 18:02:57,246 - fastapi_app - ERROR - 转发数据到观看端失败: 
+2026-04-21 18:02:57,246 - fastapi_app - ERROR - 转发数据到观看端失败: 
+2026-04-21 18:02:57,246 - fastapi_app - ERROR - 转发数据到观看端失败: 
+2026-04-21 18:02:59,714 - fastapi_app - INFO - 观看端已连接，当前观看端数: 1
+2026-04-21 18:03:16,817 - fastapi_app - ERROR - 转发数据到观看端失败: 
+2026-04-21 18:03:18,599 - fastapi_app - INFO - WebSocket连接已断开，当前连接数: 0
+2026-04-21 18:03:19,140 - fastapi_app - INFO - WebSocket连接已建立，当前连接数: 1
+2026-04-21 18:03:19,258 - fastapi_app - INFO - 收到WebSocket断开消息
+2026-04-21 18:03:31,050 - fastapi_app - WARNING - 手机连接但没有提供UID
+2026-04-21 18:03:31,668 - fastapi_app - INFO - 手机 AY0NO9 元数据已更新: {'uid': 'AY0NO9', 'facing': {'isTrusted': True}, 'ip': '10.25.4.228', 'width': 720, 'height': 1280, 'location': {'latitude': 20.044132, 'longitude': 110.404846, 'accuracy': 32}}
+2026-04-21 18:03:34,072 - fastapi_app - INFO - 观看端已连接，当前观看端数: 1
+2026-04-21 18:04:33,453 - fastapi_app - ERROR - 转发数据到观看端失败: 
+2026-04-21 18:04:36,563 - fastapi_app - INFO - 观看端已连接，当前观看端数: 1
+2026-04-21 18:04:45,074 - fastapi_app - INFO - 观看端已连接，当前观看端数: 2
+2026-04-21 18:04:53,578 - fastapi_app - INFO - 收到WebSocket断开消息
+2026-04-21 18:06:38,550 - fastapi_app - INFO - 观看端已连接，当前观看端数: 3
+2026-04-21 18:07:37,585 - fastapi_app - INFO - 观看端已连接，当前观看端数: 4
+2026-04-21 18:07:43,250 - fastapi_app - INFO - WebSocket连接已断开，当前连接数: 0
+2026-04-21 18:07:43,862 - fastapi_app - INFO - WebSocket连接已建立，当前连接数: 1
+2026-04-21 18:07:44,598 - fastapi_app - INFO - 观看端已连接，当前观看端数: 5
+2026-04-21 18:08:44,543 - fastapi_app - INFO - 观看端已连接，当前观看端数: 6
+2026-04-21 18:08:56,094 - fastapi_app - INFO - 观看端已连接，当前观看端数: 7
+2026-04-21 18:08:56,700 - fastapi_app - INFO - WebSocket连接已断开，当前连接数: 0
+2026-04-21 18:08:57,253 - fastapi_app - INFO - WebSocket连接已建立，当前连接数: 1
+2026-04-21 18:08:58,074 - fastapi_app - INFO - 观看端已连接，当前观看端数: 8
+2026-04-21 18:09:01,668 - fastapi_app - INFO - 观看端已连接，当前观看端数: 9
+2026-04-21 18:09:07,982 - fastapi_app - INFO - 观看端已连接，当前观看端数: 10
+2026-04-21 18:09:21,433 - fastapi_app - WARNING - 手机连接但没有提供UID
+2026-04-21 18:09:21,481 - fastapi_app - INFO - 手机 AY0NO9 元数据已更新: {'uid': 'AY0NO9', 'facing': {'isTrusted': True}, 'ip': '10.25.4.228', 'width': 720, 'height': 1280, 'location': {'latitude': 20.044132, 'longitude': 110.404846, 'accuracy': 32}}
+2026-04-21 18:09:21,482 - fastapi_app - ERROR - 转发数据到观看端失败: 
+2026-04-21 18:09:21,483 - fastapi_app - ERROR - 转发数据到观看端失败: 
+2026-04-21 18:09:21,483 - fastapi_app - ERROR - 转发数据到观看端失败: 
+2026-04-21 18:09:21,484 - fastapi_app - ERROR - 转发数据到观看端失败: 
+2026-04-21 18:09:21,484 - fastapi_app - ERROR - 转发数据到观看端失败: 
+2026-04-21 18:09:21,484 - fastapi_app - ERROR - 转发数据到观看端失败: 
+2026-04-21 18:09:21,485 - fastapi_app - ERROR - 转发数据到观看端失败: 
+2026-04-21 18:09:21,485 - fastapi_app - ERROR - 转发数据到观看端失败: 
+2026-04-21 18:09:27,515 - fastapi_app - INFO - 收到WebSocket断开消息
+2026-04-21 18:10:24,573 - fastapi_app - INFO - 观看端已连接，当前观看端数: 3
+2026-04-21 18:11:38,191 - fastapi_app - INFO - 观看端已连接，当前观看端数: 4
+2026-04-21 18:11:38,680 - fastapi_app - INFO - WebSocket连接已断开，当前连接数: 0
+2026-04-21 18:11:39,271 - fastapi_app - INFO - WebSocket连接已建立，当前连接数: 1
+2026-04-21 18:11:40,065 - fastapi_app - INFO - 观看端已连接，当前观看端数: 5
+2026-04-21 18:11:43,428 - fastapi_app - INFO - 观看端已连接，当前观看端数: 6
+2026-04-21 18:12:15,484 - fastapi_app - INFO - 观看端已连接，当前观看端数: 7
+2026-04-21 18:12:49,972 - fastapi_app - INFO - 观看端已连接，当前观看端数: 8
+2026-04-21 18:21:20,604 - fastapi_app - INFO - 观看端已连接，当前观看端数: 9
+2026-04-21 18:21:27,077 - fastapi_app - INFO - WebSocket连接已断开，当前连接数: 0
+2026-04-21 18:21:27,617 - fastapi_app - INFO - WebSocket连接已建立，当前连接数: 1
+2026-04-21 18:22:12,198 - fastapi_app - INFO - WebSocket连接已建立，当前连接数: 2
+2026-04-21 18:22:50,495 - fastapi_app - INFO - WebSocket连接已断开，当前连接数: 1
+2026-04-21 18:25:44,146 - fastapi_app - INFO - 观看端已连接，当前观看端数: 10
+2026-04-21 18:25:46,527 - fastapi_app - INFO - 观看端已连接，当前观看端数: 11
+2026-04-21 18:28:57,574 - fastapi_app - INFO - 观看端已连接，当前观看端数: 1
+2026-04-21 18:28:58,226 - fastapi_app - INFO - WebSocket连接已建立，当前连接数: 1
