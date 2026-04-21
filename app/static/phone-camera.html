@@ -205,7 +205,10 @@ async function startCamera(facing) {
 
   // 清理旧流
   if (stream) {
-    stream.getTracks().forEach(t => t.stop());
+    stream.getTracks().forEach(t => {
+      t.stop();
+      console.log('停止旧轨道:', t.label);
+    });
     stream = null;
   }
 
@@ -214,15 +217,15 @@ async function startCamera(facing) {
     ws.onclose = null;
     ws.close();
     ws = null;
+    console.log('关闭旧WebSocket连接');
   }
 
-  // 尝试包含torch控制的约束
+  // 等待一下让资源完全释放
+  await new Promise(resolve => setTimeout(resolve, 300));
+
+  // 尝试获取摄像头（简化约束，减少等待时间）
   const constraints = [
-    { video: { facingMode: facing, width: { ideal: 1280 }, height: { ideal: 720 }, frameRate: { ideal: 20 }, torch: false } },
-    { video: { facingMode: facing, width: { ideal: 960 }, height: { ideal: 540 }, torch: false } },
-    { video: { facingMode: facing, torch: false } },
-    { video: { facingMode: facing, width: { ideal: 1280 }, height: { ideal: 720 }, frameRate: { ideal: 20 } } },
-    { video: { facingMode: facing, width: { ideal: 960 }, height: { ideal: 540 } } },
+    { video: { facingMode: facing, width: { ideal: 1280 }, height: { ideal: 720 } } },
     { video: { facingMode: facing } },
     { video: true }
   ];
@@ -247,7 +250,7 @@ async function startCamera(facing) {
 
   await new Promise(resolve => {
     video.onloadedmetadata = resolve;
-    setTimeout(resolve, 3000); // fallback timeout
+    setTimeout(resolve, 2000); // 2秒超时
   });
   await video.play().catch(() => {});
 

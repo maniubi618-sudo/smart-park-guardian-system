@@ -13,16 +13,20 @@ class PhoneCameraManager:
         self.phone_connected = False
 
     async def connect_phone(self, websocket: WebSocket):
-        await websocket.accept()
-        # 断开旧的手机连接
+        # 先强制断开旧连接
         if self.phone_connection:
             try:
                 await self.phone_connection.close()
+                logger.info("强制关闭旧手机连接")
             except:
-                pass
+                logger.info("旧手机连接已失效")
+            self.phone_connection = None
+            self.phone_connected = False
+
+        await websocket.accept()
         self.phone_connection = websocket
         self.phone_connected = True
-        logger.info("手机摄像头已连接")
+        logger.info("新手机摄像头已连接")
         # 通知所有观看端
         await self.broadcast_to_viewers({
             "type": "phone_connected",
@@ -41,6 +45,14 @@ class PhoneCameraManager:
             })
 
     def disconnect_phone(self):
+        logger.info("正在断开手机摄像头连接...")
+        if self.phone_connection:
+            try:
+                # 尝试发送关闭消息
+                import asyncio
+                asyncio.create_task(self.phone_connection.close())
+            except:
+                pass
         self.phone_connection = None
         self.phone_connected = False
         self.phone_meta = {}

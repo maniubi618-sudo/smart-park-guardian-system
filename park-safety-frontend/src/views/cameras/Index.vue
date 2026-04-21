@@ -2040,12 +2040,15 @@ const startPhoneViewer = () => {
           
           const ctx = canvas.getContext('2d')
           
-          // 简化逻辑：固定canvas尺寸
-          canvas.width = 640
-          canvas.height = 480
+          // 获取容器尺寸，让canvas适配
+          const container = canvas.parentElement
+          const containerRect = container.getBoundingClientRect()
+          
+          canvas.width = containerRect.width
+          canvas.height = containerRect.height
           
           // 清空画布
-          ctx.fillStyle = '#0f0' // 先用绿色测试一下canvas是否工作
+          ctx.fillStyle = '#000'
           ctx.fillRect(0, 0, canvas.width, canvas.height)
           
           // 计算缩放比例保持宽高比
