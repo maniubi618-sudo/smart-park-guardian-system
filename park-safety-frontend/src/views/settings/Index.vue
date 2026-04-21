@@ -1,142 +1,145 @@
 <template>
-  <div class="settings-container">
-    <el-card class="settings-card">
-      <template #header>
-        <div class="card-header">
-          <h2 class="card-title">系统配置</h2>
-          <el-button type="primary" @click="saveSettings" :loading="loading" :disabled="loading">
-            保存配置
-          </el-button>
-        </div>
-      </template>
+  <MainLayout>
+    <div class="settings-container">
+      <el-card class="settings-card">
+        <template #header>
+          <div class="card-header">
+            <h2 class="card-title">系统配置</h2>
+            <el-button type="primary" @click="saveSettings" :loading="loading" :disabled="loading">
+              保存配置
+            </el-button>
+          </div>
+        </template>
 
-      <el-alert
-        v-if="message"
-        :title="message"
-        :type="messageType"
-        show-icon
-        :closable="false"
-        class="message-alert"
-      />
+        <el-alert
+          v-if="message"
+          :title="message"
+          :type="messageType"
+          show-icon
+          :closable="false"
+          class="message-alert"
+        />
 
-      <el-tabs type="border-card">
-        <!-- 检测参数配置 -->
-        <el-tab-pane label="检测参数">
-          <el-form :model="detectionSettings" label-width="120px">
-            <el-form-item label="火灾检测阈值">
-              <el-slider
-                v-model="detectionSettings.fireThreshold"
-                :min="0"
-                :max="1"
-                :step="0.01"
-                show-input
-              />
-              <span class="form-help">值越低灵敏度越高，建议值：0.7</span>
-            </el-form-item>
+        <el-tabs type="border-card">
+          <!-- 检测参数配置 -->
+          <el-tab-pane label="检测参数">
+            <el-form :model="detectionSettings" label-width="120px">
+              <el-form-item label="火灾检测阈值">
+                <el-slider
+                  v-model="detectionSettings.fireThreshold"
+                  :min="0"
+                  :max="1"
+                  :step="0.01"
+                  show-input
+                />
+                <span class="form-help">值越低灵敏度越高，建议值：0.7</span>
+              </el-form-item>
 
-            <el-form-item label="安全帽检测阈值">
-              <el-slider
-                v-model="detectionSettings.helmetThreshold"
-                :min="0"
-                :max="1"
-                :step="0.01"
-                show-input
-              />
-              <span class="form-help">值越低灵敏度越高，建议值：0.7</span>
-            </el-form-item>
+              <el-form-item label="安全帽检测阈值">
+                <el-slider
+                  v-model="detectionSettings.helmetThreshold"
+                  :min="0"
+                  :max="1"
+                  :step="0.01"
+                  show-input
+                />
+                <span class="form-help">值越低灵敏度越高，建议值：0.7</span>
+              </el-form-item>
 
-            <el-form-item label="反光衣检测阈值">
-              <el-slider
-                v-model="detectionSettings.vestThreshold"
-                :min="0"
-                :max="1"
-                :step="0.01"
-                show-input
-              />
-              <span class="form-help">值越低灵敏度越高，建议值：0.7</span>
-            </el-form-item>
+              <el-form-item label="反光衣检测阈值">
+                <el-slider
+                  v-model="detectionSettings.vestThreshold"
+                  :min="0"
+                  :max="1"
+                  :step="0.01"
+                  show-input
+                />
+                <span class="form-help">值越低灵敏度越高，建议值：0.7</span>
+              </el-form-item>
 
-            <el-form-item label="告警延迟（秒）">
-              <el-input-number v-model="detectionSettings.alarmDelay" :min="0" :max="60" :step="1" />
-              <span class="form-help">告警触发前的延迟时间，建议值：0</span>
-            </el-form-item>
+              <el-form-item label="告警延迟（秒）">
+                <el-input-number v-model="detectionSettings.alarmDelay" :min="0" :max="60" :step="1" />
+                <span class="form-help">告警触发前的延迟时间，建议值：0</span>
+              </el-form-item>
 
-            <el-form-item label="防抖时间（秒）">
-              <el-input-number v-model="detectionSettings.debounceTime" :min="0" :max="60" :step="1" />
-              <span class="form-help">避免瞬时误报的防抖时间，建议值：1</span>
-            </el-form-item>
-          </el-form>
-        </el-tab-pane>
+              <el-form-item label="防抖时间（秒）">
+                <el-input-number v-model="detectionSettings.debounceTime" :min="0" :max="60" :step="1" />
+                <span class="form-help">避免瞬时误报的防抖时间，建议值：1</span>
+              </el-form-item>
+            </el-form>
+          </el-tab-pane>
 
-        <!-- 系统配置 -->
-        <el-tab-pane label="系统配置">
-          <el-form :model="systemSettings" label-width="120px">
-            <el-form-item label="数据库主机">
-              <el-input v-model="systemSettings.dbHost" placeholder="输入数据库主机地址" />
-            </el-form-item>
+          <!-- 系统配置 -->
+          <el-tab-pane label="系统配置">
+            <el-form :model="systemSettings" label-width="120px">
+              <el-form-item label="数据库主机">
+                <el-input v-model="systemSettings.dbHost" placeholder="输入数据库主机地址" />
+              </el-form-item>
 
-            <el-form-item label="数据库端口">
-              <el-input-number v-model="systemSettings.dbPort" :min="1" :max="65535" />
-            </el-form-item>
+              <el-form-item label="数据库端口">
+                <el-input-number v-model="systemSettings.dbPort" :min="1" :max="65535" />
+              </el-form-item>
 
-            <el-form-item label="数据库用户">
-              <el-input v-model="systemSettings.dbUser" placeholder="输入数据库用户名" />
-            </el-form-item>
+              <el-form-item label="数据库用户">
+                <el-input v-model="systemSettings.dbUser" placeholder="输入数据库用户名" />
+              </el-form-item>
 
-            <el-form-item label="数据库密码">
-              <el-input v-model="systemSettings.dbPassword" type="password" placeholder="输入数据库密码" />
-            </el-form-item>
+              <el-form-item label="数据库密码">
+                <el-input v-model="systemSettings.dbPassword" type="password" placeholder="输入数据库密码" />
+              </el-form-item>
 
-            <el-form-item label="数据库名称">
-              <el-input v-model="systemSettings.dbName" placeholder="输入数据库名称" />
-            </el-form-item>
+              <el-form-item label="数据库名称">
+                <el-input v-model="systemSettings.dbName" placeholder="输入数据库名称" />
+              </el-form-item>
 
-            <el-form-item label="告警快照保存路径">
-              <el-input v-model="systemSettings.snapshotPath" placeholder="输入快照保存路径" />
-            </el-form-item>
-          </el-form>
-        </el-tab-pane>
+              <el-form-item label="告警快照保存路径">
+                <el-input v-model="systemSettings.snapshotPath" placeholder="输入快照保存路径" />
+              </el-form-item>
+            </el-form>
+          </el-tab-pane>
 
-        <!-- 告警通知配置 -->
-        <el-tab-pane label="告警通知">
-          <el-form :model="notificationSettings" label-width="120px">
-            <el-form-item label="启用WebSocket推送">
-              <el-switch v-model="notificationSettings.enableWebSocket" />
-            </el-form-item>
+          <!-- 告警通知配置 -->
+          <el-tab-pane label="告警通知">
+            <el-form :model="notificationSettings" label-width="120px">
+              <el-form-item label="启用WebSocket推送">
+                <el-switch v-model="notificationSettings.enableWebSocket" />
+              </el-form-item>
 
-            <el-form-item label="启用邮件通知">
-              <el-switch v-model="notificationSettings.enableEmail" />
-            </el-form-item>
+              <el-form-item label="启用邮件通知">
+                <el-switch v-model="notificationSettings.enableEmail" />
+              </el-form-item>
 
-            <el-form-item label="邮件服务器">
-              <el-input v-model="notificationSettings.emailServer" placeholder="输入邮件服务器地址" />
-            </el-form-item>
+              <el-form-item label="邮件服务器">
+                <el-input v-model="notificationSettings.emailServer" placeholder="输入邮件服务器地址" />
+              </el-form-item>
 
-            <el-form-item label="邮件端口">
-              <el-input-number v-model="notificationSettings.emailPort" :min="1" :max="65535" />
-            </el-form-item>
+              <el-form-item label="邮件端口">
+                <el-input-number v-model="notificationSettings.emailPort" :min="1" :max="65535" />
+              </el-form-item>
 
-            <el-form-item label="发件人邮箱">
-              <el-input v-model="notificationSettings.emailSender" placeholder="输入发件人邮箱" />
-            </el-form-item>
+              <el-form-item label="发件人邮箱">
+                <el-input v-model="notificationSettings.emailSender" placeholder="输入发件人邮箱" />
+              </el-form-item>
 
-            <el-form-item label="发件人密码">
-              <el-input v-model="notificationSettings.emailPassword" type="password" placeholder="输入发件人密码" />
-            </el-form-item>
+              <el-form-item label="发件人密码">
+                <el-input v-model="notificationSettings.emailPassword" type="password" placeholder="输入发件人密码" />
+              </el-form-item>
 
-            <el-form-item label="接收人邮箱">
-              <el-input v-model="notificationSettings.emailRecipients" placeholder="多个邮箱用逗号分隔" />
-            </el-form-item>
-          </el-form>
-        </el-tab-pane>
-      </el-tabs>
-    </el-card>
-  </div>
+              <el-form-item label="接收人邮箱">
+                <el-input v-model="notificationSettings.emailRecipients" placeholder="多个邮箱用逗号分隔" />
+              </el-form-item>
+            </el-form>
+          </el-tab-pane>
+        </el-tabs>
+      </el-card>
+    </div>
+  </MainLayout>
 </template>
 
 <script setup>
 import { ref, onMounted } from 'vue'
 import { useRouter } from 'vue-router'
+import MainLayout from '../../components/MainLayout.vue'
 
 const router = useRouter()
 const loading = ref(false)
@@ -221,11 +224,11 @@ onMounted(() => {
   width: 100%;
   padding: 20px;
   background-color: #f5f7fa;
-  min-height: 100vh;
+  min-height: calc(100vh - 80px);
 }
 
 .settings-card {
-  max-width: 1000px;
+  max-width: 1200px;
   margin: 0 auto;
   background-color: white;
   border-radius: 8px;

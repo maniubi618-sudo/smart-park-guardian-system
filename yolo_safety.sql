@@ -11,7 +11,7 @@
  Target Server Version : 80012 (8.0.12)
  File Encoding         : 65001
 
- Date: 04/04/2026 21:12:45
+ Date: 21/04/2026 14:52:45
 */
 
 SET NAMES utf8mb4;
@@ -34,7 +34,7 @@ CREATE TABLE `alarm`  (
   PRIMARY KEY (`alarm_id`) USING BTREE,
   INDEX `ix_alarm_alarm_id`(`alarm_id` ASC) USING BTREE,
   INDEX `ix_alarm_camera_id`(`camera_id` ASC) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 56 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_0900_ai_ci ROW_FORMAT = Dynamic;
+) ENGINE = InnoDB AUTO_INCREMENT = 56 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_0900_ai_ci ROW_FORMAT = DYNAMIC;
 
 -- ----------------------------
 -- Records of alarm
@@ -81,7 +81,7 @@ CREATE TABLE `alarm_handle_record`  (
   PRIMARY KEY (`handle_id`) USING BTREE,
   INDEX `ix_alarm_handle_record_handle_id`(`handle_id` ASC) USING BTREE,
   INDEX `ix_alarm_handle_record_alarm_id`(`alarm_id` ASC) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 7 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_0900_ai_ci ROW_FORMAT = Dynamic;
+) ENGINE = InnoDB AUTO_INCREMENT = 7 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_0900_ai_ci ROW_FORMAT = DYNAMIC;
 
 -- ----------------------------
 -- Records of alarm_handle_record
@@ -105,48 +105,50 @@ CREATE TABLE `camera_info`  (
   `rtsp_url` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL,
   `analysis_mode` int(11) NOT NULL,
   `camera_status` int(11) NULL DEFAULT NULL,
+  `latitude` float NULL DEFAULT NULL,
+  `longitude` float NULL DEFAULT NULL,
   `create_time` datetime NULL DEFAULT NULL,
   `update_time` datetime NULL DEFAULT NULL,
   PRIMARY KEY (`camera_id`) USING BTREE,
   INDEX `ix_camera_info_camera_id`(`camera_id` ASC) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 35 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_0900_ai_ci ROW_FORMAT = Dynamic;
+) ENGINE = InnoDB AUTO_INCREMENT = 35 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_0900_ai_ci ROW_FORMAT = DYNAMIC;
 
 -- ----------------------------
 -- Records of camera_info
 -- ----------------------------
-INSERT INTO `camera_info` VALUES (1, 'id为1的摄像头的新名字', 1, '东门岗亭上方', 'local:all.mp4', 1, 1, '2024-01-10 00:00:00', '2025-10-23 16:00:40');
-INSERT INTO `camera_info` VALUES (2, '仓库区域摄像头', 2, '仓库门口', 'local:helmet_vest.mp4', 2, 1, '2024-01-10 00:00:00', '2025-10-22 21:46:52');
-INSERT INTO `camera_info` VALUES (3, '危险品存放区摄像头', 3, '存放区围栏处', 'local:person_vehicle.mp4', 3, 1, '2024-01-10 00:00:00', '2025-10-22 21:52:00');
-INSERT INTO `camera_info` VALUES (4, '消防通道摄像头', 1, '消防通道入口', 'local:fire_smoke.mp4', 4, 1, '2024-01-11 00:00:00', '2025-10-22 21:46:52');
-INSERT INTO `camera_info` VALUES (5, '电梯轿厢摄像头', 3, '3号楼1单元电梯内', 'rtsp://192.168.1.106:554/stream', 1, 1, '2024-01-13 10:30:00', '2025-10-22 21:47:29');
-INSERT INTO `camera_info` VALUES (6, '小区东门摄像头', 1, '东门岗亭外侧', 'rtsp://192.168.1.107:554/stream', 3, 1, '2024-01-14 14:00:00', '2025-10-22 21:48:18');
-INSERT INTO `camera_info` VALUES (7, '地下车库摄像头', 2, '地下负一层拐角', 'rtsp://192.168.1.108:554/stream', 2, 1, '2024-01-15 09:15:00', '2025-10-22 21:48:53');
-INSERT INTO `camera_info` VALUES (8, '单元门口摄像头', 3, '5号楼2单元门口', 'rtsp://192.168.1.109:554/stream', 1, 1, '2024-01-16 16:45:00', '2025-10-22 21:48:23');
-INSERT INTO `camera_info` VALUES (9, '绿化带摄像头', 1, '中心花园北侧', 'rtsp://192.168.1.110:554/stream', 4, 1, '2024-01-17 11:20:00', '2025-10-22 21:26:15');
-INSERT INTO `camera_info` VALUES (10, '垃圾站摄像头', 2, '生活垃圾站旁', 'rtsp://192.168.1.111:554/stream', 2, 1, '2024-01-18 07:30:00', '2025-10-22 21:26:15');
-INSERT INTO `camera_info` VALUES (11, '健身区摄像头', 3, '室外健身器材区', 'rtsp://192.168.1.112:554/stream', 1, 1, '2024-01-19 15:50:00', '2025-10-22 21:26:15');
-INSERT INTO `camera_info` VALUES (12, '物业办公室摄像头', 1, '物业前台内侧', 'rtsp://192.168.1.113:554/stream', 3, 1, '2024-01-20 13:10:00', '2025-10-22 21:26:15');
-INSERT INTO `camera_info` VALUES (13, '快递柜摄像头', 2, '智能快递柜正面', 'rtsp://192.168.1.114:554/stream', 2, 1, '2024-01-21 10:05:00', '2025-10-22 21:26:15');
-INSERT INTO `camera_info` VALUES (14, '儿童游乐区摄像头', 3, '滑梯旁', 'rtsp://192.168.1.115:554/stream', 1, 1, '2024-01-22 09:40:00', '2025-10-22 21:26:16');
-INSERT INTO `camera_info` VALUES (15, '西门岗亭摄像头', 1, '西门岗亭内侧', 'rtsp://192.168.1.116:554/stream', 4, 1, '2024-01-23 16:25:00', '2025-10-22 21:26:16');
-INSERT INTO `camera_info` VALUES (16, '水泵房摄像头', 2, '地下水泵房门口', 'rtsp://192.168.1.117:554/stream', 2, 1, '2024-01-24 14:50:00', '2025-10-22 21:26:16');
-INSERT INTO `camera_info` VALUES (17, '配电房摄像头', 3, '配电房外侧', 'rtsp://192.168.1.118:554/stream', 1, 1, '2024-01-25 11:15:00', '2025-10-22 21:26:16');
-INSERT INTO `camera_info` VALUES (18, '非机动车车库摄像头', 1, '非机动车出入口', 'rtsp://192.168.1.119:554/stream', 3, 1, '2024-01-26 08:30:00', '2025-10-22 21:26:16');
-INSERT INTO `camera_info` VALUES (19, '监控中心摄像头', 2, '监控大屏前', 'rtsp://192.168.1.120:554/stream', 1, 1, '2024-01-27 15:40:00', '2025-10-22 21:26:15');
-INSERT INTO `camera_info` VALUES (20, '会所大堂摄像头', 3, '会所入口处', 'rtsp://192.168.1.121:554/stream', 1, 1, '2024-01-28 12:20:00', '2025-10-22 21:26:15');
-INSERT INTO `camera_info` VALUES (21, '消防控制室摄像头', 1, '消防控制操作台', 'rtsp://192.168.1.122:554/stream', 4, 1, '2024-01-29 10:50:00', '2025-10-22 21:26:16');
-INSERT INTO `camera_info` VALUES (22, '南门入口摄像头', 2, '南门主通道', 'rtsp://192.168.1.123:554/stream', 2, 1, '2024-01-30 09:10:00', '2025-10-22 21:26:15');
-INSERT INTO `camera_info` VALUES (23, '天台入口摄像头', 3, '10号楼天台门', 'rtsp://192.168.1.124:554/stream', 1, 1, '2024-01-31 17:30:00', '2025-10-22 21:26:15');
-INSERT INTO `camera_info` VALUES (24, '垃圾分拣站摄像头', 1, '垃圾分类投放点', 'rtsp://192.168.1.125:554/stream', 3, 1, '2024-02-01 14:20:00', '2025-10-22 21:26:15');
-INSERT INTO `camera_info` VALUES (25, '道闸系统摄像头', 2, '车辆道闸旁', 'rtsp://192.168.1.126:554/stream', 2, 1, '2024-02-02 11:45:00', '2025-10-22 21:26:15');
-INSERT INTO `camera_info` VALUES (26, '电梯机房摄像头', 3, '电梯机房内', 'rtsp://192.168.1.127:554/stream', 1, 1, '2024-02-03 08:55:00', '2025-10-22 21:26:15');
-INSERT INTO `camera_info` VALUES (27, '小区围墙摄像头', 1, '北侧围墙中段', 'rtsp://192.168.1.128:554/stream', 4, 1, '2024-02-04 16:10:00', '2025-10-22 21:26:15');
-INSERT INTO `camera_info` VALUES (28, '商铺门口摄像头', 2, '沿街商铺前', 'rtsp://192.168.1.129:554/stream', 2, 1, '2024-02-05 13:30:00', '2025-10-22 21:26:15');
-INSERT INTO `camera_info` VALUES (29, '活动中心摄像头', 3, '活动中心大厅', 'rtsp://192.168.1.130:554/stream', 1, 1, '2024-02-06 10:20:00', '2025-10-22 21:26:15');
-INSERT INTO `camera_info` VALUES (30, '岗亭外侧摄像头', 1, '北门岗亭外部', 'rtsp://192.168.1.131:554/stream', 3, 1, '2024-02-07 09:05:00', '2025-10-22 21:26:15');
-INSERT INTO `camera_info` VALUES (31, '化粪池区域摄像头', 2, '化粪池检修口旁', 'rtsp://192.168.1.132:554/stream', 2, 1, '2024-02-08 15:50:00', '2025-10-22 21:26:15');
-INSERT INTO `camera_info` VALUES (32, '仓库门口摄像头', 3, '物业仓库入口', 'rtsp://192.168.1.133:554/stream', 1, 1, '2024-02-09 12:15:00', '2025-10-22 21:26:15');
-INSERT INTO `camera_info` VALUES (33, '充电桩区域摄像头', 1, '电动汽车充电桩旁', 'rtsp://192.168.1.134:554/stream', 4, 1, '2024-02-10 14:40:00', '2025-10-22 21:26:15');
+INSERT INTO `camera_info` VALUES (1, 'id为1的摄像头的新名字', 1, '东门岗亭上方', 'local:all.mp4', 1, 1, NULL, NULL, '2024-01-10 00:00:00', '2025-10-23 16:00:40');
+INSERT INTO `camera_info` VALUES (2, '仓库区域摄像头', 2, '仓库门口', 'local:helmet_vest.mp4', 2, 1, NULL, NULL, '2024-01-10 00:00:00', '2025-10-22 21:46:52');
+INSERT INTO `camera_info` VALUES (3, '危险品存放区摄像头', 3, '存放区围栏处', 'local:person_vehicle.mp4', 3, 1, NULL, NULL, '2024-01-10 00:00:00', '2025-10-22 21:52:00');
+INSERT INTO `camera_info` VALUES (4, '消防通道摄像头', 1, '消防通道入口', 'local:fire_smoke.mp4', 4, 1, NULL, NULL, '2024-01-11 00:00:00', '2025-10-22 21:46:52');
+INSERT INTO `camera_info` VALUES (5, '电梯轿厢摄像头', 3, '3号楼1单元电梯内', 'rtsp://192.168.1.106:554/stream', 1, 1, NULL, NULL, '2024-01-13 10:30:00', '2025-10-22 21:47:29');
+INSERT INTO `camera_info` VALUES (6, '小区东门摄像头', 1, '东门岗亭外侧', 'rtsp://192.168.1.107:554/stream', 3, 1, NULL, NULL, '2024-01-14 14:00:00', '2025-10-22 21:48:18');
+INSERT INTO `camera_info` VALUES (7, '地下车库摄像头', 2, '地下负一层拐角', 'rtsp://192.168.1.108:554/stream', 2, 1, NULL, NULL, '2024-01-15 09:15:00', '2025-10-22 21:48:53');
+INSERT INTO `camera_info` VALUES (8, '单元门口摄像头', 3, '5号楼2单元门口', 'rtsp://192.168.1.109:554/stream', 1, 1, NULL, NULL, '2024-01-16 16:45:00', '2025-10-22 21:48:23');
+INSERT INTO `camera_info` VALUES (9, '绿化带摄像头', 1, '中心花园北侧', 'rtsp://192.168.1.110:554/stream', 4, 1, NULL, NULL, '2024-01-17 11:20:00', '2025-10-22 21:26:15');
+INSERT INTO `camera_info` VALUES (10, '垃圾站摄像头', 2, '生活垃圾站旁', 'rtsp://192.168.1.111:554/stream', 2, 1, NULL, NULL, '2024-01-18 07:30:00', '2025-10-22 21:26:15');
+INSERT INTO `camera_info` VALUES (11, '健身区摄像头', 3, '室外健身器材区', 'rtsp://192.168.1.112:554/stream', 1, 1, NULL, NULL, '2024-01-19 15:50:00', '2025-10-22 21:26:15');
+INSERT INTO `camera_info` VALUES (12, '物业办公室摄像头', 1, '物业前台内侧', 'rtsp://192.168.1.113:554/stream', 3, 1, NULL, NULL, '2024-01-20 13:10:00', '2025-10-22 21:26:15');
+INSERT INTO `camera_info` VALUES (13, '快递柜摄像头', 2, '智能快递柜正面', 'rtsp://192.168.1.114:554/stream', 2, 1, NULL, NULL, '2024-01-21 10:05:00', '2025-10-22 21:26:15');
+INSERT INTO `camera_info` VALUES (14, '儿童游乐区摄像头', 3, '滑梯旁', 'rtsp://192.168.1.115:554/stream', 1, 1, NULL, NULL, '2024-01-22 09:40:00', '2025-10-22 21:26:16');
+INSERT INTO `camera_info` VALUES (15, '西门岗亭摄像头', 1, '西门岗亭内侧', 'rtsp://192.168.1.116:554/stream', 4, 1, NULL, NULL, '2024-01-23 16:25:00', '2025-10-22 21:26:16');
+INSERT INTO `camera_info` VALUES (16, '水泵房摄像头', 2, '地下水泵房门口', 'rtsp://192.168.1.117:554/stream', 2, 1, NULL, NULL, '2024-01-24 14:50:00', '2025-10-22 21:26:16');
+INSERT INTO `camera_info` VALUES (17, '配电房摄像头', 3, '配电房外侧', 'rtsp://192.168.1.118:554/stream', 1, 1, NULL, NULL, '2024-01-25 11:15:00', '2025-10-22 21:26:16');
+INSERT INTO `camera_info` VALUES (18, '非机动车车库摄像头', 1, '非机动车出入口', 'rtsp://192.168.1.119:554/stream', 3, 1, NULL, NULL, '2024-01-26 08:30:00', '2025-10-22 21:26:16');
+INSERT INTO `camera_info` VALUES (19, '监控中心摄像头', 2, '监控大屏前', 'rtsp://192.168.1.120:554/stream', 1, 1, NULL, NULL, '2024-01-27 15:40:00', '2025-10-22 21:26:15');
+INSERT INTO `camera_info` VALUES (20, '会所大堂摄像头', 3, '会所入口处', 'rtsp://192.168.1.121:554/stream', 1, 1, NULL, NULL, '2024-01-28 12:20:00', '2025-10-22 21:26:15');
+INSERT INTO `camera_info` VALUES (21, '消防控制室摄像头', 1, '消防控制操作台', 'rtsp://192.168.1.122:554/stream', 4, 1, NULL, NULL, '2024-01-29 10:50:00', '2025-10-22 21:26:16');
+INSERT INTO `camera_info` VALUES (22, '南门入口摄像头', 2, '南门主通道', 'rtsp://192.168.1.123:554/stream', 2, 1, NULL, NULL, '2024-01-30 09:10:00', '2025-10-22 21:26:15');
+INSERT INTO `camera_info` VALUES (23, '天台入口摄像头', 3, '10号楼天台门', 'rtsp://192.168.1.124:554/stream', 1, 1, NULL, NULL, '2024-01-31 17:30:00', '2025-10-22 21:26:15');
+INSERT INTO `camera_info` VALUES (24, '垃圾分拣站摄像头', 1, '垃圾分类投放点', 'rtsp://192.168.1.125:554/stream', 3, 1, NULL, NULL, '2024-02-01 14:20:00', '2025-10-22 21:26:15');
+INSERT INTO `camera_info` VALUES (25, '道闸系统摄像头', 2, '车辆道闸旁', 'rtsp://192.168.1.126:554/stream', 2, 1, NULL, NULL, '2024-02-02 11:45:00', '2025-10-22 21:26:15');
+INSERT INTO `camera_info` VALUES (26, '电梯机房摄像头', 3, '电梯机房内', 'rtsp://192.168.1.127:554/stream', 1, 1, NULL, NULL, '2024-02-03 08:55:00', '2025-10-22 21:26:15');
+INSERT INTO `camera_info` VALUES (27, '小区围墙摄像头', 1, '北侧围墙中段', 'rtsp://192.168.1.128:554/stream', 4, 1, NULL, NULL, '2024-02-04 16:10:00', '2025-10-22 21:26:15');
+INSERT INTO `camera_info` VALUES (28, '商铺门口摄像头', 2, '沿街商铺前', 'rtsp://192.168.1.129:554/stream', 2, 1, NULL, NULL, '2024-02-05 13:30:00', '2025-10-22 21:26:15');
+INSERT INTO `camera_info` VALUES (29, '活动中心摄像头', 3, '活动中心大厅', 'rtsp://192.168.1.130:554/stream', 1, 1, NULL, NULL, '2024-02-06 10:20:00', '2025-10-22 21:26:15');
+INSERT INTO `camera_info` VALUES (30, '岗亭外侧摄像头', 1, '北门岗亭外部', 'rtsp://192.168.1.131:554/stream', 3, 1, NULL, NULL, '2024-02-07 09:05:00', '2025-10-22 21:26:15');
+INSERT INTO `camera_info` VALUES (31, '化粪池区域摄像头', 2, '化粪池检修口旁', 'rtsp://192.168.1.132:554/stream', 2, 1, NULL, NULL, '2024-02-08 15:50:00', '2025-10-22 21:26:15');
+INSERT INTO `camera_info` VALUES (32, '仓库门口摄像头', 3, '物业仓库入口', 'rtsp://192.168.1.133:554/stream', 1, 1, NULL, NULL, '2024-02-09 12:15:00', '2025-10-22 21:26:15');
+INSERT INTO `camera_info` VALUES (33, '充电桩区域摄像头', 1, '电动汽车充电桩旁', 'rtsp://192.168.1.134:554/stream', 4, 1, NULL, NULL, '2024-02-10 14:40:00', '2025-10-22 21:26:15');
 
 -- ----------------------------
 -- Table structure for park_area
@@ -161,7 +163,7 @@ CREATE TABLE `park_area`  (
   PRIMARY KEY (`park_area_id`) USING BTREE,
   UNIQUE INDEX `park_area`(`park_area` ASC) USING BTREE,
   INDEX `ix_park_area_park_area_id`(`park_area_id` ASC) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 5 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_0900_ai_ci ROW_FORMAT = Dynamic;
+) ENGINE = InnoDB AUTO_INCREMENT = 5 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_0900_ai_ci ROW_FORMAT = DYNAMIC;
 
 -- ----------------------------
 -- Records of park_area
@@ -188,7 +190,7 @@ CREATE TABLE `user`  (
   UNIQUE INDEX `user_name`(`user_name` ASC) USING BTREE,
   UNIQUE INDEX `user_unique`(`phone` ASC) USING BTREE,
   INDEX `ix_user_user_id`(`user_id` ASC) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 27 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_0900_ai_ci ROW_FORMAT = Dynamic;
+) ENGINE = InnoDB AUTO_INCREMENT = 27 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_0900_ai_ci ROW_FORMAT = DYNAMIC;
 
 -- ----------------------------
 -- Records of user

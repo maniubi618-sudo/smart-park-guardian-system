@@ -17,7 +17,7 @@ echo.
 
 :: 启动HTTP后端
 echo [1/3] 启动后端服务 (HTTP)...
-start "后端服务 (HTTP)" cmd /k "cd /d %PROJECT_ROOT% && echo 启动 HTTP 后端 (端口: 8089) && python -m app.main"
+start "后端服务 (HTTP)" cmd /k "cd /d %PROJECT_ROOT% && call venv\Scripts\activate.bat && echo 启动 HTTP 后端 (端口: 8089) && python -m app.main"
 
 :: 等待后端启动
 echo 等待后端服务启动 (2秒)...
@@ -25,7 +25,7 @@ timeout /t 2 /nobreak >nul
 
 :: 启动HTTPS后端（用于手机摄像头）
 echo [2/3] 启动后端服务 (HTTPS)...
-start "后端服务 (HTTPS)" cmd /k "cd /d %PROJECT_ROOT% && echo 启动 HTTPS 后端 (端口: 8443) && python -m app.main_https"
+start "后端服务 (HTTPS)" cmd /k "cd /d %PROJECT_ROOT% && call venv\Scripts\activate.bat && echo 启动 HTTPS 后端 (端口: 8443) && python -m app.main_https"
 
 :: 等待HTTPS后端启动
 echo 等待 HTTPS 后端服务启动 (3秒)...

@@ -854,9 +854,13 @@ const fetchCameras = async () => {
     if (result.success) {
       cameras.value = result.data.rows || []
       total.value = result.data.total || 0
+    } else {
+      console.error('获取摄像头列表失败:', result.message)
+      ElMessage.error('获取摄像头列表失败: ' + result.message)
     }
   } catch (error) {
     console.error('获取摄像头列表失败:', error)
+    ElMessage.error('获取摄像头列表失败: ' + error.message)
   } finally {
     loading.value = false
   }

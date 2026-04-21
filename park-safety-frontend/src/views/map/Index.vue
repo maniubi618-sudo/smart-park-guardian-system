@@ -8,12 +8,20 @@
           刷新数据
         </el-button>
       </div>
-      <div class="camera-list-panel">
+      <div class="camera-list-panel" :class="{ collapsed: cameraPanelCollapsed }" :style="cameraPanelStyle">
         <div class="panel-header">
           <el-icon><Location /></el-icon>
-          摄像头列表 ({{ cameras.length }})
+          <span v-if="!cameraPanelCollapsed">摄像头列表 ({{ cameras.length }})</span>
+          <div class="panel-actions">
+            <el-button size="small" @click="toggleCameraPanel" circle>
+              <el-icon><Expand v-if="cameraPanelCollapsed" /><Fold v-else /></el-icon>
+            </el-button>
+            <el-button size="small" @click="startMovingCameraPanel" circle>
+              <el-icon>✋</el-icon>
+            </el-button>
+          </div>
         </div>
-        <el-scrollbar>
+        <el-scrollbar v-if="!cameraPanelCollapsed">
           <div
             v-for="camera in cameras"
             :key="camera.camera_id"
@@ -34,12 +42,20 @@
           </div>
         </el-scrollbar>
       </div>
-      <div class="alarm-list-panel" v-if="alarms.length > 0">
+      <div class="alarm-list-panel" v-if="alarms.length > 0" :class="{ collapsed: alarmPanelCollapsed }" :style="alarmPanelStyle">
         <div class="panel-header">
           <el-icon><WarningFilled /></el-icon>
-          告警位置 ({{ alarms.length }})
+          <span v-if="!alarmPanelCollapsed">告警位置 ({{ alarms.length }})</span>
+          <div class="panel-actions">
+            <el-button size="small" @click="toggleAlarmPanel" circle>
+              <el-icon><Expand v-if="alarmPanelCollapsed" /><Fold v-else /></el-icon>
+            </el-button>
+            <el-button size="small" @click="startMovingAlarmPanel" circle>
+              <el-icon>✋</el-icon>
+            </el-button>
+          </div>
         </div>
-        <el-scrollbar>
+        <el-scrollbar v-if="!alarmPanelCollapsed">
           <div
             v-for="alarm in alarms"
             :key="alarm.alarm_id"
@@ -61,7 +77,7 @@
 import { ref, onMounted, onUnmounted } from 'vue'
 import { ElMessage } from 'element-plus'
 import MainLayout from '../../components/MainLayout.vue'
-import { Refresh, Location, WarningFilled } from '@element-plus/icons-vue'
+import { Refresh, Location, WarningFilled, Expand, Fold } from '@element-plus/icons-vue'
 import { useCameraStore } from '../../stores/cameras'
 import { useAlarmStore } from '../../stores/alarms'
 import AMapLoader from '@amap/amap-jsapi-loader'
@@ -77,6 +93,86 @@ const selectedCamera = ref(null)
 const markers = ref([])
 const alarmMarkers = ref([])
 const phoneCameraMarker = ref(null) // 手机摄像头标记
+
+const cameraPanelCollapsed = ref(false)
+const cameraPanelStyle = ref({ top: '80px', left: '20px' })
+const isMovingCameraPanel = ref(false)
+const initialMousePosition = ref({ x: 0, y: 0 })
+const initialPanelPosition = ref({ x: 0, y: 0 })
+
+const alarmPanelCollapsed = ref(false)
+const alarmPanelStyle = ref({ top: '80px', right: '20px' })
+const isMovingAlarmPanel = ref(false)
+const initialAlarmMousePosition = ref({ x: 0, y: 0 })
+const initialAlarmPanelPosition = ref({ x: 0, y: 0 })
+
+const toggleCameraPanel = () => {
+  cameraPanelCollapsed.value = !cameraPanelCollapsed.value
+}
+
+const startMovingCameraPanel = (e) => {
+  e.preventDefault()
+  isMovingCameraPanel.value = true
+  initialMousePosition.value = { x: e.clientX, y: e.clientY }
+  const panelRect = document.querySelector('.camera-list-panel').getBoundingClientRect()
+  initialPanelPosition.value = { x: panelRect.left, y: panelRect.top }
+  document.addEventListener('mousemove', handleCameraPanelMove)
+  document.addEventListener('mouseup', stopMovingCameraPanel)
+}
+
+const handleCameraPanelMove = (e) => {
+  if (!isMovingCameraPanel.value) return
+  const dx = e.clientX - initialMousePosition.value.x
+  const dy = e.clientY - initialMousePosition.value.y
+  cameraPanelStyle.value = {
+    top: `${initialPanelPosition.value.y + dy}px`,
+    left: `${initialPanelPosition.value.x + dx}px`
+  }
+}
+
+const stopMovingCameraPanel = () => {
+  isMovingCameraPanel.value = false
+  document.removeEventListener('mousemove', handleCameraPanelMove)
+  document.removeEventListener('mouseup', stopMovingCameraPanel)
+}
+
+const toggleAlarmPanel = () => {
+  alarmPanelCollapsed.value = !alarmPanelCollapsed.value
+}
+
+const startMovingAlarmPanel = (e) => {
+  e.preventDefault()
+  isMovingAlarmPanel.value = true
+  initialAlarmMousePosition.value = { x: e.clientX, y: e.clientY }
+  const panelRect = document.querySelector('.alarm-list-panel').getBoundingClientRect()
+  initialAlarmPanelPosition.value = { x: panelRect.right, y: panelRect.top }
+  document.addEventListener('mousemove', handleAlarmPanelMove)
+  document.addEventListener('mouseup', stopMovingAlarmPanel)
+}
+
+const handleAlarmPanelMove = (e) => {
+  if (!isMovingAlarmPanel.value) return
+  const dx = e.clientX - initialAlarmMousePosition.value.x
+  const dy = e.clientY - initialAlarmMousePosition.value.y
+  alarmPanelStyle.value = {
+    top: `${initialAlarmPanelPosition.value.y + dy}px`,
+    right: `${window.innerWidth - (initialAlarmPanelPosition.value.x + dx)}px`
+  }
+}
+
+const stopMovingAlarmPanel = () => {
+  isMovingAlarmPanel.value = false
+  document.removeEventListener('mousemove', handleAlarmPanelMove)
+  document.removeEventListener('mouseup', stopMovingAlarmPanel)
+}
+
+onMounted(() => {
+  initMap()
+  // 监听手机摄像头位置更新事件
+  window.addEventListener('phoneCameraLocationUpdate', handlePhoneCameraLocationUpdate)
+  // 初始化面板位置
+  initialPanelPosition.value = { x: 80, y: 20 }
+})
 
 const getStatusClass = (status) => {
   const map = {
@@ -399,6 +495,11 @@ onUnmounted(() => {
   box-shadow: 0 2px 12px rgba(0, 0, 0, 0.15);
   z-index: 1000;
   overflow: hidden;
+  transition: all 0.3s ease;
+}
+
+.el-scrollbar {
+  height: calc(100% - 48px);
 }
 
 .panel-header {
@@ -409,6 +510,34 @@ onUnmounted(() => {
   align-items: center;
   gap: 8px;
   color: #303133;
+  justify-content: space-between;
+}
+
+.panel-actions {
+  display: flex;
+  gap: 4px;
+}
+
+.camera-list-panel.collapsed {
+  width: 60px;
+  max-height: 48px;
+  transition: all 0.3s ease;
+}
+
+.camera-list-panel.collapsed .panel-header {
+  border-bottom: none;
+  padding: 8px;
+}
+
+.alarm-list-panel.collapsed {
+  width: 60px;
+  max-height: 48px;
+  transition: all 0.3s ease;
+}
+
+.alarm-list-panel.collapsed .panel-header {
+  border-bottom: none;
+  padding: 8px;
 }
 
 .camera-item {
@@ -485,6 +614,8 @@ onUnmounted(() => {
   border-radius: 8px;
   box-shadow: 0 2px 12px rgba(0, 0, 0, 0.15);
   z-index: 1000;
+  overflow: hidden;
+  transition: all 0.3s ease;
 }
 
 .alarm-item {
