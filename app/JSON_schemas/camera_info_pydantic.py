@@ -12,6 +12,8 @@ class CameraInfoResponse(BaseModel):
     rtsp_url: str
     analysis_mode: int
     camera_status: int
+    latitude: Optional[float] = None
+    longitude: Optional[float] = None
     create_time: datetime
     update_time: datetime
 
@@ -93,6 +95,8 @@ class CameraInfoCreate(BaseModel):
     install_position: str = Field(..., min_length=1, max_length=64, description="摄像头具体安装位置")
     rtsp_url: str = Field(..., min_length=1, max_length=255, description="摄像头的RTSP地址")
     analysis_mode: int = Field(..., ge=0, le=4, description="分析模式: 0-无，1-全部，2-安全规范，3-区域入侵，4-火警")
+    latitude: Optional[float] = Field(None, description="纬度")
+    longitude: Optional[float] = Field(None, description="经度")
 
 # 修改摄像头信息时的请求模型（允许部分字段修改，所以用 Optional）
 class CameraInfoUpdate(BaseModel):
@@ -102,3 +106,5 @@ class CameraInfoUpdate(BaseModel):
     rtsp_url: Optional[str] = Field(None, min_length=1, max_length=255)
     analysis_mode: Optional[int] = Field(None, ge=0, le=4)
     camera_status: Optional[int] = Field(None, ge=0, le=2, description="摄像头状态: 0-离线, 1-在线但未开启安防检测, 2-在线且安防检测中")
+    latitude: Optional[float] = Field(None, description="纬度")
+    longitude: Optional[float] = Field(None, description="经度")

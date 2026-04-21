@@ -9718,3 +9718,183 @@
 2026-04-15 23:39:36,390 - fastapi_app - INFO - WebSocket连接已建立，当前连接数: 3
 2026-04-15 23:47:34,244 - fastapi_app - INFO - WebSocket连接已断开，当前连接数: 2
 2026-04-15 23:47:34,612 - fastapi_app - INFO - WebSocket连接已建立，当前连接数: 3
+2026-04-19 05:20:16,365 - fastapi_app - INFO - WebSocket连接已建立，当前连接数: 1
+2026-04-19 05:20:32,808 - fastapi_app - INFO - WebSocket连接已断开，当前连接数: 0
+2026-04-19 05:20:33,236 - fastapi_app - INFO - WebSocket连接已建立，当前连接数: 1
+2026-04-19 05:20:58,385 - fastapi_app - INFO - WebSocket连接已断开，当前连接数: 0
+2026-04-19 05:20:58,794 - fastapi_app - INFO - WebSocket连接已建立，当前连接数: 1
+2026-04-19 05:21:24,019 - fastapi_app - WARNING - 腾讯混元API密钥未配置，使用本地关键词匹配
+2026-04-19 05:21:27,839 - fastapi_app - WARNING - 腾讯混元API密钥未配置，使用本地关键词匹配
+2026-04-19 05:21:28,655 - fastapi_app - WARNING - 腾讯混元API密钥未配置，使用本地关键词匹配
+2026-04-19 05:21:28,655 - fastapi_app - ERROR - 查询高风险区域失败：type object 'ParkAreaDB' has no attribute 'area_name'
+2026-04-19 05:21:30,712 - fastapi_app - WARNING - 腾讯混元API密钥未配置，使用本地关键词匹配
+2026-04-19 05:25:29,125 - fastapi_app - INFO - WebSocket连接已建立，当前连接数: 1
+2026-04-19 05:25:42,027 - fastapi_app - WARNING - 腾讯混元API密钥未配置，使用本地关键词匹配
+2026-04-19 05:25:44,356 - fastapi_app - WARNING - 腾讯混元API密钥未配置，使用本地关键词匹配
+2026-04-19 05:25:44,356 - fastapi_app - ERROR - 生成优化建议失败：type object 'ParkAreaDB' has no attribute 'area_name'
+2026-04-19 05:25:47,527 - fastapi_app - WARNING - 腾讯混元API密钥未配置，使用本地关键词匹配
+2026-04-19 05:26:55,246 - fastapi_app - INFO - WebSocket连接已断开，当前连接数: 0
+2026-04-19 05:27:40,261 - fastapi_app - INFO - WebSocket连接已建立，当前连接数: 1
+2026-04-19 05:27:46,848 - fastapi_app - INFO - WebSocket连接已建立，当前连接数: 2
+2026-04-19 05:27:55,128 - fastapi_app - WARNING - 腾讯混元API密钥未配置，使用本地关键词匹配
+2026-04-19 05:27:55,128 - fastapi_app - ERROR - 查询高风险区域失败：type object 'ParkAreaDB' has no attribute 'area_name'
+2026-04-19 05:27:56,567 - fastapi_app - WARNING - 腾讯混元API密钥未配置，使用本地关键词匹配
+2026-04-19 05:27:57,856 - fastapi_app - WARNING - 腾讯混元API密钥未配置，使用本地关键词匹配
+2026-04-19 05:27:57,856 - fastapi_app - ERROR - 生成优化建议失败：type object 'ParkAreaDB' has no attribute 'area_name'
+2026-04-19 05:28:42,778 - fastapi_app - WARNING - 腾讯混元API密钥未配置，使用本地关键词匹配
+2026-04-19 05:30:28,195 - fastapi_app - INFO - WebSocket连接已断开，当前连接数: 1
+2026-04-19 05:30:28,564 - fastapi_app - INFO - WebSocket连接已建立，当前连接数: 2
+2026-04-19 05:33:44,652 - fastapi_app - INFO - WebSocket连接已建立，当前连接数: 1
+2026-04-19 05:34:04,235 - fastapi_app - INFO - WebSocket连接已断开，当前连接数: 0
+2026-04-19 15:27:15,608 - fastapi_app - INFO - WebSocket连接已建立，当前连接数: 1
+2026-04-19 15:30:43,819 - fastapi_app - INFO - WebSocket连接已建立，当前连接数: 2
+2026-04-19 15:34:53,845 - fastapi_app - INFO - WebSocket连接已断开，当前连接数: 1
+2026-04-19 15:34:54,369 - fastapi_app - INFO - WebSocket连接已建立，当前连接数: 2
+2026-04-19 15:39:14,128 - fastapi_app - INFO - WebSocket连接已断开，当前连接数: 1
+2026-04-19 15:39:14,547 - fastapi_app - INFO - WebSocket连接已建立，当前连接数: 2
+2026-04-19 15:42:32,358 - fastapi_app - INFO - WebSocket连接已建立，当前连接数: 1
+2026-04-19 15:48:28,516 - fastapi_app - INFO - WebSocket连接已断开，当前连接数: 0
+2026-04-19 15:48:28,935 - fastapi_app - INFO - WebSocket连接已建立，当前连接数: 1
+2026-04-19 15:48:54,644 - fastapi_app - WARNING - 腾讯混元API密钥未配置，使用本地关键词匹配
+2026-04-19 15:48:56,997 - fastapi_app - WARNING - 腾讯混元API密钥未配置，使用本地关键词匹配
+2026-04-19 15:48:56,998 - fastapi_app - ERROR - 查询高风险区域失败：type object 'ParkAreaDB' has no attribute 'area_name'
+2026-04-19 15:51:23,431 - fastapi_app - WARNING - 腾讯混元API密钥未配置，使用本地关键词匹配
+2026-04-19 15:59:40,248 - fastapi_app - WARNING - 腾讯混元API密钥未配置，使用本地关键词匹配
+2026-04-19 15:59:42,107 - fastapi_app - INFO - WebSocket连接已断开，当前连接数: 0
+2026-04-19 15:59:42,525 - fastapi_app - INFO - WebSocket连接已建立，当前连接数: 1
+2026-04-19 15:59:48,909 - fastapi_app - WARNING - 腾讯混元API密钥未配置，使用本地关键词匹配
+2026-04-19 15:59:55,234 - fastapi_app - WARNING - 腾讯混元API密钥未配置，使用本地关键词匹配
+2026-04-19 16:00:11,145 - fastapi_app - INFO - WebSocket连接已断开，当前连接数: 0
+2026-04-19 16:00:11,559 - fastapi_app - INFO - WebSocket连接已建立，当前连接数: 1
+2026-04-19 16:05:44,353 - fastapi_app - INFO - WebSocket连接已建立，当前连接数: 1
+2026-04-19 20:03:31,711 - fastapi_app - INFO - WebSocket连接已断开，当前连接数: 0
+2026-04-19 23:07:44,966 - fastapi_app - INFO - WebSocket连接已建立，当前连接数: 1
+2026-04-19 23:17:58,926 - fastapi_app - INFO - WebSocket连接已断开，当前连接数: 0
+2026-04-19 23:17:59,372 - fastapi_app - INFO - WebSocket连接已建立，当前连接数: 1
+2026-04-19 23:20:35,593 - fastapi_app - INFO - WebSocket连接已断开，当前连接数: 0
+2026-04-19 23:20:36,229 - fastapi_app - INFO - WebSocket连接已建立，当前连接数: 1
+2026-04-19 23:21:10,540 - fastapi_app - INFO - WebSocket连接已断开，当前连接数: 0
+2026-04-19 23:34:01,028 - fastapi_app - INFO - WebSocket连接已建立，当前连接数: 1
+2026-04-19 23:35:18,915 - fastapi_app - INFO - WebSocket连接已断开，当前连接数: 0
+2026-04-19 23:35:20,916 - fastapi_app - INFO - WebSocket连接已建立，当前连接数: 1
+2026-04-19 23:48:09,354 - fastapi_app - INFO - WebSocket连接已断开，当前连接数: 0
+2026-04-19 23:48:09,803 - fastapi_app - INFO - WebSocket连接已建立，当前连接数: 1
+2026-04-19 23:56:11,641 - fastapi_app - INFO - WebSocket连接已断开，当前连接数: 0
+2026-04-19 23:56:12,078 - fastapi_app - INFO - WebSocket连接已建立，当前连接数: 1
+2026-04-20 00:01:22,297 - fastapi_app - INFO - WebSocket连接已断开，当前连接数: 0
+2026-04-20 00:01:22,773 - fastapi_app - INFO - WebSocket连接已建立，当前连接数: 1
+2026-04-20 00:01:23,487 - fastapi_app - INFO - WebSocket连接已断开，当前连接数: 0
+2026-04-20 00:01:24,201 - fastapi_app - INFO - WebSocket连接已建立，当前连接数: 1
+2026-04-20 00:03:59,172 - fastapi_app - INFO - WebSocket连接已断开，当前连接数: 0
+2026-04-20 00:03:59,585 - fastapi_app - INFO - WebSocket连接已建立，当前连接数: 1
+2026-04-20 00:11:57,367 - fastapi_app - INFO - WebSocket连接已断开，当前连接数: 0
+2026-04-20 00:11:57,797 - fastapi_app - INFO - WebSocket连接已建立，当前连接数: 1
+2026-04-20 00:21:01,031 - fastapi_app - INFO - WebSocket连接已断开，当前连接数: 0
+2026-04-20 00:21:01,523 - fastapi_app - INFO - WebSocket连接已建立，当前连接数: 1
+2026-04-20 00:44:55,753 - fastapi_app - INFO - WebSocket连接已断开，当前连接数: 0
+2026-04-20 00:44:56,193 - fastapi_app - INFO - WebSocket连接已建立，当前连接数: 1
+2026-04-20 00:54:12,182 - fastapi_app - INFO - WebSocket连接已断开，当前连接数: 0
+2026-04-20 00:54:12,632 - fastapi_app - INFO - WebSocket连接已建立，当前连接数: 1
+2026-04-20 01:04:24,563 - fastapi_app - INFO - WebSocket连接已断开，当前连接数: 0
+2026-04-20 01:04:25,105 - fastapi_app - INFO - WebSocket连接已建立，当前连接数: 1
+2026-04-20 01:26:30,488 - fastapi_app - INFO - WebSocket连接已断开，当前连接数: 0
+2026-04-20 01:26:31,092 - fastapi_app - INFO - WebSocket连接已建立，当前连接数: 1
+2026-04-20 01:27:40,578 - fastapi_app - INFO - WebSocket连接已断开，当前连接数: 0
+2026-04-20 01:27:41,310 - fastapi_app - INFO - WebSocket连接已建立，当前连接数: 1
+2026-04-20 08:23:22,262 - fastapi_app - INFO - WebSocket连接已断开，当前连接数: 0
+2026-04-20 08:23:22,827 - fastapi_app - INFO - WebSocket连接已建立，当前连接数: 1
+2026-04-20 08:33:57,197 - fastapi_app - INFO - WebSocket连接已断开，当前连接数: 0
+2026-04-20 08:33:57,799 - fastapi_app - INFO - WebSocket连接已建立，当前连接数: 1
+2026-04-20 08:34:26,074 - fastapi_app - INFO - 手机摄像头已连接
+2026-04-20 08:34:26,097 - fastapi_app - INFO - 手机元数据已更新: {'uid': 'dk65nbibk', 'facing': {'isTrusted': True}, 'ip': '10.26.1.33', 'width': 1280, 'height': 720, 'location': {'latitude': 20.026712125, 'longitude': 110.33030450000001, 'accuracy': 58}}
+2026-04-20 08:34:26,692 - fastapi_app - INFO - 手机摄像头已断开
+2026-04-20 08:34:26,711 - fastapi_app - INFO - 手机摄像头已连接
+2026-04-20 08:34:26,714 - fastapi_app - INFO - 手机元数据已更新: {'uid': 'dk65nbibk', 'facing': {'isTrusted': True}, 'ip': '10.26.1.33', 'width': 1280, 'height': 720, 'location': {'latitude': 20.026712125, 'longitude': 110.33030450000001, 'accuracy': 58}}
+2026-04-20 08:36:14,272 - fastapi_app - INFO - 手机摄像头已断开
+2026-04-20 08:36:49,456 - fastapi_app - INFO - WebSocket连接已断开，当前连接数: 0
+2026-04-20 08:36:50,026 - fastapi_app - INFO - WebSocket连接已建立，当前连接数: 1
+2026-04-20 08:40:23,547 - fastapi_app - INFO - WebSocket连接已建立，当前连接数: 1
+2026-04-20 08:40:39,834 - fastapi_app - INFO - WebSocket连接已断开，当前连接数: 0
+2026-04-20 08:41:18,696 - fastapi_app - INFO - WebSocket连接已建立，当前连接数: 1
+2026-04-20 08:44:23,445 - fastapi_app - INFO - WebSocket连接已断开，当前连接数: 0
+2026-04-20 08:44:24,376 - fastapi_app - INFO - WebSocket连接已建立，当前连接数: 1
+2026-04-20 08:44:49,870 - fastapi_app - INFO - 手机摄像头已连接
+2026-04-20 08:44:49,875 - fastapi_app - INFO - 手机元数据已更新: {'uid': 'm7yceymg7', 'facing': {'isTrusted': True}, 'ip': '10.26.1.33', 'width': 1280, 'height': 720, 'location': {'latitude': 20.0267135, 'longitude': 110.33029550000002, 'accuracy': 114}}
+2026-04-20 08:45:08,178 - fastapi_app - INFO - WebSocket连接已断开，当前连接数: 0
+2026-04-20 08:45:08,728 - fastapi_app - INFO - WebSocket连接已建立，当前连接数: 1
+2026-04-20 08:59:30,549 - fastapi_app - INFO - WebSocket连接已建立，当前连接数: 1
+2026-04-20 09:00:03,486 - fastapi_app - INFO - 手机摄像头已连接
+2026-04-20 09:00:03,489 - fastapi_app - INFO - 手机元数据已更新: {'uid': 'm7yceymg7', 'facing': {'isTrusted': True}, 'ip': '10.26.1.33', 'width': 1280, 'height': 720, 'location': {'latitude': 20.0267135, 'longitude': 110.33029550000002, 'accuracy': 114}}
+2026-04-20 09:01:55,506 - fastapi_app - INFO - 手机摄像头已断开
+2026-04-20 09:02:02,804 - fastapi_app - INFO - 手机摄像头已连接
+2026-04-20 09:02:02,807 - fastapi_app - INFO - 手机元数据已更新: {'uid': 'p02szkx2j', 'facing': {'isTrusted': True}, 'ip': '10.26.1.33', 'width': 1280, 'height': 720, 'location': {'latitude': 20.026670874999997, 'longitude': 110.33028162500001, 'accuracy': 58}}
+2026-04-20 09:02:09,270 - fastapi_app - INFO - 手机摄像头已断开
+2026-04-20 09:02:38,350 - fastapi_app - INFO - WebSocket连接已断开，当前连接数: 0
+2026-04-20 09:02:39,203 - fastapi_app - INFO - WebSocket连接已建立，当前连接数: 1
+2026-04-20 09:05:10,675 - fastapi_app - INFO - 手机摄像头已连接
+2026-04-20 09:05:10,682 - fastapi_app - INFO - 手机元数据已更新: {'uid': '7i388ywgf', 'facing': {'isTrusted': True}, 'ip': '10.26.1.33', 'width': 1280, 'height': 720, 'location': {'latitude': 20.026664714285715, 'longitude': 110.33028028571428, 'accuracy': 55}}
+2026-04-20 09:06:31,847 - fastapi_app - INFO - 手机摄像头已断开
+2026-04-20 09:10:20,959 - fastapi_app - INFO - WebSocket连接已断开，当前连接数: 0
+2026-04-20 09:11:20,777 - fastapi_app - INFO - WebSocket连接已建立，当前连接数: 1
+2026-04-20 09:15:08,185 - fastapi_app - INFO - WebSocket连接已断开，当前连接数: 0
+2026-04-20 09:15:08,585 - fastapi_app - INFO - WebSocket连接已建立，当前连接数: 1
+2026-04-20 09:17:17,663 - fastapi_app - INFO - WebSocket连接已断开，当前连接数: 0
+2026-04-20 09:17:18,081 - fastapi_app - INFO - WebSocket连接已建立，当前连接数: 1
+2026-04-20 09:18:18,545 - fastapi_app - INFO - WebSocket连接已建立，当前连接数: 1
+2026-04-20 09:20:06,885 - fastapi_app - INFO - WebSocket连接已断开，当前连接数: 0
+2026-04-20 09:29:52,218 - fastapi_app - INFO - WebSocket连接已建立，当前连接数: 1
+2026-04-20 09:43:38,091 - fastapi_app - INFO - WebSocket连接已断开，当前连接数: 0
+2026-04-20 09:43:38,539 - fastapi_app - INFO - WebSocket连接已建立，当前连接数: 1
+2026-04-20 09:48:34,651 - fastapi_app - INFO - WebSocket连接已断开，当前连接数: 0
+2026-04-20 09:48:35,327 - fastapi_app - INFO - WebSocket连接已建立，当前连接数: 1
+2026-04-20 10:07:35,738 - fastapi_app - INFO - WebSocket连接已断开，当前连接数: 0
+2026-04-20 10:07:36,227 - fastapi_app - INFO - WebSocket连接已建立，当前连接数: 1
+2026-04-20 10:07:46,771 - fastapi_app - INFO - WebSocket连接已断开，当前连接数: 0
+2026-04-20 10:31:47,740 - fastapi_app - INFO - 手机摄像头已连接
+2026-04-20 10:31:47,743 - fastapi_app - INFO - 手机元数据已更新: {'uid': 'xvl5dspzd', 'facing': {'isTrusted': True}, 'ip': '10.26.1.33', 'width': 1280, 'height': 720, 'location': {'latitude': 20.02671325, 'longitude': 110.33029825000001, 'accuracy': 76}}
+2026-04-20 10:31:58,827 - fastapi_app - INFO - 手机摄像头已断开
+2026-04-20 10:38:23,509 - fastapi_app - INFO - WebSocket连接已建立，当前连接数: 1
+2026-04-20 12:50:19,972 - fastapi_app - INFO - WebSocket连接已建立，当前连接数: 2
+2026-04-20 12:51:29,781 - fastapi_app - INFO - 手机摄像头已连接
+2026-04-20 12:51:29,954 - fastapi_app - INFO - 手机元数据已更新: {'uid': '8xdkm33fd', 'facing': {'isTrusted': True}, 'ip': '10.26.1.33', 'width': 720, 'height': 1280, 'location': {'latitude': 20.045658, 'longitude': 110.405889, 'accuracy': 30}}
+2026-04-20 12:52:08,569 - fastapi_app - INFO - 观看端已连接，当前观看端数: 1
+2026-04-20 12:52:24,257 - fastapi_app - INFO - 观看端已连接，当前观看端数: 2
+2026-04-20 12:52:28,708 - fastapi_app - INFO - 手机摄像头已断开
+2026-04-20 12:52:40,615 - fastapi_app - INFO - 手机摄像头已连接
+2026-04-20 12:52:40,667 - fastapi_app - INFO - 手机元数据已更新: {'uid': 'ftokp6ei3', 'facing': {'isTrusted': True}, 'ip': '10.26.1.33', 'width': 720, 'height': 1280, 'location': {'latitude': 20.045578, 'longitude': 110.405911, 'accuracy': 30}}
+2026-04-20 12:52:45,019 - fastapi_app - INFO - 观看端已连接，当前观看端数: 3
+2026-04-20 12:55:15,625 - fastapi_app - INFO - 手机摄像头已断开
+2026-04-20 13:00:30,989 - fastapi_app - INFO - WebSocket连接已断开，当前连接数: 1
+2026-04-20 13:00:31,615 - fastapi_app - INFO - WebSocket连接已建立，当前连接数: 2
+2026-04-20 13:00:56,972 - fastapi_app - INFO - 手机摄像头已连接
+2026-04-20 13:00:57,028 - fastapi_app - INFO - 手机元数据已更新: {'uid': 'l5ysp5fko', 'facing': {'isTrusted': True}, 'ip': '10.26.1.33', 'width': 720, 'height': 1280, 'location': {'latitude': 20.045594, 'longitude': 110.405905, 'accuracy': 30}}
+2026-04-20 13:01:02,361 - fastapi_app - INFO - 观看端已连接，当前观看端数: 4
+2026-04-20 13:03:17,288 - fastapi_app - INFO - 手机摄像头已断开
+2026-04-20 17:03:14,515 - fastapi_app - INFO - 观看端已连接，当前观看端数: 5
+2026-04-20 17:03:45,407 - fastapi_app - INFO - WebSocket连接已断开，当前连接数: 1
+2026-04-20 17:20:15,921 - fastapi_app - INFO - 手机摄像头已连接
+2026-04-20 17:20:15,925 - fastapi_app - INFO - 手机元数据已更新: {'uid': 'fe4m3r6s1', 'facing': {'isTrusted': True}, 'ip': '10.26.1.33', 'width': 1280, 'height': 720, 'location': {'latitude': 20.026713499999996, 'longitude': 110.33029883333333, 'accuracy': 64}}
+2026-04-20 17:20:21,024 - fastapi_app - INFO - 手机摄像头已断开
+2026-04-20 17:20:34,791 - fastapi_app - INFO - 手机摄像头已连接
+2026-04-20 17:20:34,852 - fastapi_app - INFO - 手机元数据已更新: {'uid': 'qez97cab2', 'facing': {'isTrusted': True}, 'ip': '10.26.1.33', 'width': 720, 'height': 1280}
+2026-04-20 17:20:37,897 - fastapi_app - INFO - 手机摄像头已断开
+2026-04-20 17:20:54,416 - fastapi_app - INFO - 手机摄像头已连接
+2026-04-20 17:20:54,526 - fastapi_app - INFO - 手机元数据已更新: {'uid': 'ahvb8kd6c', 'facing': {'isTrusted': True}, 'ip': '10.26.1.33', 'width': 720, 'height': 1280, 'location': {'latitude': 20.042485, 'longitude': 110.406203, 'accuracy': 30}}
+2026-04-20 17:21:41,546 - fastapi_app - INFO - 手机摄像头已断开
+2026-04-20 17:26:26,885 - fastapi_app - INFO - 手机摄像头已连接
+2026-04-20 17:26:26,889 - fastapi_app - INFO - 手机元数据已更新: {'uid': '4q5zt1cmo', 'facing': {'isTrusted': True}, 'ip': '10.26.1.33', 'width': 1280, 'height': 720, 'location': {'latitude': 20.0266783, 'longitude': 110.33028960000001, 'accuracy': 55}}
+2026-04-20 17:26:54,672 - fastapi_app - INFO - 手机摄像头已断开
+2026-04-20 17:27:28,851 - fastapi_app - INFO - 手机摄像头已连接
+2026-04-20 17:27:28,854 - fastapi_app - INFO - 手机元数据已更新: {'uid': '34vkhfo3u', 'facing': {'isTrusted': True}, 'ip': '10.26.1.33', 'width': 1280, 'height': 720, 'location': {'latitude': 20.02665933333333, 'longitude': 110.33028916666667, 'accuracy': 55}}
+2026-04-20 17:27:32,756 - fastapi_app - INFO - 观看端已连接，当前观看端数: 1
+2026-04-20 17:28:09,260 - fastapi_app - ERROR - 转发数据到观看端失败: 
+2026-04-20 17:28:20,776 - fastapi_app - INFO - 手机摄像头已断开
+2026-04-20 17:28:36,322 - fastapi_app - INFO - 手机摄像头已连接
+2026-04-20 17:28:36,412 - fastapi_app - INFO - 手机元数据已更新: {'uid': '102kgqndt', 'facing': {'isTrusted': True}, 'ip': '10.26.1.33', 'width': 720, 'height': 1280, 'location': {'latitude': 20.042507, 'longitude': 110.406207, 'accuracy': 30}}
+2026-04-20 17:28:41,149 - fastapi_app - INFO - 观看端已连接，当前观看端数: 1
+2026-04-20 17:28:49,335 - fastapi_app - ERROR - 转发数据到观看端失败: 
+2026-04-20 17:30:35,942 - fastapi_app - INFO - 手机摄像头已断开
+2026-04-20 17:35:59,341 - fastapi_app - INFO - WebSocket连接已断开，当前连接数: 0
+2026-04-20 17:36:00,056 - fastapi_app - INFO - WebSocket连接已建立，当前连接数: 1
+2026-04-20 17:38:59,318 - fastapi_app - INFO - WebSocket连接已断开，当前连接数: 0
+2026-04-20 17:39:00,052 - fastapi_app - INFO - WebSocket连接已建立，当前连接数: 1
