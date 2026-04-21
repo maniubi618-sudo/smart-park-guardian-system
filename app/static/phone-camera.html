@@ -117,7 +117,7 @@
     <div class="live-dot" id="liveDot"></div>
     <span id="liveLabel">待机</span>
   </div>
-  <div class="cam-label" id="camLabel">CAM-01</div>
+  <div class="cam-label" id="camLabel">CAM-<span id="camIdDisplay">---</span></div>
   <div class="status-pill" style="opacity:0;"></div>
 </div>
 
@@ -168,7 +168,63 @@ let encodeCount   = 0;
 let encodeTotalMs = 0;
 let connected     = false;
 let reconnectTimer = null;
-let uid           = Math.random().toString(36).substr(2, 9);
+
+// ── 生成设备唯一ID（使用设备指纹 + 本地存储）──
+function generateDeviceId() {
+  // 尝试从本地存储获取已有ID
+  let storedId = localStorage.getItem('phone_camera_device_id');
+  if (storedId) {
+    return storedId;
+  }
+  
+  // 生成新ID：基于浏览器指纹信息 + 时间戳
+  const screen = window.screen;
+  const navigator2 = window.navigator;
+  const canvas = document.createElement('canvas');
+  const ctx = canvas.getContext('2d');
+  
+  // 使用canvas生成浏览器指纹
+  canvas.width = 200;
+  canvas.height = 50;
+  ctx.textBaseline = 'top';
+  ctx.font = "14px 'Arial'";
+  ctx.fillStyle = '#f60';
+  ctx.fillRect(125, 1, 62, 20);
+  ctx.fillStyle = '#069';
+  ctx.fillText('Phone Camera', 2, 15);
+  ctx.fillStyle = 'rgba(102, 204, 0, 0.7)';
+  ctx.fillText('C2V5aQ==', 4, 35);
+  
+  const fingerprint = canvas.toDataURL();
+  const hash = hashCode(
+    navigator2.userAgent + 
+    navigator2.language + 
+    screen.width + 'x' + screen.height + 
+    screen.colorDepth +
+    fingerprint +
+    new Date().getTimezoneOffset()
+  );
+  
+  // 取后10位作为设备ID
+  const deviceId = Math.abs(hash).toString(36).substr(-10).toUpperCase();
+  localStorage.setItem('phone_camera_device_id', deviceId);
+  
+  return deviceId;
+}
+
+// 简单的哈希函数
+function hashCode(str) {
+  let hash = 0;
+  for (let i = 0; i < str.length; i++) {
+    const char = str.charCodeAt(i);
+    hash = ((hash << 5) - hash) + char;
+    hash = hash & hash;
+  }
+  return hash;
+}
+
+// 获取设备ID
+const uid = generateDeviceId();
 
 // 隐藏项
 document.getElementById('startBtn').addEventListener('click', startCamera);
@@ -369,7 +425,9 @@ function connectServer() {
     connected = true;
     document.getElementById('liveDot').classList.add('on');
     document.getElementById('liveLabel').textContent = '直播中';
+    document.getElementById('camIdDisplay').textContent = uid;
     document.getElementById('connInfo').textContent = '已连接！推流中...';
+    document.getElementById('connInfo').innerHTML += '<br>设备ID: ' + uid;
     document.getElementById('connectStatus').textContent = '连接成功';
     showToast('已连接到监控端', 1500);
 

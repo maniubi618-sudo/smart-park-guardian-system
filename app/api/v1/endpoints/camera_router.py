@@ -317,6 +317,7 @@ async def websocket_phone_camera_phone(websocket: WebSocket):
     """
     手机端WebSocket端点，用于推送摄像头画面
     """
+    uid = None
     await phone_camera_manager.connect_phone(websocket)
     try:
         while True:
@@ -326,24 +327,26 @@ async def websocket_phone_camera_phone(websocket: WebSocket):
                 break
             if "text" in data:
                 text_data = data["text"]
-                logger.info(f"收到手机端文本数据, 大小: {len(text_data)}")
+                logger.debug(f"收到手机端文本数据, 大小: {len(text_data)}")
                 if text_data:
                     try:
                         import json
                         msg = json.loads(text_data)
                         if msg.get("type") == "meta":
-                            phone_camera_manager.update_phone_meta(msg.get("data", {}))
+                            meta = msg.get("data", {})
+                            uid = meta.get("uid", uid)
+                            phone_camera_manager.update_phone_meta(uid, meta)
                     except Exception as parse_err:
                         logger.debug(f"解析文本消息失败(可能是保活消息): {parse_err}")
-                    await phone_camera_manager.forward_from_phone(text_data)
+                    await phone_camera_manager.forward_from_phone(text_data, uid)
             elif "bytes" in data:
-                logger.info(f"收到手机端字节数据, 大小: {len(data['bytes'])}")
-                await phone_camera_manager.forward_from_phone(data["bytes"])
+                logger.debug(f"收到手机端字节数据, 大小: {len(data['bytes'])}")
+                await phone_camera_manager.forward_from_phone(data["bytes"], uid)
     except WebSocketDisconnect:
-        phone_camera_manager.disconnect_phone()
+        phone_camera_manager.disconnect_phone(websocket)
         logger.info("手机端WebSocket断开连接")
     except Exception as e:
-        phone_camera_manager.disconnect_phone()
+        phone_camera_manager.disconnect_phone(websocket)
         logger.error(f"手机端WebSocket异常: {e}")
 
 
