@@ -231,8 +231,6 @@ const initCharts = () => {
           type: 'pie',
           radius: '70%',
           data: [
-            { value: 12, name: '安全规范' },
-            { value: 8, name: '区域入侵' },
             { value: 3, name: '火警' }
           ],
           emphasis: {

@@ -31,3 +31,55 @@ venv/
 
 # Log files
 logs/
+
+# Model files (large binary files)
+app/models/*.pt
+app/models/*.pt.backup
+app/models/*.onnx
+app/models/*.engine
+yolo11n-cls.pt
+
+# Datasets
+datasets/
+test_data/
+
+# Runs (training results)
+runs/
+
+# Images and media
+img/
+
+# Temporary test files
+test_*.py
+FIX_MODEL.py
+QUICK_TEST.py
+SOLUTION.md
+CITRUS_GUIDE.md
+CROP_DISEASE_DETECTION_README.md
+start_*.py
+copy_models.py
+fix_ultralytics.py
+list_pest_classes.py
+
+# Backup files
+*.backup
+
+# Environment files
+.env
+.env.local
+
+# Temporary config
+test_config.yaml
+
+# Plant data
+plant_data/
+
+# Scripts and tools (optional)
+scripts/
+tools/
+
+# Tomato GUI
+tomato_gui/
+
+# Tests
+tests/

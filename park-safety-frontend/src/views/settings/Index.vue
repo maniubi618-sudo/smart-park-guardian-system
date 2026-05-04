@@ -68,6 +68,78 @@
               </el-form-item>
             </el-form>
           </el-tab-pane>
+          
+          <!-- 农业检测参数配置 -->
+          <el-tab-pane label="农业检测">
+            <el-card class="setting-section" shadow="never">
+              <template #header>
+                <div class="section-header">
+                  <span class="section-title">🍊 柑橘成熟度检测</span>
+                </div>
+              </template>
+              <el-form :model="agricultureSettings" label-width="140px">
+                <el-form-item label="置信度阈值">
+                  <el-slider
+                    v-model="agricultureSettings.citrusConfidence"
+                    :min="0.05"
+                    :max="0.8"
+                    :step="0.01"
+                    show-input
+                    :marks="{ 0.1: '0.1', 0.25: '0.25', 0.5: '0.5', 0.8: '0.8' }"
+                  />
+                  <span class="form-help">值越低检出越多，可能误报。建议值：0.25</span>
+                </el-form-item>
+                
+                <el-form-item label="IOU阈值">
+                  <el-slider
+                    v-model="agricultureSettings.citrusIouThreshold"
+                    :min="0.1"
+                    :max="0.8"
+                    :step="0.01"
+                    show-input
+                  />
+                  <span class="form-help">值越高去重越严格，可能漏检重叠目标。建议值：0.45</span>
+                </el-form-item>
+              </el-form>
+            </el-card>
+            
+            <el-card class="setting-section" shadow="never" style="margin-top: 20px;">
+              <template #header>
+                <div class="section-header">
+                  <span class="section-title">🌱 作物病害检测</span>
+                </div>
+              </template>
+              <el-form :model="agricultureSettings" label-width="140px">
+                <el-form-item label="置信度阈值">
+                  <el-slider
+                    v-model="agricultureSettings.cropDiseaseConfidence"
+                    :min="0.05"
+                    :max="0.8"
+                    :step="0.01"
+                    show-input
+                  />
+                  <span class="form-help">值越低检出越多，可能误报。建议值：0.25</span>
+                </el-form-item>
+                
+                <el-form-item label="IOU阈值">
+                  <el-slider
+                    v-model="agricultureSettings.cropDiseaseIouThreshold"
+                    :min="0.1"
+                    :max="0.8"
+                    :step="0.01"
+                    show-input
+                  />
+                  <span class="form-help">值越高去重越严格，可能漏检重叠目标。建议值：0.45</span>
+                </el-form-item>
+              </el-form>
+            </el-card>
+            
+            <div class="button-group" style="margin-top: 20px;">
+              <el-button @click="resetToDefault" type="info">
+                🔄 重置默认值
+              </el-button>
+            </div>
+          </el-tab-pane>
 
           <!-- 系统配置 -->
           <el-tab-pane label="系统配置">
@@ -140,6 +212,7 @@
 import { ref, onMounted } from 'vue'
 import { useRouter } from 'vue-router'
 import MainLayout from '../../components/MainLayout.vue'
+import { configApi } from '../../services/api.js'
 
 const router = useRouter()
 const loading = ref(false)
@@ -153,6 +226,14 @@ const detectionSettings = ref({
   vestThreshold: 0.7,
   alarmDelay: 0,
   debounceTime: 1
+})
+
+// 农业检测配置
+const agricultureSettings = ref({
+  citrusConfidence: 0.25,
+  citrusIouThreshold: 0.45,
+  cropDiseaseConfidence: 0.25,
+  cropDiseaseIouThreshold: 0.45
 })
 
 // 系统配置
@@ -179,9 +260,23 @@ const notificationSettings = ref({
 // 加载配置
 const loadSettings = async () => {
   try {
-    // 这里应该从后端API获取配置
-    // 暂时使用默认值
-    console.log('加载配置成功')
+    const response = await configApi.getConfig()
+    if (response.success && response.data) {
+      const config = response.data
+      if (config.detection) {
+        detectionSettings.value = { ...detectionSettings.value, ...config.detection }
+      }
+      if (config.agriculture) {
+        agricultureSettings.value = { ...agricultureSettings.value, ...config.agriculture }
+      }
+      if (config.system) {
+        systemSettings.value = { ...systemSettings.value, ...config.system }
+      }
+      if (config.notification) {
+        notificationSettings.value = { ...notificationSettings.value, ...config.notification }
+      }
+    }
+    console.log('配置加载成功')
   } catch (error) {
     console.error('加载配置失败:', error)
   }
@@ -193,12 +288,22 @@ const saveSettings = async () => {
   message.value = ''
   
   try {
-    // 这里应该调用后端API保存配置
-    // 暂时模拟保存成功
-    await new Promise(resolve => setTimeout(resolve, 1000))
+    const configData = {
+      detection: detectionSettings.value,
+      agriculture: agricultureSettings.value,
+      system: systemSettings.value,
+      notification: notificationSettings.value
+    }
     
-    message.value = '配置保存成功！'
-    messageType.value = 'success'
+    const response = await configApi.updateConfig(configData)
+    
+    if (response.success) {
+      message.value = '配置保存成功！'
+      messageType.value = 'success'
+    } else {
+      message.value = response.message || '保存配置失败'
+      messageType.value = 'error'
+    }
     
     // 3秒后清除消息
     setTimeout(() => {
@@ -211,6 +316,21 @@ const saveSettings = async () => {
   } finally {
     loading.value = false
   }
+}
+
+// 重置为默认值
+const resetToDefault = () => {
+  agricultureSettings.value = {
+    citrusConfidence: 0.25,
+    citrusIouThreshold: 0.45,
+    cropDiseaseConfidence: 0.25,
+    cropDiseaseIouThreshold: 0.45
+  }
+  message.value = '已重置为默认值，点击保存生效'
+  messageType.value = 'info'
+  setTimeout(() => {
+    message.value = ''
+  }, 3000)
 }
 
 // 页面加载时获取配置
@@ -263,5 +383,26 @@ onMounted(() => {
 
 .el-form-item {
   margin-bottom: 20px;
+}
+
+.setting-section {
+  border: 1px solid #e4e7ed;
+}
+
+.section-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.section-title {
+  font-size: 16px;
+  font-weight: 600;
+  color: #303133;
+}
+
+.button-group {
+  display: flex;
+  gap: 10px;
 }
 </style>

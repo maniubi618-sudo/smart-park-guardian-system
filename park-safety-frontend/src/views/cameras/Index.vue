@@ -10,14 +10,13 @@
             </el-select>
           </el-form-item>
           <el-form-item label="分析模式">
-            <el-select v-model="searchForm.analysis_mode" placeholder="请选择分析模式">
-              <el-option label="无" value="0" />
-              <el-option label="全部" value="1" />
-              <el-option label="安全规范" value="2" />
-              <el-option label="区域入侵" value="3" />
-              <el-option label="火警" value="4" />
-            </el-select>
-          </el-form-item>
+                <el-select v-model="searchForm.analysis_mode" placeholder="请选择分析模式">
+                  <el-option label="无" value="0" />
+                  <el-option label="全部" value="1" />
+                  <el-option label="火警" value="4" />
+                  <el-option label="柑橘成熟度" value="7" />
+                </el-select>
+              </el-form-item>
           <el-form-item label="摄像头状态">
             <el-select v-model="searchForm.camera_status" placeholder="请选择摄像头状态">
               <el-option label="离线" value="0" />
@@ -29,6 +28,9 @@
             <el-button type="primary" @click="handleSearch">搜索</el-button>
             <el-button @click="resetForm">重置</el-button>
             <el-button type="success" @click="addCamera">添加摄像头</el-button>
+            <el-button type="info" :icon="Picture" @click="imageAnalysis">
+              图片分析
+            </el-button>
             <el-button type="primary" :icon="VideoCamera" @click="localVideoAnalysis">
               本地视频分析
             </el-button>
@@ -208,7 +210,7 @@
                 <h4>分析结果:</h4>
                 <div class="analysis-grid">
                   <div 
-                    v-for="(result, index) in analysisResults" 
+                    v-for="(result, index) in filteredAnalysisResults" 
                     :key="index"
                     class="analysis-item"
                     :class="{ 'warning': result.value.includes('检测到') || (result.value.includes('人') && parseInt(result.value) > 0) || (result.value.includes('辆') && parseInt(result.value) > 0) }"
@@ -284,9 +286,15 @@
               <el-form-item label="分析模式">
                 <el-select v-model="localAnalysisForm.analysisMode" placeholder="请选择分析模式">
                   <el-option label="全部" value="1" />
-                  <el-option label="安全规范" value="2" />
-                  <el-option label="区域入侵" value="3" />
                   <el-option label="火警" value="4" />
+                  <el-option label="柑橘成熟度" value="7" />
+                  <el-option label="作物病害检测" value="8" />
+                </el-select>
+              </el-form-item>
+              <!-- 作物类型选择，仅在作物病害检测模式下显示 -->
+              <el-form-item v-if="localAnalysisForm.analysisMode === '8'" label="作物类型">
+                <el-select v-model="localAnalysisForm.cropType" placeholder="请选择作物类型">
+                  <el-option v-for="crop in availableCrops" :key="crop" :label="getCropLabel(crop)" :value="crop" />
                 </el-select>
               </el-form-item>
               <el-form-item label="分析间隔（帧）">
@@ -315,24 +323,27 @@
             </div>
             
             <!-- 分析结果 -->
-            <div class="analysis-results" v-if="localAnalysisResults.length > 0">
+            <div class="analysis-results" v-if="filteredLocalAnalysisResults.length > 0">
               <h3>当前帧分析结果</h3>
-              <el-descriptions :column="2">
-                <el-descriptions-item v-for="(item, index) in localAnalysisResults" :key="index" :label="item.label">
-                  {{ item.value }}
-                </el-descriptions-item>
-              </el-descriptions>
+              <div class="analysis-grid">
+                <div 
+                  v-for="(result, index) in filteredLocalAnalysisResults" 
+                  :key="index"
+                  class="analysis-item"
+                  :class="{ 'warning': result.value.includes('检测到') || (result.value.includes('人') && parseInt(result.value) > 0) || (result.value.includes('辆') && parseInt(result.value) > 0) || result.label.includes('🌱') }"
+                >
+                  <div class="analysis-label">{{ result.label }}</div>
+                  <div class="analysis-value">{{ result.value }}</div>
+                </div>
+              </div>
             </div>
             
             <!-- 总分析结果 -->
             <div class="total-analysis-results" v-if="!isLocalAnalysisStarted && totalFrames.value > 0">
               <h3>总分析结果</h3>
               <el-descriptions :column="2">
-                <el-descriptions-item label="未戴安全帽">
-                  {{ totalAnalysisResults.helmet }} 次
-                </el-descriptions-item>
-                <el-descriptions-item label="未穿反光衣">
-                  {{ totalAnalysisResults.vest }} 次
+                <el-descriptions-item label="人员检测">
+                  {{ totalAnalysisResults.person }} 人
                 </el-descriptions-item>
                 <el-descriptions-item label="火焰检测">
                   {{ totalAnalysisResults.fire }} 次
@@ -340,20 +351,8 @@
                 <el-descriptions-item label="烟雾检测">
                   {{ totalAnalysisResults.smoke }} 次
                 </el-descriptions-item>
-                <el-descriptions-item label="人员检测">
-                  {{ totalAnalysisResults.person }} 人
-                </el-descriptions-item>
-                <el-descriptions-item label="车辆检测">
-                  {{ totalAnalysisResults.vehicle }} 辆
-                </el-descriptions-item>
-                <el-descriptions-item label="区域入侵">
-                  {{ totalAnalysisResults.intrusion }} 次
-                </el-descriptions-item>
                 <el-descriptions-item label="分析帧数">
                   {{ processedFrames.value }} / {{ totalFrames.value }} 帧
-                </el-descriptions-item>
-                <el-descriptions-item label="分析模式">
-                  {{ localAnalysisForm.analysisMode === '1' ? '全部' : localAnalysisForm.analysisMode === '2' ? '安全规范' : localAnalysisForm.analysisMode === '3' ? '区域入侵' : '火警' }}
                 </el-descriptions-item>
               </el-descriptions>
             </div>
@@ -427,9 +426,18 @@
                 <div style="margin-bottom: 15px;">
                   <el-select v-model="phoneCameraAnalysisMode" placeholder="请选择分析模式" style="width: 200px; margin-right: 10px;">
                     <el-option label="全部" value="1" />
-                    <el-option label="安全规范" value="2" />
-                    <el-option label="区域入侵" value="3" />
                     <el-option label="火警" value="4" />
+                    <el-option label="柑橘成熟度" value="7" />
+                    <el-option label="作物病害检测" value="8" />
+                  </el-select>
+                  <!-- 作物类型选择，仅在作物病害检测模式下显示 -->
+                  <el-select 
+                    v-if="phoneCameraAnalysisMode === '8'"
+                    v-model="phoneCameraCropType" 
+                    placeholder="请选择作物类型" 
+                    style="width: 150px; margin-right: 10px;"
+                  >
+                    <el-option v-for="crop in availableCrops" :key="crop" :label="getCropLabel(crop)" :value="crop" />
                   </el-select>
                   <el-button type="success" @click="startPhoneCameraAnalysis" :disabled="!phoneViewerConnected || isPhoneCameraAnalyzing">
                     开始分析
@@ -444,7 +452,7 @@
                   <h4>分析结果:</h4>
                   <div class="analysis-grid">
                     <div 
-                      v-for="(result, index) in phoneCameraAnalysisResults" 
+                      v-for="(result, index) in filteredPhoneCameraAnalysisResults" 
                       :key="index"
                       class="analysis-item"
                       :class="{ 'warning': result.value.includes('检测到') || (result.value.includes('人') && parseInt(result.value) > 0) || (result.value.includes('辆') && parseInt(result.value) > 0) }"
@@ -506,6 +514,112 @@
         </template>
       </el-dialog>
 
+      <!-- 图片分析对话框 -->
+      <el-dialog
+        v-model="imageAnalysisDialogVisible"
+        title="图片分析"
+        width="900px"
+        :close-on-click-modal="false"
+        @close="handleImageAnalysisDialogClose"
+      >
+        <div class="image-analysis">
+          <!-- 图片上传区域 -->
+          <div v-if="!imageAnalysisResult" class="image-upload-section">
+            <div v-if="!selectedImageFile" class="upload-area">
+              <el-upload
+                class="upload-demo"
+                drag
+                action=""
+                :auto-upload="false"
+                :on-change="handleImageUpload"
+                :limit="1"
+                accept=".jpg,.jpeg,.png,.bmp"
+              >
+                <el-icon class="el-icon--upload"><Upload /></el-icon>
+                <div class="el-upload__text">将图片文件拖到此处，或 <em>点击上传</em></div>
+                <template #tip>
+                  <div class="el-upload__tip">
+                    请上传 JPG、PNG、BMP 格式的图片文件
+                  </div>
+                </template>
+              </el-upload>
+            </div>
+            <!-- 图片预览区域 -->
+            <div v-else class="image-preview-area">
+              <div class="image-preview">
+                <img :src="imageUrl" alt="预览图片" style="width: 100%; max-height: 400px; object-fit: contain;" />
+              </div>
+              <div class="selected-file" style="margin-top: 10px;">
+                <el-tag>{{ selectedImageFile.name }}</el-tag>
+                <el-button type="danger" size="small" @click="clearSelectedImage">
+                  移除
+                </el-button>
+              </div>
+            </div>
+            <el-form :model="imageAnalysisForm" style="margin-top: 20px;">
+              <el-form-item label="分析模式">
+                <el-select v-model="imageAnalysisForm.analysisMode" placeholder="请选择分析模式">
+                  <el-option label="作物病害检测" value="cropDisease" />
+                  <el-option label="柑橘成熟度" value="citrus" />
+                </el-select>
+              </el-form-item>
+              <el-form-item v-if="imageAnalysisForm.analysisMode === 'cropDisease'" label="作物类型">
+                <el-select v-model="imageAnalysisForm.cropType" placeholder="请选择作物类型">
+                  <el-option v-for="crop in availableCrops" :key="crop" :label="getCropLabel(crop)" :value="crop" />
+                </el-select>
+              </el-form-item>
+            </el-form>
+          </div>
+          
+          <!-- 分析结果区域 -->
+          <div v-else class="analysis-result-section">
+            <div class="result-image">
+              <img :src="imageAnalysisResult.annotated_image" alt="分析结果" style="width: 100%; max-height: 500px; object-fit: contain;" />
+            </div>
+            <div class="result-info" style="margin-top: 20px;">
+              <el-alert
+                :title="imageAnalysisResult.message"
+                type="success"
+                :closable="false"
+                style="margin-bottom: 20px;"
+              />
+              <div v-if="imageAnalysisForm.analysisMode === 'cropDisease' && imageAnalysisResult.crop_type" style="margin-bottom: 15px;">
+                <el-tag type="info">作物类型: {{ getCropLabel(imageAnalysisResult.crop_type) }}</el-tag>
+              </div>
+              <div v-if="imageAnalysisResult.predictions && imageAnalysisResult.predictions.length > 0" class="predictions-list">
+                <h4 style="margin-bottom: 15px;">检测结果:</h4>
+                <el-table :data="imageAnalysisResult.predictions" style="width: 100%">
+                  <el-table-column prop="class_name" label="病害类别" width="200" />
+                  <el-table-column prop="confidence" label="置信度" width="120">
+                    <template #default="scope">
+                      {{ (scope.row.confidence * 100).toFixed(1) }}%
+                    </template>
+                  </el-table-column>
+                  <el-table-column v-if="imageAnalysisForm.analysisMode === 'citrus'" prop="maturity_label" label="成熟度" width="120" />
+                  <el-table-column v-if="imageAnalysisForm.analysisMode === 'citrus'" prop="days_to_ripe" label="预计成熟天数" width="140" />
+                </el-table>
+              </div>
+            </div>
+          </div>
+        </div>
+        <template #footer>
+          <span class="dialog-footer">
+            <el-button @click="handleImageAnalysisDialogClose">关闭</el-button>
+            <el-button
+              v-if="!imageAnalysisResult && selectedImageFile"
+              type="primary"
+              @click="startImageAnalysis"
+              :loading="imageAnalysisLoading"
+            >
+              开始分析
+            </el-button>
+            <el-button v-if="imageAnalysisResult" type="info" @click="resetImageAnalysis">
+              重新分析
+            </el-button>
+          </span>
+        </template>
+      </el-dialog>
+
       <!-- 摄像头编辑对话框 -->
       <el-dialog
         v-model="dialogVisible"
@@ -528,14 +642,13 @@
             <el-input v-model="cameraForm.install_position" placeholder="请输入安装位置" />
           </el-form-item>
           <el-form-item label="分析模式" prop="analysis_mode">
-            <el-select v-model="cameraForm.analysis_mode" placeholder="请选择分析模式">
-              <el-option label="无" :value="0" />
-              <el-option label="全部" :value="1" />
-              <el-option label="安全规范" :value="2" />
-              <el-option label="区域入侵" :value="3" />
-              <el-option label="火警" :value="4" />
-            </el-select>
-          </el-form-item>
+                <el-select v-model="cameraForm.analysis_mode" placeholder="请选择分析模式">
+                  <el-option label="无" :value="0" />
+                  <el-option label="全部" :value="1" />
+                  <el-option label="火警" :value="4" />
+                  <el-option label="柑橘成熟度" :value="7" />
+                </el-select>
+              </el-form-item>
           <el-form-item label="摄像头IP" prop="camera_ip">
             <el-input v-model="cameraForm.camera_ip" placeholder="请输入摄像头IP" />
           </el-form-item>
@@ -561,12 +674,43 @@ import { ref, computed, onMounted, onUnmounted, watch, reactive } from 'vue'
 import { useCameraStore } from '../../stores/cameras'
 import { useAreaStore } from '../../stores/areas'
 import MainLayout from '../../components/MainLayout.vue'
-import { VideoCamera, Loading, CircleClose, Check, Upload } from '@element-plus/icons-vue'
+import { VideoCamera, Loading, CircleClose, Check, Upload, Picture } from '@element-plus/icons-vue'
+import { citrusApi, cropDiseaseApi } from '../../services/api.js'
 import { ElMessageBox, ElMessage } from 'element-plus'
 import QRCode from 'qrcode'
 
 const cameraStore = useCameraStore()
 const areaStore = useAreaStore()
+
+// 过滤掉已关闭的检测结果
+const filteredAnalysisResults = computed(() => {
+  if (!analysisResults.value) return []
+  return analysisResults.value.filter(result => {
+    // 隐藏的检测类型（保留人员检测）
+    const hiddenLabels = ['未戴安全帽', '未穿反光衣', '车辆检测', '区域入侵']
+    return !hiddenLabels.includes(result.label)
+  })
+})
+
+// 过滤手机摄像头分析结果
+const filteredPhoneCameraAnalysisResults = computed(() => {
+  if (!phoneCameraAnalysisResults.value) return []
+  return phoneCameraAnalysisResults.value.filter(result => {
+    // 隐藏的检测类型（保留人员检测）
+    const hiddenLabels = ['未戴安全帽', '未穿反光衣', '车辆检测', '区域入侵']
+    return !hiddenLabels.includes(result.label)
+  })
+})
+
+// 过滤本地视频分析结果
+const filteredLocalAnalysisResults = computed(() => {
+  if (!localAnalysisResults.value) return []
+  return localAnalysisResults.value.filter(result => {
+    // 隐藏的检测类型（保留人员检测）
+    const hiddenLabels = ['未戴安全帽', '未穿反光衣', '车辆检测', '区域入侵']
+    return !hiddenLabels.includes(result.label)
+  })
+})
 
 // 搜索表单
 const searchForm = reactive({
@@ -676,7 +820,8 @@ const videoUrl = ref('')
 const videoPlayer = ref(null)
 const localAnalysisForm = reactive({
   analysisMode: '1',
-  frameInterval: 5
+  frameInterval: 5,
+  cropType: 'rice' // 作物类型选择，用于作物病害检测
 })
 const isLocalAnalysisStarted = ref(false)
 const localAnalysisLoading = ref(false)
@@ -731,6 +876,7 @@ const phoneViewerFpsInterval = ref(null)
 
 // 手机摄像头分析相关
 const phoneCameraAnalysisMode = ref('1')
+const phoneCameraCropType = ref('rice') // 作物类型选择，用于作物病害检测
 const isPhoneCameraAnalyzing = ref(false)
 const phoneCameraAnalysisResults = ref(null)
 const phoneCameraAnalysisInterval = ref(null)
@@ -739,6 +885,18 @@ const phoneCameraLastAlertState = ref('') // 手机摄像头分析的告警状�
 
 // 手机摄像头位置相关
 const phoneCameraLocation = ref(null) // { latitude, longitude }
+
+// 图片分析相关
+const imageAnalysisDialogVisible = ref(false)
+const selectedImageFile = ref(null)
+const imageUrl = ref('')
+const availableCrops = ref([])
+const imageAnalysisForm = reactive({
+  analysisMode: 'cropDisease',
+  cropType: 'rice'
+})
+const imageAnalysisResult = ref(null)
+const imageAnalysisLoading = ref(false)
 
 // 进度条颜色
 const progressColor = computed(() => {
@@ -775,7 +933,10 @@ const getAnalysisModeName = (mode) => {
     1: '全部',
     2: '安全规范',
     3: '区域入侵',
-    4: '火警'
+    4: '火警',
+    5: '害虫检测',
+    6: '作物长势异常',
+    7: '柑橘成熟度'
   }
   return modeMap[mode] || '未知'
 }
@@ -1243,32 +1404,32 @@ const checkForAlerts = (results) => {
   const alerts = []
 
   results.forEach(result => {
-    // 检查安全规范告警
-    if ((result.label === '未戴安全帽' || result.label === '未穿反光衣') && result.value === '检测到') {
-      alerts.push(result.label)
+    // 跳过已关闭的检测类型（保留人员检测）
+    const hiddenLabels = ['未戴安全帽', '未穿反光衣', '车辆检测', '区域入侵']
+    if (hiddenLabels.includes(result.label)) return
+
+    // 检查人员检测
+    if (result.label === '人员检测') {
+      const count = parseInt(result.value.replace(/[^0-9]/g, ''))
+      if (count > 0) {
+        alerts.push(`${result.label} (${result.value})`)
+      }
     }
     // 检查火警告警
     else if ((result.label === '火焰检测' || result.label === '烟雾检测') && result.value === '检测到') {
       alerts.push(result.label)
     }
-    // 检查区域入侵告警
-    else if (result.label === '区域入侵' && result.value === '检测到') {
+    // 检查害虫检测告警
+    else if (result.label === '害虫检测' && result.value === '检测到') {
       alerts.push(result.label)
     }
-    // 检查人员和车辆检测
-    else if (result.label === '人员检测') {
-      // 提取数字部分，处理"X人"格式的字符串
-      const count = parseInt(result.value.replace(/[^0-9]/g, ''))
-      if (count > 0) {
-        alerts.push(`${result.label} (${result.value})`)
-      }
+    // 检查作物长势异常告警
+    else if (result.label === '作物长势异常' && result.value === '检测到') {
+      alerts.push(result.label)
     }
-    else if (result.label === '车辆检测') {
-      // 提取数字部分，处理"X辆"格式的字符串
-      const count = parseInt(result.value.replace(/[^0-9]/g, ''))
-      if (count > 0) {
-        alerts.push(`${result.label} (${result.value})`)
-      }
+    // 检查柑橘检测提醒
+    else if (result.label.includes('🍊 检测状态') && result.value.includes('✅')) {
+      alerts.push(`${result.label} (${result.value})`)
     }
   })
 
@@ -1284,7 +1445,6 @@ const checkForAlerts = (results) => {
 
     // 设置防抖定时器
     alertDebounceTimer.value = setTimeout(() => {
-      // 如果有告警，显示弹窗
       if (alerts.length > 0) {
         ElMessage({
           message: `检测到以下告警: ${alerts.join('、')}`,
@@ -1334,14 +1494,14 @@ const playWarningSound = (alertType) => {
       // 火警：急促的双音
       frequency = 1000
       duration = 0.5
-    } else if (alertType.includes('区域入侵') || alertType.includes('人员') || alertType.includes('车辆')) {
-      // 入侵告警：中等频率
+    } else if (alertType.includes('人员')) {
+      // 人员检测：中等频率
       frequency = 800
       duration = 0.4
-    } else if (alertType.includes('安全帽') || alertType.includes('反光衣')) {
-      // 安全规范：较低频率
-      frequency = 660
-      duration = 0.3
+    } else if (alertType.includes('🌱') || alertType.includes('病害')) {
+      // 作物病害检测：稍低频率
+      frequency = 600
+      duration = 0.35
     }
 
     oscillator.frequency.value = frequency
@@ -1363,32 +1523,36 @@ const checkLocalVideoAlerts = (results) => {
   const alerts = []
 
   results.forEach(result => {
-    // 检查安全规范告警
-    if ((result.label === '未戴安全帽' || result.label === '未穿反光衣') && result.value === '检测到') {
-      alerts.push(result.label)
+    // 跳过已关闭的检测类型（保留人员检测）
+    const hiddenLabels = ['未戴安全帽', '未穿反光衣', '车辆检测', '区域入侵']
+    if (hiddenLabels.includes(result.label)) return
+
+    // 检查人员检测
+    if (result.label === '人员检测') {
+      const count = parseInt(result.value.replace(/[^0-9]/g, ''))
+      if (count > 0) {
+        alerts.push(`${result.label} (${result.value})`)
+      }
     }
     // 检查火警告警
     else if ((result.label === '火焰检测' || result.label === '烟雾检测') && result.value === '检测到') {
       alerts.push(result.label)
     }
-    // 检查区域入侵告警
-    else if (result.label === '区域入侵' && result.value === '检测到') {
+    // 检查害虫检测告警
+    else if (result.label === '害虫检测' && result.value === '检测到') {
       alerts.push(result.label)
     }
-    // 检查人员和车辆检测
-    else if (result.label === '人员检测') {
-      // 提取数字部分，处理"X人"格式的字符串
-      const count = parseInt(result.value.replace(/[^0-9]/g, ''))
-      if (count > 0) {
-        alerts.push(`${result.label} (${result.value})`)
-      }
+    // 检查作物长势异常告警
+    else if (result.label === '作物长势异常' && result.value === '检测到') {
+      alerts.push(result.label)
     }
-    else if (result.label === '车辆检测') {
-      // 提取数字部分，处理"X辆"格式的字符串
-      const count = parseInt(result.value.replace(/[^0-9]/g, ''))
-      if (count > 0) {
-        alerts.push(`${result.label} (${result.value})`)
-      }
+    // 检查柑橘检测提醒
+    else if (result.label.includes('🍊 检测状态') && result.value.includes('✅')) {
+      alerts.push(`${result.label} (${result.value})`)
+    }
+    // 检查作物病害检测
+    else if (result.label.includes('🌱') && result.value.includes('检测到')) {
+      alerts.push(`${result.label} (${result.value})`)
     }
   })
 
@@ -1428,8 +1592,9 @@ const handleAnalysisDialogClose = () => {
 }
 
 // 本地视频分析相关方法
-const localVideoAnalysis = () => {
+const localVideoAnalysis = async () => {
   localVideoDialogVisible.value = true
+  await loadCrops() // 加载作物列表
 }
 
 // 处理视频上传
@@ -1510,9 +1675,36 @@ const startLocalVideoAnalysis = async () => {
         clearInterval(analysisInterval.value)
         isLocalAnalysisStarted.value = false
         
-        // 显示总分析结果弹窗
-        ElMessageBox.alert(
-          `<div style="padding: 20px;">
+        // 根据分析模式显示不同的报告
+        let reportContent = ''
+        
+        if (localAnalysisForm.analysisMode === '8') {
+          // 作物病害检测模式
+          reportContent = `<div style="padding: 20px;">
+            <h3 style="margin-bottom: 20px; color: #1890ff; text-align: center; font-size: 18px;">🌱 作物病害检测完成</h3>
+            <div style="background-color: #f5f7fa; padding: 20px; border-radius: 8px; margin-bottom: 20px;">
+              <div style="display: grid; grid-template-columns: repeat(2, 1fr); gap: 15px;">
+                <div style="padding: 10px; background-color: white; border-radius: 6px; box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);">
+                  <strong style="color: #666;">分析帧数：</strong>
+                  <span style="color: #1890ff; font-weight: 500;">${processedFrames.value} / ${totalFrames.value} 帧</span>
+                </div>
+                <div style="padding: 10px; background-color: white; border-radius: 6px; box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);">
+                  <strong style="color: #666;">作物类型：</strong>
+                  <span style="color: #1890ff; font-weight: 500;">${getCropLabel(localAnalysisForm.cropType)}</span>
+                </div>
+                <div style="padding: 10px; background-color: white; border-radius: 6px; box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); grid-column: 1 / -1;">
+                  <strong style="color: #666;">病害检测：</strong>
+                  <span style="color: ${totalAnalysisResults.value.diseaseCount > 0 ? '#f56c6c' : '#67c23a'}; font-weight: 500;">${totalAnalysisResults.value.diseaseCount} 次</span>
+                </div>
+              </div>
+            </div>
+            <div style="text-align: center; color: #999; font-size: 14px;">
+              分析结果仅供参考，实际情况请以现场为准
+            </div>
+          </div>`
+        } else {
+          // 其他模式的报告
+          reportContent = `<div style="padding: 20px;">
             <h3 style="margin-bottom: 20px; color: #1890ff; text-align: center; font-size: 18px;">视频分析完成</h3>
             <div style="background-color: #f5f7fa; padding: 20px; border-radius: 8px; margin-bottom: 20px;">
               <div style="display: grid; grid-template-columns: repeat(2, 1fr); gap: 15px;">
@@ -1557,15 +1749,15 @@ const startLocalVideoAnalysis = async () => {
             <div style="text-align: center; color: #999; font-size: 14px;">
               分析结果仅供参考，实际情况请以现场为准
             </div>
-          </div>`,
-          '分析完成',
-          {
+          </div>`
+        }
+        
+        ElMessageBox.alert(reportContent, '分析完成', {
             dangerouslyUseHTMLString: true,
             confirmButtonText: '确定',
             customClass: 'total-analysis-popup',
             width: '600px'
-          }
-        ).catch(() => {
+          }).catch(() => {
           // 捕获用户关闭对话框的情况，防止未捕获的异常
         })
         return
@@ -1585,113 +1777,129 @@ const startLocalVideoAnalysis = async () => {
       // 将画布转换为Base64
       const frameData = canvas.toDataURL('image/jpeg', 0.8)
 
-      // 调用后端分析API
-      try {
-        const token = localStorage.getItem('token')
-        const response = await fetch('/api/v1/camera_infos/analyze_frame', {
-          method: 'POST',
-          headers: {
-            'Content-Type': 'application/json',
-            'Authorization': `Bearer ${token}`
-          },
-          body: JSON.stringify({
-            image: frameData,
-            analysis_mode: localAnalysisForm.analysisMode
-          })
-        })
+      // 初始化病害检测计数
+      if (!totalAnalysisResults.value.diseaseCount) {
+        totalAnalysisResults.value.diseaseCount = 0
+      }
 
-        if (response.ok) {
-          const result = await response.json()
-          if (result.results) {
-            localAnalysisResults.value = result.results
+      // 根据分析模式选择不同的API
+      try {
+        if (localAnalysisForm.analysisMode === '8') {
+          // 模式8：作物病害检测
+          // 将DataURL转换为Blob
+          const response1 = await fetch(frameData)
+          const blob = await response1.blob()
+          
+          // 创建FormData
+          const formData = new FormData()
+          formData.append('file', blob, 'frame.jpg')
+          
+          // 调用作物病害检测API
+          const token = localStorage.getItem('token')
+          const response = await fetch(`/api/v1/crop-disease-detection/detect?crop_type=${localAnalysisForm.cropType}`, {
+            method: 'POST',
+            headers: {
+              'Authorization': `Bearer ${token}`
+            },
+            body: formData
+          })
+          
+          if (response.ok) {
+            const result = await response.json()
+            // 格式化结果为统一格式
+            const analysisResults = []
             
-            // 检查是否有告警并显示提示
-            checkLocalVideoAlerts(result.results)
-            
-            // 更新总的分析结果
-            result.results.forEach(item => {
-              if (item.label === '未戴安全帽' && item.value === '检测到') {
-                totalAnalysisResults.value.helmet++
-              } else if (item.label === '未穿反光衣' && item.value === '检测到') {
-                totalAnalysisResults.value.vest++
-              } else if (item.label === '火焰检测' && item.value === '检测到') {
-                totalAnalysisResults.value.fire++
-              } else if (item.label === '烟雾检测' && item.value === '检测到') {
-                totalAnalysisResults.value.smoke++
-              } else if (item.label === '人员检测') {
-                // 提取数字部分，处理"X人"格式的字符串
-                const count = parseInt(item.value.replace(/[^0-9]/g, ''))
-                if (!isNaN(count)) {
-                  // 取最大值而不是累加，减少重复计数误差
-                  if (count > totalAnalysisResults.value.person) {
-                    totalAnalysisResults.value.person = count
-                  }
-                }
-              } else if (item.label === '车辆检测') {
-                // 提取数字部分，处理"X辆"格式的字符串
-                const count = parseInt(item.value.replace(/[^0-9]/g, ''))
-                if (!isNaN(count)) {
-                  // 取最大值而不是累加，减少重复计数误差
-                  if (count > totalAnalysisResults.value.vehicle) {
-                    totalAnalysisResults.value.vehicle = count
-                  }
-                }
-              } else if (item.label === '区域入侵' && item.value === '检测到') {
-                totalAnalysisResults.value.intrusion++
+            if (result.success && result.predictions) {
+              analysisResults.push({
+                label: `🌱 ${getCropLabel(result.crop_type)}病害检测`,
+                value: `检测到 ${result.predictions.length} 个病害`
+              })
+              
+              // 添加详细检测结果
+              result.predictions.forEach((pred, index) => {
+                analysisResults.push({
+                  label: `病害 ${index + 1}`,
+                  value: `${pred.class_name} (${(pred.confidence * 100).toFixed(1)}%)`
+                })
+              })
+              
+              // 更新病害计数
+              if (result.predictions.length > 0) {
+                totalAnalysisResults.value.diseaseCount++
               }
-            })
+            } else {
+              analysisResults.push({
+                label: `🌱 ${getCropLabel(localAnalysisForm.cropType)}病害检测`,
+                value: '未检测到病害'
+              })
+            }
+            
+            localAnalysisResults.value = analysisResults
+            // 检查是否有告警
+            if (result.success && result.predictions.length > 0) {
+              checkLocalVideoAlerts(analysisResults)
+            }
           }
         } else {
-          console.error('分析API调用失败:', response.status)
+          // 其他模式：使用原来的分析接口
+          const token = localStorage.getItem('token')
+          const response = await fetch('/api/v1/camera_infos/analyze_frame', {
+            method: 'POST',
+            headers: {
+              'Content-Type': 'application/json',
+              'Authorization': `Bearer ${token}`
+            },
+            body: JSON.stringify({
+              image: frameData,
+              analysis_mode: localAnalysisForm.analysisMode
+            })
+          })
+
+          if (response.ok) {
+            const result = await response.json()
+            if (result.results) {
+              localAnalysisResults.value = result.results
+              
+              // 检查是否有告警并显示提示
+              checkLocalVideoAlerts(result.results)
+              
+              // 更新总的分析结果
+              result.results.forEach(item => {
+                if (item.label === '未戴安全帽' && item.value === '检测到') {
+                  totalAnalysisResults.value.helmet++
+                } else if (item.label === '未穿反光衣' && item.value === '检测到') {
+                  totalAnalysisResults.value.vest++
+                } else if (item.label === '火焰检测' && item.value === '检测到') {
+                  totalAnalysisResults.value.fire++
+                } else if (item.label === '烟雾检测' && item.value === '检测到') {
+                  totalAnalysisResults.value.smoke++
+                } else if (item.label === '人员检测') {
+                  // 提取数字部分，处理"X人"格式的字符串
+                  const count = parseInt(item.value.replace(/[^0-9]/g, ''))
+                  if (!isNaN(count)) {
+                    // 取最大值而不是累加，减少重复计数误差
+                    if (count > totalAnalysisResults.value.person) {
+                      totalAnalysisResults.value.person = count
+                    }
+                  }
+                } else if (item.label === '车辆检测') {
+                  // 提取数字部分，处理"X辆"格式的字符串
+                  const count = parseInt(item.value.replace(/[^0-9]/g, ''))
+                  if (!isNaN(count)) {
+                    // 取最大值而不是累加，减少重复计数误差
+                    if (count > totalAnalysisResults.value.vehicle) {
+                      totalAnalysisResults.value.vehicle = count
+                    }
+                  }
+                } else if (item.label === '区域入侵' && item.value === '检测到') {
+                  totalAnalysisResults.value.intrusion++
+                }
+              })
+            }
+          }
         }
       } catch (error) {
         console.error('分析API调用错误:', error)
-        // 失败时使用模拟结果
-        localAnalysisResults.value = [
-          { label: '未戴安全帽', value: Math.random() > 0.5 ? '检测到' : '未检测到' },
-          { label: '未穿反光衣', value: Math.random() > 0.5 ? '检测到' : '未检测到' },
-          { label: '火焰检测', value: Math.random() > 0.8 ? '检测到' : '未检测到' },
-          { label: '烟雾检测', value: Math.random() > 0.7 ? '检测到' : '未检测到' },
-          { label: '人员检测', value: `${Math.floor(Math.random() * 5)}人` },
-          { label: '车辆检测', value: `${Math.floor(Math.random() * 3)}辆` },
-          { label: '区域入侵', value: Math.random() > 0.6 ? '检测到' : '未检测到' }
-        ]
-        
-        // 检查是否有告警并显示提示
-        checkLocalVideoAlerts(localAnalysisResults.value)
-        
-        // 更新总的分析结果（模拟情况）
-        localAnalysisResults.value.forEach(item => {
-          if (item.label === '未戴安全帽' && item.value === '检测到') {
-            totalAnalysisResults.value.helmet++
-          } else if (item.label === '未穿反光衣' && item.value === '检测到') {
-            totalAnalysisResults.value.vest++
-          } else if (item.label === '火焰检测' && item.value === '检测到') {
-            totalAnalysisResults.value.fire++
-          } else if (item.label === '烟雾检测' && item.value === '检测到') {
-            totalAnalysisResults.value.smoke++
-          } else if (item.label === '人员检测') {
-            // 提取数字部分，处理"X人"格式的字符串
-            const count = parseInt(item.value.replace(/[^0-9]/g, ''))
-            if (!isNaN(count)) {
-              // 取最大值而不是累加，减少重复计数误差
-              if (count > totalAnalysisResults.value.person) {
-                totalAnalysisResults.value.person = count
-              }
-            }
-          } else if (item.label === '车辆检测') {
-            // 提取数字部分，处理"X辆"格式的字符串
-            const count = parseInt(item.value.replace(/[^0-9]/g, ''))
-            if (!isNaN(count)) {
-              // 取最大值而不是累加，减少重复计数误差
-              if (count > totalAnalysisResults.value.vehicle) {
-                totalAnalysisResults.value.vehicle = count
-              }
-            }
-          } else if (item.label === '区域入侵' && item.value === '检测到') {
-            totalAnalysisResults.value.intrusion++
-          }
-        })
       }
 
       // 更新进度
@@ -1760,6 +1968,7 @@ const openPhoneCamera = async () => {
   phoneCameraDialogVisible.value = true
   await detectLocalIP()
   updatePhonePushUrl()
+  await loadCrops() // 加载作物列表
 }
 
 // 检测本机IP地址
@@ -1836,6 +2045,103 @@ const handlePhoneCameraDialogClose = () => {
   phoneViewerMirror.value = false
 }
 
+// ========== 图片分析相关方法 ==========
+
+// 打开图片分析对话框
+const imageAnalysis = () => {
+  imageAnalysisDialogVisible.value = true
+  // 获取作物列表
+  loadCrops()
+}
+
+// 加载作物列表
+const loadCrops = async () => {
+  try {
+    const result = await cropDiseaseApi.getCrops()
+    if (result && result.success) {
+      availableCrops.value = result.crops || []
+    } else {
+      // API调用失败时使用默认的作物列表
+      availableCrops.value = ['apple', 'corn', 'cotton', 'grape', 'potato', 'rice', 'strawberry', 'tomato', 'wheat']
+    }
+  } catch (error) {
+    console.error('获取作物列表失败:', error)
+    // 出错时使用默认的作物列表
+    availableCrops.value = ['apple', 'corn', 'cotton', 'grape', 'potato', 'rice', 'strawberry', 'tomato', 'wheat']
+  }
+}
+
+// 获取作物类型标签
+const getCropLabel = (crop) => {
+  const cropLabels = {
+    'apple': '苹果',
+    'corn': '玉米',
+    'cotton': '棉花',
+    'grape': '葡萄',
+    'potato': '马铃薯',
+    'rice': '水稻',
+    'strawberry': '草莓',
+    'tomato': '番茄',
+    'wheat': '小麦'
+  }
+  return cropLabels[crop] || crop
+}
+
+// 处理图片上传
+const handleImageUpload = (file) => {
+  selectedImageFile.value = file.raw
+  imageUrl.value = URL.createObjectURL(file.raw)
+}
+
+// 清除选择的图片
+const clearSelectedImage = () => {
+  selectedImageFile.value = null
+  imageUrl.value = ''
+}
+
+// 开始图片分析
+const startImageAnalysis = async () => {
+  if (!selectedImageFile.value) {
+    ElMessage.warning('请先选择图片')
+    return
+  }
+
+  imageAnalysisLoading.value = true
+  try {
+    let result
+    if (imageAnalysisForm.analysisMode === 'cropDisease') {
+      result = await cropDiseaseApi.detect(selectedImageFile.value, imageAnalysisForm.cropType)
+    } else {
+      result = await citrusApi.detect(selectedImageFile.value)
+    }
+
+    if (result) {
+      imageAnalysisResult.value = result
+      ElMessage.success('分析完成')
+    }
+  } catch (error) {
+    console.error('图片分析失败:', error)
+    ElMessage.error('分析失败，请重试')
+  } finally {
+    imageAnalysisLoading.value = false
+  }
+}
+
+// 重置图片分析
+const resetImageAnalysis = () => {
+  imageAnalysisResult.value = null
+}
+
+// 处理图片分析对话框关闭
+const handleImageAnalysisDialogClose = () => {
+  imageAnalysisDialogVisible.value = false
+  selectedImageFile.value = null
+  imageUrl.value = ''
+  imageAnalysisResult.value = null
+  imageAnalysisForm.analysisMode = 'cropDisease'
+  imageAnalysisForm.cropType = 'rice'
+}
+
 // ========== 手机摄像头分析相关方法 ==========
 
 // 开始手机摄像头分析
@@ -1878,27 +2184,81 @@ const analyzePhoneCameraFrame = async () => {
     const frameData = canvas.toDataURL('image/jpeg', 0.6)
     phoneCameraLastFrameData.value = frameData
     
-    // 调用后端API分析
-    const token = localStorage.getItem('token')
-    const response = await fetch('/api/v1/camera_infos/analyze_frame', {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-        'Authorization': `Bearer ${token}`
-      },
-      body: JSON.stringify({
-        image: frameData,
-        analysis_mode: phoneCameraAnalysisMode.value
+    // 检查分析模式
+    if (phoneCameraAnalysisMode.value === '8') {
+      // 模式8：作物病害检测
+      // 将DataURL转换为Blob
+      const response1 = await fetch(frameData)
+      const blob = await response1.blob()
+      
+      // 创建FormData
+      const formData = new FormData()
+      formData.append('file', blob, 'frame.jpg')
+      
+      // 调用作物病害检测API
+      const token = localStorage.getItem('token')
+      const response = await fetch(`/api/v1/crop-disease-detection/detect?crop_type=${phoneCameraCropType.value}`, {
+        method: 'POST',
+        headers: {
+          'Authorization': `Bearer ${token}`
+        },
+        body: formData
       })
-    })
-    
-    if (response.ok) {
-      const result = await response.json()
-      if (result.results) {
-        phoneCameraAnalysisResults.value = result.results
+      
+      if (response.ok) {
+        const result = await response.json()
+        // 格式化结果为统一格式
+        const analysisResults = []
         
-        // 检查是否有告警并显示提示
-        checkPhoneCameraAlerts(result.results)
+        if (result.success && result.predictions) {
+          analysisResults.push({
+            label: `🌱 ${getCropLabel(result.crop_type)}病害检测`,
+            value: `检测到 ${result.predictions.length} 个病害`
+          })
+          
+          // 添加详细检测结果
+          result.predictions.forEach((pred, index) => {
+            analysisResults.push({
+              label: `病害 ${index + 1}`,
+              value: `${pred.class_name} (${(pred.confidence * 100).toFixed(1)}%)`
+            })
+          })
+        } else {
+          analysisResults.push({
+            label: `🌱 ${getCropLabel(phoneCameraCropType.value)}病害检测`,
+            value: '未检测到病害'
+          })
+        }
+        
+        phoneCameraAnalysisResults.value = analysisResults
+        // 检查是否有告警
+        if (result.success && result.predictions.length > 0) {
+          checkPhoneCameraAlerts(analysisResults)
+        }
+      }
+    } else {
+      // 其他模式：使用原来的分析接口
+      const token = localStorage.getItem('token')
+      const response = await fetch('/api/v1/camera_infos/analyze_frame', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+          'Authorization': `Bearer ${token}`
+        },
+        body: JSON.stringify({
+          image: frameData,
+          analysis_mode: phoneCameraAnalysisMode.value
+        })
+      })
+      
+      if (response.ok) {
+        const result = await response.json()
+        if (result.results) {
+          phoneCameraAnalysisResults.value = result.results
+          
+          // 检查是否有告警并显示提示
+          checkPhoneCameraAlerts(result.results)
+        }
       }
     }
   } catch (error) {
@@ -1914,30 +2274,36 @@ const checkPhoneCameraAlerts = (results) => {
   const alerts = []
   
   results.forEach(result => {
-    // 检查安全规范告警
-    if ((result.label === '未戴安全帽' || result.label === '未穿反光衣') && result.value === '检测到') {
-      alerts.push(result.label)
+    // 跳过已关闭的检测类型（保留人员检测）
+    const hiddenLabels = ['未戴安全帽', '未穿反光衣', '车辆检测', '区域入侵']
+    if (hiddenLabels.includes(result.label)) return
+
+    // 检查人员检测
+    if (result.label === '人员检测') {
+      const count = parseInt(result.value.replace(/[^0-9]/g, ''))
+      if (count > 0) {
+        alerts.push(`${result.label} (${result.value})`)
+      }
     }
     // 检查火警告警
-    else if ((result.label === '火焰检测' || result.label === '烟雾检测') && result.value === '检测到') {
+    if ((result.label === '火焰检测' || result.label === '烟雾检测') && result.value === '检测到') {
       alerts.push(result.label)
     }
-    // 检查区域入侵告警
-    else if (result.label === '区域入侵' && result.value === '检测到') {
+    // 检查害虫检测告警
+    else if (result.label === '害虫检测' && result.value === '检测到') {
       alerts.push(result.label)
     }
-    // 检查人员和车辆检测
-    else if (result.label === '人员检测') {
-      const count = parseInt(result.value.replace(/[^0-9]/g, ''))
-      if (count > 0) {
-        alerts.push(`${result.label} (${result.value})`)
-      }
+    // 检查作物长势异常告警
+    else if (result.label === '作物长势异常' && result.value === '检测到') {
+      alerts.push(result.label)
     }
-    else if (result.label === '车辆检测') {
-      const count = parseInt(result.value.replace(/[^0-9]/g, ''))
-      if (count > 0) {
-        alerts.push(`${result.label} (${result.value})`)
-      }
+    // 检查柑橘检测提醒
+    else if (result.label.includes('🍊 检测状态') && result.value.includes('✅')) {
+      alerts.push(`${result.label} (${result.value})`)
+    }
+    // 检查作物病害检测
+    else if (result.label.includes('🌱') && result.value.includes('检测到')) {
+      alerts.push(`${result.label} (${result.value})`)
     }
   })
   
@@ -1960,7 +2326,6 @@ const checkPhoneCameraAlerts = (results) => {
     }
   }
 }
-
 // ========== 手机推流观看相关方法 ==========
 
 // 更新连接地址
@@ -2229,6 +2594,7 @@ onMounted(async () => {
   await fetchAreas()
   await cameraStore.fetchStatusReport()
   await fetchCameras()
+  await loadCrops() // 加载作物列表
 })
 </script>
 

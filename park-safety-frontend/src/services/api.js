@@ -189,4 +189,52 @@ export const aiApi = {
   }
 }
 
+// 柑橘检测相关
+export const citrusApi = {
+  detect: (file) => {
+    const formData = new FormData()
+    formData.append('file', file)
+    return api.post('/v1/citrus-detection/detect', formData, {
+      headers: {
+        'Content-Type': 'multipart/form-data'
+      }
+    })
+  },
+  getStatus: () => {
+    return api.get('/v1/citrus-detection/status')
+  }
+}
+
+// 农作物病害检测相关
+export const cropDiseaseApi = {
+  detect: (file, cropType = 'rice') => {
+    const formData = new FormData()
+    formData.append('file', file)
+    return api.post(`/v1/crop-disease-detection/detect?crop_type=${cropType}`, formData, {
+      headers: {
+        'Content-Type': 'multipart/form-data'
+      }
+    })
+  },
+  getCrops: () => {
+    return api.get('/v1/crop-disease-detection/crops')
+  },
+  getStatus: (cropType = 'rice') => {
+    return api.get(`/v1/crop-disease-detection/status?crop_type=${cropType}`)
+  }
+}
+
+// 配置管理相关
+export const configApi = {
+  getConfig: () => {
+    return api.get('/v1/config/')
+  },
+  updateConfig: (configData) => {
+    return api.put('/v1/config/', configData)
+  },
+  getSectionConfig: (section) => {
+    return api.get(`/v1/config/${section}`)
+  }
+}
+
 export default api

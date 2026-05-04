@@ -1,0 +1,41 @@
+{
+  "detection": {
+    "fireThreshold": 0.7,
+    "helmetThreshold": 0.7,
+    "vestThreshold": 0.7,
+    "alarmDelay": 0,
+    "debounceTime": 1,
+    "enableHelmet": false,
+    "enableVest": false,
+    "enableVehicleIntrusion": false,
+    "enableFire": true,
+    "enablePest": true,
+    "enableCropGrowth": true,
+    "enableCitrus": true
+  },
+  "agriculture": {
+    "citrusConfidence": 0.5,
+    "citrusIouThreshold": 0.5,
+    "cropDiseaseConfidence": 0.2,
+    "cropDiseaseIouThreshold": 0.24,
+    "pestConfidence": 0.2,
+    "pestIouThreshold": 0.25
+  },
+  "system": {
+    "dbHost": "localhost",
+    "dbPort": 3306,
+    "dbUser": "root",
+    "dbPassword": "123456",
+    "dbName": "yolo_safety",
+    "snapshotPath": "./snapshots/"
+  },
+  "notification": {
+    "enableWebSocket": true,
+    "enableEmail": false,
+    "emailServer": "",
+    "emailPort": 587,
+    "emailSender": "",
+    "emailPassword": "",
+    "emailRecipients": ""
+  }
+}

@@ -6,8 +6,6 @@
         <el-form :model="searchForm" inline>
           <el-form-item label="告警类型">
             <el-select v-model="searchForm.alarm_type" placeholder="请选择告警类型">
-              <el-option label="安全规范" value="0" />
-              <el-option label="区域入侵" value="1" />
               <el-option label="火警" value="2" />
             </el-select>
           </el-form-item>
