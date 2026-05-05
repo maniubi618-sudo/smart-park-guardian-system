@@ -32,12 +32,10 @@ venv/
 # Log files
 logs/
 
-# Model files (large binary files)
-app/models/*.pt
+# Large backup files
 app/models/*.pt.backup
 app/models/*.onnx
 app/models/*.engine
-yolo11n-cls.pt
 
 # Datasets
 datasets/

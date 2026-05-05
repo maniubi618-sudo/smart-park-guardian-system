@@ -23,50 +23,83 @@
         <el-tabs type="border-card">
           <!-- 检测参数配置 -->
           <el-tab-pane label="检测参数">
-            <el-form :model="detectionSettings" label-width="120px">
-              <el-form-item label="火灾检测阈值">
-                <el-slider
-                  v-model="detectionSettings.fireThreshold"
-                  :min="0"
-                  :max="1"
-                  :step="0.01"
-                  show-input
-                />
-                <span class="form-help">值越低灵敏度越高，建议值：0.7</span>
-              </el-form-item>
+            <el-card class="setting-section" shadow="never">
+              <template #header>
+                <div class="section-header">
+                  <span class="section-title">⚡ 功能开关</span>
+                </div>
+              </template>
+              <el-form :model="detectionSettings" label-width="140px">
+                <el-form-item label="安全帽检测">
+                  <el-switch v-model="detectionSettings.enableHelmet" />
+                  <span class="form-help">开启后检测是否佩戴安全帽</span>
+                </el-form-item>
+                <el-form-item label="反光衣检测">
+                  <el-switch v-model="detectionSettings.enableVest" />
+                  <span class="form-help">开启后检测是否穿戴反光衣</span>
+                </el-form-item>
+                <el-form-item label="区域入侵检测">
+                  <el-switch v-model="detectionSettings.enableVehicleIntrusion" />
+                  <span class="form-help">开启后检测区域内的人体和车辆</span>
+                </el-form-item>
+                <el-form-item label="火警检测">
+                  <el-switch v-model="detectionSettings.enableFire" />
+                  <span class="form-help">开启后检测火焰和烟雾</span>
+                </el-form-item>
+              </el-form>
+            </el-card>
+            
+            <el-card class="setting-section" shadow="never" style="margin-top: 20px;">
+              <template #header>
+                <div class="section-header">
+                  <span class="section-title">📊 检测阈值</span>
+                </div>
+              </template>
+              <el-form :model="detectionSettings" label-width="140px">
+                <el-form-item label="火灾检测阈值">
+                  <el-slider
+                    v-model="detectionSettings.fireThreshold"
+                    :min="0"
+                    :max="1"
+                    :step="0.01"
+                    show-input
+                  />
+                  <span class="form-help">值越低灵敏度越高，建议值：0.7</span>
+                </el-form-item>
 
-              <el-form-item label="安全帽检测阈值">
-                <el-slider
-                  v-model="detectionSettings.helmetThreshold"
-                  :min="0"
-                  :max="1"
-                  :step="0.01"
-                  show-input
-                />
-                <span class="form-help">值越低灵敏度越高，建议值：0.7</span>
-              </el-form-item>
+                <el-form-item label="安全帽检测阈值">
+                  <el-slider
+                    v-model="detectionSettings.helmetThreshold"
+                    :min="0"
+                    :max="1"
+                    :step="0.01"
+                    show-input
+                  />
+                  <span class="form-help">值越低灵敏度越高，建议值：0.7</span>
+                </el-form-item>
 
-              <el-form-item label="反光衣检测阈值">
-                <el-slider
-                  v-model="detectionSettings.vestThreshold"
-                  :min="0"
-                  :max="1"
-                  :step="0.01"
-                  show-input
-                />
-                <span class="form-help">值越低灵敏度越高，建议值：0.7</span>
-              </el-form-item>
+                <el-form-item label="反光衣检测阈值">
+                  <el-slider
+                    v-model="detectionSettings.vestThreshold"
+                    :min="0"
+                    :max="1"
+                    :step="0.01"
+                    show-input
+                  />
+                  <span class="form-help">值越低灵敏度越高，建议值：0.7</span>
+                </el-form-item>
 
-              <el-form-item label="告警延迟（秒）">
-                <el-input-number v-model="detectionSettings.alarmDelay" :min="0" :max="60" :step="1" />
-                <span class="form-help">告警触发前的延迟时间，建议值：0</span>
-              </el-form-item>
+                <el-form-item label="告警延迟（秒）">
+                  <el-input-number v-model="detectionSettings.alarmDelay" :min="0" :max="60" :step="1" />
+                  <span class="form-help">告警触发前的延迟时间，建议值：0</span>
+                </el-form-item>
 
-              <el-form-item label="防抖时间（秒）">
-                <el-input-number v-model="detectionSettings.debounceTime" :min="0" :max="60" :step="1" />
-                <span class="form-help">避免瞬时误报的防抖时间，建议值：1</span>
-              </el-form-item>
-            </el-form>
+                <el-form-item label="防抖时间（秒）">
+                  <el-input-number v-model="detectionSettings.debounceTime" :min="0" :max="60" :step="1" />
+                  <span class="form-help">避免瞬时误报的防抖时间，建议值：1</span>
+                </el-form-item>
+              </el-form>
+            </el-card>
           </el-tab-pane>
           
           <!-- 农业检测参数配置 -->
@@ -225,7 +258,11 @@ const detectionSettings = ref({
   helmetThreshold: 0.7,
   vestThreshold: 0.7,
   alarmDelay: 0,
-  debounceTime: 1
+  debounceTime: 1,
+  enableHelmet: true,
+  enableVest: true,
+  enableVehicleIntrusion: true,
+  enableFire: true
 })
 
 // 农业检测配置

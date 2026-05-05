@@ -101,12 +101,22 @@ async def detect_disease(
             for pred in predictions
         ]
 
+        # 判断是否有病害
+        has_disease = any(pred["class"] != "健康" for pred in predictions)
+        
+        if has_disease:
+            # 统计病害数量
+            disease_count = sum(1 for pred in predictions if pred["class"] != "健康")
+            message = f"检测到 {disease_count} 个病害目标"
+        else:
+            message = "正常"
+        
         return DetectionResponse(
             success=True,
             crop_type=crop_type,
             predictions=results,
             annotated_image=annotated_image,
-            message=f"检测到 {len(predictions)} 个病害目标"
+            message=message
         )
     except HTTPException:
         raise

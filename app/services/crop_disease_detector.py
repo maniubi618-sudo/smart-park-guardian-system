@@ -36,7 +36,7 @@ class CropDiseaseDetector:
         "wheat": "wheat_best.pt"
     }
 
-    # Disease labels for each crop
+    # Disease labels for each crop (English)
     DISEASE_LABELS = {
         "corn": ["Blight", "Gray_Spot", "Rust",
                   "FAW_Lv", "Streak",
@@ -69,6 +69,41 @@ class CropDiseaseDetector:
         "strawberry": ["Angular_LS", "Anthracnose_FR", "Blossom_BT",
                         "Gray_Mold", "Leaf_Spot", "Powdery_Fruit",
                         "Powdery_Leaf"]
+    }
+
+    # Chinese disease labels for each crop
+    DISEASE_LABELS_CN = {
+        "corn": ["叶枯病", "灰斑病", "锈病",
+                  "草地贪夜蛾", "条纹病",
+                  "茎蛀虫", "茎蛀虫幼虫"],
+
+        "rice": ["细菌性叶枯病", "褐斑病", "健康",
+                  "叶瘟病", "胡麻斑病", "窄褐斑病",
+                  "穗颈瘟", "稻铁甲虫"],
+
+        "wheat": ["细菌性条斑病", "赤霉病",
+                  "叶锈病", "散黑穗病",
+                  "白粉病", "壳针孢叶斑病",
+                  "秆锈病", "条锈病"],
+
+        "potato": ["早疫病", "健康", "晚疫病"],
+
+        "tomato": ["早疫病", "健康", "晚疫病",
+                    "潜叶蝇", "叶霉病", "花叶病毒",
+                    "壳针孢病", "红蜘蛛", "黄化曲叶病毒",
+                    "玉米条纹病", "黄茎蛀虫",
+                    "黄茎蛀虫幼虫"],
+
+        "cotton": ["枯萎病", "曲叶病", "健康", "黄萎病", "黄萎病"],
+
+        "apple": ["根腐病", "黑星病", "Cedar锈病", "健康"],
+
+        "grape": ["黑腐病", "霜霉病", "褐纹病",
+                   "健康", "叶枯病"],
+
+        "strawberry": ["角斑病", "炭疽病", "花枯病",
+                        "灰霉病", "叶斑病", "果实白粉病",
+                        "叶片白粉病"]
     }
 
     def __init__(self, crop_type: str = "rice", confidence: float = None):
@@ -142,13 +177,16 @@ class CropDiseaseDetector:
     def _parse_results(self, results):
         predictions = []
         labels = self.DISEASE_LABELS.get(self.crop_type, [])
+        labels_cn = self.DISEASE_LABELS_CN.get(self.crop_type, [])
 
         for result in results:
             for box in result.boxes:
                 class_id = int(box.cls)
                 original_conf = float(box.conf)
 
-                if class_id < len(labels):
+                if class_id < len(labels_cn):
+                    class_name = labels_cn[class_id]
+                elif class_id < len(labels):
                     class_name = labels[class_id]
                 else:
                     class_name = result.names[class_id] if class_id in result.names else f"Disease_{class_id}"
@@ -174,15 +212,59 @@ class CropDiseaseDetector:
             img = self.preprocess(image_bytes)
             img_bgr = cv2.cvtColor(img, cv2.COLOR_RGB2BGR)
 
-            for pred in predictions:
-                box = pred['bbox']
-                x1, y1, x2, y2 = box['x1'], box['y1'], box['x2'], box['y2']
+            # Try to use PIL for Chinese text, fallback to OpenCV
+            try:
+                from PIL import Image, ImageDraw, ImageFont
+                import numpy as np
 
-                cv2.rectangle(img_bgr, (x1, y1), (x2, y2), (0, 255, 0), 2)
+                # Convert to PIL Image
+                img_pil = Image.fromarray(cv2.cvtColor(img_bgr, cv2.COLOR_BGR2RGB))
+                draw = ImageDraw.Draw(img_pil)
 
-                label = f"{pred['class']} {pred['confidence']:.2%}"
-                cv2.putText(img_bgr, label, (x1, y1 - 10),
-                           cv2.FONT_HERSHEY_SIMPLEX, 0.5, (0, 255, 0), 2)
+                # Try to use system Chinese font
+                font = None
+                try:
+                    # Windows common fonts
+                    font_paths = [
+                        "C:/Windows/Fonts/msyh.ttc",    # 微软雅黑
+                        "C:/Windows/Fonts/simhei.ttf",  # 黑体
+                        "C:/Windows/Fonts/simsun.ttc",  # 宋体
+                    ]
+                    for font_path in font_paths:
+                        if os.path.exists(font_path):
+                            font = ImageFont.truetype(font_path, 20)
+                            break
+                except:
+                    pass
+
+                if font is None:
+                    font = ImageFont.load_default()
+
+                for pred in predictions:
+                    box = pred['bbox']
+                    x1, y1, x2, y2 = box['x1'], box['y1'], box['x2'], box['y2']
+
+                    # Draw rectangle
+                    draw.rectangle([(x1, y1), (x2, y2)], outline=(0, 255, 0), width=2)
+
+                    # Draw text
+                    label = f"{pred['class']} {pred['confidence']:.2%}"
+                    draw.text((x1, y1 - 25), label, fill=(0, 255, 0), font=font)
+
+                # Convert back to OpenCV
+                img_bgr = cv2.cvtColor(np.array(img_pil), cv2.COLOR_RGB2BGR)
+
+            except ImportError:
+                # Fallback to OpenCV (English only)
+                for pred in predictions:
+                    box = pred['bbox']
+                    x1, y1, x2, y2 = box['x1'], box['y1'], box['x2'], box['y2']
+
+                    cv2.rectangle(img_bgr, (x1, y1), (x2, y2), (0, 255, 0), 2)
+
+                    label = f"{pred['class']} {pred['confidence']:.2%}"
+                    cv2.putText(img_bgr, label, (x1, y1 - 10),
+                               cv2.FONT_HERSHEY_SIMPLEX, 0.5, (0, 255, 0), 2)
 
             _, buffer = cv2.imencode('.jpg', img_bgr, [cv2.IMWRITE_JPEG_QUALITY, 95])
             import base64
@@ -190,6 +272,8 @@ class CropDiseaseDetector:
             return f"data:image/jpeg;base64,{base64_image}"
         except Exception as e:
             print(f"Error [CropDiseaseDetector] Annotation failed: {e}")
+            import traceback
+            traceback.print_exc()
             return ""
 
     def detect_and_annotate(self, image_bytes: bytes):
