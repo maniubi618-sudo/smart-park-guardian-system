@@ -1,7 +1,7 @@
 import axios from 'axios'
 
 const api = axios.create({
-  baseURL: 'http://localhost:8089/api',
+  baseURL: '/api',
   timeout: 10000
 })
 
@@ -129,7 +129,7 @@ export const alarmHandleApi = {
 // 园区区域相关
 export const parkAreaApi = {
   searchAreas: (params) => {
-    return api.get('/v1/park_areas/search/', { params })
+    return api.get('/v1/park_areas/search', { params })
   },
   getArea: (id) => {
     return api.get(`/v1/park_areas/${id}`)

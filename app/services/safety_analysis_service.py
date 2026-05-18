@@ -351,6 +351,24 @@ class SafetyAnalysisService:
 
                         # 广播告警
                         sync_broadcast_alarm(alarm)
+
+                        # 发送告警通知到 OpenClaw 进行 QQ 推送
+                        try:
+                            from app.services.openclaw_notification_service import OpenClawNotificationService
+                            from app.objects.alarm_case import AlarmCase
+                            OpenClawNotificationService.send_alarm_notification({
+                                "alarm_id": alarm.alarm_id,
+                                "camera_id": alarm.camera_id,
+                                "alarm_type": alarm.alarm_type,
+                                "alarm_type_desc": AlarmCase.descs[alarm.alarm_type],
+                                "alarm_time": alarm.alarm_time.isoformat() if alarm.alarm_time else "",
+                                "snapshot_url": alarm.snapshot_url or "",
+                                "camera_name": getattr(alarm, 'camera_name', ''),
+                                "park_area": getattr(alarm, 'park_area', ''),
+                                "alarm_status": alarm.alarm_status,
+                            })
+                        except Exception as e:
+                            logger.error(f"发送OpenClaw通知异常(不影响主流程): {e}")
                     except Exception as e:
                         logger.error(f"处理告警时发生错误: {e}")
 
@@ -414,6 +432,24 @@ class SafetyAnalysisService:
 
                         # 广播告警
                         sync_broadcast_alarm(alarm)
+
+                        # 发送告警通知到 OpenClaw 进行 QQ 推送
+                        try:
+                            from app.services.openclaw_notification_service import OpenClawNotificationService
+                            from app.objects.alarm_case import AlarmCase
+                            OpenClawNotificationService.send_alarm_notification({
+                                "alarm_id": alarm.alarm_id,
+                                "camera_id": alarm.camera_id,
+                                "alarm_type": alarm.alarm_type,
+                                "alarm_type_desc": AlarmCase.descs[alarm.alarm_type],
+                                "alarm_time": alarm.alarm_time.isoformat() if alarm.alarm_time else "",
+                                "snapshot_url": alarm.snapshot_url or "",
+                                "camera_name": getattr(alarm, 'camera_name', ''),
+                                "park_area": getattr(alarm, 'park_area', ''),
+                                "alarm_status": alarm.alarm_status,
+                            })
+                        except Exception as e:
+                            logger.error(f"发送OpenClaw通知异常(不影响主流程): {e}")
                     except Exception as e:
                         logger.error(f"处理告警时发生错误: {e}")
 

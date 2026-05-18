@@ -14,7 +14,8 @@ class WebSocketService {
     }
 
     try {
-      this.socket = new WebSocket(`ws://localhost:8089/api/v1/safety_analysis/ws?token=${token}`)
+      const wsProtocol = window.location.protocol === 'https:' ? 'wss://' : 'ws://'
+      this.socket = new WebSocket(`${wsProtocol}${window.location.host}/api/v1/safety_analysis/ws?token=${token}`)
 
       this.socket.onopen = () => {
         console.log('WebSocket connected')

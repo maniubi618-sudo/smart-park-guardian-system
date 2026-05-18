@@ -1,4 +1,4 @@
-from typing import List, Optional, Dict
+from typing import List, Optional, Dict, Callable
 from fastapi import WebSocket
 from app.utils.logger import get_logger
 
@@ -10,6 +10,24 @@ class PhoneCameraManager:
         self.phone_connections: Dict[str, WebSocket] = {}
         self.phone_metas: Dict[str, dict] = {}
         self.viewer_connections: List[WebSocket] = []
+        # 检测配置
+        self.detection_enabled = False
+        self.detection_callback: Optional[Callable] = None
+        self._frame_counters: Dict[str, int] = {}
+        self._frame_sample_rate = 10  # 每10帧检测一次
+
+    def enable_detection(self, callback: Callable, sample_rate: int = 10):
+        """启用手机摄像头帧的YOLO异常检测"""
+        self.detection_enabled = True
+        self.detection_callback = callback
+        self._frame_sample_rate = sample_rate
+        logger.info(f"手机摄像头异常检测已启用，采样率: 1/{sample_rate}")
+
+    def disable_detection(self):
+        """禁用手机摄像头帧的异常检测"""
+        self.detection_enabled = False
+        self.detection_callback = None
+        logger.info("手机摄像头异常检测已禁用")
 
     async def connect_phone(self, websocket: WebSocket, meta: dict = None):
         uid = None
@@ -79,8 +97,16 @@ class PhoneCameraManager:
             logger.info(f"观看端已断开，当前观看端数: {len(self.viewer_connections)}")
 
     async def forward_from_phone(self, data, uid: str = None):
+        # ★ 对图片帧进行YOLO异常检测
+        if self.detection_enabled and self.detection_callback and isinstance(data, bytes) and uid:
+            self._frame_counters[uid] = self._frame_counters.get(uid, 0) + 1
+            if self._frame_counters[uid] % self._frame_sample_rate == 0:
+                try:
+                    self.detection_callback(data, uid)
+                except Exception as e:
+                    logger.error(f"手机帧检测回调异常: {e}")
+
         if not self.viewer_connections:
-            logger.debug("没有观看端连接，跳过转发")
             return
 
         valid_viewers = []

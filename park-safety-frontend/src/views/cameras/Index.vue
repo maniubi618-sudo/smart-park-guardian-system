@@ -2014,8 +2014,13 @@ const updateConnectionUrl = () => {
 
 // 生成二维码
 const generateQRCode = (url) => {
-  // 使用简单的API生成二维码
-  qrCodeUrl.value = `https://api.qrserver.com/v1/create-qr-code/?size=200x200&data=${encodeURIComponent(url)}`
+  QRCode.toDataURL(url, { width: 200, margin: 1 }, (err, dataUrl) => {
+    if (err) {
+      console.error('生成二维码失败:', err)
+    } else {
+      qrCodeUrl.value = dataUrl
+    }
+  })
 }
 
 // 复制本机IP
@@ -2337,9 +2342,15 @@ const updatePhonePushUrl = () => {
   generatePhonePushQRCode(phonePushUrl.value)
 }
 
-// 生成手机推流二维码
+// 生成手机推流二维码（本地生成，不依赖外部API）
 const generatePhonePushQRCode = (url) => {
-  phonePushQrCodeUrl.value = `https://api.qrserver.com/v1/create-qr-code/?size=200x200&data=${encodeURIComponent(url)}`
+  QRCode.toDataURL(url, { width: 200, margin: 1 }, (err, dataUrl) => {
+    if (err) {
+      console.error('生成二维码失败:', err)
+    } else {
+      phonePushQrCodeUrl.value = dataUrl
+    }
+  })
 }
 
 // 复制手机推流地址
@@ -2365,8 +2376,8 @@ const startPhoneViewer = () => {
     }
     
     // 重要！手机和观看端必须连接同一个后端！
-    // 都连HTTPS(8443)，摄像头权限才有效
-    const wsUrl = `/api/v1/camera_infos/phone_camera/viewer`
+    // 都连HTTPS(8443)，因为手机端只能连HTTPS（摄像头权限要求）
+    const wsUrl = `wss://${window.location.hostname}:8443/api/v1/camera_infos/phone_camera/viewer`
     
     console.log('开始连接手机摄像头观看端:', wsUrl)
     phoneViewerWs.value = new WebSocket(wsUrl)

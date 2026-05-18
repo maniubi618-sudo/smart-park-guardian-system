@@ -57,7 +57,15 @@ async def update_config(config: ConfigUpdate):
         
         if update_data:
             config_mgr.update_config(update_data)
-            
+
+            # 实时更新 OpenClaw 通知服务配置（无需重启）
+            try:
+                from app.services.openclaw_notification_service import OpenClawNotificationService
+                updated_config = config_mgr.get_config()
+                OpenClawNotificationService.configure(updated_config.get("notification", {}))
+            except Exception:
+                pass
+
             # 更新检测服务的配置
             try:
                 citrus_detector = get_citrus_detector()

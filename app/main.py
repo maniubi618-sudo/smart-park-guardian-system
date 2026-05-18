@@ -28,7 +28,17 @@ logger=get_logger()
 
 @asynccontextmanager
 async def lifespan(app66: FastAPI):
-    # 启动前要执行的
+    # 启动前加载 OpenClaw 通知配置
+    try:
+        import json
+        from app.services.openclaw_notification_service import OpenClawNotificationService
+        config_path = os.path.join(os.path.dirname(__file__), "..", "config", "system_config.json")
+        with open(config_path) as f:
+            config = json.load(f)
+        OpenClawNotificationService.configure(config.get("notification", {}))
+        logger.info("OpenClaw通知服务配置完成")
+    except Exception as e:
+        logger.warning(f"OpenClaw通知配置加载失败(不影响系统运行): {e}")
     yield
     # 结束后要执行的
     shutdown_executor()

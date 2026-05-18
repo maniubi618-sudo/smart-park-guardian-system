@@ -214,6 +214,11 @@
                 <el-switch v-model="notificationSettings.enableEmail" />
               </el-form-item>
 
+              <el-form-item label="启用QQ推送通知">
+                <el-switch v-model="notificationSettings.enableOpenClaw" />
+                <span class="form-help">通过QQ机器人发送告警通知（需OpenClaw Gateway运行）</span>
+              </el-form-item>
+
               <el-form-item label="邮件服务器">
                 <el-input v-model="notificationSettings.emailServer" placeholder="输入邮件服务器地址" />
               </el-form-item>
@@ -287,6 +292,7 @@ const systemSettings = ref({
 const notificationSettings = ref({
   enableWebSocket: true,
   enableEmail: false,
+  enableOpenClaw: true,
   emailServer: '',
   emailPort: 587,
   emailSender: '',

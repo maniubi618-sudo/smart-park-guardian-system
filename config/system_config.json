@@ -36,6 +36,12 @@
     "emailPort": 587,
     "emailSender": "",
     "emailPassword": "",
-    "emailRecipients": ""
+    "emailRecipients": "",
+    "enableOpenClaw": true,
+    "openclawGatewayUrl": "http://127.0.0.1:18789",
+    "openclawAuthToken": "park-alarm-hook-token-2026",
+    "openclawTimeout": 10,
+    "openclawQQOpenid": "",
+    "openclawCliPath": "openclaw"
   }
 }
