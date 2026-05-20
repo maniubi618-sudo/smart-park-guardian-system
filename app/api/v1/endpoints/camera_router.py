@@ -278,8 +278,15 @@ async def websocket_camera_analysis(
     await websocket.accept()
     # 获取查询参数
     write_to_database = websocket.query_params.get("write_to_database", "false").lower() == "true"
+    # 获取分析模式参数（可选）
+    analysis_mode_param = websocket.query_params.get("analysis_mode", None)
+    if analysis_mode_param is not None:
+        try:
+            analysis_mode_param = int(analysis_mode_param)
+        except ValueError:
+            analysis_mode_param = None
     try:
-        await CameraInfoService.stream_camera_analysis(websocket, camera_id, db, write_to_database)
+        await CameraInfoService.stream_camera_analysis(websocket, camera_id, db, write_to_database, analysis_mode_param)
     except WebSocketDisconnect:
         pass
     except Exception as e:
@@ -288,7 +295,28 @@ async def websocket_camera_analysis(
         logger.error(traceback.format_exc())
 
 
-# 11. POST /api/v1/camera_infos/analyze_frame：分析单个视频帧
+# 11. POST /api/v1/camera_infos/reset_tomato_tracker：重置番茄跟踪器
+@router.post("/reset_tomato_tracker", summary="重置番茄跟踪器")
+async def reset_tomato_tracker():
+    """
+    重置番茄跟踪器，用于开始新的视频分析
+    """
+    CameraInfoService._reset_tomato_tracker()
+    return {"success": True, "message": "番茄跟踪器已重置"}
+
+
+# 12. POST /api/v1/camera_infos/reset_tracker：重置所有跟踪器
+@router.post("/reset_tracker", summary="重置跟踪器")
+async def reset_tracker():
+    """
+    重置所有跟踪器（番茄和柑橘），用于开始新的视频分析
+    """
+    CameraInfoService._reset_tomato_tracker()
+    CameraInfoService._reset_citrus_tracker()
+    return {"success": True, "message": "所有跟踪器已重置"}
+
+
+# 13. POST /api/v1/camera_infos/analyze_frame：分析单个视频帧
 @router.post("/analyze_frame", summary="分析单个视频帧")
 async def analyze_frame(
     request: AnalyzeFrameRequest,

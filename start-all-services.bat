@@ -30,7 +30,7 @@ start "后端HTTPS服务" cmd /k "cd /d %PROJECT_ROOT% && echo 启动后端HTTPS
 timeout /t 2 /nobreak >nul
 
 :: 启动前端服务
-echo [3/3] 启动前端服务 (端口: 5173)...
+echo [3/3] 启动前端服务 (端口: 3000)...
 start "前端服务" cmd /k "cd /d %FRONTEND_PATH% && echo 启动前端服务 && npm run dev"
 
 :: 等待前端启动
@@ -41,7 +41,7 @@ echo ========================================
 echo   所有服务已启动成功!
 echo ========================================
 echo.
-echo 前端服务:        http://localhost:5173
+echo 前端服务:        http://localhost:3000
 echo 后端HTTP服务:    http://localhost:8089
 echo 后端HTTPS服务:   https://localhost:8443
 echo.
