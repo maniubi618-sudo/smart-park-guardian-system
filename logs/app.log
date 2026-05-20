@@ -19302,3 +19302,8 @@ TypeError: '>' not supported between instances of 'NoneType' and 'int'
 2026-05-20 13:41:00,346 - fastapi_app - INFO - [OK] 柑橘成熟度检测器加载成功
 2026-05-20 13:41:00,433 - fastapi_app - INFO - [OK] 番茄成熟度检测器加载成功
 2026-05-20 13:41:00,839 - fastapi_app - INFO - OpenClaw通知服务配置完成(HTTPS)
+2026-05-20 13:41:02,911 - fastapi_app - INFO - WebSocket连接已建立，当前连接数: 1
+2026-05-20 13:41:04,391 - fastapi_app - INFO - WebSocket连接已断开，当前连接数: 0
+2026-05-20 13:41:05,358 - fastapi_app - INFO - WebSocket连接已建立，当前连接数: 1
+2026-05-20 13:41:36,678 - fastapi_app - ERROR - 发送WebSocket消息失败: 
+2026-05-20 13:41:43,814 - fastapi_app - ERROR - 发送WebSocket消息失败: 
