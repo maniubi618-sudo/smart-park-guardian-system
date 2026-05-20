@@ -25,7 +25,7 @@ timeout /t 3 /nobreak >nul
 
 :: 启动前端服务
 echo [2/2] 启动前端服务...
-start "前端服务" cmd /k "cd /d %FRONTEND_PATH% && echo 启动前端服务 (端口: 5173) && npm run dev"
+start "前端服务" cmd /k "cd /d %FRONTEND_PATH% && echo 启动前端服务 (端口: 3000) && npm run dev"
 
 :: 等待前端启动
 echo 等待前端服务启动 (5秒)...
@@ -37,7 +37,7 @@ echo   所有服务已启动成功!
 echo ========================================
 echo.
 echo 后端服务 (HTTP): http://localhost:8089
-echo 前端服务: http://localhost:5173
+echo 前端服务: http://localhost:3000
 echo.
 echo API文档: http://localhost:8089/docs
 echo.

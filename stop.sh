@@ -26,7 +26,7 @@ stop_by_pidfile /tmp/smart-park-backend-https.pid  "后端 HTTPS"
 stop_by_pidfile /tmp/smart-park-frontend.pid       "前端"
 
 # 兜底：按端口杀
-for port in 8089 8443 5173; do
+for port in 8089 8443 3000; do
     lsof -ti:$port 2>/dev/null | xargs kill 2>/dev/null && echo -e "${GREEN}  OK${NC} 端口 $port 已释放" || true
 done
 

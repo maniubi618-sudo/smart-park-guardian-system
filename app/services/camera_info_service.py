@@ -39,7 +39,428 @@ from app.utils.logger import get_logger
 logger = get_logger()
 
 
+class TomatoTracker:
+    """
+    番茄跟踪器，用于在视频帧间去重跟踪番茄
+    基于 IOU (Intersection over Union) 匹配
+    """
+    def __init__(self, iou_threshold=0.3, max_frames_missing=5):
+        self.tracked_tomatoes = {}  # {track_id: {"bbox": (x1,y1,x2,y2), "maturity": float, "class": str, "frames_missing": int}}
+        self.next_track_id = 0
+        self.iou_threshold = iou_threshold
+        self.max_frames_missing = max_frames_missing
+        self.current_frame_tomatoes = []  # 当前帧检测到的番茄
+        self.historical_max_maturity = 0  # 历史最高成熟度，即使番茄丢失也保留
+        self.historical_total = 0  # 历史总番茄数量（累计追踪）
+        self.historical_unripe = 0  # 历史未成熟总数
+        self.historical_ripe = 0  # 历史成熟总数
+        self.historical_overripe = 0  # 历史过熟总数
+    
+    def calculate_iou(self, box1, box2):
+        """计算两个边框的 IOU"""
+        x1_min, y1_min, x1_max, y1_max = box1
+        x2_min, y2_min, x2_max, y2_max = box2
+        
+        # 计算交集
+        inter_xmin = max(x1_min, x2_min)
+        inter_ymin = max(y1_min, y2_min)
+        inter_xmax = min(x1_max, x2_max)
+        inter_ymax = min(y1_max, y2_max)
+        
+        if inter_xmax < inter_xmin or inter_ymax < inter_ymin:
+            return 0.0
+        
+        inter_area = (inter_xmax - inter_xmin) * (inter_ymax - inter_ymin)
+        
+        # 计算各自的面积
+        box1_area = (x1_max - x1_min) * (y1_max - y1_min)
+        box2_area = (x2_max - x2_min) * (y2_max - y2_min)
+        
+        # 计算并集
+        union_area = box1_area + box2_area - inter_area
+        
+        return inter_area / union_area if union_area > 0 else 0.0
+    
+    def update(self, detections):
+        """
+        更新跟踪器，传入当前帧的检测结果
+        返回: (new_tomatoes, all_tracked) - 新检测到的番茄列表，所有活跃跟踪的番茄列表
+        """
+        self.current_frame_tomatoes = []
+        matched_track_ids = set()
+        
+        for det in detections:
+            bbox = det.get('bbox', {})
+            x1, y1, x2, y2 = bbox.get('x1', 0), bbox.get('y1', 0), bbox.get('x2', 0), bbox.get('y2', 0)
+            box = (x1, y1, x2, y2)
+            maturity = det.get('maturity', 0) or 0
+            class_name = det.get('class', '')
+            
+            best_match_id = None
+            best_iou = 0
+            
+            # 查找最佳匹配
+            for track_id, tracked in self.tracked_tomatoes.items():
+                if tracked['frames_missing'] <= self.max_frames_missing:
+                    iou = self.calculate_iou(box, tracked['bbox'])
+                    if iou > best_iou and iou >= self.iou_threshold:
+                        best_iou = iou
+                        best_match_id = track_id
+            
+            if best_match_id is not None:
+                # 更新已跟踪的番茄
+                self.tracked_tomatoes[best_match_id] = {
+                    'bbox': box,
+                    'maturity': maturity,
+                    'class': class_name,
+                    'frames_missing': 0
+                }
+                matched_track_ids.add(best_match_id)
+            else:
+                # 新番茄
+                new_id = self.next_track_id
+                self.next_track_id += 1
+                self.tracked_tomatoes[new_id] = {
+                    'bbox': box,
+                    'maturity': maturity,
+                    'class': class_name,
+                    'frames_missing': 0
+                }
+                matched_track_ids.add(new_id)
+                self.historical_total += 1  # 增加历史总数
+
+                # 根据类别增加历史分类计数
+                class_normalized = class_name.lower().replace('_', '-').replace(' ', '-')
+                if 'unripe' in class_normalized or 'green' in class_normalized:
+                    self.historical_unripe += 1
+                elif 'ripe' in class_normalized or 'red' in class_normalized:
+                    self.historical_ripe += 1
+                elif 'overripe' in class_normalized or 'over' in class_normalized:
+                    self.historical_overripe += 1
+                else:
+                    # 基于 maturity 判断类别
+                    if maturity < 60:
+                        self.historical_unripe += 1
+                    elif maturity < 95:
+                        self.historical_ripe += 1
+                    else:
+                        self.historical_overripe += 1
+        
+        # 增加未匹配番茄的丢失帧数
+        for track_id in self.tracked_tomatoes:
+            if track_id not in matched_track_ids:
+                self.tracked_tomatoes[track_id]['frames_missing'] += 1
+        
+        # 构建当前帧活跃的番茄列表
+        active_tomatoes = []
+        new_tomatoes_list = []
+        for track_id, tracked in self.tracked_tomatoes.items():
+            if tracked['frames_missing'] <= self.max_frames_missing:
+                active_tomatoes.append({
+                    'track_id': track_id,
+                    'bbox': tracked['bbox'],
+                    'maturity': tracked['maturity'],
+                    'class': tracked['class'],
+                    'is_new': track_id in matched_track_ids and len([
+                        t for t in detections if self.calculate_iou(tracked['bbox'], (t.get('bbox',{}).get('x1',0), t.get('bbox',{}).get('y1',0), t.get('bbox',{}).get('x2',0), t.get('bbox',{}).get('y2',0))) >= self.iou_threshold
+                    ]) > 0 and tracked['frames_missing'] == 0
+                })
+        
+        # 标记新番茄（当前帧首次出现）
+        for i, det in enumerate(detections):
+            bbox = det.get('bbox', {})
+            x1, y1, x2, y2 = bbox.get('x1', 0), bbox.get('y1', 0), bbox.get('x2', 0), bbox.get('y2', 0)
+            is_new = True
+            for track_id, tracked in self.tracked_tomatoes.items():
+                if tracked['frames_missing'] == 0 and self.calculate_iou((x1,y1,x2,y2), tracked['bbox']) >= self.iou_threshold:
+                    # 这个检测匹配到了一个活跃跟踪的番茄，不是新的
+                    is_new = False
+                    break
+            if is_new:
+                new_tomatoes_list.append(det)
+
+        # 更新历史最高成熟度（即使番茄丢失也保留）
+        for det in detections:
+            maturity = det.get('maturity', 0) or 0
+            if maturity > self.historical_max_maturity:
+                self.historical_max_maturity = maturity
+        
+        return new_tomatoes_list, active_tomatoes
+    
+    def _normalize_class_name(self, class_name):
+        """规范化类名以便匹配"""
+        if not class_name:
+            return ''
+        name = class_name.lower().replace('_', '-').replace(' ', '-').replace('tomato', '').replace('tomates', '')
+        return name
+
+    def get_summary(self):
+        """获取跟踪摘要"""
+        active = [t for t in self.tracked_tomatoes.values() if t['frames_missing'] <= self.max_frames_missing]
+
+        # 使用规范化类名进行匹配
+        unripe = 0
+        ripe = 0
+        overripe = 0
+        for t in active:
+            normalized = self._normalize_class_name(t['class'])
+            # 匹配未成熟 (unripe/green)
+            if 'unripe' in normalized or 'green' in normalized or '青' in t['class']:
+                unripe += 1
+            # 匹配成熟 (ripe/red)
+            elif 'ripe' in normalized or 'red' in normalized or '成熟' in t['class']:
+                ripe += 1
+            # 匹配过熟 (overripe/over)
+            elif 'overripe' in normalized or 'over' in normalized or '过熟' in t['class']:
+                overripe += 1
+            # 如果仍然不匹配，使用 maturity 值来判断
+            else:
+                maturity = t.get('maturity', 0) or 0
+                if maturity < 60:
+                    unripe += 1
+                elif maturity < 95:
+                    ripe += 1
+                else:
+                    overripe += 1
+
+        # 使用历史最高成熟度（即使番茄丢失也保留之前的最大值）
+        # 同时也要考虑当前活跃番茄的 maturity
+        active_maturities = [t.get('maturity', 0) or 0 for t in active]
+        current_max = max(active_maturities, default=0)
+        max_maturity = max(self.historical_max_maturity, current_max)
+
+        # 如果当前没有活跃番茄，使用历史分类计数
+        final_unripe = unripe if unripe > 0 else self.historical_unripe
+        final_ripe = ripe if ripe > 0 else self.historical_ripe
+        final_overripe = overripe if overripe > 0 else self.historical_overripe
+        final_total = len(active) if len(active) > 0 else self.historical_total
+
+        return {
+            'total': final_total,
+            'active_total': len(active),
+            'historical_total': self.historical_total,
+            'unripe': final_unripe,
+            'ripe': final_ripe,
+            'overripe': final_overripe,
+            'active_unripe': unripe,
+            'active_ripe': ripe,
+            'active_overripe': overripe,
+            'max_maturity': max_maturity
+        }
+
+    def reset(self):
+        """重置跟踪器"""
+        self.tracked_tomatoes = {}
+        self.next_track_id = 0
+        self.historical_max_maturity = 0
+        self.historical_total = 0
+        self.historical_unripe = 0
+        self.historical_ripe = 0
+        self.historical_overripe = 0
+
+
+class CitrusTracker:
+    """
+    柑橘跟踪器，用于在视频帧间去重跟踪柑橘
+    基于 IOU (Intersection over Union) 匹配
+    """
+    def __init__(self, iou_threshold=0.3, max_frames_missing=5):
+        self.tracked_citrus = {}
+        self.next_track_id = 0
+        self.iou_threshold = iou_threshold
+        self.max_frames_missing = max_frames_missing
+        self.historical_max_maturity = 0  # 历史最高成熟度，即使柑橘丢失也保留
+        self.historical_total = 0  # 历史总柑橘数量（累计追踪）
+        self.historical_unripe = 0  # 历史未成熟总数
+        self.historical_ripe = 0  # 历史成熟总数
+        self.historical_rotten = 0  # 历史腐烂总数
+    
+    def calculate_iou(self, box1, box2):
+        """计算两个边框的 IOU"""
+        x1_min, y1_min, x1_max, y1_max = box1
+        x2_min, y2_min, x2_max, y2_max = box2
+        
+        inter_xmin = max(x1_min, x2_min)
+        inter_ymin = max(y1_min, y2_min)
+        inter_xmax = min(x1_max, x2_max)
+        inter_ymax = min(y1_max, y2_max)
+        
+        if inter_xmax < inter_xmin or inter_ymax < inter_ymin:
+            return 0.0
+        
+        inter_area = (inter_xmax - inter_xmin) * (inter_ymax - inter_ymin)
+        box1_area = (x1_max - x1_min) * (y1_max - y1_min)
+        box2_area = (x2_max - x2_min) * (y2_max - y2_min)
+        union_area = box1_area + box2_area - inter_area
+        
+        return inter_area / union_area if union_area > 0 else 0.0
+    
+    def update(self, detections):
+        """更新跟踪器"""
+        matched_track_ids = set()
+        
+        for det in detections:
+            bbox = det.get('bbox', {})
+            x1, y1, x2, y2 = bbox.get('x1', 0), bbox.get('y1', 0), bbox.get('x2', 0), bbox.get('y2', 0)
+            box = (x1, y1, x2, y2)
+            maturity = det.get('maturity', 0) or 0
+            class_name = det.get('class', '')
+            
+            best_match_id = None
+            best_iou = 0
+            
+            for track_id, tracked in self.tracked_citrus.items():
+                if tracked['frames_missing'] <= self.max_frames_missing:
+                    iou = self.calculate_iou(box, tracked['bbox'])
+                    if iou > best_iou and iou >= self.iou_threshold:
+                        best_iou = iou
+                        best_match_id = track_id
+            
+            if best_match_id is not None:
+                self.tracked_citrus[best_match_id] = {
+                    'bbox': box,
+                    'maturity': maturity,
+                    'class': class_name,
+                    'frames_missing': 0
+                }
+                matched_track_ids.add(best_match_id)
+            else:
+                new_id = self.next_track_id
+                self.next_track_id += 1
+                self.tracked_citrus[new_id] = {
+                    'bbox': box,
+                    'maturity': maturity,
+                    'class': class_name,
+                    'frames_missing': 0
+                }
+                matched_track_ids.add(new_id)
+                self.historical_total += 1  # 增加历史总数
+
+                # 根据类别增加历史分类计数
+                class_normalized = class_name.lower()
+                if 'unripe' in class_normalized or 'green' in class_normalized:
+                    self.historical_unripe += 1
+                elif 'ripe' in class_normalized or 'orange' in class_normalized:
+                    self.historical_ripe += 1
+                elif 'rotten' in class_normalized or 'rot' in class_normalized:
+                    self.historical_rotten += 1
+                else:
+                    # 基于 maturity 判断类别
+                    if maturity < 60:
+                        self.historical_unripe += 1
+                    elif maturity < 95:
+                        self.historical_ripe += 1
+                    else:
+                        self.historical_rotten += 1
+        
+        for track_id in self.tracked_citrus:
+            if track_id not in matched_track_ids:
+                self.tracked_citrus[track_id]['frames_missing'] += 1
+
+        # 更新历史最高成熟度（即使柑橘丢失也保留）
+        for det in detections:
+            maturity = det.get('maturity', 0) or 0
+            if maturity > self.historical_max_maturity:
+                self.historical_max_maturity = maturity
+
+        return self.get_summary()
+    
+    def get_summary(self):
+        """获取跟踪摘要"""
+        active = [t for t in self.tracked_citrus.values() if t['frames_missing'] <= self.max_frames_missing]
+
+        # 使用规范化类名进行匹配
+        unripe = 0
+        ripe = 0
+        rotten = 0
+        for t in active:
+            class_name = t.get('class', '').lower()
+            # 匹配未成熟 (unripe/green)
+            if 'unripe' in class_name or 'green' in class_name or '青' in t.get('class', ''):
+                unripe += 1
+            # 匹配成熟 (ripe/orange)
+            elif 'ripe' in class_name or 'orange' in class_name or '成熟' in t.get('class', ''):
+                ripe += 1
+            # 匹配腐烂 (rotten/rot)
+            elif 'rotten' in class_name or 'rot' in class_name or '腐烂' in t.get('class', ''):
+                rotten += 1
+            # 如果仍然不匹配，使用 maturity 值来判断
+            else:
+                maturity = t.get('maturity', 0) or 0
+                if maturity < 60:
+                    unripe += 1
+                elif maturity < 95:
+                    ripe += 1
+                else:
+                    rotten += 1
+
+        # 使用历史最高成熟度（即使柑橘丢失也保留之前的最大值）
+        # 同时也要考虑当前活跃柑橘的 maturity
+        active_maturities = [t.get('maturity', 0) or 0 for t in active]
+        current_max = max(active_maturities, default=0)
+        max_maturity = max(self.historical_max_maturity, current_max)
+
+        # 如果当前没有活跃柑橘，使用历史分类计数
+        final_unripe = unripe if unripe > 0 else self.historical_unripe
+        final_ripe = ripe if ripe > 0 else self.historical_ripe
+        final_rotten = rotten if rotten > 0 else self.historical_rotten
+        final_total = len(active) if len(active) > 0 else self.historical_total
+
+        return {
+            'total': final_total,
+            'active_total': len(active),
+            'historical_total': self.historical_total,
+            'unripe': final_unripe,
+            'ripe': final_ripe,
+            'rotten': final_rotten,
+            'active_unripe': unripe,
+            'active_ripe': ripe,
+            'active_rotten': rotten,
+            'max_maturity': max_maturity
+        }
+
+    def reset(self):
+        """重置跟踪器"""
+        self.tracked_citrus = {}
+        self.next_track_id = 0
+        self.historical_max_maturity = 0
+        self.historical_total = 0
+        self.historical_unripe = 0
+        self.historical_ripe = 0
+        self.historical_rotten = 0
+
+
 class CameraInfoService:
+    # 类级别的跟踪器字典，支持多视频同时分析
+    _tomato_trackers = {}
+    _citrus_trackers = {}
+    
+    @staticmethod
+    def _get_tomato_tracker(session_id: str = "default") -> TomatoTracker:
+        """获取或创建番茄跟踪器"""
+        if session_id not in CameraInfoService._tomato_trackers:
+            CameraInfoService._tomato_trackers[session_id] = TomatoTracker()
+        return CameraInfoService._tomato_trackers[session_id]
+    
+    @staticmethod
+    def _get_citrus_tracker(session_id: str = "default") -> CitrusTracker:
+        """获取或创建柑橘跟踪器"""
+        if session_id not in CameraInfoService._citrus_trackers:
+            CameraInfoService._citrus_trackers[session_id] = CitrusTracker()
+        return CameraInfoService._citrus_trackers[session_id]
+    
+    @staticmethod
+    def _reset_tomato_tracker(session_id: str = "default"):
+        """重置番茄跟踪器"""
+        if session_id in CameraInfoService._tomato_trackers:
+            CameraInfoService._tomato_trackers[session_id].reset()
+    
+    @staticmethod
+    def _reset_citrus_tracker(session_id: str = "default"):
+        """重置柑橘跟踪器"""
+        if session_id in CameraInfoService._citrus_trackers:
+            CameraInfoService._citrus_trackers[session_id].reset()
+    
     @staticmethod
     async def get_camera_info(db: Session, camera_info_id: int) -> Result[CameraInfoResponse]:
         """
@@ -599,7 +1020,7 @@ class CameraInfoService:
                 logger.info(f"摄像头 {camera_id} 视频流已释放")
 
     @staticmethod
-    async def stream_camera_analysis(websocket, camera_id: int, db: Session, write_to_database: bool = False):
+    async def stream_camera_analysis(websocket, camera_id: int, db: Session, write_to_database: bool = False, analysis_mode_param: int = None):
         """
         摄像头分析测试的WebSocket流
         启动该功能调取对应摄像头，并对摄像头获取到图像进行分析
@@ -610,6 +1031,7 @@ class CameraInfoService:
             camera_id: 摄像头ID
             db: 数据库会话
             write_to_database: 是否将警告信息写入数据库
+            analysis_mode_param: 可选的分析模式参数，如果提供则优先使用
         """
         cap = None
         try:
@@ -637,8 +1059,8 @@ class CameraInfoService:
             frame_sample_rate = 15  # 每15帧分析一次，减少分析频率以提高FPS
             last_analysis_results = []
             
-            # 获取分析模式
-            mode = camera_info.analysis_mode or 1
+            # 获取分析模式（优先使用传入的参数，否则使用数据库中的配置）
+            mode = analysis_mode_param if analysis_mode_param is not None else (camera_info.analysis_mode or 1)
             
             # 持续发送视频帧和分析结果
             while True:
@@ -687,7 +1109,9 @@ class CameraInfoService:
                     growth_abnormal_detected = False
                     citrus_detected = False
                     citrus_predictions = []
-                    
+                    tomato_detected = False
+                    tomato_predictions = []
+
                     # 直接使用原始帧，不需要转换
                     frame_cv = frame
                     
@@ -732,7 +1156,16 @@ class CameraInfoService:
                                 return DetectionService.citrus_detector.detect_and_annotate(image_bytes)
                             tasks.append(asyncio.to_thread(detect_citrus_task))
                             task_names.append('citrus')
-                    
+
+                    if mode in [1, 9]:
+                        if DetectionService.tomato_detector and DetectionService.tomato_detector.model is not None:
+                            def detect_tomato_task():
+                                _, buffer = cv2.imencode('.jpg', frame_cv)
+                                image_bytes = buffer.tobytes()
+                                return DetectionService.tomato_detector.detect_and_annotate(image_bytes)
+                            tasks.append(asyncio.to_thread(detect_tomato_task))
+                            task_names.append('tomato')
+
                     # 并行执行所有检测任务
                     try:
                         if tasks:
@@ -789,6 +1222,11 @@ class CameraInfoService:
                                     citrus_detected = len(predictions) > 0
                                     # 存储柑橘检测结果用于更丰富的展示
                                     citrus_predictions = predictions
+                                elif name == 'tomato':
+                                    predictions, _ = result
+                                    tomato_detected = len(predictions) > 0
+                                    # 存储番茄检测结果用于更丰富的展示
+                                    tomato_predictions = predictions
                     except Exception as e:
                         logger.error(f"检测任务执行失败: {str(e)}")
                     
@@ -849,7 +1287,7 @@ class CameraInfoService:
                             rotten_count = 0
                             
                             for pred in citrus_predictions:
-                                maturity = pred.get('maturity', 0)
+                                maturity = pred.get('maturity', 0) or 0
                                 if maturity > max_maturity:
                                     max_maturity = maturity
                                 class_name = pred.get('class', '')
@@ -879,15 +1317,70 @@ class CameraInfoService:
                                 status_detail.append(f"腐烂:{rotten_count}")
                             
                             analysis_results.append({
-                                "label": "🍊 成熟度分析",
+                                "label": "柑橘成熟度分析",
                                 "value": f"{ripeness_status} (最高成熟度:{max_maturity}%) - {', '.join(status_detail)}"
                             })
                         else:
                             analysis_results.append({
                                 "label": "🍊 检测状态",
-                                "value": "❌ 未检测到橘子"
+                                "value": "❌未检测到橘子"
                             })
-                    
+
+                    if mode in [1, 9]:
+                        # 首先显示检测状态：有没有检测到番茄
+                        if tomato_detected and len(tomato_predictions) > 0:
+                            analysis_results.append({
+                                "label": "🍅 检测状态",
+                                "value": f"✅ 检测到番茄！共{len(tomato_predictions)}个"
+                            })
+
+                            # 计算综合成熟度信息
+                            tomato_info = []
+                            max_maturity = 0
+                            unripe_count = 0
+                            ripe_count = 0
+                            overripe_count = 0
+
+                            for pred in tomato_predictions:
+                                maturity = pred.get('maturity', 0) or 0
+                                if maturity > max_maturity:
+                                    max_maturity = maturity
+                                class_name = pred.get('class', '')
+
+                                if 'unripe' in class_name.lower() or 'green' in class_name.lower():
+                                    unripe_count += 1
+                                elif 'ripe' in class_name.lower() or 'red' in class_name.lower():
+                                    ripe_count += 1
+                                elif 'overripe' in class_name.lower() or 'over' in class_name.lower():
+                                    overripe_count += 1
+
+                            # 显示更丰富的成熟度信息
+                            if max_maturity >= 80:
+                                ripeness_status = "已成熟"
+                            elif max_maturity >= 55:
+                                ripeness_status = "转色中"
+                            else:
+                                ripeness_status = "未成熟"
+
+                            # 详细统计
+                            status_detail = []
+                            if unripe_count > 0:
+                                status_detail.append(f"未成熟:{unripe_count}")
+                            if ripe_count > 0:
+                                status_detail.append(f"成熟:{ripe_count}")
+                            if overripe_count > 0:
+                                status_detail.append(f"过熟:{overripe_count}")
+
+                            analysis_results.append({
+                                "label": "番茄成熟度分析",
+                                "value": f"{ripeness_status} (最高成熟度:{max_maturity}%) - {', '.join(status_detail)}"
+                            })
+                        else:
+                            analysis_results.append({
+                                "label": "🍅 检测状态",
+                                "value": "❌ 未检测到番茄"
+                            })
+
                     # 保存分析结果，用于未分析的帧
                     last_analysis_results = analysis_results
                     
@@ -973,8 +1466,8 @@ class CameraInfoService:
                         })
                     if mode in [1, 7]:
                         analysis_results.append({
-                            "label": "🍊 检测状态",
-                            "value": "❌ 未检测到橘子"
+                            "label": "柑橘检测状态",
+                            "value": "[ERROR] 未检测到橘子"
                         })
                 
                 frame_count += 1
@@ -1051,9 +1544,12 @@ class CameraInfoService:
             growth_abnormal_detected = False
             citrus_detected = False
             citrus_predictions = []
+            tomato_detected = False
+            tomato_predictions = []
             
             # 转换分析模式为整数
             mode = int(analysis_mode) if analysis_mode else 1
+            logger.info(f"[DEBUG] 开始分析视频帧, mode={mode}, original={analysis_mode}")
             
             # 模式1 = 全部，模式2=安全规范，模式3=区域入侵，模式4=火警，模式5=害虫检测，模式6=作物长势异常，模式7=果实成熟度
             
@@ -1176,7 +1672,22 @@ class CameraInfoService:
                     citrus_detected, citrus_predictions = await asyncio.to_thread(detect_citrus)
                 except Exception as e:
                     logger.error(f"柑橘成熟度检测失败: {str(e)}")
-            
+
+            # 检测番茄成熟度
+            if mode in [1, 9]:
+                try:
+                    def detect_tomato():
+                        if DetectionService.tomato_detector and DetectionService.tomato_detector.model is not None:
+                            _, buffer = cv2.imencode('.jpg', frame_cv)
+                            image_bytes = buffer.tobytes()
+                            predictions, _ = DetectionService.tomato_detector.detect_and_annotate(image_bytes)
+                            return len(predictions) > 0, predictions
+                        return False, []
+                    tomato_detected, tomato_predictions = await asyncio.to_thread(detect_tomato)
+                    logger.info(f"[DEBUG] 番茄检测完成: detected={tomato_detected}, count={len(tomato_predictions)}")
+                except Exception as e:
+                    logger.error(f"番茄成熟度检测失败: {str(e)}")
+
             # 简单的区域入侵检测（如果检测到人员或车辆，就认为有入侵）
             intrusion_detected = person_count > 0 or vehicle_count > 0
             
@@ -1219,31 +1730,32 @@ class CameraInfoService:
                 })
             
             if mode in [1, 7]:
+                # 使用柑橘跟踪器进行去重
+                citrus_tracker = CameraInfoService._get_citrus_tracker()
+                citrus_tracker_summary = citrus_tracker.update(citrus_predictions)
+                
+                # 获取跟踪器统计（去重后的准确数据）
+                tracked_total = citrus_tracker_summary['total']
+                tracked_unripe = citrus_tracker_summary['unripe']
+                tracked_ripe = citrus_tracker_summary['ripe']
+                tracked_rotten = citrus_tracker_summary['rotten']
+                tracked_max_maturity = citrus_tracker_summary['max_maturity']
+                
+                # 显示当前帧检测到的柑橘数量
+                current_frame_count = len(citrus_predictions)
+                
                 # 首先显示检测状态：有没有检测到橘子
-                if citrus_detected and len(citrus_predictions) > 0:
+                if citrus_detected and current_frame_count > 0:
                     analysis_results.append({
-                        "label": "🍊 检测状态",
-                        "value": f"✅ 检测到橘子！共{len(citrus_predictions)}个"
+                        "label": "柑橘检测状态",
+                        "value": f"[OK] 本帧检测{current_frame_count}个 | 累计追踪{tracked_total}个"
                     })
                     
-                    # 计算综合成熟度信息
-                    max_maturity = 0
-                    unripe_count = 0
-                    ripe_count = 0
-                    rotten_count = 0
-                    
-                    for pred in citrus_predictions:
-                        maturity = pred.get('maturity', 0)
-                        if maturity > max_maturity:
-                            max_maturity = maturity
-                        class_name = pred.get('class', '')
-                        
-                        if class_name == 'unripe_orange':
-                            unripe_count += 1
-                        elif class_name == 'ripe_orange':
-                            ripe_count += 1
-                        elif class_name == 'rotten_orange':
-                            rotten_count += 1
+                    # 使用跟踪器的去重统计
+                    max_maturity = tracked_max_maturity
+                    unripe_count = tracked_unripe
+                    ripe_count = tracked_ripe
+                    rotten_count = tracked_rotten
                     
                     # 显示更丰富的成熟度信息
                     if max_maturity >= 80:
@@ -1263,15 +1775,91 @@ class CameraInfoService:
                         status_detail.append(f"腐烂:{rotten_count}")
                     
                     analysis_results.append({
-                        "label": "🍊 成熟度分析",
+                        "label": "柑橘成熟度分析",
                         "value": f"{ripeness_status} (最高成熟度:{max_maturity}%) - {', '.join(status_detail)}"
                     })
                 else:
                     analysis_results.append({
-                        "label": "🍊 检测状态",
-                        "value": "❌ 未检测到橘子"
+                        "label": "柑橘检测状态",
+                        "value": "[ERROR] 未检测到橘子"
                     })
 
+            if mode in [1, 9]:
+                # 使用番茄跟踪器进行去重
+                tracker = CameraInfoService._get_tomato_tracker()
+                new_tomatoes, all_tracked = tracker.update(tomato_predictions)
+                
+                # 获取跟踪器统计（去重后的准确数据）
+                tracker_summary = tracker.get_summary()
+                tracked_total = tracker_summary['total']
+                tracked_unripe = tracker_summary['unripe']
+                tracked_ripe = tracker_summary['ripe']
+                tracked_overripe = tracker_summary['overripe']
+                tracked_max_maturity = tracker_summary['max_maturity']
+                
+                # 显示当前帧检测到的番茄数量（去重前）
+                current_frame_count = len(tomato_predictions)
+                tracked_historical_total = tracker_summary.get('historical_total', tracked_total)
+
+                # 调试：打印原始预测数据
+                logger.info(f"[DEBUG] 番茄跟踪器结果: total={tracked_total}, historical_total={tracked_historical_total}, unripe={tracked_unripe}, ripe={tracked_ripe}, overripe={tracked_overripe}, max_maturity={tracked_max_maturity}")
+                if tomato_predictions:
+                    for i, pred in enumerate(tomato_predictions[:3]):  # 只打印前3个
+                        logger.info(f"[DEBUG] 番茄预测{i}: class={pred.get('class')}, maturity={pred.get('maturity')}, conf={pred.get('confidence')}")
+
+                # 使用跟踪器的去重统计
+                max_maturity = tracked_max_maturity
+                unripe_count = tracked_unripe
+                ripe_count = tracked_ripe
+                overripe_count = tracked_overripe
+
+                # 显示更丰富的成熟度信息
+                if max_maturity >= 80:
+                    ripeness_status = "已成熟"
+                elif max_maturity >= 55:
+                    ripeness_status = "转色中"
+                else:
+                    ripeness_status = "未成熟"
+
+                # 详细统计
+                status_detail = []
+                if unripe_count > 0:
+                    status_detail.append(f"未成熟:{unripe_count}")
+                if ripe_count > 0:
+                    status_detail.append(f"成熟:{ripe_count}")
+                if overripe_count > 0:
+                    status_detail.append(f"过熟:{overripe_count}")
+
+                # 判断有没有检测到番茄（包括当前帧和历史）
+                has_tomatoes = (tomato_detected and current_frame_count > 0) or tracked_historical_total > 0 or max_maturity > 0
+
+                if has_tomatoes:
+                    # 有番茄（当前帧检测到或历史有记录）
+                    if tomato_detected and current_frame_count > 0:
+                        analysis_results.append({
+                            "label": "番茄检测状态",
+                            "value": f"[OK] 本帧检测{current_frame_count}个 | 累计追踪{tracked_historical_total}个"
+                        })
+                    else:
+                        # 当前帧没检测到，但历史有
+                        analysis_results.append({
+                            "label": "番茄检测状态",
+                            "value": f"[OK] 累计追踪{tracked_historical_total}个 (当前帧无番茄)"
+                        })
+
+                    analysis_results.append({
+                        "label": "番茄成熟度分析",
+                        "value": f"{ripeness_status} (最高成熟度:{max_maturity}%) - {', '.join(status_detail) if status_detail else '无详细分类'}"
+                    })
+                else:
+                    # 真的没有检测到任何番茄
+                    analysis_results.append({
+                        "label": "番茄检测状态",
+                        "value": "[ERROR] 未检测到番茄"
+                    })
+
+            # 直接返回原始结果（保留 emoji）
+            logger.info(f"[DEBUG] 返回分析结果: {analysis_results}")
             return {"results": analysis_results}
         except Exception as e:
             logger.error(f"分析单个视频帧失败: {str(e)}")

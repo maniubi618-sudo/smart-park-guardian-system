@@ -3,6 +3,7 @@ from ultralytics import YOLO
 from app.utils.logger import get_logger
 from app.services.pest_detector import PestDetector
 from app.services.citrus_detector import CitrusDetector
+from app.services.tomato_detector import TomatoDetector
 from app.services.config_manager import get_config_manager
 
 logger = get_logger()
@@ -67,34 +68,47 @@ class DetectionService:
     # 害虫检测器（使用专用类）
     pest_detector = None
     citrus_detector = None
-    
+    tomato_detector = None
+
     # 作物检测模型
     crop_growth_model = None
     crop_fruit_model = None
-    
+
     # 柑橘检测模型路径
     citrus_model_path = project_root / 'app' / 'models' / 'citrus_maturity.pt'
+    # 番茄检测模型路径
+    tomato_model_path = project_root / 'app' / 'models' / 'tomato_maturity.pt'
     
     # 初始化害虫检测器
     try:
         if pest_detector_model_path.exists():
             pest_detector = PestDetector(str(pest_detector_model_path))
-            logger.info("✅ 害虫检测器加载成功")
+            logger.info("[OK] 害虫检测器加载成功")
         else:
-            logger.warning("⚠️ 害虫检测模型文件不存在，请运行 copy_model.py")
+            logger.warning("[WARN] 害虫检测模型文件不存在，请运行 copy_model.py")
     except Exception as e:
-        logger.warning(f"⚠️ 加载害虫检测器失败: {e}")
-    
+        logger.warning(f"[ERROR] 加载害虫检测器失败: {e}")
+
     # 初始化柑橘检测器
     try:
         if citrus_model_path.exists():
             citrus_detector = CitrusDetector(str(citrus_model_path))
-            logger.info("✅ 柑橘成熟度检测器加载成功")
+            logger.info("[OK] 柑橘成熟度检测器加载成功")
         else:
-            logger.warning("⚠️ 柑橘检测模型文件不存在，请运行 quick_copy.py")
+            logger.warning("[WARN] 柑橘检测模型文件不存在，请运行 quick_copy.py")
     except Exception as e:
-        logger.warning(f"⚠️ 加载柑橘检测器失败: {e}")
-    
+        logger.warning(f"[ERROR] 加载柑橘检测器失败: {e}")
+
+    # 初始化番茄检测器
+    try:
+        if tomato_model_path.exists():
+            tomato_detector = TomatoDetector(str(tomato_model_path))
+            logger.info("[OK] 番茄成熟度检测器加载成功")
+        else:
+            logger.warning("[WARN] 番茄检测模型文件不存在，请运行 quick_copy.py")
+    except Exception as e:
+        logger.warning(f"[ERROR] 加载番茄检测器失败: {e}")
+
     if crop_growth_model_path.exists():
         try:
             crop_growth_model = YOLO(crop_growth_model_path)

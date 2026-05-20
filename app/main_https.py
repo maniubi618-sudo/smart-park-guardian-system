@@ -48,8 +48,7 @@ app = FastAPI(
 )
 # 配置允许跨域的源（前端地址）
 origins = [
-    "http://localhost:5173",  # 你的前端地址
-    # 若需要，可添加其他允许的源，如 "http://localhost:3000" 等
+    "http://localhost:3000",  # 你的前端地址
 ]
 
 # 添加 CORS 中间件

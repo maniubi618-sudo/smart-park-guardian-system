@@ -43,7 +43,7 @@ echo ===========================
 echo.
 echo Backend HTTP: http://localhost:8089
 echo Backend HTTPS: https://localhost:8443
-echo Frontend: http://localhost:5173
+echo Frontend: http://localhost:3000
 echo.
 echo Phone Camera: https://[YourIP]:8443/phone-camera
 echo.

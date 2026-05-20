@@ -75,8 +75,8 @@ else
     echo -e "${RED}  !! 后端 HTTPS 启动失败，查看日志: cat /tmp/smart-park-backend-https.log${NC}"
 fi
 
-# ---- 启动前端 (端口 5173) ----
-echo -e "${BLUE}[3/3]${NC} 启动前端服务 (端口: 5173)..."
+# ---- 启动前端 (端口 3000) ----
+echo -e "${BLUE}[3/3]${NC} 启动前端服务 (端口: 3000)..."
 cd "$FRONTEND_PATH"
 nohup npm run dev > /tmp/smart-park-frontend.log 2>&1 &
 FRONTEND_PID=$!
@@ -97,7 +97,7 @@ echo ""
 echo -e "  后端 HTTP:    ${BLUE}http://localhost:8089${NC}"
 echo -e "  后端 HTTPS:   ${BLUE}https://localhost:8443${NC}"
 echo -e "  API 文档:     ${BLUE}http://localhost:8089/docs${NC}"
-echo -e "  前端页面:     ${BLUE}https://localhost:5173${NC}"
+echo -e "  前端页面:     ${BLUE}http://localhost:3000${NC}"
 echo ""
 echo -e "  手机摄像头:   ${BLUE}https://$(./venv/bin/python -c "
 import socket

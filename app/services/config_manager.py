@@ -153,7 +153,7 @@ class ConfigManager:
         """
         self._merge_config(self._config, new_config)
         self._save_to_file()
-        print("✅ 配置已更新")
+        print("[OK] 配置已更新")
 
 
 # 全局单例

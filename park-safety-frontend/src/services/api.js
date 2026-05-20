@@ -205,6 +205,22 @@ export const citrusApi = {
   }
 }
 
+// 番茄检测相关
+export const tomatoApi = {
+  detect: (file) => {
+    const formData = new FormData()
+    formData.append('file', file)
+    return api.post('/v1/tomato-detection/detect', formData, {
+      headers: {
+        'Content-Type': 'multipart/form-data'
+      }
+    })
+  },
+  getStatus: () => {
+    return api.get('/v1/tomato-detection/status')
+  }
+}
+
 // 农作物病害检测相关
 export const cropDiseaseApi = {
   detect: (file, cropType = 'rice') => {

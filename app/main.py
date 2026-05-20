@@ -19,6 +19,7 @@ from app.api.v1.endpoints import sign_in_or_up_router  # 导入注册登录接�
 from app.api.v1.endpoints import user_router  # 导入用户接口路由
 from app.api.v1.endpoints import crop_disease_detection  # 导入农作物病害检测路由
 from app.api.v1.endpoints import citrus_detection  # 导入柑橘检测路由
+from app.api.v1.endpoints import tomato_detection  # 导入番茄检测路由
 from app.api.v1.endpoints import config_router  # 导入配置管理路由
 from app.middleware.jwt_middleware import JWTMiddleware
 from app.services.thread_pool_manager import shutdown_executor
@@ -53,9 +54,9 @@ app = FastAPI(
 )
 # 配置允许跨域的源（前端地址）
 origins = [
-    "http://localhost:5173",  # 你的前端地址
-    # 若需要，可添加其他允许的源，如 "http://localhost:3000" 等
+    "http://localhost:3000",  # 你的前端地址
 ]
+    # 若需要，可添加其他允许的源，如 "http://localhost:3000" 等
 
 # 添加 CORS 中间件
 app.add_middleware(
@@ -107,6 +108,7 @@ app.include_router(camera_router.router, prefix="/api/v1/camera_infos", tags=["�
 app.include_router(park_area_router.router, prefix="/api/v1/park_areas", tags=["园区区域管理"])
 app.include_router(crop_disease_detection.router, prefix="/api/v1", tags=["农作物病害检测"])
 app.include_router(citrus_detection.router, prefix="/api/v1", tags=["柑橘成熟度检测"])
+app.include_router(tomato_detection.router, prefix="/api/v1", tags=["番茄成熟度检测"])
 app.include_router(config_router.router, prefix="/api/v1", tags=["配置管理"])
 
 # 根路径

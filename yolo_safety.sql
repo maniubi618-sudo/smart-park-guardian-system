@@ -11,7 +11,7 @@
  Target Server Version : 80012 (8.0.12)
  File Encoding         : 65001
 
- Date: 21/04/2026 14:52:45
+ Date: 20/05/2026 13:25:47
 */
 
 SET NAMES utf8mb4;
@@ -24,8 +24,8 @@ DROP TABLE IF EXISTS `alarm`;
 CREATE TABLE `alarm`  (
   `alarm_id` bigint(20) NOT NULL AUTO_INCREMENT,
   `camera_id` int(11) NOT NULL,
-  `alarm_type` int(11) NOT NULL,
-  `alarm_status` int(11) NULL DEFAULT NULL,
+  `alarm_type` tinyint(4) NOT NULL COMMENT '0-安全规范（未戴安全帽/未穿反光衣） 1-区域入侵（人/车） 2-火警（火焰/烟雾）',
+  `alarm_status` tinyint(4) NOT NULL DEFAULT 0 COMMENT '0-未处理 1-确认误报 2-处理中（已派单） 3-处理完成',
   `alarm_time` datetime NOT NULL,
   `snapshot_url` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL,
   `create_time` datetime NULL DEFAULT NULL,
@@ -34,7 +34,7 @@ CREATE TABLE `alarm`  (
   PRIMARY KEY (`alarm_id`) USING BTREE,
   INDEX `ix_alarm_alarm_id`(`alarm_id` ASC) USING BTREE,
   INDEX `ix_alarm_camera_id`(`camera_id` ASC) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 56 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_0900_ai_ci ROW_FORMAT = DYNAMIC;
+) ENGINE = InnoDB AUTO_INCREMENT = 57 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_0900_ai_ci ROW_FORMAT = DYNAMIC;
 
 -- ----------------------------
 -- Records of alarm
@@ -47,7 +47,7 @@ INSERT INTO `alarm` VALUES (5, 1, 2, 0, '2024-02-01 15:50:00', '/snapshots/alarm
 INSERT INTO `alarm` VALUES (37, 6, 0, 0, '2025-09-18 16:38:48', 'https://yolo-park-safety-guard.oss-cn-beijing.aliyuncs.com/6_2025-09-18 16:38:46.jpg', '2025-09-18 16:38:38', '2025-09-18 16:38:38', NULL);
 INSERT INTO `alarm` VALUES (38, 1, 1, 0, '2025-09-25 11:14:59', 'https://yolo-park-safety-guard.oss-cn-beijing.aliyuncs.com/2025/09/25/e93a17a5-30d8-4464-aa79-bcf3d05576ee.jpg', '2025-09-25 11:13:35', '2025-09-25 11:13:35', NULL);
 INSERT INTO `alarm` VALUES (39, 3, 1, 0, '2025-09-25 13:53:41', 'https://yolo-park-safety-guard.oss-cn-beijing.aliyuncs.com/2025/09/25/32da11e0-d646-441f-9270-224a09f68d6d.jpg', '2025-09-25 13:53:02', '2025-09-25 13:53:02', NULL);
-INSERT INTO `alarm` VALUES (40, 2, 0, 0, '2025-10-21 14:19:35', 'https://yolo-park-safety-guard.oss-cn-beijing.aliyuncs.com/2025/10/21/8f7a368f-a71d-4ce1-bcbb-895a2fac3fba.jpghttps://yolo-park-safety-guard.oss-cn-beijing.aliyuncs.com/2025/10/21/909e3bfc-1365-416d-ad8a-37c9fed0b56b.jpg,', '2025-10-21 14:16:58', '2025-10-21 14:16:58', NULL);
+INSERT INTO `alarm` VALUES (40, 2, 0, 0, '2025-10-21 14:19:35', 'https://yolo-park-safety-guard.oss-cn-beijing.aliyuncs.com/2025/10/21/8f7a368f-a71d-4ce1-bcbb-895a2fac3fba.jpg', '2025-10-21 14:16:58', '2025-10-21 14:16:58', NULL);
 INSERT INTO `alarm` VALUES (41, 2, 0, 0, '2025-10-21 14:33:13', 'https://yolo-park-safety-guard.oss-cn-beijing.aliyuncs.com/2025/10/21/dffc764a-ff2f-4a18-9759-c1d135a04ffb.jpghttps://yolo-park-safety-guard.oss-cn-beijing.aliyuncs.com/2025/10/21/7ae6d0c8-f551-44dc-a303-e43e4c7da8c9.jpg,', '2025-10-21 14:32:40', '2025-10-21 14:32:40', NULL);
 INSERT INTO `alarm` VALUES (42, 4, 2, 0, '2025-10-21 14:53:00', 'https://yolo-park-safety-guard.oss-cn-beijing.aliyuncs.com/2025/10/21/053c913f-a36c-4d0f-923f-8ebe7bc72e78.jpg', '2025-10-21 14:50:59', '2025-10-21 14:53:04', '2025-10-21 14:53:04');
 INSERT INTO `alarm` VALUES (43, 4, 2, 0, '2025-10-21 14:53:16', 'https://yolo-park-safety-guard.oss-cn-beijing.aliyuncs.com/2025/10/21/8be27441-d3ff-4d70-8dcd-e6a6bedc2b50.jpg', '2025-10-21 14:50:59', '2025-10-21 14:53:22', '2025-10-21 14:53:22');
@@ -55,7 +55,7 @@ INSERT INTO `alarm` VALUES (44, 4, 2, 0, '2025-10-21 14:54:10', 'https://yolo-pa
 INSERT INTO `alarm` VALUES (45, 4, 2, 0, '2025-10-21 14:55:07', 'https://yolo-park-safety-guard.oss-cn-beijing.aliyuncs.com/2025/10/21/6a4b8a3d-4194-469d-92c9-f2f6c7337291.jpg', '2025-10-21 14:50:59', '2025-10-21 14:55:09', '2025-10-21 14:55:09');
 INSERT INTO `alarm` VALUES (46, 4, 2, 0, '2025-10-21 14:55:21', 'https://yolo-park-safety-guard.oss-cn-beijing.aliyuncs.com/2025/10/21/821865db-33e3-4f06-a7b1-9764e01c2c6f.jpg', '2025-10-21 14:50:59', '2025-10-21 14:50:59', NULL);
 INSERT INTO `alarm` VALUES (47, 3, 1, 0, '2025-10-21 14:57:09', 'https://yolo-park-safety-guard.oss-cn-beijing.aliyuncs.com/2025/10/21/7ec9edca-ffa8-41fd-a5b0-76728f700307.jpg', '2025-10-21 14:56:41', '2025-10-21 14:56:41', NULL);
-INSERT INTO `alarm` VALUES (48, 2, 0, 0, '2025-10-21 17:22:40', 'https://yolo-park-safety-guard.oss-cn-beijing.aliyuncs.com/2025/10/21/9060652d-21da-4a7b-b787-0f46ac5fe467.jpghttps://yolo-park-safety-guard.oss-cn-beijing.aliyuncs.com/2025/10/21/d9477491-24f9-4323-a8b1-c5bd0770e81b.jpg,', '2025-10-21 17:22:11', '2025-10-21 17:22:11', NULL);
+INSERT INTO `alarm` VALUES (48, 2, 0, 0, '2025-10-21 17:22:40', 'https://yolo-park-safety-guard.oss-cn-beijing.aliyuncs.com/2025/10/21/9060652d-21da-4a7b-b787-0f46ac5fe467.jpg', '2025-10-21 17:22:11', '2025-10-21 17:22:11', NULL);
 INSERT INTO `alarm` VALUES (49, 2, 0, 0, '2025-10-21 19:07:12', 'https://yolo-park-safety-guard.oss-cn-beijing.aliyuncs.com/2025/10/21/e692fabc-4859-476d-9653-8705f5e26843.jpg', '2025-10-21 19:06:59', '2025-10-21 19:06:59', NULL);
 INSERT INTO `alarm` VALUES (50, 2, 0, 0, '2025-10-21 19:13:13', 'https://yolo-park-safety-guard.oss-cn-beijing.aliyuncs.com/2025/10/21/0c5de948-9f23-4d20-ad6e-6bc3bedc4df0.jpg', '2025-10-21 19:08:18', '2025-10-21 19:08:18', NULL);
 INSERT INTO `alarm` VALUES (51, 3, 1, 0, '2025-10-22 21:25:38', 'https://yolo-park-safety-guard.oss-cn-beijing.aliyuncs.com/2025/10/22/16657d25-398d-4e6f-acf5-07543856f5d9.jpg', '2025-10-22 21:01:19', '2025-10-22 21:01:19', NULL);
@@ -72,8 +72,8 @@ CREATE TABLE `alarm_handle_record`  (
   `handle_id` bigint(20) NOT NULL AUTO_INCREMENT,
   `alarm_id` bigint(20) NOT NULL,
   `handle_time` datetime NOT NULL,
-  `handler_user_id` int(11) NOT NULL,
-  `handle_action` int(11) NOT NULL,
+  `handler_user_id` int(11) NOT NULL COMMENT '处理人 ID（系统用户），逻辑外键',
+  `handle_action` int(11) NOT NULL COMMENT '处理动作：0-标记误报， 1-派单处理， 2-标记已解决',
   `handle_content` text CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL,
   `handle_attachment_url` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL,
   `create_time` datetime NULL DEFAULT NULL,
@@ -81,7 +81,7 @@ CREATE TABLE `alarm_handle_record`  (
   PRIMARY KEY (`handle_id`) USING BTREE,
   INDEX `ix_alarm_handle_record_handle_id`(`handle_id` ASC) USING BTREE,
   INDEX `ix_alarm_handle_record_alarm_id`(`alarm_id` ASC) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 7 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_0900_ai_ci ROW_FORMAT = DYNAMIC;
+) ENGINE = InnoDB AUTO_INCREMENT = 8 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_0900_ai_ci ROW_FORMAT = DYNAMIC;
 
 -- ----------------------------
 -- Records of alarm_handle_record
@@ -190,7 +190,7 @@ CREATE TABLE `user`  (
   UNIQUE INDEX `user_name`(`user_name` ASC) USING BTREE,
   UNIQUE INDEX `user_unique`(`phone` ASC) USING BTREE,
   INDEX `ix_user_user_id`(`user_id` ASC) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 27 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_0900_ai_ci ROW_FORMAT = DYNAMIC;
+) ENGINE = InnoDB AUTO_INCREMENT = 28 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_0900_ai_ci ROW_FORMAT = DYNAMIC;
 
 -- ----------------------------
 -- Records of user

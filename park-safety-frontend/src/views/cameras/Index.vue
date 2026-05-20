@@ -15,6 +15,7 @@
                   <el-option label="全部" value="1" />
                   <el-option label="火警" value="4" />
                   <el-option label="柑橘成熟度" value="7" />
+                  <el-option label="番茄成熟度" value="8" />
                 </el-select>
               </el-form-item>
           <el-form-item label="摄像头状态">
@@ -198,6 +199,16 @@
               <p v-if="isAnalysisStreaming" class="fps-indicator">
                 <strong>FPS:</strong> {{ analysisFps.toFixed(1) }}
               </p>
+              <div class="analysis-mode-option" style="margin-top: 15px; display: flex; align-items: center; justify-content: space-between;">
+                <span style="font-size: 14px; color: #606266;">分析模式</span>
+                <el-select v-model="currentAnalysisMode" placeholder="请选择分析模式" style="width: 150px;">
+                  <el-option label="全部" :value="1" />
+                  <el-option label="火警" :value="4" />
+                  <el-option label="柑橘成熟度" :value="7" />
+                  <el-option label="番茄成熟度" :value="9" />
+                  <el-option label="作物病害检测" :value="8" />
+                </el-select>
+              </div>
               <div class="write-to-db-option" style="margin-top: 15px; display: flex; align-items: center; justify-content: space-between;">
                 <span style="font-size: 14px; color: #606266;">将警告信息写入数据库</span>
                 <el-switch v-model="writeToDatabase" active-text="是" inactive-text="否" />
@@ -288,6 +299,7 @@
                   <el-option label="全部" value="1" />
                   <el-option label="火警" value="4" />
                   <el-option label="柑橘成熟度" value="7" />
+                  <el-option label="番茄成熟度" value="9" />
                   <el-option label="作物病害检测" value="8" />
                 </el-select>
               </el-form-item>
@@ -339,22 +351,303 @@
             </div>
             
             <!-- 总分析结果 -->
-            <div class="total-analysis-results" v-if="!isLocalAnalysisStarted && totalFrames.value > 0">
+            <div class="total-analysis-results" v-if="(!isLocalAnalysisStarted && totalFrames.value > 0) || (lastAnalysisResults && isLocalAnalysisStarted)">
               <h3>总分析结果</h3>
-              <el-descriptions :column="2">
-                <el-descriptions-item label="人员检测">
-                  {{ totalAnalysisResults.person }} 人
-                </el-descriptions-item>
-                <el-descriptions-item label="火焰检测">
-                  {{ totalAnalysisResults.fire }} 次
-                </el-descriptions-item>
-                <el-descriptions-item label="烟雾检测">
-                  {{ totalAnalysisResults.smoke }} 次
-                </el-descriptions-item>
-                <el-descriptions-item label="分析帧数">
-                  {{ processedFrames.value }} / {{ totalFrames.value }} 帧
-                </el-descriptions-item>
-              </el-descriptions>
+              
+              <template v-if="localAnalysisForm.analysisMode === '9'">
+                <el-descriptions :column="2">
+                  <el-descriptions-item label="检测到番茄">
+                    {{ totalAnalysisResults.tomato_total }} 个
+                  </el-descriptions-item>
+                  <el-descriptions-item label="最高成熟度">
+                    {{ totalAnalysisResults.tomato_max_maturity }}%
+                  </el-descriptions-item>
+                  <el-descriptions-item label="未成熟">
+                    {{ totalAnalysisResults.tomato_unripe }} 个
+                  </el-descriptions-item>
+                  <el-descriptions-item label="成熟">
+                    {{ totalAnalysisResults.tomato_ripe }} 个
+                  </el-descriptions-item>
+                  <el-descriptions-item label="过熟">
+                    {{ totalAnalysisResults.tomato_overripe }} 个
+                  </el-descriptions-item>
+                  <el-descriptions-item label="分析帧数">
+                    {{ processedFrames.value }} / {{ totalFrames.value }} 帧
+                  </el-descriptions-item>
+                </el-descriptions>
+              </template>
+              <template v-else-if="localAnalysisForm.analysisMode === '7'">
+                <el-descriptions :column="2">
+                  <el-descriptions-item label="检测到柑橘">
+                    {{ totalAnalysisResults.citrus_total }} 个
+                  </el-descriptions-item>
+                  <el-descriptions-item label="最高成熟度">
+                    {{ totalAnalysisResults.citrus_max_maturity }}%
+                  </el-descriptions-item>
+                  <el-descriptions-item label="未成熟">
+                    {{ totalAnalysisResults.citrus_unripe }} 个
+                  </el-descriptions-item>
+                  <el-descriptions-item label="成熟">
+                    {{ totalAnalysisResults.citrus_ripe }} 个
+                  </el-descriptions-item>
+                  <el-descriptions-item label="腐烂">
+                    {{ totalAnalysisResults.citrus_rotten }} 个
+                  </el-descriptions-item>
+                  <el-descriptions-item label="分析帧数">
+                    {{ processedFrames.value }} / {{ totalFrames.value }} 帧
+                  </el-descriptions-item>
+                </el-descriptions>
+              </template>
+              <template v-else-if="localAnalysisForm.analysisMode === '8'">
+                <el-descriptions :column="2">
+                  <el-descriptions-item label="作物类型">
+                    {{ getCropLabel(localAnalysisForm.cropType) }}
+                  </el-descriptions-item>
+                  <el-descriptions-item label="病害检测">
+                    <span :style="{ color: totalAnalysisResults.diseaseCount > 0 ? '#f56c6c' : '#67c23a' }">
+                      {{ totalAnalysisResults.diseaseCount }} 次
+                    </span>
+                  </el-descriptions-item>
+                  <el-descriptions-item label="分析帧数">
+                    {{ processedFrames.value }} / {{ totalFrames.value }} 帧
+                  </el-descriptions-item>
+                </el-descriptions>
+              </template>
+              <template v-else-if="localAnalysisForm.analysisMode === '4'">
+                <el-descriptions :column="2">
+                  <el-descriptions-item label="火焰检测">
+                    <span :style="{ color: totalAnalysisResults.fire > 0 ? '#f56c6c' : '#67c23a' }">
+                      {{ totalAnalysisResults.fire }} 次
+                    </span>
+                  </el-descriptions-item>
+                  <el-descriptions-item label="烟雾检测">
+                    <span :style="{ color: totalAnalysisResults.smoke > 0 ? '#e6a23c' : '#67c23a' }">
+                      {{ totalAnalysisResults.smoke }} 次
+                    </span>
+                  </el-descriptions-item>
+                  <el-descriptions-item label="分析帧数">
+                    {{ processedFrames.value }} / {{ totalFrames.value }} 帧
+                  </el-descriptions-item>
+                </el-descriptions>
+              </template>
+              <template v-else-if="localAnalysisForm.analysisMode === '2'">
+                <el-descriptions :column="2">
+                  <el-descriptions-item label="未戴安全帽">
+                    <span :style="{ color: totalAnalysisResults.helmet > 0 ? '#f56c6c' : '#67c23a' }">
+                      {{ totalAnalysisResults.helmet }} 次
+                    </span>
+                  </el-descriptions-item>
+                  <el-descriptions-item label="未穿反光衣">
+                    <span :style="{ color: totalAnalysisResults.vest > 0 ? '#f56c6c' : '#67c23a' }">
+                      {{ totalAnalysisResults.vest }} 次
+                    </span>
+                  </el-descriptions-item>
+                  <el-descriptions-item label="分析帧数">
+                    {{ processedFrames.value }} / {{ totalFrames.value }} 帧
+                  </el-descriptions-item>
+                </el-descriptions>
+              </template>
+              <template v-else-if="localAnalysisForm.analysisMode === '3'">
+                <el-descriptions :column="2">
+                  <el-descriptions-item label="人员检测">
+                    {{ totalAnalysisResults.person }} 人
+                  </el-descriptions-item>
+                  <el-descriptions-item label="车辆检测">
+                    {{ totalAnalysisResults.vehicle }} 辆
+                  </el-descriptions-item>
+                  <el-descriptions-item label="区域入侵">
+                    <span :style="{ color: totalAnalysisResults.intrusion > 0 ? '#f56c6c' : '#67c23a' }">
+                      {{ totalAnalysisResults.intrusion }} 次
+                    </span>
+                  </el-descriptions-item>
+                  <el-descriptions-item label="分析帧数">
+                    {{ processedFrames.value }} / {{ totalFrames.value }} 帧
+                  </el-descriptions-item>
+                </el-descriptions>
+              </template>
+              <template v-else>
+                <el-descriptions :column="2">
+                  <el-descriptions-item label="未戴安全帽">
+                    <span :style="{ color: totalAnalysisResults.helmet > 0 ? '#f56c6c' : '#67c23a' }">
+                      {{ totalAnalysisResults.helmet }} 次
+                    </span>
+                  </el-descriptions-item>
+                  <el-descriptions-item label="未穿反光衣">
+                    <span :style="{ color: totalAnalysisResults.vest > 0 ? '#f56c6c' : '#67c23a' }">
+                      {{ totalAnalysisResults.vest }} 次
+                    </span>
+                  </el-descriptions-item>
+                  <el-descriptions-item label="火焰检测">
+                    <span :style="{ color: totalAnalysisResults.fire > 0 ? '#f56c6c' : '#67c23a' }">
+                      {{ totalAnalysisResults.fire }} 次
+                    </span>
+                  </el-descriptions-item>
+                  <el-descriptions-item label="烟雾检测">
+                    <span :style="{ color: totalAnalysisResults.smoke > 0 ? '#e6a23c' : '#67c23a' }">
+                      {{ totalAnalysisResults.smoke }} 次
+                    </span>
+                  </el-descriptions-item>
+                  <el-descriptions-item label="人员检测">
+                    {{ totalAnalysisResults.person }} 人
+                  </el-descriptions-item>
+                  <el-descriptions-item label="车辆检测">
+                    {{ totalAnalysisResults.vehicle }} 辆
+                  </el-descriptions-item>
+                  <el-descriptions-item label="分析帧数">
+                    {{ processedFrames.value }} / {{ totalFrames.value }} 帧
+                  </el-descriptions-item>
+                </el-descriptions>
+              </template>
+            </div>
+            
+            <!-- 对话框关闭后显示上次保存的结果 -->
+            <div class="total-analysis-results" v-else-if="lastAnalysisResults && !isLocalAnalysisStarted && totalFrames.value === 0">
+              <h3>上次分析结果</h3>
+              
+              <template v-if="lastAnalysisMode === '9'">
+                <el-descriptions :column="2">
+                  <el-descriptions-item label="检测到番茄">
+                    {{ lastAnalysisResults.tomato_total }} 个
+                  </el-descriptions-item>
+                  <el-descriptions-item label="最高成熟度">
+                    {{ lastAnalysisResults.tomato_max_maturity }}%
+                  </el-descriptions-item>
+                  <el-descriptions-item label="未成熟">
+                    {{ lastAnalysisResults.tomato_unripe }} 个
+                  </el-descriptions-item>
+                  <el-descriptions-item label="成熟">
+                    {{ lastAnalysisResults.tomato_ripe }} 个
+                  </el-descriptions-item>
+                  <el-descriptions-item label="过熟">
+                    {{ lastAnalysisResults.tomato_overripe }} 个
+                  </el-descriptions-item>
+                  <el-descriptions-item label="分析帧数">
+                    {{ lastProcessedFrames.value }} / {{ lastTotalFrames.value }} 帧
+                  </el-descriptions-item>
+                </el-descriptions>
+              </template>
+              <template v-else-if="lastAnalysisMode === '7'">
+                <el-descriptions :column="2">
+                  <el-descriptions-item label="检测到柑橘">
+                    {{ lastAnalysisResults.citrus_total }} 个
+                  </el-descriptions-item>
+                  <el-descriptions-item label="最高成熟度">
+                    {{ lastAnalysisResults.citrus_max_maturity }}%
+                  </el-descriptions-item>
+                  <el-descriptions-item label="未成熟">
+                    {{ lastAnalysisResults.citrus_unripe }} 个
+                  </el-descriptions-item>
+                  <el-descriptions-item label="成熟">
+                    {{ lastAnalysisResults.citrus_ripe }} 个
+                  </el-descriptions-item>
+                  <el-descriptions-item label="腐烂">
+                    {{ lastAnalysisResults.citrus_rotten }} 个
+                  </el-descriptions-item>
+                  <el-descriptions-item label="分析帧数">
+                    {{ lastProcessedFrames.value }} / {{ lastTotalFrames.value }} 帧
+                  </el-descriptions-item>
+                </el-descriptions>
+              </template>
+              <template v-else-if="lastAnalysisMode === '4'">
+                <el-descriptions :column="2">
+                  <el-descriptions-item label="火焰检测">
+                    <span :style="{ color: lastAnalysisResults.fire > 0 ? '#f56c6c' : '#67c23a' }">
+                      {{ lastAnalysisResults.fire }} 次
+                    </span>
+                  </el-descriptions-item>
+                  <el-descriptions-item label="烟雾检测">
+                    <span :style="{ color: lastAnalysisResults.smoke > 0 ? '#e6a23c' : '#67c23a' }">
+                      {{ lastAnalysisResults.smoke }} 次
+                    </span>
+                  </el-descriptions-item>
+                  <el-descriptions-item label="分析帧数">
+                    {{ lastProcessedFrames.value }} / {{ lastTotalFrames.value }} 帧
+                  </el-descriptions-item>
+                </el-descriptions>
+              </template>
+              <template v-else-if="lastAnalysisMode === '8'">
+                <el-descriptions :column="2">
+                  <el-descriptions-item label="作物类型">
+                    {{ getCropLabel(lastAnalysisResults.cropType || 'rice') }}
+                  </el-descriptions-item>
+                  <el-descriptions-item label="病害检测">
+                    <span :style="{ color: lastAnalysisResults.diseaseCount > 0 ? '#f56c6c' : '#67c23a' }">
+                      {{ lastAnalysisResults.diseaseCount }} 次
+                    </span>
+                  </el-descriptions-item>
+                  <el-descriptions-item label="分析帧数">
+                    {{ lastProcessedFrames.value }} / {{ lastTotalFrames.value }} 帧
+                  </el-descriptions-item>
+                </el-descriptions>
+              </template>
+              <template v-else-if="lastAnalysisMode === '2'">
+                <el-descriptions :column="2">
+                  <el-descriptions-item label="未戴安全帽">
+                    <span :style="{ color: lastAnalysisResults.helmet > 0 ? '#f56c6c' : '#67c23a' }">
+                      {{ lastAnalysisResults.helmet }} 次
+                    </span>
+                  </el-descriptions-item>
+                  <el-descriptions-item label="未穿反光衣">
+                    <span :style="{ color: lastAnalysisResults.vest > 0 ? '#f56c6c' : '#67c23a' }">
+                      {{ lastAnalysisResults.vest }} 次
+                    </span>
+                  </el-descriptions-item>
+                  <el-descriptions-item label="分析帧数">
+                    {{ lastProcessedFrames.value }} / {{ lastTotalFrames.value }} 帧
+                  </el-descriptions-item>
+                </el-descriptions>
+              </template>
+              <template v-else-if="lastAnalysisMode === '3'">
+                <el-descriptions :column="2">
+                  <el-descriptions-item label="人员检测">
+                    {{ lastAnalysisResults.person }} 人
+                  </el-descriptions-item>
+                  <el-descriptions-item label="车辆检测">
+                    {{ lastAnalysisResults.vehicle }} 辆
+                  </el-descriptions-item>
+                  <el-descriptions-item label="区域入侵">
+                    <span :style="{ color: lastAnalysisResults.intrusion > 0 ? '#f56c6c' : '#67c23a' }">
+                      {{ lastAnalysisResults.intrusion }} 次
+                    </span>
+                  </el-descriptions-item>
+                  <el-descriptions-item label="分析帧数">
+                    {{ lastProcessedFrames.value }} / {{ lastTotalFrames.value }} 帧
+                  </el-descriptions-item>
+                </el-descriptions>
+              </template>
+              <template v-else>
+                <el-descriptions :column="2">
+                  <el-descriptions-item label="未戴安全帽">
+                    <span :style="{ color: lastAnalysisResults.helmet > 0 ? '#f56c6c' : '#67c23a' }">
+                      {{ lastAnalysisResults.helmet }} 次
+                    </span>
+                  </el-descriptions-item>
+                  <el-descriptions-item label="未穿反光衣">
+                    <span :style="{ color: lastAnalysisResults.vest > 0 ? '#f56c6c' : '#67c23a' }">
+                      {{ lastAnalysisResults.vest }} 次
+                    </span>
+                  </el-descriptions-item>
+                  <el-descriptions-item label="火焰检测">
+                    <span :style="{ color: lastAnalysisResults.fire > 0 ? '#f56c6c' : '#67c23a' }">
+                      {{ lastAnalysisResults.fire }} 次
+                    </span>
+                  </el-descriptions-item>
+                  <el-descriptions-item label="烟雾检测">
+                    <span :style="{ color: lastAnalysisResults.smoke > 0 ? '#e6a23c' : '#67c23a' }">
+                      {{ lastAnalysisResults.smoke }} 次
+                    </span>
+                  </el-descriptions-item>
+                  <el-descriptions-item label="人员检测">
+                    {{ lastAnalysisResults.person }} 人
+                  </el-descriptions-item>
+                  <el-descriptions-item label="车辆检测">
+                    {{ lastAnalysisResults.vehicle }} 辆
+                  </el-descriptions-item>
+                  <el-descriptions-item label="分析帧数">
+                    {{ lastProcessedFrames.value }} / {{ lastTotalFrames.value }} 帧
+                  </el-descriptions-item>
+                </el-descriptions>
+              </template>
             </div>
           </div>
         </div>
@@ -428,6 +721,7 @@
                     <el-option label="全部" value="1" />
                     <el-option label="火警" value="4" />
                     <el-option label="柑橘成熟度" value="7" />
+                    <el-option label="番茄成熟度" value="9" />
                     <el-option label="作物病害检测" value="8" />
                   </el-select>
                   <!-- 作物类型选择，仅在作物病害检测模式下显示 -->
@@ -561,6 +855,7 @@
                 <el-select v-model="imageAnalysisForm.analysisMode" placeholder="请选择分析模式">
                   <el-option label="作物病害检测" value="cropDisease" />
                   <el-option label="柑橘成熟度" value="citrus" />
+                  <el-option label="番茄成熟度" value="tomato" />
                 </el-select>
               </el-form-item>
               <el-form-item v-if="imageAnalysisForm.analysisMode === 'cropDisease'" label="作物类型">
@@ -595,8 +890,8 @@
                       {{ (scope.row.confidence * 100).toFixed(1) }}%
                     </template>
                   </el-table-column>
-                  <el-table-column v-if="imageAnalysisForm.analysisMode === 'citrus'" prop="maturity_label" label="成熟度" width="120" />
-                  <el-table-column v-if="imageAnalysisForm.analysisMode === 'citrus'" prop="days_to_ripe" label="预计成熟天数" width="140" />
+                  <el-table-column v-if="imageAnalysisForm.analysisMode === 'citrus' || imageAnalysisForm.analysisMode === 'tomato'" prop="maturity_label" label="成熟度" width="120" />
+                  <el-table-column v-if="imageAnalysisForm.analysisMode === 'citrus' || imageAnalysisForm.analysisMode === 'tomato'" prop="days_to_ripe" label="预计成熟天数" width="140" />
                 </el-table>
               </div>
             </div>
@@ -647,6 +942,7 @@
                   <el-option label="全部" :value="1" />
                   <el-option label="火警" :value="4" />
                   <el-option label="柑橘成熟度" :value="7" />
+                  <el-option label="番茄成熟度" :value="8" />
                 </el-select>
               </el-form-item>
           <el-form-item label="摄像头IP" prop="camera_ip">
@@ -675,7 +971,7 @@ import { useCameraStore } from '../../stores/cameras'
 import { useAreaStore } from '../../stores/areas'
 import MainLayout from '../../components/MainLayout.vue'
 import { VideoCamera, Loading, CircleClose, Check, Upload, Picture } from '@element-plus/icons-vue'
-import { citrusApi, cropDiseaseApi } from '../../services/api.js'
+import { citrusApi, tomatoApi, cropDiseaseApi } from '../../services/api.js'
 import { ElMessageBox, ElMessage } from 'element-plus'
 import QRCode from 'qrcode'
 
@@ -765,6 +1061,7 @@ const previewLastTime = ref(0)
 // 分析测试相关
 const analysisDialogVisible = ref(false)
 const currentAnalysisCameraId = ref(null)
+const currentAnalysisMode = ref(1)  // 默认模式：全部
 const analysisCameraName = ref('')
 const analysisImage = ref('')
 const analysisTimestamp = ref('')
@@ -831,6 +1128,11 @@ const totalFrames = ref(0)
 const remainingTime = ref(0)
 const localAnalysisResults = ref([])
 const analysisInterval = ref(null)
+// 保存最后一次分析的汇总结果（对话框关闭后保留）
+const lastAnalysisResults = ref(null)
+const lastAnalysisMode = ref('1')
+const lastProcessedFrames = ref(0)
+const lastTotalFrames = ref(0)
 const totalAnalysisResults = ref({
   helmet: 0,
   vest: 0,
@@ -838,7 +1140,19 @@ const totalAnalysisResults = ref({
   smoke: 0,
   person: 0,
   vehicle: 0,
-  intrusion: 0
+  intrusion: 0,
+  // 番茄成熟度统计
+  tomato_total: 0,
+  tomato_unripe: 0,
+  tomato_ripe: 0,
+  tomato_overripe: 0,
+  tomato_max_maturity: 0,
+  // 柑橘成熟度统计
+  citrus_total: 0,
+  citrus_unripe: 0,
+  citrus_ripe: 0,
+  citrus_rotten: 0,
+  citrus_max_maturity: 0,
 })
 
 // 手机摄像头相关状态
@@ -936,7 +1250,8 @@ const getAnalysisModeName = (mode) => {
     4: '火警',
     5: '害虫检测',
     6: '作物长势异常',
-    7: '柑橘成熟度'
+    7: '柑橘成熟度',
+    8: '番茄成熟度'
   }
   return modeMap[mode] || '未知'
 }
@@ -1122,6 +1437,8 @@ const testCamera = async (camera) => {
     const result = await cameraStore.testCamera(camera.camera_id)
     if (result.success) {
       ElMessage.success('连接成功')
+      // 刷新摄像头列表以更新状态
+      await fetchCameras()
     } else {
       ElMessage.error('连接失败: ' + result.message)
     }
@@ -1294,7 +1611,7 @@ const startAnalysisTest = async () => {
     // 建立WebSocket连接进行分析测试
     const protocol = window.location.protocol === 'https:' ? 'wss:' : 'ws:'
     const host = window.location.host
-    const wsUrl = `${protocol}//${host}/api/v1/camera_infos/analysis/${currentAnalysisCameraId.value}/ws?write_to_database=${writeToDatabase.value}`
+    const wsUrl = `${protocol}//${host}/api/v1/camera_infos/analysis/${currentAnalysisCameraId.value}/ws?write_to_database=${writeToDatabase.value}&analysis_mode=${currentAnalysisMode.value}`
     analysisWsConnection.value = new WebSocket(wsUrl)
 
     analysisWsConnection.value.onopen = () => {
@@ -1428,7 +1745,11 @@ const checkForAlerts = (results) => {
       alerts.push(result.label)
     }
     // 检查柑橘检测提醒
-    else if (result.label.includes('🍊 检测状态') && result.value.includes('✅')) {
+    else if (result.label.includes('柑橘检测状态') && result.value.includes('✅')) {
+      alerts.push(`${result.label} (${result.value})`)
+    }
+    // 检查番茄检测提醒
+    else if (result.label.includes('番茄检测状态') && result.value.includes('✅')) {
       alerts.push(`${result.label} (${result.value})`)
     }
   })
@@ -1547,7 +1868,7 @@ const checkLocalVideoAlerts = (results) => {
       alerts.push(result.label)
     }
     // 检查柑橘检测提醒
-    else if (result.label.includes('🍊 检测状态') && result.value.includes('✅')) {
+    else if (result.label.includes('柑橘检测状态') && result.value.includes('✅')) {
       alerts.push(`${result.label} (${result.value})`)
     }
     // 检查作物病害检测
@@ -1584,6 +1905,7 @@ const handleAnalysisDialogClose = () => {
   lastAlertState.value = ''
   analysisDialogVisible.value = false
   currentAnalysisCameraId.value = null
+  currentAnalysisMode.value = 1  // 重置分析模式
   analysisCameraName.value = ''
   analysisImage.value = ''
   analysisTimestamp.value = ''
@@ -1631,7 +1953,30 @@ const startLocalVideoAnalysis = async () => {
       smoke: 0,
       person: 0,
       vehicle: 0,
-      intrusion: 0
+      intrusion: 0,
+      tomato_total: 0,
+      tomato_unripe: 0,
+      tomato_ripe: 0,
+      tomato_overripe: 0,
+      tomato_max_maturity: 0,
+      citrus_total: 0,
+      citrus_unripe: 0,
+      citrus_ripe: 0,
+      citrus_rotten: 0,
+      citrus_max_maturity: 0,
+    }
+
+    // 调用后端重置跟踪器
+    try {
+      const token = localStorage.getItem('token')
+      await fetch('/api/v1/camera_infos/reset_tracker', {
+        method: 'POST',
+        headers: {
+          'Authorization': `Bearer ${token}`
+        }
+      })
+    } catch (e) {
+      console.warn('重置跟踪器失败:', e)
     }
 
     // 创建视频元素用于提取帧
@@ -1675,13 +2020,143 @@ const startLocalVideoAnalysis = async () => {
         clearInterval(analysisInterval.value)
         isLocalAnalysisStarted.value = false
         
+        // 保存分析结果（用于对话框关闭后显示）
+        lastAnalysisResults.value = JSON.parse(JSON.stringify(totalAnalysisResults.value))
+        lastAnalysisMode.value = localAnalysisForm.analysisMode
+        lastProcessedFrames.value = processedFrames.value
+        lastTotalFrames.value = totalFrames.value
+        
         // 根据分析模式显示不同的报告
         let reportContent = ''
         
-        if (localAnalysisForm.analysisMode === '8') {
+        if (localAnalysisForm.analysisMode === '9') {
+          // 番茄成熟度分析模式
+          const tomatoTotal = totalAnalysisResults.value.tomato_total || 0
+          const tomatoMaxMaturity = totalAnalysisResults.value.tomato_max_maturity || 0
+          const tomatoUnripe = totalAnalysisResults.value.tomato_unripe || 0
+          const tomatoRipe = totalAnalysisResults.value.tomato_ripe || 0
+          const tomatoOverripe = totalAnalysisResults.value.tomato_overripe || 0
+          
+          // 根据最高成熟度判断整体状态
+          let overallStatus = '未知'
+          let statusColor = '#909399'
+          if (tomatoTotal > 0) {
+            if (tomatoMaxMaturity >= 80) {
+              overallStatus = '已成熟'
+              statusColor = '#67c23a'
+            } else if (tomatoMaxMaturity >= 55) {
+              overallStatus = '转色中'
+              statusColor = '#e6a23c'
+            } else {
+              overallStatus = '未成熟'
+              statusColor = '#909399'
+            }
+          }
+          
+          reportContent = `<div style="padding: 20px;">
+            <h3 style="margin-bottom: 20px; color: #f56c6c; text-align: center; font-size: 18px;">番茄成熟度分析完成</h3>
+            <div style="background-color: #f5f7fa; padding: 20px; border-radius: 8px; margin-bottom: 20px;">
+              <div style="display: grid; grid-template-columns: repeat(2, 1fr); gap: 15px;">
+                <div style="padding: 10px; background-color: white; border-radius: 6px; box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);">
+                  <strong style="color: #666;">分析帧数：</strong>
+                  <span style="color: #1890ff; font-weight: 500;">${processedFrames.value} / ${totalFrames.value} 帧</span>
+                </div>
+                <div style="padding: 10px; background-color: white; border-radius: 6px; box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);">
+                  <strong style="color: #666;">检测到番茄：</strong>
+                  <span style="color: #1890ff; font-weight: 500;">${tomatoTotal} 个</span>
+                </div>
+                <div style="padding: 10px; background-color: white; border-radius: 6px; box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);">
+                  <strong style="color: #666;">整体状态：</strong>
+                  <span style="color: ${statusColor}; font-weight: 500;">${overallStatus}</span>
+                </div>
+                <div style="padding: 10px; background-color: white; border-radius: 6px; box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);">
+                  <strong style="color: #666;">最高成熟度：</strong>
+                  <span style="color: #1890ff; font-weight: 500;">${tomatoMaxMaturity}%</span>
+                </div>
+                <div style="padding: 10px; background-color: white; border-radius: 6px; box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);">
+                  <strong style="color: #666;">未成熟：</strong>
+                  <span style="color: #909399; font-weight: 500;">${tomatoUnripe} 个</span>
+                </div>
+                <div style="padding: 10px; background-color: white; border-radius: 6px; box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);">
+                  <strong style="color: #666;">成熟：</strong>
+                  <span style="color: #67c23a; font-weight: 500;">${tomatoRipe} 个</span>
+                </div>
+                <div style="padding: 10px; background-color: white; border-radius: 6px; box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);">
+                  <strong style="color: #666;">过熟：</strong>
+                  <span style="color: #f56c6c; font-weight: 500;">${tomatoOverripe} 个</span>
+                </div>
+              </div>
+            </div>
+            <div style="text-align: center; color: #999; font-size: 14px;">
+              分析结果仅供参考，实际情况请以现场为准
+            </div>
+          </div>`
+        } else if (localAnalysisForm.analysisMode === '7') {
+          // 柑橘成熟度分析模式
+          const citrusTotal = totalAnalysisResults.value.citrus_total || 0
+          const citrusMaxMaturity = totalAnalysisResults.value.citrus_max_maturity || 0
+          const citrusUnripe = totalAnalysisResults.value.citrus_unripe || 0
+          const citrusRipe = totalAnalysisResults.value.citrus_ripe || 0
+          const citrusRotten = totalAnalysisResults.value.citrus_rotten || 0
+          
+          // 根据最高成熟度判断整体状态
+          let overallStatus = '未知'
+          let statusColor = '#909399'
+          if (citrusTotal > 0) {
+            if (citrusMaxMaturity >= 80) {
+              overallStatus = '已成熟'
+              statusColor = '#67c23a'
+            } else if (citrusMaxMaturity >= 55) {
+              overallStatus = '转色中'
+              statusColor = '#e6a23c'
+            } else {
+              overallStatus = '未成熟'
+              statusColor = '#909399'
+            }
+          }
+          
+          reportContent = `<div style="padding: 20px;">
+            <h3 style="margin-bottom: 20px; color: #e6a23c; text-align: center; font-size: 18px;">柑橘成熟度分析完成</h3>
+            <div style="background-color: #f5f7fa; padding: 20px; border-radius: 8px; margin-bottom: 20px;">
+              <div style="display: grid; grid-template-columns: repeat(2, 1fr); gap: 15px;">
+                <div style="padding: 10px; background-color: white; border-radius: 6px; box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);">
+                  <strong style="color: #666;">分析帧数：</strong>
+                  <span style="color: #1890ff; font-weight: 500;">${processedFrames.value} / ${totalFrames.value} 帧</span>
+                </div>
+                <div style="padding: 10px; background-color: white; border-radius: 6px; box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);">
+                  <strong style="color: #666;">检测到柑橘：</strong>
+                  <span style="color: #1890ff; font-weight: 500;">${citrusTotal} 个</span>
+                </div>
+                <div style="padding: 10px; background-color: white; border-radius: 6px; box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);">
+                  <strong style="color: #666;">整体状态：</strong>
+                  <span style="color: ${statusColor}; font-weight: 500;">${overallStatus}</span>
+                </div>
+                <div style="padding: 10px; background-color: white; border-radius: 6px; box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);">
+                  <strong style="color: #666;">最高成熟度：</strong>
+                  <span style="color: #1890ff; font-weight: 500;">${citrusMaxMaturity}%</span>
+                </div>
+                <div style="padding: 10px; background-color: white; border-radius: 6px; box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);">
+                  <strong style="color: #666;">未成熟：</strong>
+                  <span style="color: #909399; font-weight: 500;">${citrusUnripe} 个</span>
+                </div>
+                <div style="padding: 10px; background-color: white; border-radius: 6px; box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);">
+                  <strong style="color: #666;">成熟：</strong>
+                  <span style="color: #67c23a; font-weight: 500;">${citrusRipe} 个</span>
+                </div>
+                <div style="padding: 10px; background-color: white; border-radius: 6px; box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);">
+                  <strong style="color: #666;">腐烂：</strong>
+                  <span style="color: #f56c6c; font-weight: 500;">${citrusRotten} 个</span>
+                </div>
+              </div>
+            </div>
+            <div style="text-align: center; color: #999; font-size: 14px;">
+              分析结果仅供参考，实际情况请以现场为准
+            </div>
+          </div>`
+        } else if (localAnalysisForm.analysisMode === '8') {
           // 作物病害检测模式
           reportContent = `<div style="padding: 20px;">
-            <h3 style="margin-bottom: 20px; color: #1890ff; text-align: center; font-size: 18px;">🌱 作物病害检测完成</h3>
+            <h3 style="margin-bottom: 20px; color: #67c23a; text-align: center; font-size: 18px;">🌱 作物病害检测完成</h3>
             <div style="background-color: #f5f7fa; padding: 20px; border-radius: 8px; margin-bottom: 20px;">
               <div style="display: grid; grid-template-columns: repeat(2, 1fr); gap: 15px;">
                 <div style="padding: 10px; background-color: white; border-radius: 6px; box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);">
@@ -1702,10 +2177,10 @@ const startLocalVideoAnalysis = async () => {
               分析结果仅供参考，实际情况请以现场为准
             </div>
           </div>`
-        } else {
-          // 其他模式的报告
+        } else if (localAnalysisForm.analysisMode === '4') {
+          // 火警检测模式
           reportContent = `<div style="padding: 20px;">
-            <h3 style="margin-bottom: 20px; color: #1890ff; text-align: center; font-size: 18px;">视频分析完成</h3>
+            <h3 style="margin-bottom: 20px; color: #f56c6c; text-align: center; font-size: 18px;">🔥 火警检测分析完成</h3>
             <div style="background-color: #f5f7fa; padding: 20px; border-radius: 8px; margin-bottom: 20px;">
               <div style="display: grid; grid-template-columns: repeat(2, 1fr); gap: 15px;">
                 <div style="padding: 10px; background-color: white; border-radius: 6px; box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);">
@@ -1714,7 +2189,95 @@ const startLocalVideoAnalysis = async () => {
                 </div>
                 <div style="padding: 10px; background-color: white; border-radius: 6px; box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);">
                   <strong style="color: #666;">分析模式：</strong>
-                  <span style="color: #1890ff; font-weight: 500;">${localAnalysisForm.analysisMode === '1' ? '全部' : localAnalysisForm.analysisMode === '2' ? '安全规范' : localAnalysisForm.analysisMode === '3' ? '区域入侵' : '火警'}</span>
+                  <span style="color: #f56c6c; font-weight: 500;">火警检测</span>
+                </div>
+                <div style="padding: 10px; background-color: white; border-radius: 6px; box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);">
+                  <strong style="color: #666;">火焰检测：</strong>
+                  <span style="color: ${totalAnalysisResults.value.fire > 0 ? '#f56c6c' : '#67c23a'}; font-weight: 500;">${totalAnalysisResults.value.fire} 次</span>
+                </div>
+                <div style="padding: 10px; background-color: white; border-radius: 6px; box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);">
+                  <strong style="color: #666;">烟雾检测：</strong>
+                  <span style="color: ${totalAnalysisResults.value.smoke > 0 ? '#e6a23c' : '#67c23a'}; font-weight: 500;">${totalAnalysisResults.value.smoke} 次</span>
+                </div>
+              </div>
+            </div>
+            <div style="text-align: center; color: #999; font-size: 14px;">
+              分析结果仅供参考，实际情况请以现场为准
+            </div>
+          </div>`
+        } else if (localAnalysisForm.analysisMode === '2') {
+          // 安全规范检测模式
+          reportContent = `<div style="padding: 20px;">
+            <h3 style="margin-bottom: 20px; color: #409eff; text-align: center; font-size: 18px;">🦺 安全规范检测完成</h3>
+            <div style="background-color: #f5f7fa; padding: 20px; border-radius: 8px; margin-bottom: 20px;">
+              <div style="display: grid; grid-template-columns: repeat(2, 1fr); gap: 15px;">
+                <div style="padding: 10px; background-color: white; border-radius: 6px; box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);">
+                  <strong style="color: #666;">分析帧数：</strong>
+                  <span style="color: #1890ff; font-weight: 500;">${processedFrames.value} / ${totalFrames.value} 帧</span>
+                </div>
+                <div style="padding: 10px; background-color: white; border-radius: 6px; box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);">
+                  <strong style="color: #666;">分析模式：</strong>
+                  <span style="color: #409eff; font-weight: 500;">安全规范</span>
+                </div>
+                <div style="padding: 10px; background-color: white; border-radius: 6px; box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);">
+                  <strong style="color: #666;">未戴安全帽：</strong>
+                  <span style="color: ${totalAnalysisResults.value.helmet > 0 ? '#f56c6c' : '#67c23a'}; font-weight: 500;">${totalAnalysisResults.value.helmet} 次</span>
+                </div>
+                <div style="padding: 10px; background-color: white; border-radius: 6px; box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);">
+                  <strong style="color: #666;">未穿反光衣：</strong>
+                  <span style="color: ${totalAnalysisResults.value.vest > 0 ? '#f56c6c' : '#67c23a'}; font-weight: 500;">${totalAnalysisResults.value.vest} 次</span>
+                </div>
+              </div>
+            </div>
+            <div style="text-align: center; color: #999; font-size: 14px;">
+              分析结果仅供参考，实际情况请以现场为准
+            </div>
+          </div>`
+        } else if (localAnalysisForm.analysisMode === '3') {
+          // 区域入侵检测模式
+          reportContent = `<div style="padding: 20px;">
+            <h3 style="margin-bottom: 20px; color: #e6a23c; text-align: center; font-size: 18px;">🚨 区域入侵检测完成</h3>
+            <div style="background-color: #f5f7fa; padding: 20px; border-radius: 8px; margin-bottom: 20px;">
+              <div style="display: grid; grid-template-columns: repeat(2, 1fr); gap: 15px;">
+                <div style="padding: 10px; background-color: white; border-radius: 6px; box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);">
+                  <strong style="color: #666;">分析帧数：</strong>
+                  <span style="color: #1890ff; font-weight: 500;">${processedFrames.value} / ${totalFrames.value} 帧</span>
+                </div>
+                <div style="padding: 10px; background-color: white; border-radius: 6px; box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);">
+                  <strong style="color: #666;">分析模式：</strong>
+                  <span style="color: #e6a23c; font-weight: 500;">区域入侵</span>
+                </div>
+                <div style="padding: 10px; background-color: white; border-radius: 6px; box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);">
+                  <strong style="color: #666;">人员检测：</strong>
+                  <span style="color: #1890ff; font-weight: 500;">${totalAnalysisResults.value.person} 人</span>
+                </div>
+                <div style="padding: 10px; background-color: white; border-radius: 6px; box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);">
+                  <strong style="color: #666;">车辆检测：</strong>
+                  <span style="color: #1890ff; font-weight: 500;">${totalAnalysisResults.value.vehicle} 辆</span>
+                </div>
+                <div style="padding: 10px; background-color: white; border-radius: 6px; box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); grid-column: 1 / -1;">
+                  <strong style="color: #666;">区域入侵：</strong>
+                  <span style="color: ${totalAnalysisResults.value.intrusion > 0 ? '#f56c6c' : '#67c23a'}; font-weight: 500;">${totalAnalysisResults.value.intrusion} 次</span>
+                </div>
+              </div>
+            </div>
+            <div style="text-align: center; color: #999; font-size: 14px;">
+              分析结果仅供参考，实际情况请以现场为准
+            </div>
+          </div>`
+        } else {
+          // 模式1（全部）或未知模式
+          reportContent = `<div style="padding: 20px;">
+            <h3 style="margin-bottom: 20px; color: #1890ff; text-align: center; font-size: 18px;">📊 视频分析完成</h3>
+            <div style="background-color: #f5f7fa; padding: 20px; border-radius: 8px; margin-bottom: 20px;">
+              <div style="display: grid; grid-template-columns: repeat(2, 1fr); gap: 15px;">
+                <div style="padding: 10px; background-color: white; border-radius: 6px; box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);">
+                  <strong style="color: #666;">分析帧数：</strong>
+                  <span style="color: #1890ff; font-weight: 500;">${processedFrames.value} / ${totalFrames.value} 帧</span>
+                </div>
+                <div style="padding: 10px; background-color: white; border-radius: 6px; box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);">
+                  <strong style="color: #666;">分析模式：</strong>
+                  <span style="color: #1890ff; font-weight: 500;">全部检测</span>
                 </div>
                 <div style="padding: 10px; background-color: white; border-radius: 6px; box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);">
                   <strong style="color: #666;">未戴安全帽：</strong>
@@ -1730,7 +2293,7 @@ const startLocalVideoAnalysis = async () => {
                 </div>
                 <div style="padding: 10px; background-color: white; border-radius: 6px; box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);">
                   <strong style="color: #666;">烟雾检测：</strong>
-                  <span style="color: ${totalAnalysisResults.value.smoke > 0 ? '#f56c6c' : '#67c23a'}; font-weight: 500;">${totalAnalysisResults.value.smoke} 次</span>
+                  <span style="color: ${totalAnalysisResults.value.smoke > 0 ? '#e6a23c' : '#67c23a'}; font-weight: 500;">${totalAnalysisResults.value.smoke} 次</span>
                 </div>
                 <div style="padding: 10px; background-color: white; border-radius: 6px; box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);">
                   <strong style="color: #666;">人员检测：</strong>
@@ -1842,6 +2405,7 @@ const startLocalVideoAnalysis = async () => {
           }
         } else {
           // 其他模式：使用原来的分析接口
+          console.log('发送分析模式:', localAnalysisForm.analysisMode)
           const token = localStorage.getItem('token')
           const response = await fetch('/api/v1/camera_infos/analyze_frame', {
             method: 'POST',
@@ -1857,8 +2421,10 @@ const startLocalVideoAnalysis = async () => {
 
           if (response.ok) {
             const result = await response.json()
+            console.log('分析结果:', result)
             if (result.results) {
               localAnalysisResults.value = result.results
+              console.log('设置分析结果:', localAnalysisResults.value)
               
               // 检查是否有告警并显示提示
               checkLocalVideoAlerts(result.results)
@@ -1893,6 +2459,91 @@ const startLocalVideoAnalysis = async () => {
                   }
                 } else if (item.label === '区域入侵' && item.value === '检测到') {
                   totalAnalysisResults.value.intrusion++
+                } else if (item.label === '番茄检测状态' && item.value.includes('累计追踪')) {
+                  // 番茄检测统计 - 从"累计追踪"中提取
+                  const match = item.value.match(/累计追踪(\d+)个/)
+                  console.log('[DEBUG] 番茄检测状态匹配:', item.value, '正则匹配结果:', match)
+                  if (match) {
+                    const count = parseInt(match[1])
+                    console.log('[DEBUG] 更新 tomato_total:', count)
+                    // 累计追踪数量直接更新（去重后的准确值）
+                    totalAnalysisResults.value.tomato_total = count
+                  }
+                } else if (item.label === '番茄成熟度分析' && item.value.includes('最高成熟度')) {
+                  // 番茄成熟度统计 - 从结果中提取信息
+                  // 支持整数和小数成熟度值
+                  console.log('[DEBUG] 番茄成熟度分析:', item.value)
+                  const maturityMatch = item.value.match(/最高成熟度:(\d+(?:\.\d+)?)%/)
+                  const unripeMatch = item.value.match(/未成熟:(\d+)/)
+                  const ripeMatch = item.value.match(/成熟:(\d+)/)
+                  const overripeMatch = item.value.match(/过熟:(\d+)/)
+
+                  console.log('[DEBUG] maturityMatch:', maturityMatch)
+                  if (maturityMatch) {
+                    const maturity = parseFloat(maturityMatch[1])
+                    console.log('[DEBUG] 更新 tomato_max_maturity:', maturity)
+                    if (maturity > totalAnalysisResults.value.tomato_max_maturity) {
+                      totalAnalysisResults.value.tomato_max_maturity = maturity
+                    }
+                  }
+                  if (unripeMatch) {
+                    const val = parseInt(unripeMatch[1])
+                    if (val > totalAnalysisResults.value.tomato_unripe) {
+                      totalAnalysisResults.value.tomato_unripe = val
+                    }
+                  }
+                  if (ripeMatch) {
+                    const val = parseInt(ripeMatch[1])
+                    if (val > totalAnalysisResults.value.tomato_ripe) {
+                      totalAnalysisResults.value.tomato_ripe = val
+                    }
+                  }
+                  if (overripeMatch) {
+                    const val = parseInt(overripeMatch[1])
+                    if (val > totalAnalysisResults.value.tomato_overripe) {
+                      totalAnalysisResults.value.tomato_overripe = val
+                    }
+                  }
+                } else if (item.label === '柑橘检测状态' && item.value.includes('累计追踪')) {
+                  // 柑橘检测统计 - 从"累计追踪"中提取
+                  const match = item.value.match(/累计追踪(\d+)个/)
+                  if (match) {
+                    const count = parseInt(match[1])
+                    // 累计追踪数量直接更新（去重后的准确值）
+                    totalAnalysisResults.value.citrus_total = count
+                  }
+                } else if (item.label === '柑橘成熟度分析' && item.value.includes('最高成熟度')) {
+                  // 柑橘成熟度统计
+                  // 支持整数和小数成熟度值
+                  const maturityMatch = item.value.match(/最高成熟度:(\d+(?:\.\d+)?)%/)
+                  const unripeMatch = item.value.match(/未成熟:(\d+)/)
+                  const ripeMatch = item.value.match(/成熟:(\d+)/)
+                  const rottenMatch = item.value.match(/腐烂:(\d+)/)
+
+                  if (maturityMatch) {
+                    const maturity = parseFloat(maturityMatch[1])
+                    if (maturity > totalAnalysisResults.value.citrus_max_maturity) {
+                      totalAnalysisResults.value.citrus_max_maturity = maturity
+                    }
+                  }
+                  if (unripeMatch) {
+                    const val = parseInt(unripeMatch[1])
+                    if (val > totalAnalysisResults.value.citrus_unripe) {
+                      totalAnalysisResults.value.citrus_unripe = val
+                    }
+                  }
+                  if (ripeMatch) {
+                    const val = parseInt(ripeMatch[1])
+                    if (val > totalAnalysisResults.value.citrus_ripe) {
+                      totalAnalysisResults.value.citrus_ripe = val
+                    }
+                  }
+                  if (rottenMatch) {
+                    const val = parseInt(rottenMatch[1])
+                    if (val > totalAnalysisResults.value.citrus_rotten) {
+                      totalAnalysisResults.value.citrus_rotten = val
+                    }
+                  }
                 }
               })
             }
@@ -1948,10 +2599,17 @@ const stopLocalVideoAnalysis = () => {
 // 处理本地视频分析对话框关闭
 const handleLocalVideoDialogClose = () => {
   stopLocalVideoAnalysis()
+  // 保存当前分析结果
+  lastAnalysisResults.value = JSON.parse(JSON.stringify(totalAnalysisResults.value))
+  lastAnalysisMode.value = localAnalysisForm.analysisMode
+  // 保存帧数
+  lastProcessedFrames.value = processedFrames.value
+  lastTotalFrames.value = totalFrames.value
   localVideoDialogVisible.value = false
   selectedVideoFile.value = null
   videoUrl.value = ''
-  localAnalysisForm.analysisMode = '1'
+  // 不重置 analysisMode，以便下次打开时保持上次的选项
+  // localAnalysisForm.analysisMode = '1'
   localAnalysisForm.frameInterval = 5
   isLocalAnalysisStarted.value = false
   analysisProgress.value = 0
@@ -2116,8 +2774,10 @@ const startImageAnalysis = async () => {
     let result
     if (imageAnalysisForm.analysisMode === 'cropDisease') {
       result = await cropDiseaseApi.detect(selectedImageFile.value, imageAnalysisForm.cropType)
-    } else {
+    } else if (imageAnalysisForm.analysisMode === 'citrus') {
       result = await citrusApi.detect(selectedImageFile.value)
+    } else {
+      result = await tomatoApi.detect(selectedImageFile.value)
     }
 
     if (result) {
@@ -2303,7 +2963,7 @@ const checkPhoneCameraAlerts = (results) => {
       alerts.push(result.label)
     }
     // 检查柑橘检测提醒
-    else if (result.label.includes('🍊 检测状态') && result.value.includes('✅')) {
+    else if (result.label.includes('柑橘检测状态') && result.value.includes('✅')) {
       alerts.push(`${result.label} (${result.value})`)
     }
     // 检查作物病害检测

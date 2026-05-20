@@ -15,8 +15,8 @@ export default defineConfig({
     }
   },
   server: {
-    host: '0.0.0.0',
-    port: 5173,
+    host: 'localhost',
+    port: 3000,
     https: existsSync(certFile) && existsSync(keyFile) ? {
       cert: certFile,
       key: keyFile
