@@ -39,6 +39,190 @@ from app.utils.logger import get_logger
 logger = get_logger()
 
 
+class AppleTracker:
+    """
+    苹果跟踪器，用于在视频帧间去重跟踪苹果
+    基于 IOU (Intersection over Union) 匹配
+    """
+    def __init__(self, iou_threshold=0.3, max_frames_missing=5):
+        self.tracked_apples = {}  # {track_id: {"bbox": (x1,y1,x2,y2), "maturity": float, "class": str, "frames_missing": int}}
+        self.next_track_id = 0
+        self.iou_threshold = iou_threshold
+        self.max_frames_missing = max_frames_missing
+        self.current_frame_apples = []  # 当前帧检测到的苹果
+        self.historical_max_maturity = 0  # 历史最高成熟度，即使苹果丢失也保留
+        self.historical_total = 0  # 历史总苹果数量（累计追踪）
+        self.historical_stage_20 = 0  # 历史20%成熟总数
+        self.historical_stage_40 = 0  # 历史40%成熟总数
+        self.historical_stage_60 = 0  # 历史60%成熟总数
+        self.historical_stage_80 = 0  # 历史80%成熟总数
+        self.historical_stage_100 = 0  # 历史100%成熟总数
+    
+    def calculate_iou(self, box1, box2):
+        """计算两个边框的 IOU"""
+        x1_min, y1_min, x1_max, y1_max = box1
+        x2_min, y2_min, x2_max, y2_max = box2
+        
+        # 计算交集
+        inter_xmin = max(x1_min, x2_min)
+        inter_ymin = max(y1_min, y2_min)
+        inter_xmax = min(x1_max, x2_max)
+        inter_ymax = min(y1_max, y2_max)
+        
+        if inter_xmax < inter_xmin or inter_ymax < inter_ymin:
+            return 0.0
+        
+        inter_area = (inter_xmax - inter_xmin) * (inter_ymax - inter_ymin)
+        
+        # 计算各自的面积
+        box1_area = (x1_max - x1_min) * (y1_max - y1_min)
+        box2_area = (x2_max - x2_min) * (y2_max - y2_min)
+        
+        # 计算并集
+        union_area = box1_area + box2_area - inter_area
+        
+        return inter_area / union_area if union_area > 0 else 0.0
+    
+    def update(self, detections):
+        """
+        更新跟踪器，传入当前帧的检测结果
+        返回: dict with tracking summary
+        """
+        self.current_frame_apples = []
+        matched_track_ids = set()
+        
+        for det in detections:
+            bbox = det.get('bbox', {})
+            x1, y1, x2, y2 = bbox.get('x1', 0), bbox.get('y1', 0), bbox.get('x2', 0), bbox.get('y2', 0)
+            box = (x1, y1, x2, y2)
+            maturity = det.get('maturity', 0) or 0
+            class_name = det.get('class', '')
+            
+            best_match_id = None
+            best_iou = 0
+            
+            # 查找最佳匹配
+            for track_id, tracked in self.tracked_apples.items():
+                if tracked['frames_missing'] <= self.max_frames_missing:
+                    iou = self.calculate_iou(box, tracked['bbox'])
+                    if iou > best_iou and iou >= self.iou_threshold:
+                        best_iou = iou
+                        best_match_id = track_id
+            
+            if best_match_id is not None:
+                # 更新已跟踪的苹果
+                self.tracked_apples[best_match_id] = {
+                    'bbox': box,
+                    'maturity': maturity,
+                    'class': class_name,
+                    'frames_missing': 0
+                }
+                matched_track_ids.add(best_match_id)
+            else:
+                # 新苹果
+                new_id = self.next_track_id
+                self.next_track_id += 1
+                self.tracked_apples[new_id] = {
+                    'bbox': box,
+                    'maturity': maturity,
+                    'class': class_name,
+                    'frames_missing': 0
+                }
+                matched_track_ids.add(new_id)
+                self.historical_total += 1  # 增加历史总数
+
+                # 根据成熟度阶段增加历史分类计数
+                if maturity >= 100:
+                    self.historical_stage_100 += 1
+                elif maturity >= 80:
+                    self.historical_stage_80 += 1
+                elif maturity >= 60:
+                    self.historical_stage_60 += 1
+                elif maturity >= 40:
+                    self.historical_stage_40 += 1
+                else:
+                    self.historical_stage_20 += 1
+        
+        # 增加未匹配苹果的丢失帧数
+        for track_id in self.tracked_apples:
+            if track_id not in matched_track_ids:
+                self.tracked_apples[track_id]['frames_missing'] += 1
+        
+        # 更新历史最高成熟度（即使苹果丢失也保留）
+        for det in detections:
+            maturity = det.get('maturity', 0) or 0
+            if maturity > self.historical_max_maturity:
+                self.historical_max_maturity = maturity
+        
+        return self.get_summary()
+    
+    def get_summary(self):
+        """获取跟踪摘要"""
+        active = [t for t in self.tracked_apples.values() if t['frames_missing'] <= self.max_frames_missing]
+
+        # 统计各成熟阶段
+        stage_20 = 0
+        stage_40 = 0
+        stage_60 = 0
+        stage_80 = 0
+        stage_100 = 0
+        
+        for t in active:
+            maturity = t.get('maturity', 0) or 0
+            if maturity >= 100:
+                stage_100 += 1
+            elif maturity >= 80:
+                stage_80 += 1
+            elif maturity >= 60:
+                stage_60 += 1
+            elif maturity >= 40:
+                stage_40 += 1
+            else:
+                stage_20 += 1
+
+        # 使用历史最高成熟度（即使苹果丢失也保留之前的最大值）
+        active_maturities = [t.get('maturity', 0) or 0 for t in active]
+        current_max = max(active_maturities, default=0)
+        max_maturity = max(self.historical_max_maturity, current_max)
+
+        # 如果当前没有活跃苹果，使用历史分类计数
+        final_stage_20 = stage_20 if stage_20 > 0 else self.historical_stage_20
+        final_stage_40 = stage_40 if stage_40 > 0 else self.historical_stage_40
+        final_stage_60 = stage_60 if stage_60 > 0 else self.historical_stage_60
+        final_stage_80 = stage_80 if stage_80 > 0 else self.historical_stage_80
+        final_stage_100 = stage_100 if stage_100 > 0 else self.historical_stage_100
+        final_total = len(active) if len(active) > 0 else self.historical_total
+
+        return {
+            'total': final_total,
+            'active_total': len(active),
+            'historical_total': self.historical_total,
+            'stage_20': final_stage_20,
+            'stage_40': final_stage_40,
+            'stage_60': final_stage_60,
+            'stage_80': final_stage_80,
+            'stage_100': final_stage_100,
+            'active_stage_20': stage_20,
+            'active_stage_40': stage_40,
+            'active_stage_60': stage_60,
+            'active_stage_80': stage_80,
+            'active_stage_100': stage_100,
+            'max_maturity': max_maturity
+        }
+
+    def reset(self):
+        """重置跟踪器"""
+        self.tracked_apples = {}
+        self.next_track_id = 0
+        self.historical_max_maturity = 0
+        self.historical_total = 0
+        self.historical_stage_20 = 0
+        self.historical_stage_40 = 0
+        self.historical_stage_60 = 0
+        self.historical_stage_80 = 0
+        self.historical_stage_100 = 0
+
+
 class TomatoTracker:
     """
     番茄跟踪器，用于在视频帧间去重跟踪番茄
@@ -434,6 +618,7 @@ class CameraInfoService:
     # 类级别的跟踪器字典，支持多视频同时分析
     _tomato_trackers = {}
     _citrus_trackers = {}
+    _apple_trackers = {}
     
     @staticmethod
     def _get_tomato_tracker(session_id: str = "default") -> TomatoTracker:
@@ -450,6 +635,13 @@ class CameraInfoService:
         return CameraInfoService._citrus_trackers[session_id]
     
     @staticmethod
+    def _get_apple_tracker(session_id: str = "default") -> AppleTracker:
+        """获取或创建苹果跟踪器"""
+        if session_id not in CameraInfoService._apple_trackers:
+            CameraInfoService._apple_trackers[session_id] = AppleTracker()
+        return CameraInfoService._apple_trackers[session_id]
+    
+    @staticmethod
     def _reset_tomato_tracker(session_id: str = "default"):
         """重置番茄跟踪器"""
         if session_id in CameraInfoService._tomato_trackers:
@@ -460,6 +652,12 @@ class CameraInfoService:
         """重置柑橘跟踪器"""
         if session_id in CameraInfoService._citrus_trackers:
             CameraInfoService._citrus_trackers[session_id].reset()
+    
+    @staticmethod
+    def _reset_apple_tracker(session_id: str = "default"):
+        """重置苹果跟踪器"""
+        if session_id in CameraInfoService._apple_trackers:
+            CameraInfoService._apple_trackers[session_id].reset()
     
     @staticmethod
     async def get_camera_info(db: Session, camera_info_id: int) -> Result[CameraInfoResponse]:
@@ -1111,6 +1309,8 @@ class CameraInfoService:
                     citrus_predictions = []
                     tomato_detected = False
                     tomato_predictions = []
+                    apple_detected = False
+                    apple_predictions = []
 
                     # 直接使用原始帧，不需要转换
                     frame_cv = frame
@@ -1165,6 +1365,15 @@ class CameraInfoService:
                                 return DetectionService.tomato_detector.detect_and_annotate(image_bytes)
                             tasks.append(asyncio.to_thread(detect_tomato_task))
                             task_names.append('tomato')
+
+                    if mode in [1, 10]:
+                        if DetectionService.apple_detector and DetectionService.apple_detector.model is not None:
+                            def detect_apple_task():
+                                _, buffer = cv2.imencode('.jpg', frame_cv)
+                                image_bytes = buffer.tobytes()
+                                return DetectionService.apple_detector.detect_and_annotate(image_bytes)
+                            tasks.append(asyncio.to_thread(detect_apple_task))
+                            task_names.append('apple')
 
                     # 并行执行所有检测任务
                     try:
@@ -1227,6 +1436,11 @@ class CameraInfoService:
                                     tomato_detected = len(predictions) > 0
                                     # 存储番茄检测结果用于更丰富的展示
                                     tomato_predictions = predictions
+                                elif name == 'apple':
+                                    predictions, _ = result
+                                    apple_detected = len(predictions) > 0
+                                    # 存储苹果检测结果用于更丰富的展示
+                                    apple_predictions = predictions
                     except Exception as e:
                         logger.error(f"检测任务执行失败: {str(e)}")
                     
@@ -1379,6 +1593,75 @@ class CameraInfoService:
                             analysis_results.append({
                                 "label": "🍅 检测状态",
                                 "value": "❌ 未检测到番茄"
+                            })
+
+                    if mode in [1, 10]:
+                        # 首先显示检测状态：有没有检测到苹果
+                        if apple_detected and len(apple_predictions) > 0:
+                            analysis_results.append({
+                                "label": "🍎 检测状态",
+                                "value": f"✅ 检测到苹果！共{len(apple_predictions)}个"
+                            })
+
+                            # 计算综合成熟度信息
+                            apple_info = []
+                            max_maturity = 0
+                            stage_20_count = 0
+                            stage_40_count = 0
+                            stage_60_count = 0
+                            stage_80_count = 0
+                            stage_100_count = 0
+
+                            for pred in apple_predictions:
+                                maturity = pred.get('maturity', 0) or 0
+                                if maturity > max_maturity:
+                                    max_maturity = maturity
+                                maturity_label = pred.get('maturity_label', '')
+
+                                if '20' in maturity_label or '仍在生长' in maturity_label:
+                                    stage_20_count += 1
+                                elif '40' in maturity_label or '早期发育' in maturity_label:
+                                    stage_40_count += 1
+                                elif '60' in maturity_label or '中期成熟' in maturity_label:
+                                    stage_60_count += 1
+                                elif '80' in maturity_label or '即将成熟' in maturity_label:
+                                    stage_80_count += 1
+                                elif '100' in maturity_label or '完全成熟' in maturity_label:
+                                    stage_100_count += 1
+
+                            # 显示更丰富的成熟度信息
+                            if max_maturity >= 100:
+                                ripeness_status = "完全成熟"
+                            elif max_maturity >= 80:
+                                ripeness_status = "即将成熟"
+                            elif max_maturity >= 60:
+                                ripeness_status = "中期成熟"
+                            elif max_maturity >= 40:
+                                ripeness_status = "早期发育"
+                            else:
+                                ripeness_status = "仍在生长"
+
+                            # 详细统计
+                            status_detail = []
+                            if stage_20_count > 0:
+                                status_detail.append(f"20%:{stage_20_count}")
+                            if stage_40_count > 0:
+                                status_detail.append(f"40%:{stage_40_count}")
+                            if stage_60_count > 0:
+                                status_detail.append(f"60%:{stage_60_count}")
+                            if stage_80_count > 0:
+                                status_detail.append(f"80%:{stage_80_count}")
+                            if stage_100_count > 0:
+                                status_detail.append(f"100%:{stage_100_count}")
+
+                            analysis_results.append({
+                                "label": "🍎 苹果成熟度分析",
+                                "value": f"{ripeness_status} (最高成熟度:{max_maturity}%) - {', '.join(status_detail)}"
+                            })
+                        else:
+                            analysis_results.append({
+                                "label": "🍎 检测状态",
+                                "value": "❌ 未检测到苹果"
                             })
 
                     # 保存分析结果，用于未分析的帧
@@ -1546,10 +1829,11 @@ class CameraInfoService:
             citrus_predictions = []
             tomato_detected = False
             tomato_predictions = []
+            apple_detected = False
+            apple_predictions = []
             
             # 转换分析模式为整数
             mode = int(analysis_mode) if analysis_mode else 1
-            logger.info(f"[DEBUG] 开始分析视频帧, mode={mode}, original={analysis_mode}")
             
             # 模式1 = 全部，模式2=安全规范，模式3=区域入侵，模式4=火警，模式5=害虫检测，模式6=作物长势异常，模式7=果实成熟度
             
@@ -1684,9 +1968,23 @@ class CameraInfoService:
                             return len(predictions) > 0, predictions
                         return False, []
                     tomato_detected, tomato_predictions = await asyncio.to_thread(detect_tomato)
-                    logger.info(f"[DEBUG] 番茄检测完成: detected={tomato_detected}, count={len(tomato_predictions)}")
                 except Exception as e:
                     logger.error(f"番茄成熟度检测失败: {str(e)}")
+
+            # 检测苹果成熟度
+            if mode in [1, 10]:
+                try:
+                    def detect_apple():
+                        if DetectionService.apple_detector and DetectionService.apple_detector.model is not None:
+                            _, buffer = cv2.imencode('.jpg', frame_cv)
+                            image_bytes = buffer.tobytes()
+                            predictions, _ = DetectionService.apple_detector.detect_and_annotate(image_bytes)
+                            return len(predictions) > 0, predictions
+                        logger.warning(f"[WARN] 苹果检测器未加载或模型为None")
+                        return False, []
+                    apple_detected, apple_predictions = await asyncio.to_thread(detect_apple)
+                except Exception as e:
+                    logger.error(f"苹果成熟度检测失败: {str(e)}")
 
             # 简单的区域入侵检测（如果检测到人员或车辆，就认为有入侵）
             intrusion_detected = person_count > 0 or vehicle_count > 0
@@ -1858,8 +2156,89 @@ class CameraInfoService:
                         "value": "[ERROR] 未检测到番茄"
                     })
 
-            # 直接返回原始结果（保留 emoji）
-            logger.info(f"[DEBUG] 返回分析结果: {analysis_results}")
+            # 苹果成熟度检测结果生成
+            if mode in [1, 10]:
+                # 使用苹果跟踪器进行去重
+                apple_tracker = CameraInfoService._get_apple_tracker()
+                apple_tracker_summary = apple_tracker.update(apple_predictions)
+
+                # 获取跟踪器统计（去重后的准确数据）
+                tracked_total = apple_tracker_summary['total']
+                tracked_stage_20 = apple_tracker_summary.get('stage_20', 0)
+                tracked_stage_40 = apple_tracker_summary.get('stage_40', 0)
+                tracked_stage_60 = apple_tracker_summary.get('stage_60', 0)
+                tracked_stage_80 = apple_tracker_summary.get('stage_80', 0)
+                tracked_stage_100 = apple_tracker_summary.get('stage_100', 0)
+                tracked_max_maturity = apple_tracker_summary['max_maturity']
+
+                # 显示当前帧检测到的苹果数量（去重前）
+                current_frame_count = len(apple_predictions)
+                tracked_historical_total = apple_tracker_summary.get('historical_total', tracked_total)
+
+                # 调试：打印苹果检测数据
+                logger.info(f"[DEBUG] 苹果跟踪器结果: total={tracked_total}, historical_total={tracked_historical_total}, stage_20={tracked_stage_20}, stage_40={tracked_stage_40}, stage_60={tracked_stage_60}, stage_80={tracked_stage_80}, stage_100={tracked_stage_100}, max_maturity={tracked_max_maturity}")
+                logger.info(f"[DEBUG] 苹果检测状态: apple_detected={apple_detected}, current_frame_count={current_frame_count}")
+                if apple_predictions:
+                    for i, pred in enumerate(apple_predictions[:3]):  # 只打印前3个
+                        logger.info(f"[DEBUG] 苹果预测{i}: class={pred.get('class')}, maturity={pred.get('maturity')}, conf={pred.get('confidence')}")
+
+                # 使用跟踪器的去重统计
+                max_maturity = tracked_max_maturity
+
+                # 显示更丰富的成熟度信息
+                if max_maturity >= 100:
+                    ripeness_status = "完全成熟"
+                elif max_maturity >= 80:
+                    ripeness_status = "即将成熟"
+                elif max_maturity >= 60:
+                    ripeness_status = "中期成熟"
+                elif max_maturity >= 40:
+                    ripeness_status = "早期发育"
+                else:
+                    ripeness_status = "仍在生长"
+
+                # 详细统计
+                status_detail = []
+                if tracked_stage_20 > 0:
+                    status_detail.append(f"20%:{tracked_stage_20}")
+                if tracked_stage_40 > 0:
+                    status_detail.append(f"40%:{tracked_stage_40}")
+                if tracked_stage_60 > 0:
+                    status_detail.append(f"60%:{tracked_stage_60}")
+                if tracked_stage_80 > 0:
+                    status_detail.append(f"80%:{tracked_stage_80}")
+                if tracked_stage_100 > 0:
+                    status_detail.append(f"100%:{tracked_stage_100}")
+
+                # 判断有没有检测到苹果（包括当前帧和历史）
+                has_apples = (apple_detected and current_frame_count > 0) or tracked_historical_total > 0 or max_maturity > 0
+
+                if has_apples:
+                    # 有苹果（当前帧检测到或历史有记录）
+                    if apple_detected and current_frame_count > 0:
+                        analysis_results.append({
+                            "label": "苹果检测状态",
+                            "value": f"[OK] 本帧检测{current_frame_count}个 | 累计追踪{tracked_historical_total}个"
+                        })
+                    else:
+                        # 当前帧没检测到，但历史有
+                        analysis_results.append({
+                            "label": "苹果检测状态",
+                            "value": f"[OK] 累计追踪{tracked_historical_total}个 (当前帧无苹果)"
+                        })
+
+                    analysis_results.append({
+                        "label": "苹果成熟度分析",
+                        "value": f"{ripeness_status} (最高成熟度:{max_maturity}%) - {', '.join(status_detail) if status_detail else '无详细分类'}"
+                    })
+                else:
+                    # 真的没有检测到任何苹果
+                    analysis_results.append({
+                        "label": "苹果检测状态",
+                        "value": "[ERROR] 未检测到苹果"
+                    })
+
+            # 直接返回原始结果
             return {"results": analysis_results}
         except Exception as e:
             logger.error(f"分析单个视频帧失败: {str(e)}")

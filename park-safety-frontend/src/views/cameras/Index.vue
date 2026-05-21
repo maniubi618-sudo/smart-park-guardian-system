@@ -206,6 +206,7 @@
                   <el-option label="火警" :value="4" />
                   <el-option label="柑橘成熟度" :value="7" />
                   <el-option label="番茄成熟度" :value="9" />
+                  <el-option label="苹果成熟度" :value="10" />
                   <el-option label="作物病害检测" :value="8" />
                 </el-select>
               </div>
@@ -300,6 +301,7 @@
                   <el-option label="火警" value="4" />
                   <el-option label="柑橘成熟度" value="7" />
                   <el-option label="番茄成熟度" value="9" />
+                  <el-option label="苹果成熟度" value="10" />
                   <el-option label="作物病害检测" value="8" />
                 </el-select>
               </el-form-item>
@@ -351,7 +353,7 @@
             </div>
             
             <!-- 总分析结果 -->
-            <div class="total-analysis-results" v-if="(!isLocalAnalysisStarted && totalFrames.value > 0) || (lastAnalysisResults && isLocalAnalysisStarted)">
+            <div class="total-analysis-results" v-if="(!isLocalAnalysisStarted && processedFrames.value > 0) || (lastAnalysisResults && isLocalAnalysisStarted) || (lastAnalysisResults && !isLocalAnalysisStarted)">
               <h3>总分析结果</h3>
               
               <template v-if="localAnalysisForm.analysisMode === '9'">
@@ -392,6 +394,34 @@
                   </el-descriptions-item>
                   <el-descriptions-item label="腐烂">
                     {{ totalAnalysisResults.citrus_rotten }} 个
+                  </el-descriptions-item>
+                  <el-descriptions-item label="分析帧数">
+                    {{ processedFrames.value }} / {{ totalFrames.value }} 帧
+                  </el-descriptions-item>
+                </el-descriptions>
+              </template>
+              <template v-else-if="localAnalysisForm.analysisMode === '10'">
+                <el-descriptions :column="2">
+                  <el-descriptions-item label="检测到苹果">
+                    {{ totalAnalysisResults.apple_total }} 个
+                  </el-descriptions-item>
+                  <el-descriptions-item label="最高成熟度">
+                    {{ totalAnalysisResults.apple_max_maturity }}%
+                  </el-descriptions-item>
+                  <el-descriptions-item label="20%成熟">
+                    {{ totalAnalysisResults.apple_stage_20 }} 个
+                  </el-descriptions-item>
+                  <el-descriptions-item label="40%成熟">
+                    {{ totalAnalysisResults.apple_stage_40 }} 个
+                  </el-descriptions-item>
+                  <el-descriptions-item label="60%成熟">
+                    {{ totalAnalysisResults.apple_stage_60 }} 个
+                  </el-descriptions-item>
+                  <el-descriptions-item label="80%成熟">
+                    {{ totalAnalysisResults.apple_stage_80 }} 个
+                  </el-descriptions-item>
+                  <el-descriptions-item label="100%成熟">
+                    {{ totalAnalysisResults.apple_stage_100 }} 个
                   </el-descriptions-item>
                   <el-descriptions-item label="分析帧数">
                     {{ processedFrames.value }} / {{ totalFrames.value }} 帧
@@ -542,6 +572,34 @@
                   </el-descriptions-item>
                   <el-descriptions-item label="腐烂">
                     {{ lastAnalysisResults.citrus_rotten }} 个
+                  </el-descriptions-item>
+                  <el-descriptions-item label="分析帧数">
+                    {{ lastProcessedFrames.value }} / {{ lastTotalFrames.value }} 帧
+                  </el-descriptions-item>
+                </el-descriptions>
+              </template>
+              <template v-else-if="lastAnalysisMode === '10'">
+                <el-descriptions :column="2">
+                  <el-descriptions-item label="检测到苹果">
+                    {{ lastAnalysisResults.apple_total }} 个
+                  </el-descriptions-item>
+                  <el-descriptions-item label="最高成熟度">
+                    {{ lastAnalysisResults.apple_max_maturity }}%
+                  </el-descriptions-item>
+                  <el-descriptions-item label="20%成熟">
+                    {{ lastAnalysisResults.apple_stage_20 }} 个
+                  </el-descriptions-item>
+                  <el-descriptions-item label="40%成熟">
+                    {{ lastAnalysisResults.apple_stage_40 }} 个
+                  </el-descriptions-item>
+                  <el-descriptions-item label="60%成熟">
+                    {{ lastAnalysisResults.apple_stage_60 }} 个
+                  </el-descriptions-item>
+                  <el-descriptions-item label="80%成熟">
+                    {{ lastAnalysisResults.apple_stage_80 }} 个
+                  </el-descriptions-item>
+                  <el-descriptions-item label="100%成熟">
+                    {{ lastAnalysisResults.apple_stage_100 }} 个
                   </el-descriptions-item>
                   <el-descriptions-item label="分析帧数">
                     {{ lastProcessedFrames.value }} / {{ lastTotalFrames.value }} 帧
@@ -722,6 +780,7 @@
                     <el-option label="火警" value="4" />
                     <el-option label="柑橘成熟度" value="7" />
                     <el-option label="番茄成熟度" value="9" />
+                    <el-option label="苹果成熟度" value="10" />
                     <el-option label="作物病害检测" value="8" />
                   </el-select>
                   <!-- 作物类型选择，仅在作物病害检测模式下显示 -->
@@ -943,6 +1002,7 @@
                   <el-option label="火警" :value="4" />
                   <el-option label="柑橘成熟度" :value="7" />
                   <el-option label="番茄成熟度" :value="8" />
+                  <el-option label="苹果成熟度" :value="10" />
                 </el-select>
               </el-form-item>
           <el-form-item label="摄像头IP" prop="camera_ip">
@@ -1153,6 +1213,14 @@ const totalAnalysisResults = ref({
   citrus_ripe: 0,
   citrus_rotten: 0,
   citrus_max_maturity: 0,
+  // 苹果成熟度统计
+  apple_total: 0,
+  apple_stage_20: 0,
+  apple_stage_40: 0,
+  apple_stage_60: 0,
+  apple_stage_80: 0,
+  apple_stage_100: 0,
+  apple_max_maturity: 0,
 })
 
 // 手机摄像头相关状态
@@ -1251,7 +1319,9 @@ const getAnalysisModeName = (mode) => {
     5: '害虫检测',
     6: '作物长势异常',
     7: '柑橘成熟度',
-    8: '番茄成熟度'
+    8: '番茄成熟度',
+    9: '番茄成熟度',
+    10: '苹果成熟度'
   }
   return modeMap[mode] || '未知'
 }
@@ -1964,6 +2034,13 @@ const startLocalVideoAnalysis = async () => {
       citrus_ripe: 0,
       citrus_rotten: 0,
       citrus_max_maturity: 0,
+      apple_total: 0,
+      apple_stage_20: 0,
+      apple_stage_40: 0,
+      apple_stage_60: 0,
+      apple_stage_80: 0,
+      apple_stage_100: 0,
+      apple_max_maturity: 0,
     }
 
     // 调用后端重置跟踪器
@@ -2265,6 +2342,78 @@ const startLocalVideoAnalysis = async () => {
               分析结果仅供参考，实际情况请以现场为准
             </div>
           </div>`
+        } else if (localAnalysisForm.analysisMode === '10') {
+          // 苹果成熟度分析模式
+          const appleTotal = totalAnalysisResults.value.apple_total || 0
+          const appleMaxMaturity = totalAnalysisResults.value.apple_max_maturity || 0
+          const appleStage20 = totalAnalysisResults.value.apple_stage_20 || 0
+          const appleStage40 = totalAnalysisResults.value.apple_stage_40 || 0
+          const appleStage60 = totalAnalysisResults.value.apple_stage_60 || 0
+          const appleStage80 = totalAnalysisResults.value.apple_stage_80 || 0
+          const appleStage100 = totalAnalysisResults.value.apple_stage_100 || 0
+          
+          // 根据最高成熟度判断整体状态
+          let overallStatus = '未知'
+          let statusColor = '#909399'
+          if (appleTotal > 0) {
+            if (appleMaxMaturity >= 80) {
+              overallStatus = '已成熟'
+              statusColor = '#67c23a'
+            } else if (appleMaxMaturity >= 55) {
+              overallStatus = '转色中'
+              statusColor = '#e6a23c'
+            } else {
+              overallStatus = '未成熟'
+              statusColor = '#909399'
+            }
+          }
+          
+          reportContent = `<div style="padding: 20px;">
+            <h3 style="margin-bottom: 20px; color: #67c23a; text-align: center; font-size: 18px;">🍎 苹果成熟度分析完成</h3>
+            <div style="background-color: #f5f7fa; padding: 20px; border-radius: 8px; margin-bottom: 20px;">
+              <div style="display: grid; grid-template-columns: repeat(2, 1fr); gap: 15px;">
+                <div style="padding: 10px; background-color: white; border-radius: 6px; box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);">
+                  <strong style="color: #666;">分析帧数：</strong>
+                  <span style="color: #1890ff; font-weight: 500;">${processedFrames.value} / ${totalFrames.value} 帧</span>
+                </div>
+                <div style="padding: 10px; background-color: white; border-radius: 6px; box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);">
+                  <strong style="color: #666;">检测到苹果：</strong>
+                  <span style="color: #1890ff; font-weight: 500;">${appleTotal} 个</span>
+                </div>
+                <div style="padding: 10px; background-color: white; border-radius: 6px; box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);">
+                  <strong style="color: #666;">整体状态：</strong>
+                  <span style="color: ${statusColor}; font-weight: 500;">${overallStatus}</span>
+                </div>
+                <div style="padding: 10px; background-color: white; border-radius: 6px; box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);">
+                  <strong style="color: #666;">最高成熟度：</strong>
+                  <span style="color: #1890ff; font-weight: 500;">${appleMaxMaturity}%</span>
+                </div>
+                <div style="padding: 10px; background-color: white; border-radius: 6px; box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);">
+                  <strong style="color: #666;">20%成熟：</strong>
+                  <span style="color: #909399; font-weight: 500;">${appleStage20} 个</span>
+                </div>
+                <div style="padding: 10px; background-color: white; border-radius: 6px; box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);">
+                  <strong style="color: #666;">40%成熟：</strong>
+                  <span style="color: #67c23a; font-weight: 500;">${appleStage40} 个</span>
+                </div>
+                <div style="padding: 10px; background-color: white; border-radius: 6px; box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);">
+                  <strong style="color: #666;">60%成熟：</strong>
+                  <span style="color: #e6a23c; font-weight: 500;">${appleStage60} 个</span>
+                </div>
+                <div style="padding: 10px; background-color: white; border-radius: 6px; box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);">
+                  <strong style="color: #666;">80%成熟：</strong>
+                  <span style="color: #f56c6c; font-weight: 500;">${appleStage80} 个</span>
+                </div>
+                <div style="padding: 10px; background-color: white; border-radius: 6px; box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);">
+                  <strong style="color: #666;">100%成熟：</strong>
+                  <span style="color: #f56c6c; font-weight: 500;">${appleStage100} 个</span>
+                </div>
+              </div>
+            </div>
+            <div style="text-align: center; color: #999; font-size: 14px;">
+              分析结果仅供参考，实际情况请以现场为准
+            </div>
+          </div>`
         } else {
           // 模式1（全部）或未知模式
           reportContent = `<div style="padding: 20px;">
@@ -2542,6 +2691,60 @@ const startLocalVideoAnalysis = async () => {
                     const val = parseInt(rottenMatch[1])
                     if (val > totalAnalysisResults.value.citrus_rotten) {
                       totalAnalysisResults.value.citrus_rotten = val
+                    }
+                  }
+                } else if (item.label === '苹果检测状态' && item.value.includes('累计追踪')) {
+                  // 苹果检测统计 - 从"累计追踪"中提取
+                  const match = item.value.match(/累计追踪(\d+)个/)
+                  if (match) {
+                    const count = parseInt(match[1])
+                    // 累计追踪数量直接更新（去重后的准确值）
+                    totalAnalysisResults.value.apple_total = count
+                  }
+                } else if (item.label === '苹果成熟度分析' && item.value.includes('最高成熟度')) {
+                  // 苹果成熟度统计
+                  // 支持整数和小数成熟度值
+                  const maturityMatch = item.value.match(/最高成熟度:(\d+(?:\.\d+)?)%/)
+                  const stage20Match = item.value.match(/20%:(\d+)/)
+                  const stage40Match = item.value.match(/40%:(\d+)/)
+                  const stage60Match = item.value.match(/60%:(\d+)/)
+                  const stage80Match = item.value.match(/80%:(\d+)/)
+                  const stage100Match = item.value.match(/100%:(\d+)/)
+
+                  if (maturityMatch) {
+                    const maturity = parseFloat(maturityMatch[1])
+                    if (maturity > totalAnalysisResults.value.apple_max_maturity) {
+                      totalAnalysisResults.value.apple_max_maturity = maturity
+                    }
+                  }
+                  if (stage20Match) {
+                    const val = parseInt(stage20Match[1])
+                    if (val > totalAnalysisResults.value.apple_stage_20) {
+                      totalAnalysisResults.value.apple_stage_20 = val
+                    }
+                  }
+                  if (stage40Match) {
+                    const val = parseInt(stage40Match[1])
+                    if (val > totalAnalysisResults.value.apple_stage_40) {
+                      totalAnalysisResults.value.apple_stage_40 = val
+                    }
+                  }
+                  if (stage60Match) {
+                    const val = parseInt(stage60Match[1])
+                    if (val > totalAnalysisResults.value.apple_stage_60) {
+                      totalAnalysisResults.value.apple_stage_60 = val
+                    }
+                  }
+                  if (stage80Match) {
+                    const val = parseInt(stage80Match[1])
+                    if (val > totalAnalysisResults.value.apple_stage_80) {
+                      totalAnalysisResults.value.apple_stage_80 = val
+                    }
+                  }
+                  if (stage100Match) {
+                    const val = parseInt(stage100Match[1])
+                    if (val > totalAnalysisResults.value.apple_stage_100) {
+                      totalAnalysisResults.value.apple_stage_100 = val
                     }
                   }
                 }

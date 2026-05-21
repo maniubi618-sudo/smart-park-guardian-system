@@ -4,6 +4,7 @@ from app.utils.logger import get_logger
 from app.services.pest_detector import PestDetector
 from app.services.citrus_detector import CitrusDetector
 from app.services.tomato_detector import TomatoDetector
+from app.services.apple_detector import AppleRipenessDetector
 from app.services.config_manager import get_config_manager
 
 logger = get_logger()
@@ -69,6 +70,7 @@ class DetectionService:
     pest_detector = None
     citrus_detector = None
     tomato_detector = None
+    apple_detector = None
 
     # 作物检测模型
     crop_growth_model = None
@@ -78,6 +80,8 @@ class DetectionService:
     citrus_model_path = project_root / 'app' / 'models' / 'citrus_maturity.pt'
     # 番茄检测模型路径
     tomato_model_path = project_root / 'app' / 'models' / 'tomato_maturity.pt'
+    # 苹果检测模型路径
+    apple_model_path = project_root / 'app' / 'models' / 'apple.pt'
     
     # 初始化害虫检测器
     try:
@@ -108,6 +112,16 @@ class DetectionService:
             logger.warning("[WARN] 番茄检测模型文件不存在，请运行 quick_copy.py")
     except Exception as e:
         logger.warning(f"[ERROR] 加载番茄检测器失败: {e}")
+
+    # 初始化苹果检测器
+    try:
+        if apple_model_path.exists():
+            apple_detector = AppleRipenessDetector(str(apple_model_path))
+            logger.info("[OK] 苹果成熟度检测器加载成功")
+        else:
+            logger.warning("[WARN] 苹果检测模型文件不存在，请运行 quick_copy.py")
+    except Exception as e:
+        logger.warning(f"[ERROR] 加载苹果检测器失败: {e}")
 
     if crop_growth_model_path.exists():
         try:

@@ -309,10 +309,11 @@ async def reset_tomato_tracker():
 @router.post("/reset_tracker", summary="重置跟踪器")
 async def reset_tracker():
     """
-    重置所有跟踪器（番茄和柑橘），用于开始新的视频分析
+    重置所有跟踪器（番茄、柑橘和苹果），用于开始新的视频分析
     """
     CameraInfoService._reset_tomato_tracker()
     CameraInfoService._reset_citrus_tracker()
+    CameraInfoService._reset_apple_tracker()
     return {"success": True, "message": "所有跟踪器已重置"}
 
 
