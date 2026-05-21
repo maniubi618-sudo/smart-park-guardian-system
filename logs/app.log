@@ -19307,3 +19307,3384 @@ TypeError: '>' not supported between instances of 'NoneType' and 'int'
 2026-05-20 13:41:05,358 - fastapi_app - INFO - WebSocket连接已建立，当前连接数: 1
 2026-05-20 13:41:36,678 - fastapi_app - ERROR - 发送WebSocket消息失败: 
 2026-05-20 13:41:43,814 - fastapi_app - ERROR - 发送WebSocket消息失败: 
+2026-05-20 13:46:19,046 - fastapi_app - INFO - WebSocket连接已断开，当前连接数: 0
+2026-05-20 22:04:19,349 - fastapi_app - INFO - [OK] 害虫检测器加载成功
+2026-05-20 22:04:19,354 - fastapi_app - INFO - [OK] 害虫检测器加载成功
+2026-05-20 22:04:19,459 - fastapi_app - INFO - [OK] 柑橘成熟度检测器加载成功
+2026-05-20 22:04:19,460 - fastapi_app - INFO - [OK] 柑橘成熟度检测器加载成功
+2026-05-20 22:04:19,604 - fastapi_app - INFO - [OK] 番茄成熟度检测器加载成功
+2026-05-20 22:04:19,607 - fastapi_app - INFO - [OK] 番茄成熟度检测器加载成功
+2026-05-20 22:04:19,670 - fastapi_app - INFO - [OK] 苹果成熟度检测器加载成功
+2026-05-20 22:04:19,673 - fastapi_app - INFO - [OK] 苹果成熟度检测器加载成功
+2026-05-20 22:04:20,337 - fastapi_app - INFO - OpenClaw通知服务配置完成
+2026-05-20 22:04:20,401 - fastapi_app - INFO - OpenClaw通知服务配置完成(HTTPS)
+2026-05-20 22:04:22,223 - fastapi_app - INFO - WebSocket连接已建立，当前连接数: 1
+2026-05-20 22:04:23,250 - fastapi_app - INFO - WebSocket连接已建立，当前连接数: 2
+2026-05-20 22:04:23,296 - fastapi_app - INFO - WebSocket连接已建立，当前连接数: 3
+2026-05-20 22:04:25,325 - fastapi_app - INFO - WebSocket连接已断开，当前连接数: 2
+2026-05-20 22:04:25,326 - fastapi_app - INFO - WebSocket连接已断开，当前连接数: 1
+2026-05-20 22:06:05,612 - fastapi_app - INFO - WebSocket连接已断开，当前连接数: 0
+2026-05-20 22:06:05,804 - fastapi_app - INFO - WebSocket连接已建立，当前连接数: 1
+2026-05-20 22:06:06,462 - fastapi_app - INFO - WebSocket连接已建立，当前连接数: 2
+2026-05-20 22:06:06,602 - fastapi_app - INFO - WebSocket连接已建立，当前连接数: 3
+2026-05-20 22:06:07,169 - fastapi_app - INFO - WebSocket连接已断开，当前连接数: 2
+2026-05-20 22:06:07,172 - fastapi_app - INFO - WebSocket连接已断开，当前连接数: 1
+2026-05-20 22:06:07,175 - fastapi_app - INFO - WebSocket连接已断开，当前连接数: 0
+2026-05-20 22:06:07,361 - fastapi_app - INFO - WebSocket连接已建立，当前连接数: 1
+2026-05-20 22:06:07,826 - fastapi_app - INFO - WebSocket连接已建立，当前连接数: 2
+2026-05-20 22:06:07,870 - fastapi_app - INFO - WebSocket连接已建立，当前连接数: 3
+2026-05-20 22:06:10,362 - fastapi_app - INFO - WebSocket连接已断开，当前连接数: 2
+2026-05-20 22:06:10,365 - fastapi_app - INFO - WebSocket连接已断开，当前连接数: 1
+2026-05-20 22:06:26,720 - fastapi_app - INFO - WebSocket连接已断开，当前连接数: 0
+2026-05-20 22:07:35,270 - fastapi_app - INFO - [OK] 害虫检测器加载成功
+2026-05-20 22:07:35,343 - fastapi_app - INFO - [OK] 柑橘成熟度检测器加载成功
+2026-05-20 22:07:35,397 - fastapi_app - INFO - [OK] 番茄成熟度检测器加载成功
+2026-05-20 22:07:35,438 - fastapi_app - INFO - [OK] 苹果成熟度检测器加载成功
+2026-05-20 22:07:35,888 - fastapi_app - INFO - OpenClaw通知服务配置完成
+2026-05-20 22:07:36,864 - fastapi_app - INFO - [OK] 害虫检测器加载成功
+2026-05-20 22:07:36,920 - fastapi_app - INFO - [OK] 柑橘成熟度检测器加载成功
+2026-05-20 22:07:36,983 - fastapi_app - INFO - [OK] 番茄成熟度检测器加载成功
+2026-05-20 22:07:37,021 - fastapi_app - INFO - [OK] 苹果成熟度检测器加载成功
+2026-05-20 22:07:37,309 - fastapi_app - INFO - WebSocket连接已建立，当前连接数: 1
+2026-05-20 22:07:37,554 - fastapi_app - INFO - OpenClaw通知服务配置完成(HTTPS)
+2026-05-20 22:07:40,450 - fastapi_app - INFO - WebSocket连接已断开，当前连接数: 0
+2026-05-20 22:07:41,400 - fastapi_app - INFO - WebSocket连接已建立，当前连接数: 1
+2026-05-20 22:07:41,548 - fastapi_app - INFO - WebSocket连接已建立，当前连接数: 2
+2026-05-20 22:07:41,587 - fastapi_app - INFO - WebSocket连接已建立，当前连接数: 3
+2026-05-20 22:07:43,340 - fastapi_app - INFO - WebSocket连接已断开，当前连接数: 2
+2026-05-20 22:07:43,341 - fastapi_app - INFO - WebSocket连接已断开，当前连接数: 1
+2026-05-20 22:07:43,342 - fastapi_app - INFO - WebSocket连接已断开，当前连接数: 0
+2026-05-20 22:07:43,543 - fastapi_app - INFO - WebSocket连接已建立，当前连接数: 1
+2026-05-20 22:07:43,969 - fastapi_app - INFO - WebSocket连接已建立，当前连接数: 2
+2026-05-20 22:07:44,015 - fastapi_app - INFO - WebSocket连接已建立，当前连接数: 3
+2026-05-20 22:07:46,525 - fastapi_app - INFO - WebSocket连接已断开，当前连接数: 2
+2026-05-20 22:07:46,527 - fastapi_app - INFO - WebSocket连接已断开，当前连接数: 1
+2026-05-20 22:07:52,894 - fastapi_app - INFO - [DEBUG] 开始分析视频帧, mode=10, original=10
+2026-05-20 22:07:52,895 - fastapi_app - INFO - [DEBUG] 返回分析结果: []
+2026-05-20 22:07:53,863 - fastapi_app - INFO - [DEBUG] 开始分析视频帧, mode=10, original=10
+2026-05-20 22:07:53,864 - fastapi_app - INFO - [DEBUG] 返回分析结果: []
+2026-05-20 22:07:54,883 - fastapi_app - INFO - [DEBUG] 开始分析视频帧, mode=10, original=10
+2026-05-20 22:07:54,883 - fastapi_app - INFO - [DEBUG] 返回分析结果: []
+2026-05-20 22:07:55,888 - fastapi_app - INFO - [DEBUG] 开始分析视频帧, mode=10, original=10
+2026-05-20 22:07:55,889 - fastapi_app - INFO - [DEBUG] 返回分析结果: []
+2026-05-20 22:07:56,904 - fastapi_app - INFO - [DEBUG] 开始分析视频帧, mode=10, original=10
+2026-05-20 22:07:56,904 - fastapi_app - INFO - [DEBUG] 返回分析结果: []
+2026-05-20 22:07:57,915 - fastapi_app - INFO - [DEBUG] 开始分析视频帧, mode=10, original=10
+2026-05-20 22:07:57,915 - fastapi_app - INFO - [DEBUG] 返回分析结果: []
+2026-05-20 22:07:58,924 - fastapi_app - INFO - [DEBUG] 开始分析视频帧, mode=10, original=10
+2026-05-20 22:07:58,924 - fastapi_app - INFO - [DEBUG] 返回分析结果: []
+2026-05-20 22:07:59,940 - fastapi_app - INFO - [DEBUG] 开始分析视频帧, mode=10, original=10
+2026-05-20 22:07:59,940 - fastapi_app - INFO - [DEBUG] 返回分析结果: []
+2026-05-20 22:08:00,952 - fastapi_app - INFO - [DEBUG] 开始分析视频帧, mode=10, original=10
+2026-05-20 22:08:00,952 - fastapi_app - INFO - [DEBUG] 返回分析结果: []
+2026-05-20 22:08:01,980 - fastapi_app - INFO - [DEBUG] 开始分析视频帧, mode=10, original=10
+2026-05-20 22:08:01,980 - fastapi_app - INFO - [DEBUG] 返回分析结果: []
+2026-05-20 22:08:25,708 - fastapi_app - INFO - WebSocket连接已断开，当前连接数: 0
+2026-05-20 22:19:03,630 - fastapi_app - INFO - [OK] 害虫检测器加载成功
+2026-05-20 22:19:03,683 - fastapi_app - INFO - [OK] 柑橘成熟度检测器加载成功
+2026-05-20 22:19:03,767 - fastapi_app - INFO - [OK] 番茄成熟度检测器加载成功
+2026-05-20 22:19:03,821 - fastapi_app - INFO - [OK] 苹果成熟度检测器加载成功
+2026-05-20 22:19:04,322 - fastapi_app - INFO - OpenClaw通知服务配置完成
+2026-05-20 22:19:04,896 - fastapi_app - INFO - [OK] 害虫检测器加载成功
+2026-05-20 22:19:04,993 - fastapi_app - INFO - [OK] 柑橘成熟度检测器加载成功
+2026-05-20 22:19:05,087 - fastapi_app - INFO - [OK] 番茄成熟度检测器加载成功
+2026-05-20 22:19:05,149 - fastapi_app - INFO - [OK] 苹果成熟度检测器加载成功
+2026-05-20 22:19:05,692 - fastapi_app - INFO - OpenClaw通知服务配置完成(HTTPS)
+2026-05-20 22:19:11,839 - fastapi_app - INFO - WebSocket连接已建立，当前连接数: 1
+2026-05-20 22:19:12,295 - fastapi_app - INFO - WebSocket连接已建立，当前连接数: 2
+2026-05-20 22:19:12,835 - fastapi_app - INFO - WebSocket连接已建立，当前连接数: 3
+2026-05-20 22:19:13,115 - fastapi_app - INFO - WebSocket连接已断开，当前连接数: 2
+2026-05-20 22:19:13,118 - fastapi_app - INFO - WebSocket连接已断开，当前连接数: 1
+2026-05-20 22:19:19,597 - fastapi_app - INFO - [DEBUG] 开始分析视频帧, mode=10, original=10
+2026-05-20 22:19:19,598 - fastapi_app - INFO - [DEBUG] 苹果检测分支开始执行, mode=10
+2026-05-20 22:19:19,602 - fastapi_app - INFO - [DEBUG] Apple detector check: detector=<app.services.apple_detector.AppleRipenessDetector object at 0x0000021C59C55B50>, model=YOLO(
+  (model): DetectionModel(
+    (model): Sequential(
+      (0): Conv(
+        (conv): Conv2d(3, 16, kernel_size=(3, 3), stride=(2, 2), padding=(1, 1), bias=False)
+        (bn): BatchNorm2d(16, eps=0.001, momentum=0.03, affine=True, track_running_stats=True)
+        (act): SiLU(inplace=True)
+      )
+      (1): Conv(
+        (conv): Conv2d(16, 32, kernel_size=(3, 3), stride=(2, 2), padding=(1, 1), bias=False)
+        (bn): BatchNorm2d(32, eps=0.001, momentum=0.03, affine=True, track_running_stats=True)
+        (act): SiLU(inplace=True)
+      )
+      (2): C2f(
+        (cv1): Conv(
+          (conv): Conv2d(32, 32, kernel_size=(1, 1), stride=(1, 1), bias=False)
+          (bn): BatchNorm2d(32, eps=0.001, momentum=0.03, affine=True, track_running_stats=True)
+          (act): SiLU(inplace=True)
+        )
+        (cv2): Conv(
+          (conv): Conv2d(48, 32, kernel_size=(1, 1), stride=(1, 1), bias=False)
+          (bn): BatchNorm2d(32, eps=0.001, momentum=0.03, affine=True, track_running_stats=True)
+          (act): SiLU(inplace=True)
+        )
+        (m): ModuleList(
+          (0): Bottleneck(
+            (cv1): Conv(
+              (conv): Conv2d(16, 16, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+              (bn): BatchNorm2d(16, eps=0.001, momentum=0.03, affine=True, track_running_stats=True)
+              (act): SiLU(inplace=True)
+            )
+            (cv2): Conv(
+              (conv): Conv2d(16, 16, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+              (bn): BatchNorm2d(16, eps=0.001, momentum=0.03, affine=True, track_running_stats=True)
+              (act): SiLU(inplace=True)
+            )
+          )
+        )
+      )
+      (3): Conv(
+        (conv): Conv2d(32, 64, kernel_size=(3, 3), stride=(2, 2), padding=(1, 1), bias=False)
+        (bn): BatchNorm2d(64, eps=0.001, momentum=0.03, affine=True, track_running_stats=True)
+        (act): SiLU(inplace=True)
+      )
+      (4): C2f(
+        (cv1): Conv(
+          (conv): Conv2d(64, 64, kernel_size=(1, 1), stride=(1, 1), bias=False)
+          (bn): BatchNorm2d(64, eps=0.001, momentum=0.03, affine=True, track_running_stats=True)
+          (act): SiLU(inplace=True)
+        )
+        (cv2): Conv(
+          (conv): Conv2d(128, 64, kernel_size=(1, 1), stride=(1, 1), bias=False)
+          (bn): BatchNorm2d(64, eps=0.001, momentum=0.03, affine=True, track_running_stats=True)
+          (act): SiLU(inplace=True)
+        )
+        (m): ModuleList(
+          (0-1): 2 x Bottleneck(
+            (cv1): Conv(
+              (conv): Conv2d(32, 32, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+              (bn): BatchNorm2d(32, eps=0.001, momentum=0.03, affine=True, track_running_stats=True)
+              (act): SiLU(inplace=True)
+            )
+            (cv2): Conv(
+              (conv): Conv2d(32, 32, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+              (bn): BatchNorm2d(32, eps=0.001, momentum=0.03, affine=True, track_running_stats=True)
+              (act): SiLU(inplace=True)
+            )
+          )
+        )
+      )
+      (5): Conv(
+        (conv): Conv2d(64, 128, kernel_size=(3, 3), stride=(2, 2), padding=(1, 1), bias=False)
+        (bn): BatchNorm2d(128, eps=0.001, momentum=0.03, affine=True, track_running_stats=True)
+        (act): SiLU(inplace=True)
+      )
+      (6): C2f(
+        (cv1): Conv(
+          (conv): Conv2d(128, 128, kernel_size=(1, 1), stride=(1, 1), bias=False)
+          (bn): BatchNorm2d(128, eps=0.001, momentum=0.03, affine=True, track_running_stats=True)
+          (act): SiLU(inplace=True)
+        )
+        (cv2): Conv(
+          (conv): Conv2d(256, 128, kernel_size=(1, 1), stride=(1, 1), bias=False)
+          (bn): BatchNorm2d(128, eps=0.001, momentum=0.03, affine=True, track_running_stats=True)
+          (act): SiLU(inplace=True)
+        )
+        (m): ModuleList(
+          (0-1): 2 x Bottleneck(
+            (cv1): Conv(
+              (conv): Conv2d(64, 64, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+              (bn): BatchNorm2d(64, eps=0.001, momentum=0.03, affine=True, track_running_stats=True)
+              (act): SiLU(inplace=True)
+            )
+            (cv2): Conv(
+              (conv): Conv2d(64, 64, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+              (bn): BatchNorm2d(64, eps=0.001, momentum=0.03, affine=True, track_running_stats=True)
+              (act): SiLU(inplace=True)
+            )
+          )
+        )
+      )
+      (7): Conv(
+        (conv): Conv2d(128, 256, kernel_size=(3, 3), stride=(2, 2), padding=(1, 1), bias=False)
+        (bn): BatchNorm2d(256, eps=0.001, momentum=0.03, affine=True, track_running_stats=True)
+        (act): SiLU(inplace=True)
+      )
+      (8): C2f(
+        (cv1): Conv(
+          (conv): Conv2d(256, 256, kernel_size=(1, 1), stride=(1, 1), bias=False)
+          (bn): BatchNorm2d(256, eps=0.001, momentum=0.03, affine=True, track_running_stats=True)
+          (act): SiLU(inplace=True)
+        )
+        (cv2): Conv(
+          (conv): Conv2d(384, 256, kernel_size=(1, 1), stride=(1, 1), bias=False)
+          (bn): BatchNorm2d(256, eps=0.001, momentum=0.03, affine=True, track_running_stats=True)
+          (act): SiLU(inplace=True)
+        )
+        (m): ModuleList(
+          (0): Bottleneck(
+            (cv1): Conv(
+              (conv): Conv2d(128, 128, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+              (bn): BatchNorm2d(128, eps=0.001, momentum=0.03, affine=True, track_running_stats=True)
+              (act): SiLU(inplace=True)
+            )
+            (cv2): Conv(
+              (conv): Conv2d(128, 128, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+              (bn): BatchNorm2d(128, eps=0.001, momentum=0.03, affine=True, track_running_stats=True)
+              (act): SiLU(inplace=True)
+            )
+          )
+        )
+      )
+      (9): SPPF(
+        (cv1): Conv(
+          (conv): Conv2d(256, 128, kernel_size=(1, 1), stride=(1, 1), bias=False)
+          (bn): BatchNorm2d(128, eps=0.001, momentum=0.03, affine=True, track_running_stats=True)
+          (act): Identity()
+        )
+        (cv2): Conv(
+          (conv): Conv2d(512, 256, kernel_size=(1, 1), stride=(1, 1), bias=False)
+          (bn): BatchNorm2d(256, eps=0.001, momentum=0.03, affine=True, track_running_stats=True)
+          (act): SiLU(inplace=True)
+        )
+        (m): MaxPool2d(kernel_size=5, stride=1, padding=2, dilation=1, ceil_mode=False)
+      )
+      (10): Upsample(scale_factor=2.0, mode='nearest')
+      (11): Concat()
+      (12): C2f(
+        (cv1): Conv(
+          (conv): Conv2d(384, 128, kernel_size=(1, 1), stride=(1, 1), bias=False)
+          (bn): BatchNorm2d(128, eps=0.001, momentum=0.03, affine=True, track_running_stats=True)
+          (act): SiLU(inplace=True)
+        )
+        (cv2): Conv(
+          (conv): Conv2d(192, 128, kernel_size=(1, 1), stride=(1, 1), bias=False)
+          (bn): BatchNorm2d(128, eps=0.001, momentum=0.03, affine=True, track_running_stats=True)
+          (act): SiLU(inplace=True)
+        )
+        (m): ModuleList(
+          (0): Bottleneck(
+            (cv1): Conv(
+              (conv): Conv2d(64, 64, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+              (bn): BatchNorm2d(64, eps=0.001, momentum=0.03, affine=True, track_running_stats=True)
+              (act): SiLU(inplace=True)
+            )
+            (cv2): Conv(
+              (conv): Conv2d(64, 64, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+              (bn): BatchNorm2d(64, eps=0.001, momentum=0.03, affine=True, track_running_stats=True)
+              (act): SiLU(inplace=True)
+            )
+          )
+        )
+      )
+      (13): Upsample(scale_factor=2.0, mode='nearest')
+      (14): Concat()
+      (15): C2f(
+        (cv1): Conv(
+          (conv): Conv2d(192, 64, kernel_size=(1, 1), stride=(1, 1), bias=False)
+          (bn): BatchNorm2d(64, eps=0.001, momentum=0.03, affine=True, track_running_stats=True)
+          (act): SiLU(inplace=True)
+        )
+        (cv2): Conv(
+          (conv): Conv2d(96, 64, kernel_size=(1, 1), stride=(1, 1), bias=False)
+          (bn): BatchNorm2d(64, eps=0.001, momentum=0.03, affine=True, track_running_stats=True)
+          (act): SiLU(inplace=True)
+        )
+        (m): ModuleList(
+          (0): Bottleneck(
+            (cv1): Conv(
+              (conv): Conv2d(32, 32, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+              (bn): BatchNorm2d(32, eps=0.001, momentum=0.03, affine=True, track_running_stats=True)
+              (act): SiLU(inplace=True)
+            )
+            (cv2): Conv(
+              (conv): Conv2d(32, 32, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+              (bn): BatchNorm2d(32, eps=0.001, momentum=0.03, affine=True, track_running_stats=True)
+              (act): SiLU(inplace=True)
+            )
+          )
+        )
+      )
+      (16): Conv(
+        (conv): Conv2d(64, 64, kernel_size=(3, 3), stride=(2, 2), padding=(1, 1), bias=False)
+        (bn): BatchNorm2d(64, eps=0.001, momentum=0.03, affine=True, track_running_stats=True)
+        (act): SiLU(inplace=True)
+      )
+      (17): Concat()
+      (18): C2f(
+        (cv1): Conv(
+          (conv): Conv2d(192, 128, kernel_size=(1, 1), stride=(1, 1), bias=False)
+          (bn): BatchNorm2d(128, eps=0.001, momentum=0.03, affine=True, track_running_stats=True)
+          (act): SiLU(inplace=True)
+        )
+        (cv2): Conv(
+          (conv): Conv2d(192, 128, kernel_size=(1, 1), stride=(1, 1), bias=False)
+          (bn): BatchNorm2d(128, eps=0.001, momentum=0.03, affine=True, track_running_stats=True)
+          (act): SiLU(inplace=True)
+        )
+        (m): ModuleList(
+          (0): Bottleneck(
+            (cv1): Conv(
+              (conv): Conv2d(64, 64, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+              (bn): BatchNorm2d(64, eps=0.001, momentum=0.03, affine=True, track_running_stats=True)
+              (act): SiLU(inplace=True)
+            )
+            (cv2): Conv(
+              (conv): Conv2d(64, 64, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+              (bn): BatchNorm2d(64, eps=0.001, momentum=0.03, affine=True, track_running_stats=True)
+              (act): SiLU(inplace=True)
+            )
+          )
+        )
+      )
+      (19): Conv(
+        (conv): Conv2d(128, 128, kernel_size=(3, 3), stride=(2, 2), padding=(1, 1), bias=False)
+        (bn): BatchNorm2d(128, eps=0.001, momentum=0.03, affine=True, track_running_stats=True)
+        (act): SiLU(inplace=True)
+      )
+      (20): Concat()
+      (21): C2f(
+        (cv1): Conv(
+          (conv): Conv2d(384, 256, kernel_size=(1, 1), stride=(1, 1), bias=False)
+          (bn): BatchNorm2d(256, eps=0.001, momentum=0.03, affine=True, track_running_stats=True)
+          (act): SiLU(inplace=True)
+        )
+        (cv2): Conv(
+          (conv): Conv2d(384, 256, kernel_size=(1, 1), stride=(1, 1), bias=False)
+          (bn): BatchNorm2d(256, eps=0.001, momentum=0.03, affine=True, track_running_stats=True)
+          (act): SiLU(inplace=True)
+        )
+        (m): ModuleList(
+          (0): Bottleneck(
+            (cv1): Conv(
+              (conv): Conv2d(128, 128, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+              (bn): BatchNorm2d(128, eps=0.001, momentum=0.03, affine=True, track_running_stats=True)
+              (act): SiLU(inplace=True)
+            )
+            (cv2): Conv(
+              (conv): Conv2d(128, 128, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+              (bn): BatchNorm2d(128, eps=0.001, momentum=0.03, affine=True, track_running_stats=True)
+              (act): SiLU(inplace=True)
+            )
+          )
+        )
+      )
+      (22): Detect(
+        (cv2): ModuleList(
+          (0): Sequential(
+            (0): Conv(
+              (conv): Conv2d(64, 64, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+              (bn): BatchNorm2d(64, eps=0.001, momentum=0.03, affine=True, track_running_stats=True)
+              (act): SiLU(inplace=True)
+            )
+            (1): Conv(
+              (conv): Conv2d(64, 64, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+              (bn): BatchNorm2d(64, eps=0.001, momentum=0.03, affine=True, track_running_stats=True)
+              (act): SiLU(inplace=True)
+            )
+            (2): Conv2d(64, 64, kernel_size=(1, 1), stride=(1, 1))
+          )
+          (1): Sequential(
+            (0): Conv(
+              (conv): Conv2d(128, 64, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+              (bn): BatchNorm2d(64, eps=0.001, momentum=0.03, affine=True, track_running_stats=True)
+              (act): SiLU(inplace=True)
+            )
+            (1): Conv(
+              (conv): Conv2d(64, 64, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+              (bn): BatchNorm2d(64, eps=0.001, momentum=0.03, affine=True, track_running_stats=True)
+              (act): SiLU(inplace=True)
+            )
+            (2): Conv2d(64, 64, kernel_size=(1, 1), stride=(1, 1))
+          )
+          (2): Sequential(
+            (0): Conv(
+              (conv): Conv2d(256, 64, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+              (bn): BatchNorm2d(64, eps=0.001, momentum=0.03, affine=True, track_running_stats=True)
+              (act): SiLU(inplace=True)
+            )
+            (1): Conv(
+              (conv): Conv2d(64, 64, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+              (bn): BatchNorm2d(64, eps=0.001, momentum=0.03, affine=True, track_running_stats=True)
+              (act): SiLU(inplace=True)
+            )
+            (2): Conv2d(64, 64, kernel_size=(1, 1), stride=(1, 1))
+          )
+        )
+        (cv3): ModuleList(
+          (0): Sequential(
+            (0): Conv(
+              (conv): Conv2d(64, 64, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+              (bn): BatchNorm2d(64, eps=0.001, momentum=0.03, affine=True, track_running_stats=True)
+              (act): SiLU(inplace=True)
+            )
+            (1): Conv(
+              (conv): Conv2d(64, 64, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+              (bn): BatchNorm2d(64, eps=0.001, momentum=0.03, affine=True, track_running_stats=True)
+              (act): SiLU(inplace=True)
+            )
+            (2): Conv2d(64, 5, kernel_size=(1, 1), stride=(1, 1))
+          )
+          (1): Sequential(
+            (0): Conv(
+              (conv): Conv2d(128, 64, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+              (bn): BatchNorm2d(64, eps=0.001, momentum=0.03, affine=True, track_running_stats=True)
+              (act): SiLU(inplace=True)
+            )
+            (1): Conv(
+              (conv): Conv2d(64, 64, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+              (bn): BatchNorm2d(64, eps=0.001, momentum=0.03, affine=True, track_running_stats=True)
+              (act): SiLU(inplace=True)
+            )
+            (2): Conv2d(64, 5, kernel_size=(1, 1), stride=(1, 1))
+          )
+          (2): Sequential(
+            (0): Conv(
+              (conv): Conv2d(256, 64, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+              (bn): BatchNorm2d(64, eps=0.001, momentum=0.03, affine=True, track_running_stats=True)
+              (act): SiLU(inplace=True)
+            )
+            (1): Conv(
+              (conv): Conv2d(64, 64, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+              (bn): BatchNorm2d(64, eps=0.001, momentum=0.03, affine=True, track_running_stats=True)
+              (act): SiLU(inplace=True)
+            )
+            (2): Conv2d(64, 5, kernel_size=(1, 1), stride=(1, 1))
+          )
+        )
+        (dfl): DFL(
+          (conv): Conv2d(16, 1, kernel_size=(1, 1), stride=(1, 1), bias=False)
+        )
+      )
+    )
+  )
+)
+2026-05-20 22:19:20,107 - fastapi_app - INFO - [DEBUG] 苹果检测完成: detected=True, count=1
+2026-05-20 22:19:20,108 - fastapi_app - INFO - [DEBUG] 苹果跟踪器结果: total=1, historical_total=1, stage_20=1, stage_40=0, stage_60=0, stage_80=0, stage_100=0, max_maturity=20
+2026-05-20 22:19:20,579 - fastapi_app - INFO - [DEBUG] 开始分析视频帧, mode=10, original=10
+2026-05-20 22:19:20,579 - fastapi_app - INFO - [DEBUG] 苹果检测分支开始执行, mode=10
+2026-05-20 22:19:20,582 - fastapi_app - INFO - [DEBUG] Apple detector check: detector=<app.services.apple_detector.AppleRipenessDetector object at 0x0000021C59C55B50>, model=YOLO(
+  (model): DetectionModel(
+    (model): Sequential(
+      (0): Conv(
+        (conv): Conv2d(3, 16, kernel_size=(3, 3), stride=(2, 2), padding=(1, 1))
+        (act): SiLU(inplace=True)
+      )
+      (1): Conv(
+        (conv): Conv2d(16, 32, kernel_size=(3, 3), stride=(2, 2), padding=(1, 1))
+        (act): SiLU(inplace=True)
+      )
+      (2): C2f(
+        (cv1): Conv(
+          (conv): Conv2d(32, 32, kernel_size=(1, 1), stride=(1, 1))
+          (act): SiLU(inplace=True)
+        )
+        (cv2): Conv(
+          (conv): Conv2d(48, 32, kernel_size=(1, 1), stride=(1, 1))
+          (act): SiLU(inplace=True)
+        )
+        (m): ModuleList(
+          (0): Bottleneck(
+            (cv1): Conv(
+              (conv): Conv2d(16, 16, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1))
+              (act): SiLU(inplace=True)
+            )
+            (cv2): Conv(
+              (conv): Conv2d(16, 16, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1))
+              (act): SiLU(inplace=True)
+            )
+          )
+        )
+      )
+      (3): Conv(
+        (conv): Conv2d(32, 64, kernel_size=(3, 3), stride=(2, 2), padding=(1, 1))
+        (act): SiLU(inplace=True)
+      )
+      (4): C2f(
+        (cv1): Conv(
+          (conv): Conv2d(64, 64, kernel_size=(1, 1), stride=(1, 1))
+          (act): SiLU(inplace=True)
+        )
+        (cv2): Conv(
+          (conv): Conv2d(128, 64, kernel_size=(1, 1), stride=(1, 1))
+          (act): SiLU(inplace=True)
+        )
+        (m): ModuleList(
+          (0-1): 2 x Bottleneck(
+            (cv1): Conv(
+              (conv): Conv2d(32, 32, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1))
+              (act): SiLU(inplace=True)
+            )
+            (cv2): Conv(
+              (conv): Conv2d(32, 32, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1))
+              (act): SiLU(inplace=True)
+            )
+          )
+        )
+      )
+      (5): Conv(
+        (conv): Conv2d(64, 128, kernel_size=(3, 3), stride=(2, 2), padding=(1, 1))
+        (act): SiLU(inplace=True)
+      )
+      (6): C2f(
+        (cv1): Conv(
+          (conv): Conv2d(128, 128, kernel_size=(1, 1), stride=(1, 1))
+          (act): SiLU(inplace=True)
+        )
+        (cv2): Conv(
+          (conv): Conv2d(256, 128, kernel_size=(1, 1), stride=(1, 1))
+          (act): SiLU(inplace=True)
+        )
+        (m): ModuleList(
+          (0-1): 2 x Bottleneck(
+            (cv1): Conv(
+              (conv): Conv2d(64, 64, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1))
+              (act): SiLU(inplace=True)
+            )
+            (cv2): Conv(
+              (conv): Conv2d(64, 64, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1))
+              (act): SiLU(inplace=True)
+            )
+          )
+        )
+      )
+      (7): Conv(
+        (conv): Conv2d(128, 256, kernel_size=(3, 3), stride=(2, 2), padding=(1, 1))
+        (act): SiLU(inplace=True)
+      )
+      (8): C2f(
+        (cv1): Conv(
+          (conv): Conv2d(256, 256, kernel_size=(1, 1), stride=(1, 1))
+          (act): SiLU(inplace=True)
+        )
+        (cv2): Conv(
+          (conv): Conv2d(384, 256, kernel_size=(1, 1), stride=(1, 1))
+          (act): SiLU(inplace=True)
+        )
+        (m): ModuleList(
+          (0): Bottleneck(
+            (cv1): Conv(
+              (conv): Conv2d(128, 128, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1))
+              (act): SiLU(inplace=True)
+            )
+            (cv2): Conv(
+              (conv): Conv2d(128, 128, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1))
+              (act): SiLU(inplace=True)
+            )
+          )
+        )
+      )
+      (9): SPPF(
+        (cv1): Conv(
+          (conv): Conv2d(256, 128, kernel_size=(1, 1), stride=(1, 1))
+          (act): Identity()
+        )
+        (cv2): Conv(
+          (conv): Conv2d(512, 256, kernel_size=(1, 1), stride=(1, 1))
+          (act): SiLU(inplace=True)
+        )
+        (m): MaxPool2d(kernel_size=5, stride=1, padding=2, dilation=1, ceil_mode=False)
+      )
+      (10): Upsample(scale_factor=2.0, mode='nearest')
+      (11): Concat()
+      (12): C2f(
+        (cv1): Conv(
+          (conv): Conv2d(384, 128, kernel_size=(1, 1), stride=(1, 1))
+          (act): SiLU(inplace=True)
+        )
+        (cv2): Conv(
+          (conv): Conv2d(192, 128, kernel_size=(1, 1), stride=(1, 1))
+          (act): SiLU(inplace=True)
+        )
+        (m): ModuleList(
+          (0): Bottleneck(
+            (cv1): Conv(
+              (conv): Conv2d(64, 64, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1))
+              (act): SiLU(inplace=True)
+            )
+            (cv2): Conv(
+              (conv): Conv2d(64, 64, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1))
+              (act): SiLU(inplace=True)
+            )
+          )
+        )
+      )
+      (13): Upsample(scale_factor=2.0, mode='nearest')
+      (14): Concat()
+      (15): C2f(
+        (cv1): Conv(
+          (conv): Conv2d(192, 64, kernel_size=(1, 1), stride=(1, 1))
+          (act): SiLU(inplace=True)
+        )
+        (cv2): Conv(
+          (conv): Conv2d(96, 64, kernel_size=(1, 1), stride=(1, 1))
+          (act): SiLU(inplace=True)
+        )
+        (m): ModuleList(
+          (0): Bottleneck(
+            (cv1): Conv(
+              (conv): Conv2d(32, 32, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1))
+              (act): SiLU(inplace=True)
+            )
+            (cv2): Conv(
+              (conv): Conv2d(32, 32, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1))
+              (act): SiLU(inplace=True)
+            )
+          )
+        )
+      )
+      (16): Conv(
+        (conv): Conv2d(64, 64, kernel_size=(3, 3), stride=(2, 2), padding=(1, 1))
+        (act): SiLU(inplace=True)
+      )
+      (17): Concat()
+      (18): C2f(
+        (cv1): Conv(
+          (conv): Conv2d(192, 128, kernel_size=(1, 1), stride=(1, 1))
+          (act): SiLU(inplace=True)
+        )
+        (cv2): Conv(
+          (conv): Conv2d(192, 128, kernel_size=(1, 1), stride=(1, 1))
+          (act): SiLU(inplace=True)
+        )
+        (m): ModuleList(
+          (0): Bottleneck(
+            (cv1): Conv(
+              (conv): Conv2d(64, 64, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1))
+              (act): SiLU(inplace=True)
+            )
+            (cv2): Conv(
+              (conv): Conv2d(64, 64, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1))
+              (act): SiLU(inplace=True)
+            )
+          )
+        )
+      )
+      (19): Conv(
+        (conv): Conv2d(128, 128, kernel_size=(3, 3), stride=(2, 2), padding=(1, 1))
+        (act): SiLU(inplace=True)
+      )
+      (20): Concat()
+      (21): C2f(
+        (cv1): Conv(
+          (conv): Conv2d(384, 256, kernel_size=(1, 1), stride=(1, 1))
+          (act): SiLU(inplace=True)
+        )
+        (cv2): Conv(
+          (conv): Conv2d(384, 256, kernel_size=(1, 1), stride=(1, 1))
+          (act): SiLU(inplace=True)
+        )
+        (m): ModuleList(
+          (0): Bottleneck(
+            (cv1): Conv(
+              (conv): Conv2d(128, 128, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1))
+              (act): SiLU(inplace=True)
+            )
+            (cv2): Conv(
+              (conv): Conv2d(128, 128, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1))
+              (act): SiLU(inplace=True)
+            )
+          )
+        )
+      )
+      (22): Detect(
+        (cv2): ModuleList(
+          (0): Sequential(
+            (0): Conv(
+              (conv): Conv2d(64, 64, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1))
+              (act): SiLU(inplace=True)
+            )
+            (1): Conv(
+              (conv): Conv2d(64, 64, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1))
+              (act): SiLU(inplace=True)
+            )
+            (2): Conv2d(64, 64, kernel_size=(1, 1), stride=(1, 1))
+          )
+          (1): Sequential(
+            (0): Conv(
+              (conv): Conv2d(128, 64, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1))
+              (act): SiLU(inplace=True)
+            )
+            (1): Conv(
+              (conv): Conv2d(64, 64, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1))
+              (act): SiLU(inplace=True)
+            )
+            (2): Conv2d(64, 64, kernel_size=(1, 1), stride=(1, 1))
+          )
+          (2): Sequential(
+            (0): Conv(
+              (conv): Conv2d(256, 64, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1))
+              (act): SiLU(inplace=True)
+            )
+            (1): Conv(
+              (conv): Conv2d(64, 64, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1))
+              (act): SiLU(inplace=True)
+            )
+            (2): Conv2d(64, 64, kernel_size=(1, 1), stride=(1, 1))
+          )
+        )
+        (cv3): ModuleList(
+          (0): Sequential(
+            (0): Conv(
+              (conv): Conv2d(64, 64, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1))
+              (act): SiLU(inplace=True)
+            )
+            (1): Conv(
+              (conv): Conv2d(64, 64, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1))
+              (act): SiLU(inplace=True)
+            )
+            (2): Conv2d(64, 5, kernel_size=(1, 1), stride=(1, 1))
+          )
+          (1): Sequential(
+            (0): Conv(
+              (conv): Conv2d(128, 64, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1))
+              (act): SiLU(inplace=True)
+            )
+            (1): Conv(
+              (conv): Conv2d(64, 64, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1))
+              (act): SiLU(inplace=True)
+            )
+            (2): Conv2d(64, 5, kernel_size=(1, 1), stride=(1, 1))
+          )
+          (2): Sequential(
+            (0): Conv(
+              (conv): Conv2d(256, 64, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1))
+              (act): SiLU(inplace=True)
+            )
+            (1): Conv(
+              (conv): Conv2d(64, 64, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1))
+              (act): SiLU(inplace=True)
+            )
+            (2): Conv2d(64, 5, kernel_size=(1, 1), stride=(1, 1))
+          )
+        )
+        (dfl): DFL(
+          (conv): Conv2d(16, 1, kernel_size=(1, 1), stride=(1, 1), bias=False)
+        )
+      )
+    )
+  )
+)
+2026-05-20 22:19:20,767 - fastapi_app - INFO - [DEBUG] 苹果检测完成: detected=True, count=1
+2026-05-20 22:19:20,767 - fastapi_app - INFO - [DEBUG] 苹果跟踪器结果: total=1, historical_total=1, stage_20=1, stage_40=0, stage_60=0, stage_80=0, stage_100=0, max_maturity=20
+2026-05-20 22:19:21,567 - fastapi_app - INFO - [DEBUG] 开始分析视频帧, mode=10, original=10
+2026-05-20 22:19:21,567 - fastapi_app - INFO - [DEBUG] 苹果检测分支开始执行, mode=10
+2026-05-20 22:19:21,571 - fastapi_app - INFO - [DEBUG] Apple detector check: detector=<app.services.apple_detector.AppleRipenessDetector object at 0x0000021C59C55B50>, model=YOLO(
+  (model): DetectionModel(
+    (model): Sequential(
+      (0): Conv(
+        (conv): Conv2d(3, 16, kernel_size=(3, 3), stride=(2, 2), padding=(1, 1))
+        (act): SiLU(inplace=True)
+      )
+      (1): Conv(
+        (conv): Conv2d(16, 32, kernel_size=(3, 3), stride=(2, 2), padding=(1, 1))
+        (act): SiLU(inplace=True)
+      )
+      (2): C2f(
+        (cv1): Conv(
+          (conv): Conv2d(32, 32, kernel_size=(1, 1), stride=(1, 1))
+          (act): SiLU(inplace=True)
+        )
+        (cv2): Conv(
+          (conv): Conv2d(48, 32, kernel_size=(1, 1), stride=(1, 1))
+          (act): SiLU(inplace=True)
+        )
+        (m): ModuleList(
+          (0): Bottleneck(
+            (cv1): Conv(
+              (conv): Conv2d(16, 16, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1))
+              (act): SiLU(inplace=True)
+            )
+            (cv2): Conv(
+              (conv): Conv2d(16, 16, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1))
+              (act): SiLU(inplace=True)
+            )
+          )
+        )
+      )
+      (3): Conv(
+        (conv): Conv2d(32, 64, kernel_size=(3, 3), stride=(2, 2), padding=(1, 1))
+        (act): SiLU(inplace=True)
+      )
+      (4): C2f(
+        (cv1): Conv(
+          (conv): Conv2d(64, 64, kernel_size=(1, 1), stride=(1, 1))
+          (act): SiLU(inplace=True)
+        )
+        (cv2): Conv(
+          (conv): Conv2d(128, 64, kernel_size=(1, 1), stride=(1, 1))
+          (act): SiLU(inplace=True)
+        )
+        (m): ModuleList(
+          (0-1): 2 x Bottleneck(
+            (cv1): Conv(
+              (conv): Conv2d(32, 32, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1))
+              (act): SiLU(inplace=True)
+            )
+            (cv2): Conv(
+              (conv): Conv2d(32, 32, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1))
+              (act): SiLU(inplace=True)
+            )
+          )
+        )
+      )
+      (5): Conv(
+        (conv): Conv2d(64, 128, kernel_size=(3, 3), stride=(2, 2), padding=(1, 1))
+        (act): SiLU(inplace=True)
+      )
+      (6): C2f(
+        (cv1): Conv(
+          (conv): Conv2d(128, 128, kernel_size=(1, 1), stride=(1, 1))
+          (act): SiLU(inplace=True)
+        )
+        (cv2): Conv(
+          (conv): Conv2d(256, 128, kernel_size=(1, 1), stride=(1, 1))
+          (act): SiLU(inplace=True)
+        )
+        (m): ModuleList(
+          (0-1): 2 x Bottleneck(
+            (cv1): Conv(
+              (conv): Conv2d(64, 64, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1))
+              (act): SiLU(inplace=True)
+            )
+            (cv2): Conv(
+              (conv): Conv2d(64, 64, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1))
+              (act): SiLU(inplace=True)
+            )
+          )
+        )
+      )
+      (7): Conv(
+        (conv): Conv2d(128, 256, kernel_size=(3, 3), stride=(2, 2), padding=(1, 1))
+        (act): SiLU(inplace=True)
+      )
+      (8): C2f(
+        (cv1): Conv(
+          (conv): Conv2d(256, 256, kernel_size=(1, 1), stride=(1, 1))
+          (act): SiLU(inplace=True)
+        )
+        (cv2): Conv(
+          (conv): Conv2d(384, 256, kernel_size=(1, 1), stride=(1, 1))
+          (act): SiLU(inplace=True)
+        )
+        (m): ModuleList(
+          (0): Bottleneck(
+            (cv1): Conv(
+              (conv): Conv2d(128, 128, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1))
+              (act): SiLU(inplace=True)
+            )
+            (cv2): Conv(
+              (conv): Conv2d(128, 128, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1))
+              (act): SiLU(inplace=True)
+            )
+          )
+        )
+      )
+      (9): SPPF(
+        (cv1): Conv(
+          (conv): Conv2d(256, 128, kernel_size=(1, 1), stride=(1, 1))
+          (act): Identity()
+        )
+        (cv2): Conv(
+          (conv): Conv2d(512, 256, kernel_size=(1, 1), stride=(1, 1))
+          (act): SiLU(inplace=True)
+        )
+        (m): MaxPool2d(kernel_size=5, stride=1, padding=2, dilation=1, ceil_mode=False)
+      )
+      (10): Upsample(scale_factor=2.0, mode='nearest')
+      (11): Concat()
+      (12): C2f(
+        (cv1): Conv(
+          (conv): Conv2d(384, 128, kernel_size=(1, 1), stride=(1, 1))
+          (act): SiLU(inplace=True)
+        )
+        (cv2): Conv(
+          (conv): Conv2d(192, 128, kernel_size=(1, 1), stride=(1, 1))
+          (act): SiLU(inplace=True)
+        )
+        (m): ModuleList(
+          (0): Bottleneck(
+            (cv1): Conv(
+              (conv): Conv2d(64, 64, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1))
+              (act): SiLU(inplace=True)
+            )
+            (cv2): Conv(
+              (conv): Conv2d(64, 64, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1))
+              (act): SiLU(inplace=True)
+            )
+          )
+        )
+      )
+      (13): Upsample(scale_factor=2.0, mode='nearest')
+      (14): Concat()
+      (15): C2f(
+        (cv1): Conv(
+          (conv): Conv2d(192, 64, kernel_size=(1, 1), stride=(1, 1))
+          (act): SiLU(inplace=True)
+        )
+        (cv2): Conv(
+          (conv): Conv2d(96, 64, kernel_size=(1, 1), stride=(1, 1))
+          (act): SiLU(inplace=True)
+        )
+        (m): ModuleList(
+          (0): Bottleneck(
+            (cv1): Conv(
+              (conv): Conv2d(32, 32, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1))
+              (act): SiLU(inplace=True)
+            )
+            (cv2): Conv(
+              (conv): Conv2d(32, 32, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1))
+              (act): SiLU(inplace=True)
+            )
+          )
+        )
+      )
+      (16): Conv(
+        (conv): Conv2d(64, 64, kernel_size=(3, 3), stride=(2, 2), padding=(1, 1))
+        (act): SiLU(inplace=True)
+      )
+      (17): Concat()
+      (18): C2f(
+        (cv1): Conv(
+          (conv): Conv2d(192, 128, kernel_size=(1, 1), stride=(1, 1))
+          (act): SiLU(inplace=True)
+        )
+        (cv2): Conv(
+          (conv): Conv2d(192, 128, kernel_size=(1, 1), stride=(1, 1))
+          (act): SiLU(inplace=True)
+        )
+        (m): ModuleList(
+          (0): Bottleneck(
+            (cv1): Conv(
+              (conv): Conv2d(64, 64, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1))
+              (act): SiLU(inplace=True)
+            )
+            (cv2): Conv(
+              (conv): Conv2d(64, 64, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1))
+              (act): SiLU(inplace=True)
+            )
+          )
+        )
+      )
+      (19): Conv(
+        (conv): Conv2d(128, 128, kernel_size=(3, 3), stride=(2, 2), padding=(1, 1))
+        (act): SiLU(inplace=True)
+      )
+      (20): Concat()
+      (21): C2f(
+        (cv1): Conv(
+          (conv): Conv2d(384, 256, kernel_size=(1, 1), stride=(1, 1))
+          (act): SiLU(inplace=True)
+        )
+        (cv2): Conv(
+          (conv): Conv2d(384, 256, kernel_size=(1, 1), stride=(1, 1))
+          (act): SiLU(inplace=True)
+        )
+        (m): ModuleList(
+          (0): Bottleneck(
+            (cv1): Conv(
+              (conv): Conv2d(128, 128, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1))
+              (act): SiLU(inplace=True)
+            )
+            (cv2): Conv(
+              (conv): Conv2d(128, 128, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1))
+              (act): SiLU(inplace=True)
+            )
+          )
+        )
+      )
+      (22): Detect(
+        (cv2): ModuleList(
+          (0): Sequential(
+            (0): Conv(
+              (conv): Conv2d(64, 64, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1))
+              (act): SiLU(inplace=True)
+            )
+            (1): Conv(
+              (conv): Conv2d(64, 64, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1))
+              (act): SiLU(inplace=True)
+            )
+            (2): Conv2d(64, 64, kernel_size=(1, 1), stride=(1, 1))
+          )
+          (1): Sequential(
+            (0): Conv(
+              (conv): Conv2d(128, 64, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1))
+              (act): SiLU(inplace=True)
+            )
+            (1): Conv(
+              (conv): Conv2d(64, 64, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1))
+              (act): SiLU(inplace=True)
+            )
+            (2): Conv2d(64, 64, kernel_size=(1, 1), stride=(1, 1))
+          )
+          (2): Sequential(
+            (0): Conv(
+              (conv): Conv2d(256, 64, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1))
+              (act): SiLU(inplace=True)
+            )
+            (1): Conv(
+              (conv): Conv2d(64, 64, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1))
+              (act): SiLU(inplace=True)
+            )
+            (2): Conv2d(64, 64, kernel_size=(1, 1), stride=(1, 1))
+          )
+        )
+        (cv3): ModuleList(
+          (0): Sequential(
+            (0): Conv(
+              (conv): Conv2d(64, 64, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1))
+              (act): SiLU(inplace=True)
+            )
+            (1): Conv(
+              (conv): Conv2d(64, 64, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1))
+              (act): SiLU(inplace=True)
+            )
+            (2): Conv2d(64, 5, kernel_size=(1, 1), stride=(1, 1))
+          )
+          (1): Sequential(
+            (0): Conv(
+              (conv): Conv2d(128, 64, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1))
+              (act): SiLU(inplace=True)
+            )
+            (1): Conv(
+              (conv): Conv2d(64, 64, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1))
+              (act): SiLU(inplace=True)
+            )
+            (2): Conv2d(64, 5, kernel_size=(1, 1), stride=(1, 1))
+          )
+          (2): Sequential(
+            (0): Conv(
+              (conv): Conv2d(256, 64, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1))
+              (act): SiLU(inplace=True)
+            )
+            (1): Conv(
+              (conv): Conv2d(64, 64, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1))
+              (act): SiLU(inplace=True)
+            )
+            (2): Conv2d(64, 5, kernel_size=(1, 1), stride=(1, 1))
+          )
+        )
+        (dfl): DFL(
+          (conv): Conv2d(16, 1, kernel_size=(1, 1), stride=(1, 1), bias=False)
+        )
+      )
+    )
+  )
+)
+2026-05-20 22:19:21,788 - fastapi_app - INFO - [DEBUG] 苹果检测完成: detected=True, count=2
+2026-05-20 22:19:21,789 - fastapi_app - INFO - [DEBUG] 苹果跟踪器结果: total=2, historical_total=2, stage_20=2, stage_40=0, stage_60=0, stage_80=0, stage_100=0, max_maturity=20
+2026-05-20 22:19:22,656 - fastapi_app - INFO - [DEBUG] 开始分析视频帧, mode=10, original=10
+2026-05-20 22:19:22,657 - fastapi_app - INFO - [DEBUG] 苹果检测分支开始执行, mode=10
+2026-05-20 22:19:22,659 - fastapi_app - INFO - [DEBUG] Apple detector check: detector=<app.services.apple_detector.AppleRipenessDetector object at 0x0000021C59C55B50>, model=YOLO(
+  (model): DetectionModel(
+    (model): Sequential(
+      (0): Conv(
+        (conv): Conv2d(3, 16, kernel_size=(3, 3), stride=(2, 2), padding=(1, 1))
+        (act): SiLU(inplace=True)
+      )
+      (1): Conv(
+        (conv): Conv2d(16, 32, kernel_size=(3, 3), stride=(2, 2), padding=(1, 1))
+        (act): SiLU(inplace=True)
+      )
+      (2): C2f(
+        (cv1): Conv(
+          (conv): Conv2d(32, 32, kernel_size=(1, 1), stride=(1, 1))
+          (act): SiLU(inplace=True)
+        )
+        (cv2): Conv(
+          (conv): Conv2d(48, 32, kernel_size=(1, 1), stride=(1, 1))
+          (act): SiLU(inplace=True)
+        )
+        (m): ModuleList(
+          (0): Bottleneck(
+            (cv1): Conv(
+              (conv): Conv2d(16, 16, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1))
+              (act): SiLU(inplace=True)
+            )
+            (cv2): Conv(
+              (conv): Conv2d(16, 16, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1))
+              (act): SiLU(inplace=True)
+            )
+          )
+        )
+      )
+      (3): Conv(
+        (conv): Conv2d(32, 64, kernel_size=(3, 3), stride=(2, 2), padding=(1, 1))
+        (act): SiLU(inplace=True)
+      )
+      (4): C2f(
+        (cv1): Conv(
+          (conv): Conv2d(64, 64, kernel_size=(1, 1), stride=(1, 1))
+          (act): SiLU(inplace=True)
+        )
+        (cv2): Conv(
+          (conv): Conv2d(128, 64, kernel_size=(1, 1), stride=(1, 1))
+          (act): SiLU(inplace=True)
+        )
+        (m): ModuleList(
+          (0-1): 2 x Bottleneck(
+            (cv1): Conv(
+              (conv): Conv2d(32, 32, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1))
+              (act): SiLU(inplace=True)
+            )
+            (cv2): Conv(
+              (conv): Conv2d(32, 32, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1))
+              (act): SiLU(inplace=True)
+            )
+          )
+        )
+      )
+      (5): Conv(
+        (conv): Conv2d(64, 128, kernel_size=(3, 3), stride=(2, 2), padding=(1, 1))
+        (act): SiLU(inplace=True)
+      )
+      (6): C2f(
+        (cv1): Conv(
+          (conv): Conv2d(128, 128, kernel_size=(1, 1), stride=(1, 1))
+          (act): SiLU(inplace=True)
+        )
+        (cv2): Conv(
+          (conv): Conv2d(256, 128, kernel_size=(1, 1), stride=(1, 1))
+          (act): SiLU(inplace=True)
+        )
+        (m): ModuleList(
+          (0-1): 2 x Bottleneck(
+            (cv1): Conv(
+              (conv): Conv2d(64, 64, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1))
+              (act): SiLU(inplace=True)
+            )
+            (cv2): Conv(
+              (conv): Conv2d(64, 64, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1))
+              (act): SiLU(inplace=True)
+            )
+          )
+        )
+      )
+      (7): Conv(
+        (conv): Conv2d(128, 256, kernel_size=(3, 3), stride=(2, 2), padding=(1, 1))
+        (act): SiLU(inplace=True)
+      )
+      (8): C2f(
+        (cv1): Conv(
+          (conv): Conv2d(256, 256, kernel_size=(1, 1), stride=(1, 1))
+          (act): SiLU(inplace=True)
+        )
+        (cv2): Conv(
+          (conv): Conv2d(384, 256, kernel_size=(1, 1), stride=(1, 1))
+          (act): SiLU(inplace=True)
+        )
+        (m): ModuleList(
+          (0): Bottleneck(
+            (cv1): Conv(
+              (conv): Conv2d(128, 128, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1))
+              (act): SiLU(inplace=True)
+            )
+            (cv2): Conv(
+              (conv): Conv2d(128, 128, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1))
+              (act): SiLU(inplace=True)
+            )
+          )
+        )
+      )
+      (9): SPPF(
+        (cv1): Conv(
+          (conv): Conv2d(256, 128, kernel_size=(1, 1), stride=(1, 1))
+          (act): Identity()
+        )
+        (cv2): Conv(
+          (conv): Conv2d(512, 256, kernel_size=(1, 1), stride=(1, 1))
+          (act): SiLU(inplace=True)
+        )
+        (m): MaxPool2d(kernel_size=5, stride=1, padding=2, dilation=1, ceil_mode=False)
+      )
+      (10): Upsample(scale_factor=2.0, mode='nearest')
+      (11): Concat()
+      (12): C2f(
+        (cv1): Conv(
+          (conv): Conv2d(384, 128, kernel_size=(1, 1), stride=(1, 1))
+          (act): SiLU(inplace=True)
+        )
+        (cv2): Conv(
+          (conv): Conv2d(192, 128, kernel_size=(1, 1), stride=(1, 1))
+          (act): SiLU(inplace=True)
+        )
+        (m): ModuleList(
+          (0): Bottleneck(
+            (cv1): Conv(
+              (conv): Conv2d(64, 64, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1))
+              (act): SiLU(inplace=True)
+            )
+            (cv2): Conv(
+              (conv): Conv2d(64, 64, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1))
+              (act): SiLU(inplace=True)
+            )
+          )
+        )
+      )
+      (13): Upsample(scale_factor=2.0, mode='nearest')
+      (14): Concat()
+      (15): C2f(
+        (cv1): Conv(
+          (conv): Conv2d(192, 64, kernel_size=(1, 1), stride=(1, 1))
+          (act): SiLU(inplace=True)
+        )
+        (cv2): Conv(
+          (conv): Conv2d(96, 64, kernel_size=(1, 1), stride=(1, 1))
+          (act): SiLU(inplace=True)
+        )
+        (m): ModuleList(
+          (0): Bottleneck(
+            (cv1): Conv(
+              (conv): Conv2d(32, 32, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1))
+              (act): SiLU(inplace=True)
+            )
+            (cv2): Conv(
+              (conv): Conv2d(32, 32, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1))
+              (act): SiLU(inplace=True)
+            )
+          )
+        )
+      )
+      (16): Conv(
+        (conv): Conv2d(64, 64, kernel_size=(3, 3), stride=(2, 2), padding=(1, 1))
+        (act): SiLU(inplace=True)
+      )
+      (17): Concat()
+      (18): C2f(
+        (cv1): Conv(
+          (conv): Conv2d(192, 128, kernel_size=(1, 1), stride=(1, 1))
+          (act): SiLU(inplace=True)
+        )
+        (cv2): Conv(
+          (conv): Conv2d(192, 128, kernel_size=(1, 1), stride=(1, 1))
+          (act): SiLU(inplace=True)
+        )
+        (m): ModuleList(
+          (0): Bottleneck(
+            (cv1): Conv(
+              (conv): Conv2d(64, 64, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1))
+              (act): SiLU(inplace=True)
+            )
+            (cv2): Conv(
+              (conv): Conv2d(64, 64, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1))
+              (act): SiLU(inplace=True)
+            )
+          )
+        )
+      )
+      (19): Conv(
+        (conv): Conv2d(128, 128, kernel_size=(3, 3), stride=(2, 2), padding=(1, 1))
+        (act): SiLU(inplace=True)
+      )
+      (20): Concat()
+      (21): C2f(
+        (cv1): Conv(
+          (conv): Conv2d(384, 256, kernel_size=(1, 1), stride=(1, 1))
+          (act): SiLU(inplace=True)
+        )
+        (cv2): Conv(
+          (conv): Conv2d(384, 256, kernel_size=(1, 1), stride=(1, 1))
+          (act): SiLU(inplace=True)
+        )
+        (m): ModuleList(
+          (0): Bottleneck(
+            (cv1): Conv(
+              (conv): Conv2d(128, 128, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1))
+              (act): SiLU(inplace=True)
+            )
+            (cv2): Conv(
+              (conv): Conv2d(128, 128, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1))
+              (act): SiLU(inplace=True)
+            )
+          )
+        )
+      )
+      (22): Detect(
+        (cv2): ModuleList(
+          (0): Sequential(
+            (0): Conv(
+              (conv): Conv2d(64, 64, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1))
+              (act): SiLU(inplace=True)
+            )
+            (1): Conv(
+              (conv): Conv2d(64, 64, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1))
+              (act): SiLU(inplace=True)
+            )
+            (2): Conv2d(64, 64, kernel_size=(1, 1), stride=(1, 1))
+          )
+          (1): Sequential(
+            (0): Conv(
+              (conv): Conv2d(128, 64, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1))
+              (act): SiLU(inplace=True)
+            )
+            (1): Conv(
+              (conv): Conv2d(64, 64, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1))
+              (act): SiLU(inplace=True)
+            )
+            (2): Conv2d(64, 64, kernel_size=(1, 1), stride=(1, 1))
+          )
+          (2): Sequential(
+            (0): Conv(
+              (conv): Conv2d(256, 64, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1))
+              (act): SiLU(inplace=True)
+            )
+            (1): Conv(
+              (conv): Conv2d(64, 64, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1))
+              (act): SiLU(inplace=True)
+            )
+            (2): Conv2d(64, 64, kernel_size=(1, 1), stride=(1, 1))
+          )
+        )
+        (cv3): ModuleList(
+          (0): Sequential(
+            (0): Conv(
+              (conv): Conv2d(64, 64, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1))
+              (act): SiLU(inplace=True)
+            )
+            (1): Conv(
+              (conv): Conv2d(64, 64, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1))
+              (act): SiLU(inplace=True)
+            )
+            (2): Conv2d(64, 5, kernel_size=(1, 1), stride=(1, 1))
+          )
+          (1): Sequential(
+            (0): Conv(
+              (conv): Conv2d(128, 64, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1))
+              (act): SiLU(inplace=True)
+            )
+            (1): Conv(
+              (conv): Conv2d(64, 64, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1))
+              (act): SiLU(inplace=True)
+            )
+            (2): Conv2d(64, 5, kernel_size=(1, 1), stride=(1, 1))
+          )
+          (2): Sequential(
+            (0): Conv(
+              (conv): Conv2d(256, 64, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1))
+              (act): SiLU(inplace=True)
+            )
+            (1): Conv(
+              (conv): Conv2d(64, 64, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1))
+              (act): SiLU(inplace=True)
+            )
+            (2): Conv2d(64, 5, kernel_size=(1, 1), stride=(1, 1))
+          )
+        )
+        (dfl): DFL(
+          (conv): Conv2d(16, 1, kernel_size=(1, 1), stride=(1, 1), bias=False)
+        )
+      )
+    )
+  )
+)
+2026-05-20 22:19:22,856 - fastapi_app - INFO - [DEBUG] 苹果检测完成: detected=True, count=1
+2026-05-20 22:19:22,856 - fastapi_app - INFO - [DEBUG] 苹果跟踪器结果: total=2, historical_total=2, stage_20=2, stage_40=0, stage_60=0, stage_80=0, stage_100=0, max_maturity=20
+2026-05-20 22:19:23,614 - fastapi_app - INFO - [DEBUG] 开始分析视频帧, mode=10, original=10
+2026-05-20 22:19:23,615 - fastapi_app - INFO - [DEBUG] 苹果检测分支开始执行, mode=10
+2026-05-20 22:19:23,619 - fastapi_app - INFO - [DEBUG] Apple detector check: detector=<app.services.apple_detector.AppleRipenessDetector object at 0x0000021C59C55B50>, model=YOLO(
+  (model): DetectionModel(
+    (model): Sequential(
+      (0): Conv(
+        (conv): Conv2d(3, 16, kernel_size=(3, 3), stride=(2, 2), padding=(1, 1))
+        (act): SiLU(inplace=True)
+      )
+      (1): Conv(
+        (conv): Conv2d(16, 32, kernel_size=(3, 3), stride=(2, 2), padding=(1, 1))
+        (act): SiLU(inplace=True)
+      )
+      (2): C2f(
+        (cv1): Conv(
+          (conv): Conv2d(32, 32, kernel_size=(1, 1), stride=(1, 1))
+          (act): SiLU(inplace=True)
+        )
+        (cv2): Conv(
+          (conv): Conv2d(48, 32, kernel_size=(1, 1), stride=(1, 1))
+          (act): SiLU(inplace=True)
+        )
+        (m): ModuleList(
+          (0): Bottleneck(
+            (cv1): Conv(
+              (conv): Conv2d(16, 16, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1))
+              (act): SiLU(inplace=True)
+            )
+            (cv2): Conv(
+              (conv): Conv2d(16, 16, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1))
+              (act): SiLU(inplace=True)
+            )
+          )
+        )
+      )
+      (3): Conv(
+        (conv): Conv2d(32, 64, kernel_size=(3, 3), stride=(2, 2), padding=(1, 1))
+        (act): SiLU(inplace=True)
+      )
+      (4): C2f(
+        (cv1): Conv(
+          (conv): Conv2d(64, 64, kernel_size=(1, 1), stride=(1, 1))
+          (act): SiLU(inplace=True)
+        )
+        (cv2): Conv(
+          (conv): Conv2d(128, 64, kernel_size=(1, 1), stride=(1, 1))
+          (act): SiLU(inplace=True)
+        )
+        (m): ModuleList(
+          (0-1): 2 x Bottleneck(
+            (cv1): Conv(
+              (conv): Conv2d(32, 32, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1))
+              (act): SiLU(inplace=True)
+            )
+            (cv2): Conv(
+              (conv): Conv2d(32, 32, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1))
+              (act): SiLU(inplace=True)
+            )
+          )
+        )
+      )
+      (5): Conv(
+        (conv): Conv2d(64, 128, kernel_size=(3, 3), stride=(2, 2), padding=(1, 1))
+        (act): SiLU(inplace=True)
+      )
+      (6): C2f(
+        (cv1): Conv(
+          (conv): Conv2d(128, 128, kernel_size=(1, 1), stride=(1, 1))
+          (act): SiLU(inplace=True)
+        )
+        (cv2): Conv(
+          (conv): Conv2d(256, 128, kernel_size=(1, 1), stride=(1, 1))
+          (act): SiLU(inplace=True)
+        )
+        (m): ModuleList(
+          (0-1): 2 x Bottleneck(
+            (cv1): Conv(
+              (conv): Conv2d(64, 64, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1))
+              (act): SiLU(inplace=True)
+            )
+            (cv2): Conv(
+              (conv): Conv2d(64, 64, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1))
+              (act): SiLU(inplace=True)
+            )
+          )
+        )
+      )
+      (7): Conv(
+        (conv): Conv2d(128, 256, kernel_size=(3, 3), stride=(2, 2), padding=(1, 1))
+        (act): SiLU(inplace=True)
+      )
+      (8): C2f(
+        (cv1): Conv(
+          (conv): Conv2d(256, 256, kernel_size=(1, 1), stride=(1, 1))
+          (act): SiLU(inplace=True)
+        )
+        (cv2): Conv(
+          (conv): Conv2d(384, 256, kernel_size=(1, 1), stride=(1, 1))
+          (act): SiLU(inplace=True)
+        )
+        (m): ModuleList(
+          (0): Bottleneck(
+            (cv1): Conv(
+              (conv): Conv2d(128, 128, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1))
+              (act): SiLU(inplace=True)
+            )
+            (cv2): Conv(
+              (conv): Conv2d(128, 128, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1))
+              (act): SiLU(inplace=True)
+            )
+          )
+        )
+      )
+      (9): SPPF(
+        (cv1): Conv(
+          (conv): Conv2d(256, 128, kernel_size=(1, 1), stride=(1, 1))
+          (act): Identity()
+        )
+        (cv2): Conv(
+          (conv): Conv2d(512, 256, kernel_size=(1, 1), stride=(1, 1))
+          (act): SiLU(inplace=True)
+        )
+        (m): MaxPool2d(kernel_size=5, stride=1, padding=2, dilation=1, ceil_mode=False)
+      )
+      (10): Upsample(scale_factor=2.0, mode='nearest')
+      (11): Concat()
+      (12): C2f(
+        (cv1): Conv(
+          (conv): Conv2d(384, 128, kernel_size=(1, 1), stride=(1, 1))
+          (act): SiLU(inplace=True)
+        )
+        (cv2): Conv(
+          (conv): Conv2d(192, 128, kernel_size=(1, 1), stride=(1, 1))
+          (act): SiLU(inplace=True)
+        )
+        (m): ModuleList(
+          (0): Bottleneck(
+            (cv1): Conv(
+              (conv): Conv2d(64, 64, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1))
+              (act): SiLU(inplace=True)
+            )
+            (cv2): Conv(
+              (conv): Conv2d(64, 64, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1))
+              (act): SiLU(inplace=True)
+            )
+          )
+        )
+      )
+      (13): Upsample(scale_factor=2.0, mode='nearest')
+      (14): Concat()
+      (15): C2f(
+        (cv1): Conv(
+          (conv): Conv2d(192, 64, kernel_size=(1, 1), stride=(1, 1))
+          (act): SiLU(inplace=True)
+        )
+        (cv2): Conv(
+          (conv): Conv2d(96, 64, kernel_size=(1, 1), stride=(1, 1))
+          (act): SiLU(inplace=True)
+        )
+        (m): ModuleList(
+          (0): Bottleneck(
+            (cv1): Conv(
+              (conv): Conv2d(32, 32, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1))
+              (act): SiLU(inplace=True)
+            )
+            (cv2): Conv(
+              (conv): Conv2d(32, 32, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1))
+              (act): SiLU(inplace=True)
+            )
+          )
+        )
+      )
+      (16): Conv(
+        (conv): Conv2d(64, 64, kernel_size=(3, 3), stride=(2, 2), padding=(1, 1))
+        (act): SiLU(inplace=True)
+      )
+      (17): Concat()
+      (18): C2f(
+        (cv1): Conv(
+          (conv): Conv2d(192, 128, kernel_size=(1, 1), stride=(1, 1))
+          (act): SiLU(inplace=True)
+        )
+        (cv2): Conv(
+          (conv): Conv2d(192, 128, kernel_size=(1, 1), stride=(1, 1))
+          (act): SiLU(inplace=True)
+        )
+        (m): ModuleList(
+          (0): Bottleneck(
+            (cv1): Conv(
+              (conv): Conv2d(64, 64, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1))
+              (act): SiLU(inplace=True)
+            )
+            (cv2): Conv(
+              (conv): Conv2d(64, 64, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1))
+              (act): SiLU(inplace=True)
+            )
+          )
+        )
+      )
+      (19): Conv(
+        (conv): Conv2d(128, 128, kernel_size=(3, 3), stride=(2, 2), padding=(1, 1))
+        (act): SiLU(inplace=True)
+      )
+      (20): Concat()
+      (21): C2f(
+        (cv1): Conv(
+          (conv): Conv2d(384, 256, kernel_size=(1, 1), stride=(1, 1))
+          (act): SiLU(inplace=True)
+        )
+        (cv2): Conv(
+          (conv): Conv2d(384, 256, kernel_size=(1, 1), stride=(1, 1))
+          (act): SiLU(inplace=True)
+        )
+        (m): ModuleList(
+          (0): Bottleneck(
+            (cv1): Conv(
+              (conv): Conv2d(128, 128, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1))
+              (act): SiLU(inplace=True)
+            )
+            (cv2): Conv(
+              (conv): Conv2d(128, 128, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1))
+              (act): SiLU(inplace=True)
+            )
+          )
+        )
+      )
+      (22): Detect(
+        (cv2): ModuleList(
+          (0): Sequential(
+            (0): Conv(
+              (conv): Conv2d(64, 64, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1))
+              (act): SiLU(inplace=True)
+            )
+            (1): Conv(
+              (conv): Conv2d(64, 64, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1))
+              (act): SiLU(inplace=True)
+            )
+            (2): Conv2d(64, 64, kernel_size=(1, 1), stride=(1, 1))
+          )
+          (1): Sequential(
+            (0): Conv(
+              (conv): Conv2d(128, 64, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1))
+              (act): SiLU(inplace=True)
+            )
+            (1): Conv(
+              (conv): Conv2d(64, 64, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1))
+              (act): SiLU(inplace=True)
+            )
+            (2): Conv2d(64, 64, kernel_size=(1, 1), stride=(1, 1))
+          )
+          (2): Sequential(
+            (0): Conv(
+              (conv): Conv2d(256, 64, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1))
+              (act): SiLU(inplace=True)
+            )
+            (1): Conv(
+              (conv): Conv2d(64, 64, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1))
+              (act): SiLU(inplace=True)
+            )
+            (2): Conv2d(64, 64, kernel_size=(1, 1), stride=(1, 1))
+          )
+        )
+        (cv3): ModuleList(
+          (0): Sequential(
+            (0): Conv(
+              (conv): Conv2d(64, 64, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1))
+              (act): SiLU(inplace=True)
+            )
+            (1): Conv(
+              (conv): Conv2d(64, 64, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1))
+              (act): SiLU(inplace=True)
+            )
+            (2): Conv2d(64, 5, kernel_size=(1, 1), stride=(1, 1))
+          )
+          (1): Sequential(
+            (0): Conv(
+              (conv): Conv2d(128, 64, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1))
+              (act): SiLU(inplace=True)
+            )
+            (1): Conv(
+              (conv): Conv2d(64, 64, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1))
+              (act): SiLU(inplace=True)
+            )
+            (2): Conv2d(64, 5, kernel_size=(1, 1), stride=(1, 1))
+          )
+          (2): Sequential(
+            (0): Conv(
+              (conv): Conv2d(256, 64, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1))
+              (act): SiLU(inplace=True)
+            )
+            (1): Conv(
+              (conv): Conv2d(64, 64, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1))
+              (act): SiLU(inplace=True)
+            )
+            (2): Conv2d(64, 5, kernel_size=(1, 1), stride=(1, 1))
+          )
+        )
+        (dfl): DFL(
+          (conv): Conv2d(16, 1, kernel_size=(1, 1), stride=(1, 1), bias=False)
+        )
+      )
+    )
+  )
+)
+2026-05-20 22:19:23,733 - fastapi_app - INFO - [DEBUG] 苹果检测完成: detected=True, count=2
+2026-05-20 22:19:23,733 - fastapi_app - INFO - [DEBUG] 苹果跟踪器结果: total=2, historical_total=2, stage_20=2, stage_40=0, stage_60=0, stage_80=0, stage_100=0, max_maturity=20
+2026-05-20 22:19:24,635 - fastapi_app - INFO - [DEBUG] 开始分析视频帧, mode=10, original=10
+2026-05-20 22:19:24,636 - fastapi_app - INFO - [DEBUG] 苹果检测分支开始执行, mode=10
+2026-05-20 22:19:24,638 - fastapi_app - INFO - [DEBUG] Apple detector check: detector=<app.services.apple_detector.AppleRipenessDetector object at 0x0000021C59C55B50>, model=YOLO(
+  (model): DetectionModel(
+    (model): Sequential(
+      (0): Conv(
+        (conv): Conv2d(3, 16, kernel_size=(3, 3), stride=(2, 2), padding=(1, 1))
+        (act): SiLU(inplace=True)
+      )
+      (1): Conv(
+        (conv): Conv2d(16, 32, kernel_size=(3, 3), stride=(2, 2), padding=(1, 1))
+        (act): SiLU(inplace=True)
+      )
+      (2): C2f(
+        (cv1): Conv(
+          (conv): Conv2d(32, 32, kernel_size=(1, 1), stride=(1, 1))
+          (act): SiLU(inplace=True)
+        )
+        (cv2): Conv(
+          (conv): Conv2d(48, 32, kernel_size=(1, 1), stride=(1, 1))
+          (act): SiLU(inplace=True)
+        )
+        (m): ModuleList(
+          (0): Bottleneck(
+            (cv1): Conv(
+              (conv): Conv2d(16, 16, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1))
+              (act): SiLU(inplace=True)
+            )
+            (cv2): Conv(
+              (conv): Conv2d(16, 16, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1))
+              (act): SiLU(inplace=True)
+            )
+          )
+        )
+      )
+      (3): Conv(
+        (conv): Conv2d(32, 64, kernel_size=(3, 3), stride=(2, 2), padding=(1, 1))
+        (act): SiLU(inplace=True)
+      )
+      (4): C2f(
+        (cv1): Conv(
+          (conv): Conv2d(64, 64, kernel_size=(1, 1), stride=(1, 1))
+          (act): SiLU(inplace=True)
+        )
+        (cv2): Conv(
+          (conv): Conv2d(128, 64, kernel_size=(1, 1), stride=(1, 1))
+          (act): SiLU(inplace=True)
+        )
+        (m): ModuleList(
+          (0-1): 2 x Bottleneck(
+            (cv1): Conv(
+              (conv): Conv2d(32, 32, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1))
+              (act): SiLU(inplace=True)
+            )
+            (cv2): Conv(
+              (conv): Conv2d(32, 32, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1))
+              (act): SiLU(inplace=True)
+            )
+          )
+        )
+      )
+      (5): Conv(
+        (conv): Conv2d(64, 128, kernel_size=(3, 3), stride=(2, 2), padding=(1, 1))
+        (act): SiLU(inplace=True)
+      )
+      (6): C2f(
+        (cv1): Conv(
+          (conv): Conv2d(128, 128, kernel_size=(1, 1), stride=(1, 1))
+          (act): SiLU(inplace=True)
+        )
+        (cv2): Conv(
+          (conv): Conv2d(256, 128, kernel_size=(1, 1), stride=(1, 1))
+          (act): SiLU(inplace=True)
+        )
+        (m): ModuleList(
+          (0-1): 2 x Bottleneck(
+            (cv1): Conv(
+              (conv): Conv2d(64, 64, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1))
+              (act): SiLU(inplace=True)
+            )
+            (cv2): Conv(
+              (conv): Conv2d(64, 64, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1))
+              (act): SiLU(inplace=True)
+            )
+          )
+        )
+      )
+      (7): Conv(
+        (conv): Conv2d(128, 256, kernel_size=(3, 3), stride=(2, 2), padding=(1, 1))
+        (act): SiLU(inplace=True)
+      )
+      (8): C2f(
+        (cv1): Conv(
+          (conv): Conv2d(256, 256, kernel_size=(1, 1), stride=(1, 1))
+          (act): SiLU(inplace=True)
+        )
+        (cv2): Conv(
+          (conv): Conv2d(384, 256, kernel_size=(1, 1), stride=(1, 1))
+          (act): SiLU(inplace=True)
+        )
+        (m): ModuleList(
+          (0): Bottleneck(
+            (cv1): Conv(
+              (conv): Conv2d(128, 128, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1))
+              (act): SiLU(inplace=True)
+            )
+            (cv2): Conv(
+              (conv): Conv2d(128, 128, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1))
+              (act): SiLU(inplace=True)
+            )
+          )
+        )
+      )
+      (9): SPPF(
+        (cv1): Conv(
+          (conv): Conv2d(256, 128, kernel_size=(1, 1), stride=(1, 1))
+          (act): Identity()
+        )
+        (cv2): Conv(
+          (conv): Conv2d(512, 256, kernel_size=(1, 1), stride=(1, 1))
+          (act): SiLU(inplace=True)
+        )
+        (m): MaxPool2d(kernel_size=5, stride=1, padding=2, dilation=1, ceil_mode=False)
+      )
+      (10): Upsample(scale_factor=2.0, mode='nearest')
+      (11): Concat()
+      (12): C2f(
+        (cv1): Conv(
+          (conv): Conv2d(384, 128, kernel_size=(1, 1), stride=(1, 1))
+          (act): SiLU(inplace=True)
+        )
+        (cv2): Conv(
+          (conv): Conv2d(192, 128, kernel_size=(1, 1), stride=(1, 1))
+          (act): SiLU(inplace=True)
+        )
+        (m): ModuleList(
+          (0): Bottleneck(
+            (cv1): Conv(
+              (conv): Conv2d(64, 64, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1))
+              (act): SiLU(inplace=True)
+            )
+            (cv2): Conv(
+              (conv): Conv2d(64, 64, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1))
+              (act): SiLU(inplace=True)
+            )
+          )
+        )
+      )
+      (13): Upsample(scale_factor=2.0, mode='nearest')
+      (14): Concat()
+      (15): C2f(
+        (cv1): Conv(
+          (conv): Conv2d(192, 64, kernel_size=(1, 1), stride=(1, 1))
+          (act): SiLU(inplace=True)
+        )
+        (cv2): Conv(
+          (conv): Conv2d(96, 64, kernel_size=(1, 1), stride=(1, 1))
+          (act): SiLU(inplace=True)
+        )
+        (m): ModuleList(
+          (0): Bottleneck(
+            (cv1): Conv(
+              (conv): Conv2d(32, 32, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1))
+              (act): SiLU(inplace=True)
+            )
+            (cv2): Conv(
+              (conv): Conv2d(32, 32, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1))
+              (act): SiLU(inplace=True)
+            )
+          )
+        )
+      )
+      (16): Conv(
+        (conv): Conv2d(64, 64, kernel_size=(3, 3), stride=(2, 2), padding=(1, 1))
+        (act): SiLU(inplace=True)
+      )
+      (17): Concat()
+      (18): C2f(
+        (cv1): Conv(
+          (conv): Conv2d(192, 128, kernel_size=(1, 1), stride=(1, 1))
+          (act): SiLU(inplace=True)
+        )
+        (cv2): Conv(
+          (conv): Conv2d(192, 128, kernel_size=(1, 1), stride=(1, 1))
+          (act): SiLU(inplace=True)
+        )
+        (m): ModuleList(
+          (0): Bottleneck(
+            (cv1): Conv(
+              (conv): Conv2d(64, 64, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1))
+              (act): SiLU(inplace=True)
+            )
+            (cv2): Conv(
+              (conv): Conv2d(64, 64, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1))
+              (act): SiLU(inplace=True)
+            )
+          )
+        )
+      )
+      (19): Conv(
+        (conv): Conv2d(128, 128, kernel_size=(3, 3), stride=(2, 2), padding=(1, 1))
+        (act): SiLU(inplace=True)
+      )
+      (20): Concat()
+      (21): C2f(
+        (cv1): Conv(
+          (conv): Conv2d(384, 256, kernel_size=(1, 1), stride=(1, 1))
+          (act): SiLU(inplace=True)
+        )
+        (cv2): Conv(
+          (conv): Conv2d(384, 256, kernel_size=(1, 1), stride=(1, 1))
+          (act): SiLU(inplace=True)
+        )
+        (m): ModuleList(
+          (0): Bottleneck(
+            (cv1): Conv(
+              (conv): Conv2d(128, 128, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1))
+              (act): SiLU(inplace=True)
+            )
+            (cv2): Conv(
+              (conv): Conv2d(128, 128, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1))
+              (act): SiLU(inplace=True)
+            )
+          )
+        )
+      )
+      (22): Detect(
+        (cv2): ModuleList(
+          (0): Sequential(
+            (0): Conv(
+              (conv): Conv2d(64, 64, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1))
+              (act): SiLU(inplace=True)
+            )
+            (1): Conv(
+              (conv): Conv2d(64, 64, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1))
+              (act): SiLU(inplace=True)
+            )
+            (2): Conv2d(64, 64, kernel_size=(1, 1), stride=(1, 1))
+          )
+          (1): Sequential(
+            (0): Conv(
+              (conv): Conv2d(128, 64, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1))
+              (act): SiLU(inplace=True)
+            )
+            (1): Conv(
+              (conv): Conv2d(64, 64, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1))
+              (act): SiLU(inplace=True)
+            )
+            (2): Conv2d(64, 64, kernel_size=(1, 1), stride=(1, 1))
+          )
+          (2): Sequential(
+            (0): Conv(
+              (conv): Conv2d(256, 64, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1))
+              (act): SiLU(inplace=True)
+            )
+            (1): Conv(
+              (conv): Conv2d(64, 64, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1))
+              (act): SiLU(inplace=True)
+            )
+            (2): Conv2d(64, 64, kernel_size=(1, 1), stride=(1, 1))
+          )
+        )
+        (cv3): ModuleList(
+          (0): Sequential(
+            (0): Conv(
+              (conv): Conv2d(64, 64, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1))
+              (act): SiLU(inplace=True)
+            )
+            (1): Conv(
+              (conv): Conv2d(64, 64, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1))
+              (act): SiLU(inplace=True)
+            )
+            (2): Conv2d(64, 5, kernel_size=(1, 1), stride=(1, 1))
+          )
+          (1): Sequential(
+            (0): Conv(
+              (conv): Conv2d(128, 64, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1))
+              (act): SiLU(inplace=True)
+            )
+            (1): Conv(
+              (conv): Conv2d(64, 64, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1))
+              (act): SiLU(inplace=True)
+            )
+            (2): Conv2d(64, 5, kernel_size=(1, 1), stride=(1, 1))
+          )
+          (2): Sequential(
+            (0): Conv(
+              (conv): Conv2d(256, 64, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1))
+              (act): SiLU(inplace=True)
+            )
+            (1): Conv(
+              (conv): Conv2d(64, 64, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1))
+              (act): SiLU(inplace=True)
+            )
+            (2): Conv2d(64, 5, kernel_size=(1, 1), stride=(1, 1))
+          )
+        )
+        (dfl): DFL(
+          (conv): Conv2d(16, 1, kernel_size=(1, 1), stride=(1, 1), bias=False)
+        )
+      )
+    )
+  )
+)
+2026-05-20 22:19:24,741 - fastapi_app - INFO - [DEBUG] 苹果检测完成: detected=True, count=2
+2026-05-20 22:19:24,741 - fastapi_app - INFO - [DEBUG] 苹果跟踪器结果: total=2, historical_total=2, stage_20=2, stage_40=0, stage_60=0, stage_80=0, stage_100=0, max_maturity=20
+2026-05-20 22:19:25,661 - fastapi_app - INFO - [DEBUG] 开始分析视频帧, mode=10, original=10
+2026-05-20 22:19:25,661 - fastapi_app - INFO - [DEBUG] 苹果检测分支开始执行, mode=10
+2026-05-20 22:19:25,663 - fastapi_app - INFO - [DEBUG] Apple detector check: detector=<app.services.apple_detector.AppleRipenessDetector object at 0x0000021C59C55B50>, model=YOLO(
+  (model): DetectionModel(
+    (model): Sequential(
+      (0): Conv(
+        (conv): Conv2d(3, 16, kernel_size=(3, 3), stride=(2, 2), padding=(1, 1))
+        (act): SiLU(inplace=True)
+      )
+      (1): Conv(
+        (conv): Conv2d(16, 32, kernel_size=(3, 3), stride=(2, 2), padding=(1, 1))
+        (act): SiLU(inplace=True)
+      )
+      (2): C2f(
+        (cv1): Conv(
+          (conv): Conv2d(32, 32, kernel_size=(1, 1), stride=(1, 1))
+          (act): SiLU(inplace=True)
+        )
+        (cv2): Conv(
+          (conv): Conv2d(48, 32, kernel_size=(1, 1), stride=(1, 1))
+          (act): SiLU(inplace=True)
+        )
+        (m): ModuleList(
+          (0): Bottleneck(
+            (cv1): Conv(
+              (conv): Conv2d(16, 16, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1))
+              (act): SiLU(inplace=True)
+            )
+            (cv2): Conv(
+              (conv): Conv2d(16, 16, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1))
+              (act): SiLU(inplace=True)
+            )
+          )
+        )
+      )
+      (3): Conv(
+        (conv): Conv2d(32, 64, kernel_size=(3, 3), stride=(2, 2), padding=(1, 1))
+        (act): SiLU(inplace=True)
+      )
+      (4): C2f(
+        (cv1): Conv(
+          (conv): Conv2d(64, 64, kernel_size=(1, 1), stride=(1, 1))
+          (act): SiLU(inplace=True)
+        )
+        (cv2): Conv(
+          (conv): Conv2d(128, 64, kernel_size=(1, 1), stride=(1, 1))
+          (act): SiLU(inplace=True)
+        )
+        (m): ModuleList(
+          (0-1): 2 x Bottleneck(
+            (cv1): Conv(
+              (conv): Conv2d(32, 32, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1))
+              (act): SiLU(inplace=True)
+            )
+            (cv2): Conv(
+              (conv): Conv2d(32, 32, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1))
+              (act): SiLU(inplace=True)
+            )
+          )
+        )
+      )
+      (5): Conv(
+        (conv): Conv2d(64, 128, kernel_size=(3, 3), stride=(2, 2), padding=(1, 1))
+        (act): SiLU(inplace=True)
+      )
+      (6): C2f(
+        (cv1): Conv(
+          (conv): Conv2d(128, 128, kernel_size=(1, 1), stride=(1, 1))
+          (act): SiLU(inplace=True)
+        )
+        (cv2): Conv(
+          (conv): Conv2d(256, 128, kernel_size=(1, 1), stride=(1, 1))
+          (act): SiLU(inplace=True)
+        )
+        (m): ModuleList(
+          (0-1): 2 x Bottleneck(
+            (cv1): Conv(
+              (conv): Conv2d(64, 64, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1))
+              (act): SiLU(inplace=True)
+            )
+            (cv2): Conv(
+              (conv): Conv2d(64, 64, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1))
+              (act): SiLU(inplace=True)
+            )
+          )
+        )
+      )
+      (7): Conv(
+        (conv): Conv2d(128, 256, kernel_size=(3, 3), stride=(2, 2), padding=(1, 1))
+        (act): SiLU(inplace=True)
+      )
+      (8): C2f(
+        (cv1): Conv(
+          (conv): Conv2d(256, 256, kernel_size=(1, 1), stride=(1, 1))
+          (act): SiLU(inplace=True)
+        )
+        (cv2): Conv(
+          (conv): Conv2d(384, 256, kernel_size=(1, 1), stride=(1, 1))
+          (act): SiLU(inplace=True)
+        )
+        (m): ModuleList(
+          (0): Bottleneck(
+            (cv1): Conv(
+              (conv): Conv2d(128, 128, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1))
+              (act): SiLU(inplace=True)
+            )
+            (cv2): Conv(
+              (conv): Conv2d(128, 128, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1))
+              (act): SiLU(inplace=True)
+            )
+          )
+        )
+      )
+      (9): SPPF(
+        (cv1): Conv(
+          (conv): Conv2d(256, 128, kernel_size=(1, 1), stride=(1, 1))
+          (act): Identity()
+        )
+        (cv2): Conv(
+          (conv): Conv2d(512, 256, kernel_size=(1, 1), stride=(1, 1))
+          (act): SiLU(inplace=True)
+        )
+        (m): MaxPool2d(kernel_size=5, stride=1, padding=2, dilation=1, ceil_mode=False)
+      )
+      (10): Upsample(scale_factor=2.0, mode='nearest')
+      (11): Concat()
+      (12): C2f(
+        (cv1): Conv(
+          (conv): Conv2d(384, 128, kernel_size=(1, 1), stride=(1, 1))
+          (act): SiLU(inplace=True)
+        )
+        (cv2): Conv(
+          (conv): Conv2d(192, 128, kernel_size=(1, 1), stride=(1, 1))
+          (act): SiLU(inplace=True)
+        )
+        (m): ModuleList(
+          (0): Bottleneck(
+            (cv1): Conv(
+              (conv): Conv2d(64, 64, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1))
+              (act): SiLU(inplace=True)
+            )
+            (cv2): Conv(
+              (conv): Conv2d(64, 64, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1))
+              (act): SiLU(inplace=True)
+            )
+          )
+        )
+      )
+      (13): Upsample(scale_factor=2.0, mode='nearest')
+      (14): Concat()
+      (15): C2f(
+        (cv1): Conv(
+          (conv): Conv2d(192, 64, kernel_size=(1, 1), stride=(1, 1))
+          (act): SiLU(inplace=True)
+        )
+        (cv2): Conv(
+          (conv): Conv2d(96, 64, kernel_size=(1, 1), stride=(1, 1))
+          (act): SiLU(inplace=True)
+        )
+        (m): ModuleList(
+          (0): Bottleneck(
+            (cv1): Conv(
+              (conv): Conv2d(32, 32, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1))
+              (act): SiLU(inplace=True)
+            )
+            (cv2): Conv(
+              (conv): Conv2d(32, 32, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1))
+              (act): SiLU(inplace=True)
+            )
+          )
+        )
+      )
+      (16): Conv(
+        (conv): Conv2d(64, 64, kernel_size=(3, 3), stride=(2, 2), padding=(1, 1))
+        (act): SiLU(inplace=True)
+      )
+      (17): Concat()
+      (18): C2f(
+        (cv1): Conv(
+          (conv): Conv2d(192, 128, kernel_size=(1, 1), stride=(1, 1))
+          (act): SiLU(inplace=True)
+        )
+        (cv2): Conv(
+          (conv): Conv2d(192, 128, kernel_size=(1, 1), stride=(1, 1))
+          (act): SiLU(inplace=True)
+        )
+        (m): ModuleList(
+          (0): Bottleneck(
+            (cv1): Conv(
+              (conv): Conv2d(64, 64, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1))
+              (act): SiLU(inplace=True)
+            )
+            (cv2): Conv(
+              (conv): Conv2d(64, 64, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1))
+              (act): SiLU(inplace=True)
+            )
+          )
+        )
+      )
+      (19): Conv(
+        (conv): Conv2d(128, 128, kernel_size=(3, 3), stride=(2, 2), padding=(1, 1))
+        (act): SiLU(inplace=True)
+      )
+      (20): Concat()
+      (21): C2f(
+        (cv1): Conv(
+          (conv): Conv2d(384, 256, kernel_size=(1, 1), stride=(1, 1))
+          (act): SiLU(inplace=True)
+        )
+        (cv2): Conv(
+          (conv): Conv2d(384, 256, kernel_size=(1, 1), stride=(1, 1))
+          (act): SiLU(inplace=True)
+        )
+        (m): ModuleList(
+          (0): Bottleneck(
+            (cv1): Conv(
+              (conv): Conv2d(128, 128, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1))
+              (act): SiLU(inplace=True)
+            )
+            (cv2): Conv(
+              (conv): Conv2d(128, 128, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1))
+              (act): SiLU(inplace=True)
+            )
+          )
+        )
+      )
+      (22): Detect(
+        (cv2): ModuleList(
+          (0): Sequential(
+            (0): Conv(
+              (conv): Conv2d(64, 64, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1))
+              (act): SiLU(inplace=True)
+            )
+            (1): Conv(
+              (conv): Conv2d(64, 64, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1))
+              (act): SiLU(inplace=True)
+            )
+            (2): Conv2d(64, 64, kernel_size=(1, 1), stride=(1, 1))
+          )
+          (1): Sequential(
+            (0): Conv(
+              (conv): Conv2d(128, 64, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1))
+              (act): SiLU(inplace=True)
+            )
+            (1): Conv(
+              (conv): Conv2d(64, 64, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1))
+              (act): SiLU(inplace=True)
+            )
+            (2): Conv2d(64, 64, kernel_size=(1, 1), stride=(1, 1))
+          )
+          (2): Sequential(
+            (0): Conv(
+              (conv): Conv2d(256, 64, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1))
+              (act): SiLU(inplace=True)
+            )
+            (1): Conv(
+              (conv): Conv2d(64, 64, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1))
+              (act): SiLU(inplace=True)
+            )
+            (2): Conv2d(64, 64, kernel_size=(1, 1), stride=(1, 1))
+          )
+        )
+        (cv3): ModuleList(
+          (0): Sequential(
+            (0): Conv(
+              (conv): Conv2d(64, 64, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1))
+              (act): SiLU(inplace=True)
+            )
+            (1): Conv(
+              (conv): Conv2d(64, 64, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1))
+              (act): SiLU(inplace=True)
+            )
+            (2): Conv2d(64, 5, kernel_size=(1, 1), stride=(1, 1))
+          )
+          (1): Sequential(
+            (0): Conv(
+              (conv): Conv2d(128, 64, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1))
+              (act): SiLU(inplace=True)
+            )
+            (1): Conv(
+              (conv): Conv2d(64, 64, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1))
+              (act): SiLU(inplace=True)
+            )
+            (2): Conv2d(64, 5, kernel_size=(1, 1), stride=(1, 1))
+          )
+          (2): Sequential(
+            (0): Conv(
+              (conv): Conv2d(256, 64, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1))
+              (act): SiLU(inplace=True)
+            )
+            (1): Conv(
+              (conv): Conv2d(64, 64, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1))
+              (act): SiLU(inplace=True)
+            )
+            (2): Conv2d(64, 5, kernel_size=(1, 1), stride=(1, 1))
+          )
+        )
+        (dfl): DFL(
+          (conv): Conv2d(16, 1, kernel_size=(1, 1), stride=(1, 1), bias=False)
+        )
+      )
+    )
+  )
+)
+2026-05-20 22:19:25,761 - fastapi_app - INFO - [DEBUG] 苹果检测完成: detected=True, count=2
+2026-05-20 22:19:25,761 - fastapi_app - INFO - [DEBUG] 苹果跟踪器结果: total=2, historical_total=2, stage_20=2, stage_40=0, stage_60=0, stage_80=0, stage_100=0, max_maturity=20
+2026-05-20 22:19:26,705 - fastapi_app - INFO - [DEBUG] 开始分析视频帧, mode=10, original=10
+2026-05-20 22:19:26,706 - fastapi_app - INFO - [DEBUG] 苹果检测分支开始执行, mode=10
+2026-05-20 22:19:26,710 - fastapi_app - INFO - [DEBUG] Apple detector check: detector=<app.services.apple_detector.AppleRipenessDetector object at 0x0000021C59C55B50>, model=YOLO(
+  (model): DetectionModel(
+    (model): Sequential(
+      (0): Conv(
+        (conv): Conv2d(3, 16, kernel_size=(3, 3), stride=(2, 2), padding=(1, 1))
+        (act): SiLU(inplace=True)
+      )
+      (1): Conv(
+        (conv): Conv2d(16, 32, kernel_size=(3, 3), stride=(2, 2), padding=(1, 1))
+        (act): SiLU(inplace=True)
+      )
+      (2): C2f(
+        (cv1): Conv(
+          (conv): Conv2d(32, 32, kernel_size=(1, 1), stride=(1, 1))
+          (act): SiLU(inplace=True)
+        )
+        (cv2): Conv(
+          (conv): Conv2d(48, 32, kernel_size=(1, 1), stride=(1, 1))
+          (act): SiLU(inplace=True)
+        )
+        (m): ModuleList(
+          (0): Bottleneck(
+            (cv1): Conv(
+              (conv): Conv2d(16, 16, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1))
+              (act): SiLU(inplace=True)
+            )
+            (cv2): Conv(
+              (conv): Conv2d(16, 16, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1))
+              (act): SiLU(inplace=True)
+            )
+          )
+        )
+      )
+      (3): Conv(
+        (conv): Conv2d(32, 64, kernel_size=(3, 3), stride=(2, 2), padding=(1, 1))
+        (act): SiLU(inplace=True)
+      )
+      (4): C2f(
+        (cv1): Conv(
+          (conv): Conv2d(64, 64, kernel_size=(1, 1), stride=(1, 1))
+          (act): SiLU(inplace=True)
+        )
+        (cv2): Conv(
+          (conv): Conv2d(128, 64, kernel_size=(1, 1), stride=(1, 1))
+          (act): SiLU(inplace=True)
+        )
+        (m): ModuleList(
+          (0-1): 2 x Bottleneck(
+            (cv1): Conv(
+              (conv): Conv2d(32, 32, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1))
+              (act): SiLU(inplace=True)
+            )
+            (cv2): Conv(
+              (conv): Conv2d(32, 32, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1))
+              (act): SiLU(inplace=True)
+            )
+          )
+        )
+      )
+      (5): Conv(
+        (conv): Conv2d(64, 128, kernel_size=(3, 3), stride=(2, 2), padding=(1, 1))
+        (act): SiLU(inplace=True)
+      )
+      (6): C2f(
+        (cv1): Conv(
+          (conv): Conv2d(128, 128, kernel_size=(1, 1), stride=(1, 1))
+          (act): SiLU(inplace=True)
+        )
+        (cv2): Conv(
+          (conv): Conv2d(256, 128, kernel_size=(1, 1), stride=(1, 1))
+          (act): SiLU(inplace=True)
+        )
+        (m): ModuleList(
+          (0-1): 2 x Bottleneck(
+            (cv1): Conv(
+              (conv): Conv2d(64, 64, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1))
+              (act): SiLU(inplace=True)
+            )
+            (cv2): Conv(
+              (conv): Conv2d(64, 64, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1))
+              (act): SiLU(inplace=True)
+            )
+          )
+        )
+      )
+      (7): Conv(
+        (conv): Conv2d(128, 256, kernel_size=(3, 3), stride=(2, 2), padding=(1, 1))
+        (act): SiLU(inplace=True)
+      )
+      (8): C2f(
+        (cv1): Conv(
+          (conv): Conv2d(256, 256, kernel_size=(1, 1), stride=(1, 1))
+          (act): SiLU(inplace=True)
+        )
+        (cv2): Conv(
+          (conv): Conv2d(384, 256, kernel_size=(1, 1), stride=(1, 1))
+          (act): SiLU(inplace=True)
+        )
+        (m): ModuleList(
+          (0): Bottleneck(
+            (cv1): Conv(
+              (conv): Conv2d(128, 128, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1))
+              (act): SiLU(inplace=True)
+            )
+            (cv2): Conv(
+              (conv): Conv2d(128, 128, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1))
+              (act): SiLU(inplace=True)
+            )
+          )
+        )
+      )
+      (9): SPPF(
+        (cv1): Conv(
+          (conv): Conv2d(256, 128, kernel_size=(1, 1), stride=(1, 1))
+          (act): Identity()
+        )
+        (cv2): Conv(
+          (conv): Conv2d(512, 256, kernel_size=(1, 1), stride=(1, 1))
+          (act): SiLU(inplace=True)
+        )
+        (m): MaxPool2d(kernel_size=5, stride=1, padding=2, dilation=1, ceil_mode=False)
+      )
+      (10): Upsample(scale_factor=2.0, mode='nearest')
+      (11): Concat()
+      (12): C2f(
+        (cv1): Conv(
+          (conv): Conv2d(384, 128, kernel_size=(1, 1), stride=(1, 1))
+          (act): SiLU(inplace=True)
+        )
+        (cv2): Conv(
+          (conv): Conv2d(192, 128, kernel_size=(1, 1), stride=(1, 1))
+          (act): SiLU(inplace=True)
+        )
+        (m): ModuleList(
+          (0): Bottleneck(
+            (cv1): Conv(
+              (conv): Conv2d(64, 64, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1))
+              (act): SiLU(inplace=True)
+            )
+            (cv2): Conv(
+              (conv): Conv2d(64, 64, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1))
+              (act): SiLU(inplace=True)
+            )
+          )
+        )
+      )
+      (13): Upsample(scale_factor=2.0, mode='nearest')
+      (14): Concat()
+      (15): C2f(
+        (cv1): Conv(
+          (conv): Conv2d(192, 64, kernel_size=(1, 1), stride=(1, 1))
+          (act): SiLU(inplace=True)
+        )
+        (cv2): Conv(
+          (conv): Conv2d(96, 64, kernel_size=(1, 1), stride=(1, 1))
+          (act): SiLU(inplace=True)
+        )
+        (m): ModuleList(
+          (0): Bottleneck(
+            (cv1): Conv(
+              (conv): Conv2d(32, 32, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1))
+              (act): SiLU(inplace=True)
+            )
+            (cv2): Conv(
+              (conv): Conv2d(32, 32, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1))
+              (act): SiLU(inplace=True)
+            )
+          )
+        )
+      )
+      (16): Conv(
+        (conv): Conv2d(64, 64, kernel_size=(3, 3), stride=(2, 2), padding=(1, 1))
+        (act): SiLU(inplace=True)
+      )
+      (17): Concat()
+      (18): C2f(
+        (cv1): Conv(
+          (conv): Conv2d(192, 128, kernel_size=(1, 1), stride=(1, 1))
+          (act): SiLU(inplace=True)
+        )
+        (cv2): Conv(
+          (conv): Conv2d(192, 128, kernel_size=(1, 1), stride=(1, 1))
+          (act): SiLU(inplace=True)
+        )
+        (m): ModuleList(
+          (0): Bottleneck(
+            (cv1): Conv(
+              (conv): Conv2d(64, 64, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1))
+              (act): SiLU(inplace=True)
+            )
+            (cv2): Conv(
+              (conv): Conv2d(64, 64, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1))
+              (act): SiLU(inplace=True)
+            )
+          )
+        )
+      )
+      (19): Conv(
+        (conv): Conv2d(128, 128, kernel_size=(3, 3), stride=(2, 2), padding=(1, 1))
+        (act): SiLU(inplace=True)
+      )
+      (20): Concat()
+      (21): C2f(
+        (cv1): Conv(
+          (conv): Conv2d(384, 256, kernel_size=(1, 1), stride=(1, 1))
+          (act): SiLU(inplace=True)
+        )
+        (cv2): Conv(
+          (conv): Conv2d(384, 256, kernel_size=(1, 1), stride=(1, 1))
+          (act): SiLU(inplace=True)
+        )
+        (m): ModuleList(
+          (0): Bottleneck(
+            (cv1): Conv(
+              (conv): Conv2d(128, 128, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1))
+              (act): SiLU(inplace=True)
+            )
+            (cv2): Conv(
+              (conv): Conv2d(128, 128, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1))
+              (act): SiLU(inplace=True)
+            )
+          )
+        )
+      )
+      (22): Detect(
+        (cv2): ModuleList(
+          (0): Sequential(
+            (0): Conv(
+              (conv): Conv2d(64, 64, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1))
+              (act): SiLU(inplace=True)
+            )
+            (1): Conv(
+              (conv): Conv2d(64, 64, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1))
+              (act): SiLU(inplace=True)
+            )
+            (2): Conv2d(64, 64, kernel_size=(1, 1), stride=(1, 1))
+          )
+          (1): Sequential(
+            (0): Conv(
+              (conv): Conv2d(128, 64, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1))
+              (act): SiLU(inplace=True)
+            )
+            (1): Conv(
+              (conv): Conv2d(64, 64, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1))
+              (act): SiLU(inplace=True)
+            )
+            (2): Conv2d(64, 64, kernel_size=(1, 1), stride=(1, 1))
+          )
+          (2): Sequential(
+            (0): Conv(
+              (conv): Conv2d(256, 64, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1))
+              (act): SiLU(inplace=True)
+            )
+            (1): Conv(
+              (conv): Conv2d(64, 64, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1))
+              (act): SiLU(inplace=True)
+            )
+            (2): Conv2d(64, 64, kernel_size=(1, 1), stride=(1, 1))
+          )
+        )
+        (cv3): ModuleList(
+          (0): Sequential(
+            (0): Conv(
+              (conv): Conv2d(64, 64, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1))
+              (act): SiLU(inplace=True)
+            )
+            (1): Conv(
+              (conv): Conv2d(64, 64, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1))
+              (act): SiLU(inplace=True)
+            )
+            (2): Conv2d(64, 5, kernel_size=(1, 1), stride=(1, 1))
+          )
+          (1): Sequential(
+            (0): Conv(
+              (conv): Conv2d(128, 64, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1))
+              (act): SiLU(inplace=True)
+            )
+            (1): Conv(
+              (conv): Conv2d(64, 64, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1))
+              (act): SiLU(inplace=True)
+            )
+            (2): Conv2d(64, 5, kernel_size=(1, 1), stride=(1, 1))
+          )
+          (2): Sequential(
+            (0): Conv(
+              (conv): Conv2d(256, 64, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1))
+              (act): SiLU(inplace=True)
+            )
+            (1): Conv(
+              (conv): Conv2d(64, 64, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1))
+              (act): SiLU(inplace=True)
+            )
+            (2): Conv2d(64, 5, kernel_size=(1, 1), stride=(1, 1))
+          )
+        )
+        (dfl): DFL(
+          (conv): Conv2d(16, 1, kernel_size=(1, 1), stride=(1, 1), bias=False)
+        )
+      )
+    )
+  )
+)
+2026-05-20 22:19:26,909 - fastapi_app - INFO - [DEBUG] 苹果检测完成: detected=True, count=1
+2026-05-20 22:19:26,910 - fastapi_app - INFO - [DEBUG] 苹果跟踪器结果: total=2, historical_total=2, stage_20=2, stage_40=0, stage_60=0, stage_80=0, stage_100=0, max_maturity=20
+2026-05-20 22:21:14,345 - fastapi_app - INFO - WebSocket连接已断开，当前连接数: 0
+2026-05-20 22:22:40,651 - fastapi_app - INFO - [OK] 害虫检测器加载成功
+2026-05-20 22:22:40,696 - fastapi_app - INFO - [OK] 柑橘成熟度检测器加载成功
+2026-05-20 22:22:40,771 - fastapi_app - INFO - [OK] 番茄成熟度检测器加载成功
+2026-05-20 22:22:40,818 - fastapi_app - INFO - [OK] 苹果成熟度检测器加载成功
+2026-05-20 22:22:41,245 - fastapi_app - INFO - OpenClaw通知服务配置完成
+2026-05-20 22:22:41,871 - fastapi_app - INFO - [OK] 害虫检测器加载成功
+2026-05-20 22:22:41,953 - fastapi_app - INFO - [OK] 柑橘成熟度检测器加载成功
+2026-05-20 22:22:42,051 - fastapi_app - INFO - [OK] 番茄成熟度检测器加载成功
+2026-05-20 22:22:42,126 - fastapi_app - INFO - [OK] 苹果成熟度检测器加载成功
+2026-05-20 22:22:42,623 - fastapi_app - INFO - OpenClaw通知服务配置完成(HTTPS)
+2026-05-20 22:22:46,162 - fastapi_app - INFO - WebSocket连接已建立，当前连接数: 1
+2026-05-20 22:22:46,554 - fastapi_app - INFO - WebSocket连接已建立，当前连接数: 2
+2026-05-20 22:22:46,712 - fastapi_app - INFO - WebSocket连接已建立，当前连接数: 3
+2026-05-20 22:22:48,845 - fastapi_app - INFO - WebSocket连接已断开，当前连接数: 2
+2026-05-20 22:22:48,849 - fastapi_app - INFO - WebSocket连接已断开，当前连接数: 1
+2026-05-20 22:24:53,795 - fastapi_app - INFO - WebSocket连接已断开，当前连接数: 0
+2026-05-20 22:28:14,456 - fastapi_app - INFO - [OK] 害虫检测器加载成功
+2026-05-20 22:28:14,509 - fastapi_app - INFO - [OK] 柑橘成熟度检测器加载成功
+2026-05-20 22:28:14,570 - fastapi_app - INFO - [OK] 番茄成熟度检测器加载成功
+2026-05-20 22:28:14,614 - fastapi_app - INFO - [OK] 苹果成熟度检测器加载成功
+2026-05-20 22:28:15,027 - fastapi_app - INFO - OpenClaw通知服务配置完成
+2026-05-20 22:28:15,806 - fastapi_app - INFO - [OK] 害虫检测器加载成功
+2026-05-20 22:28:15,854 - fastapi_app - INFO - [OK] 柑橘成熟度检测器加载成功
+2026-05-20 22:28:15,937 - fastapi_app - INFO - [OK] 番茄成熟度检测器加载成功
+2026-05-20 22:28:15,990 - fastapi_app - INFO - [OK] 苹果成熟度检测器加载成功
+2026-05-20 22:28:16,521 - fastapi_app - INFO - OpenClaw通知服务配置完成(HTTPS)
+2026-05-20 22:28:19,663 - fastapi_app - INFO - WebSocket连接已建立，当前连接数: 1
+2026-05-20 22:28:24,228 - fastapi_app - INFO - WebSocket连接已断开，当前连接数: 0
+2026-05-20 22:28:25,186 - fastapi_app - INFO - WebSocket连接已建立，当前连接数: 1
+2026-05-20 22:28:25,532 - fastapi_app - INFO - WebSocket连接已建立，当前连接数: 2
+2026-05-20 22:28:25,691 - fastapi_app - INFO - WebSocket连接已建立，当前连接数: 3
+2026-05-20 22:28:27,854 - fastapi_app - INFO - WebSocket连接已断开，当前连接数: 2
+2026-05-20 22:28:27,856 - fastapi_app - INFO - WebSocket连接已断开，当前连接数: 1
+2026-05-20 22:30:02,809 - fastapi_app - INFO - WebSocket连接已断开，当前连接数: 0
+2026-05-20 22:40:51,965 - fastapi_app - INFO - [OK] 害虫检测器加载成功
+2026-05-20 22:40:52,011 - fastapi_app - INFO - [OK] 柑橘成熟度检测器加载成功
+2026-05-20 22:40:52,099 - fastapi_app - INFO - [OK] 番茄成熟度检测器加载成功
+2026-05-20 22:40:52,143 - fastapi_app - INFO - [OK] 苹果成熟度检测器加载成功
+2026-05-20 22:40:52,597 - fastapi_app - INFO - OpenClaw通知服务配置完成
+2026-05-20 22:40:54,122 - fastapi_app - INFO - [OK] 害虫检测器加载成功
+2026-05-20 22:40:54,183 - fastapi_app - INFO - [OK] 柑橘成熟度检测器加载成功
+2026-05-20 22:40:54,287 - fastapi_app - INFO - [OK] 番茄成熟度检测器加载成功
+2026-05-20 22:40:54,329 - fastapi_app - INFO - [OK] 苹果成熟度检测器加载成功
+2026-05-20 22:40:54,778 - fastapi_app - INFO - OpenClaw通知服务配置完成(HTTPS)
+2026-05-20 22:40:58,829 - fastapi_app - INFO - WebSocket连接已建立，当前连接数: 1
+2026-05-20 22:43:41,553 - fastapi_app - INFO - WebSocket连接已断开，当前连接数: 0
+2026-05-21 12:57:23,699 - fastapi_app - INFO - [OK] 害虫检测器加载成功
+2026-05-21 12:57:23,706 - fastapi_app - INFO - [OK] 害虫检测器加载成功
+2026-05-21 12:57:23,814 - fastapi_app - INFO - [OK] 柑橘成熟度检测器加载成功
+2026-05-21 12:57:23,816 - fastapi_app - INFO - [OK] 柑橘成熟度检测器加载成功
+2026-05-21 12:57:23,978 - fastapi_app - INFO - [OK] 番茄成熟度检测器加载成功
+2026-05-21 12:57:23,981 - fastapi_app - INFO - [OK] 番茄成熟度检测器加载成功
+2026-05-21 12:57:24,032 - fastapi_app - INFO - [OK] 苹果成熟度检测器加载成功
+2026-05-21 12:57:24,040 - fastapi_app - INFO - [OK] 苹果成熟度检测器加载成功
+2026-05-21 12:57:25,149 - fastapi_app - INFO - OpenClaw通知服务配置完成(HTTPS)
+2026-05-21 12:57:25,154 - fastapi_app - INFO - OpenClaw通知服务配置完成
+2026-05-21 12:58:14,174 - fastapi_app - INFO - WebSocket连接已建立，当前连接数: 1
+2026-05-21 12:58:14,951 - fastapi_app - INFO - WebSocket连接已建立，当前连接数: 2
+2026-05-21 12:58:14,991 - fastapi_app - INFO - WebSocket连接已建立，当前连接数: 3
+2026-05-21 12:58:17,167 - fastapi_app - INFO - WebSocket连接已断开，当前连接数: 2
+2026-05-21 12:58:17,168 - fastapi_app - INFO - WebSocket连接已断开，当前连接数: 1
+2026-05-21 12:58:45,015 - fastapi_app - INFO - [DEBUG] 苹果跟踪器结果: total=1, historical_total=1, stage_20=1, stage_40=0, stage_60=0, stage_80=0, stage_100=0, max_maturity=20
+2026-05-21 12:58:45,015 - fastapi_app - INFO - [DEBUG] 苹果检测状态: apple_detected=True, current_frame_count=1
+2026-05-21 12:58:45,016 - fastapi_app - INFO - [DEBUG] 苹果预测0: class=20%_ripe, maturity=20, conf=0.38861018419265747
+2026-05-21 12:58:45,792 - fastapi_app - INFO - [DEBUG] 苹果跟踪器结果: total=1, historical_total=1, stage_20=1, stage_40=0, stage_60=0, stage_80=0, stage_100=0, max_maturity=20
+2026-05-21 12:58:45,792 - fastapi_app - INFO - [DEBUG] 苹果检测状态: apple_detected=True, current_frame_count=1
+2026-05-21 12:58:45,794 - fastapi_app - INFO - [DEBUG] 苹果预测0: class=20%_ripe, maturity=20, conf=0.3260935842990875
+2026-05-21 12:58:46,764 - fastapi_app - INFO - [DEBUG] 苹果跟踪器结果: total=2, historical_total=2, stage_20=2, stage_40=0, stage_60=0, stage_80=0, stage_100=0, max_maturity=20
+2026-05-21 12:58:46,765 - fastapi_app - INFO - [DEBUG] 苹果检测状态: apple_detected=True, current_frame_count=2
+2026-05-21 12:58:46,765 - fastapi_app - INFO - [DEBUG] 苹果预测0: class=20%_ripe, maturity=20, conf=0.30709466338157654
+2026-05-21 12:58:46,765 - fastapi_app - INFO - [DEBUG] 苹果预测1: class=20%_ripe, maturity=20, conf=0.272893488407135
+2026-05-21 12:58:47,768 - fastapi_app - INFO - [DEBUG] 苹果跟踪器结果: total=2, historical_total=2, stage_20=2, stage_40=0, stage_60=0, stage_80=0, stage_100=0, max_maturity=20
+2026-05-21 12:58:47,768 - fastapi_app - INFO - [DEBUG] 苹果检测状态: apple_detected=True, current_frame_count=1
+2026-05-21 12:58:47,768 - fastapi_app - INFO - [DEBUG] 苹果预测0: class=20%_ripe, maturity=20, conf=0.32938486337661743
+2026-05-21 12:58:48,790 - fastapi_app - INFO - [DEBUG] 苹果跟踪器结果: total=2, historical_total=2, stage_20=2, stage_40=0, stage_60=0, stage_80=0, stage_100=0, max_maturity=20
+2026-05-21 12:58:48,791 - fastapi_app - INFO - [DEBUG] 苹果检测状态: apple_detected=True, current_frame_count=2
+2026-05-21 12:58:48,791 - fastapi_app - INFO - [DEBUG] 苹果预测0: class=20%_ripe, maturity=20, conf=0.4378323256969452
+2026-05-21 12:58:48,791 - fastapi_app - INFO - [DEBUG] 苹果预测1: class=20%_ripe, maturity=20, conf=0.3114686906337738
+2026-05-21 12:58:49,774 - fastapi_app - INFO - [DEBUG] 苹果跟踪器结果: total=2, historical_total=2, stage_20=2, stage_40=0, stage_60=0, stage_80=0, stage_100=0, max_maturity=20
+2026-05-21 12:58:49,775 - fastapi_app - INFO - [DEBUG] 苹果检测状态: apple_detected=True, current_frame_count=2
+2026-05-21 12:58:49,775 - fastapi_app - INFO - [DEBUG] 苹果预测0: class=20%_ripe, maturity=20, conf=0.388526976108551
+2026-05-21 12:58:49,776 - fastapi_app - INFO - [DEBUG] 苹果预测1: class=20%_ripe, maturity=20, conf=0.3833428919315338
+2026-05-21 12:58:50,807 - fastapi_app - INFO - [DEBUG] 苹果跟踪器结果: total=2, historical_total=2, stage_20=2, stage_40=0, stage_60=0, stage_80=0, stage_100=0, max_maturity=20
+2026-05-21 12:58:50,808 - fastapi_app - INFO - [DEBUG] 苹果检测状态: apple_detected=True, current_frame_count=2
+2026-05-21 12:58:50,808 - fastapi_app - INFO - [DEBUG] 苹果预测0: class=20%_ripe, maturity=20, conf=0.4023008346557617
+2026-05-21 12:58:50,809 - fastapi_app - INFO - [DEBUG] 苹果预测1: class=20%_ripe, maturity=20, conf=0.3683098554611206
+2026-05-21 12:58:51,815 - fastapi_app - INFO - [DEBUG] 苹果跟踪器结果: total=2, historical_total=2, stage_20=2, stage_40=0, stage_60=0, stage_80=0, stage_100=0, max_maturity=20
+2026-05-21 12:58:51,816 - fastapi_app - INFO - [DEBUG] 苹果检测状态: apple_detected=True, current_frame_count=1
+2026-05-21 12:58:51,816 - fastapi_app - INFO - [DEBUG] 苹果预测0: class=20%_ripe, maturity=20, conf=0.2637363374233246
+2026-05-21 12:58:52,824 - fastapi_app - INFO - [DEBUG] 苹果跟踪器结果: total=2, historical_total=2, stage_20=2, stage_40=0, stage_60=0, stage_80=0, stage_100=0, max_maturity=20
+2026-05-21 12:58:52,826 - fastapi_app - INFO - [DEBUG] 苹果检测状态: apple_detected=True, current_frame_count=1
+2026-05-21 12:58:52,827 - fastapi_app - INFO - [DEBUG] 苹果预测0: class=20%_ripe, maturity=20, conf=0.3190925717353821
+2026-05-21 12:58:53,832 - fastapi_app - INFO - [DEBUG] 苹果跟踪器结果: total=2, historical_total=2, stage_20=2, stage_40=0, stage_60=0, stage_80=0, stage_100=0, max_maturity=20
+2026-05-21 12:58:53,833 - fastapi_app - INFO - [DEBUG] 苹果检测状态: apple_detected=False, current_frame_count=0
+2026-05-21 12:58:54,855 - fastapi_app - INFO - [DEBUG] 苹果跟踪器结果: total=2, historical_total=2, stage_20=2, stage_40=0, stage_60=0, stage_80=0, stage_100=0, max_maturity=20
+2026-05-21 12:58:54,855 - fastapi_app - INFO - [DEBUG] 苹果检测状态: apple_detected=True, current_frame_count=1
+2026-05-21 12:58:54,855 - fastapi_app - INFO - [DEBUG] 苹果预测0: class=20%_ripe, maturity=20, conf=0.4914081394672394
+2026-05-21 12:58:55,861 - fastapi_app - INFO - [DEBUG] 苹果跟踪器结果: total=2, historical_total=2, stage_20=2, stage_40=0, stage_60=0, stage_80=0, stage_100=0, max_maturity=20
+2026-05-21 12:58:55,862 - fastapi_app - INFO - [DEBUG] 苹果检测状态: apple_detected=True, current_frame_count=1
+2026-05-21 12:58:55,862 - fastapi_app - INFO - [DEBUG] 苹果预测0: class=20%_ripe, maturity=20, conf=0.3105120360851288
+2026-05-21 12:58:56,880 - fastapi_app - INFO - [DEBUG] 苹果跟踪器结果: total=2, historical_total=2, stage_20=2, stage_40=0, stage_60=0, stage_80=0, stage_100=0, max_maturity=20
+2026-05-21 12:58:56,880 - fastapi_app - INFO - [DEBUG] 苹果检测状态: apple_detected=False, current_frame_count=0
+2026-05-21 12:58:57,915 - fastapi_app - INFO - [DEBUG] 苹果跟踪器结果: total=2, historical_total=2, stage_20=2, stage_40=0, stage_60=0, stage_80=0, stage_100=0, max_maturity=20
+2026-05-21 12:58:57,916 - fastapi_app - INFO - [DEBUG] 苹果检测状态: apple_detected=False, current_frame_count=0
+2026-05-21 12:58:58,906 - fastapi_app - INFO - [DEBUG] 苹果跟踪器结果: total=1, historical_total=2, stage_20=1, stage_40=0, stage_60=0, stage_80=0, stage_100=0, max_maturity=20
+2026-05-21 12:58:58,907 - fastapi_app - INFO - [DEBUG] 苹果检测状态: apple_detected=False, current_frame_count=0
+2026-05-21 12:58:59,848 - fastapi_app - INFO - [DEBUG] 苹果跟踪器结果: total=1, historical_total=2, stage_20=1, stage_40=0, stage_60=0, stage_80=0, stage_100=0, max_maturity=20
+2026-05-21 12:58:59,848 - fastapi_app - INFO - [DEBUG] 苹果检测状态: apple_detected=True, current_frame_count=1
+2026-05-21 12:58:59,849 - fastapi_app - INFO - [DEBUG] 苹果预测0: class=20%_ripe, maturity=20, conf=0.29788854718208313
+2026-05-21 12:59:00,880 - fastapi_app - INFO - [DEBUG] 苹果跟踪器结果: total=1, historical_total=2, stage_20=1, stage_40=0, stage_60=0, stage_80=0, stage_100=0, max_maturity=20
+2026-05-21 12:59:00,880 - fastapi_app - INFO - [DEBUG] 苹果检测状态: apple_detected=False, current_frame_count=0
+2026-05-21 12:59:01,871 - fastapi_app - INFO - [DEBUG] 苹果跟踪器结果: total=1, historical_total=2, stage_20=1, stage_40=0, stage_60=0, stage_80=0, stage_100=0, max_maturity=20
+2026-05-21 12:59:01,873 - fastapi_app - INFO - [DEBUG] 苹果检测状态: apple_detected=False, current_frame_count=0
+2026-05-21 12:59:02,871 - fastapi_app - INFO - [DEBUG] 苹果跟踪器结果: total=1, historical_total=2, stage_20=1, stage_40=0, stage_60=0, stage_80=0, stage_100=0, max_maturity=20
+2026-05-21 12:59:02,871 - fastapi_app - INFO - [DEBUG] 苹果检测状态: apple_detected=False, current_frame_count=0
+2026-05-21 12:59:03,865 - fastapi_app - INFO - [DEBUG] 苹果跟踪器结果: total=1, historical_total=2, stage_20=1, stage_40=0, stage_60=0, stage_80=0, stage_100=0, max_maturity=20
+2026-05-21 12:59:03,865 - fastapi_app - INFO - [DEBUG] 苹果检测状态: apple_detected=False, current_frame_count=0
+2026-05-21 12:59:04,909 - fastapi_app - INFO - [DEBUG] 苹果跟踪器结果: total=1, historical_total=2, stage_20=1, stage_40=0, stage_60=0, stage_80=0, stage_100=0, max_maturity=20
+2026-05-21 12:59:04,910 - fastapi_app - INFO - [DEBUG] 苹果检测状态: apple_detected=False, current_frame_count=0
+2026-05-21 12:59:05,893 - fastapi_app - INFO - [DEBUG] 苹果跟踪器结果: total=1, historical_total=2, stage_20=1, stage_40=0, stage_60=0, stage_80=0, stage_100=0, max_maturity=20
+2026-05-21 12:59:05,893 - fastapi_app - INFO - [DEBUG] 苹果检测状态: apple_detected=True, current_frame_count=1
+2026-05-21 12:59:05,893 - fastapi_app - INFO - [DEBUG] 苹果预测0: class=20%_ripe, maturity=20, conf=0.26949387788772583
+2026-05-21 12:59:06,806 - fastapi_app - INFO - [DEBUG] 苹果跟踪器结果: total=1, historical_total=2, stage_20=1, stage_40=0, stage_60=0, stage_80=0, stage_100=0, max_maturity=20
+2026-05-21 12:59:06,806 - fastapi_app - INFO - [DEBUG] 苹果检测状态: apple_detected=False, current_frame_count=0
+2026-05-21 12:59:07,810 - fastapi_app - INFO - [DEBUG] 苹果跟踪器结果: total=1, historical_total=2, stage_20=1, stage_40=0, stage_60=0, stage_80=0, stage_100=0, max_maturity=20
+2026-05-21 12:59:07,811 - fastapi_app - INFO - [DEBUG] 苹果检测状态: apple_detected=False, current_frame_count=0
+2026-05-21 12:59:08,835 - fastapi_app - INFO - [DEBUG] 苹果跟踪器结果: total=1, historical_total=2, stage_20=1, stage_40=0, stage_60=0, stage_80=0, stage_100=0, max_maturity=20
+2026-05-21 12:59:08,835 - fastapi_app - INFO - [DEBUG] 苹果检测状态: apple_detected=False, current_frame_count=0
+2026-05-21 12:59:09,836 - fastapi_app - INFO - [DEBUG] 苹果跟踪器结果: total=1, historical_total=2, stage_20=1, stage_40=0, stage_60=0, stage_80=0, stage_100=0, max_maturity=20
+2026-05-21 12:59:09,836 - fastapi_app - INFO - [DEBUG] 苹果检测状态: apple_detected=True, current_frame_count=1
+2026-05-21 12:59:09,836 - fastapi_app - INFO - [DEBUG] 苹果预测0: class=20%_ripe, maturity=20, conf=0.353575199842453
+2026-05-21 12:59:10,858 - fastapi_app - INFO - [DEBUG] 苹果跟踪器结果: total=1, historical_total=2, stage_20=1, stage_40=0, stage_60=0, stage_80=0, stage_100=0, max_maturity=20
+2026-05-21 12:59:10,858 - fastapi_app - INFO - [DEBUG] 苹果检测状态: apple_detected=True, current_frame_count=1
+2026-05-21 12:59:10,858 - fastapi_app - INFO - [DEBUG] 苹果预测0: class=20%_ripe, maturity=20, conf=0.31687408685684204
+2026-05-21 12:59:11,853 - fastapi_app - INFO - [DEBUG] 苹果跟踪器结果: total=1, historical_total=2, stage_20=1, stage_40=0, stage_60=0, stage_80=0, stage_100=0, max_maturity=20
+2026-05-21 12:59:11,853 - fastapi_app - INFO - [DEBUG] 苹果检测状态: apple_detected=True, current_frame_count=1
+2026-05-21 12:59:11,853 - fastapi_app - INFO - [DEBUG] 苹果预测0: class=20%_ripe, maturity=20, conf=0.34921994805336
+2026-05-21 12:59:12,853 - fastapi_app - INFO - [DEBUG] 苹果跟踪器结果: total=1, historical_total=2, stage_20=1, stage_40=0, stage_60=0, stage_80=0, stage_100=0, max_maturity=20
+2026-05-21 12:59:12,854 - fastapi_app - INFO - [DEBUG] 苹果检测状态: apple_detected=True, current_frame_count=1
+2026-05-21 12:59:12,854 - fastapi_app - INFO - [DEBUG] 苹果预测0: class=20%_ripe, maturity=20, conf=0.2947562038898468
+2026-05-21 12:59:13,882 - fastapi_app - INFO - [DEBUG] 苹果跟踪器结果: total=1, historical_total=2, stage_20=1, stage_40=0, stage_60=0, stage_80=0, stage_100=0, max_maturity=20
+2026-05-21 12:59:13,882 - fastapi_app - INFO - [DEBUG] 苹果检测状态: apple_detected=True, current_frame_count=1
+2026-05-21 12:59:13,882 - fastapi_app - INFO - [DEBUG] 苹果预测0: class=20%_ripe, maturity=20, conf=0.5368198156356812
+2026-05-21 12:59:14,880 - fastapi_app - INFO - [DEBUG] 苹果跟踪器结果: total=1, historical_total=2, stage_20=1, stage_40=0, stage_60=0, stage_80=0, stage_100=0, max_maturity=20
+2026-05-21 12:59:14,880 - fastapi_app - INFO - [DEBUG] 苹果检测状态: apple_detected=True, current_frame_count=1
+2026-05-21 12:59:14,880 - fastapi_app - INFO - [DEBUG] 苹果预测0: class=20%_ripe, maturity=20, conf=0.5450177788734436
+2026-05-21 12:59:15,867 - fastapi_app - INFO - [DEBUG] 苹果跟踪器结果: total=1, historical_total=2, stage_20=1, stage_40=0, stage_60=0, stage_80=0, stage_100=0, max_maturity=20
+2026-05-21 12:59:15,868 - fastapi_app - INFO - [DEBUG] 苹果检测状态: apple_detected=False, current_frame_count=0
+2026-05-21 12:59:16,868 - fastapi_app - INFO - [DEBUG] 苹果跟踪器结果: total=1, historical_total=2, stage_20=1, stage_40=0, stage_60=0, stage_80=0, stage_100=0, max_maturity=20
+2026-05-21 12:59:16,868 - fastapi_app - INFO - [DEBUG] 苹果检测状态: apple_detected=False, current_frame_count=0
+2026-05-21 12:59:17,879 - fastapi_app - INFO - [DEBUG] 苹果跟踪器结果: total=1, historical_total=2, stage_20=1, stage_40=0, stage_60=0, stage_80=0, stage_100=0, max_maturity=20
+2026-05-21 12:59:17,879 - fastapi_app - INFO - [DEBUG] 苹果检测状态: apple_detected=False, current_frame_count=0
+2026-05-21 12:59:18,876 - fastapi_app - INFO - [DEBUG] 苹果跟踪器结果: total=1, historical_total=2, stage_20=1, stage_40=0, stage_60=0, stage_80=0, stage_100=0, max_maturity=20
+2026-05-21 12:59:18,876 - fastapi_app - INFO - [DEBUG] 苹果检测状态: apple_detected=False, current_frame_count=0
+2026-05-21 12:59:19,878 - fastapi_app - INFO - [DEBUG] 苹果跟踪器结果: total=1, historical_total=2, stage_20=1, stage_40=0, stage_60=0, stage_80=0, stage_100=0, max_maturity=20
+2026-05-21 12:59:19,879 - fastapi_app - INFO - [DEBUG] 苹果检测状态: apple_detected=True, current_frame_count=1
+2026-05-21 12:59:19,879 - fastapi_app - INFO - [DEBUG] 苹果预测0: class=20%_ripe, maturity=20, conf=0.30120736360549927
+2026-05-21 12:59:20,920 - fastapi_app - INFO - [DEBUG] 苹果跟踪器结果: total=1, historical_total=2, stage_20=1, stage_40=0, stage_60=0, stage_80=0, stage_100=0, max_maturity=20
+2026-05-21 12:59:20,920 - fastapi_app - INFO - [DEBUG] 苹果检测状态: apple_detected=True, current_frame_count=1
+2026-05-21 12:59:20,921 - fastapi_app - INFO - [DEBUG] 苹果预测0: class=20%_ripe, maturity=20, conf=0.2828049957752228
+2026-05-21 12:59:21,898 - fastapi_app - INFO - [DEBUG] 苹果跟踪器结果: total=1, historical_total=2, stage_20=2, stage_40=0, stage_60=0, stage_80=0, stage_100=1, max_maturity=100
+2026-05-21 12:59:21,898 - fastapi_app - INFO - [DEBUG] 苹果检测状态: apple_detected=True, current_frame_count=1
+2026-05-21 12:59:21,898 - fastapi_app - INFO - [DEBUG] 苹果预测0: class=100%_ripe, maturity=100, conf=0.28450843691825867
+2026-05-21 12:59:22,893 - fastapi_app - INFO - [DEBUG] 苹果跟踪器结果: total=1, historical_total=2, stage_20=2, stage_40=0, stage_60=0, stage_80=0, stage_100=1, max_maturity=100
+2026-05-21 12:59:22,894 - fastapi_app - INFO - [DEBUG] 苹果检测状态: apple_detected=False, current_frame_count=0
+2026-05-21 12:59:24,057 - fastapi_app - INFO - [DEBUG] 苹果跟踪器结果: total=1, historical_total=2, stage_20=1, stage_40=0, stage_60=0, stage_80=0, stage_100=0, max_maturity=100
+2026-05-21 12:59:24,057 - fastapi_app - INFO - [DEBUG] 苹果检测状态: apple_detected=True, current_frame_count=1
+2026-05-21 12:59:24,057 - fastapi_app - INFO - [DEBUG] 苹果预测0: class=20%_ripe, maturity=20, conf=0.30406537652015686
+2026-05-21 12:59:25,119 - fastapi_app - INFO - [DEBUG] 苹果跟踪器结果: total=1, historical_total=2, stage_20=1, stage_40=0, stage_60=0, stage_80=0, stage_100=0, max_maturity=100
+2026-05-21 12:59:25,121 - fastapi_app - INFO - [DEBUG] 苹果检测状态: apple_detected=False, current_frame_count=0
+2026-05-21 12:59:26,024 - fastapi_app - INFO - [DEBUG] 苹果跟踪器结果: total=1, historical_total=2, stage_20=1, stage_40=0, stage_60=0, stage_80=0, stage_100=0, max_maturity=100
+2026-05-21 12:59:26,026 - fastapi_app - INFO - [DEBUG] 苹果检测状态: apple_detected=False, current_frame_count=0
+2026-05-21 12:59:27,105 - fastapi_app - INFO - [DEBUG] 苹果跟踪器结果: total=1, historical_total=2, stage_20=1, stage_40=0, stage_60=0, stage_80=0, stage_100=0, max_maturity=100
+2026-05-21 12:59:27,107 - fastapi_app - INFO - [DEBUG] 苹果检测状态: apple_detected=False, current_frame_count=0
+2026-05-21 12:59:28,032 - fastapi_app - INFO - [DEBUG] 苹果跟踪器结果: total=1, historical_total=2, stage_20=1, stage_40=0, stage_60=0, stage_80=0, stage_100=0, max_maturity=100
+2026-05-21 12:59:28,033 - fastapi_app - INFO - [DEBUG] 苹果检测状态: apple_detected=False, current_frame_count=0
+2026-05-21 12:59:29,077 - fastapi_app - INFO - [DEBUG] 苹果跟踪器结果: total=1, historical_total=2, stage_20=1, stage_40=0, stage_60=0, stage_80=0, stage_100=0, max_maturity=100
+2026-05-21 12:59:29,077 - fastapi_app - INFO - [DEBUG] 苹果检测状态: apple_detected=False, current_frame_count=0
+2026-05-21 12:59:30,043 - fastapi_app - INFO - [DEBUG] 苹果跟踪器结果: total=2, historical_total=2, stage_20=2, stage_40=0, stage_60=0, stage_80=0, stage_100=0, max_maturity=100
+2026-05-21 12:59:30,044 - fastapi_app - INFO - [DEBUG] 苹果检测状态: apple_detected=False, current_frame_count=0
+2026-05-21 12:59:31,036 - fastapi_app - INFO - [DEBUG] 苹果跟踪器结果: total=1, historical_total=3, stage_20=1, stage_40=0, stage_60=0, stage_80=0, stage_100=0, max_maturity=100
+2026-05-21 12:59:31,037 - fastapi_app - INFO - [DEBUG] 苹果检测状态: apple_detected=True, current_frame_count=1
+2026-05-21 12:59:31,037 - fastapi_app - INFO - [DEBUG] 苹果预测0: class=20%_ripe, maturity=20, conf=0.2594831883907318
+2026-05-21 12:59:32,127 - fastapi_app - INFO - [DEBUG] 苹果跟踪器结果: total=1, historical_total=3, stage_20=1, stage_40=0, stage_60=0, stage_80=0, stage_100=0, max_maturity=100
+2026-05-21 12:59:32,127 - fastapi_app - INFO - [DEBUG] 苹果检测状态: apple_detected=False, current_frame_count=0
+2026-05-21 12:59:33,072 - fastapi_app - INFO - [DEBUG] 苹果跟踪器结果: total=1, historical_total=3, stage_20=1, stage_40=0, stage_60=0, stage_80=0, stage_100=0, max_maturity=100
+2026-05-21 12:59:33,072 - fastapi_app - INFO - [DEBUG] 苹果检测状态: apple_detected=False, current_frame_count=0
+2026-05-21 12:59:34,860 - fastapi_app - INFO - [DEBUG] 苹果跟踪器结果: total=1, historical_total=3, stage_20=1, stage_40=0, stage_60=0, stage_80=0, stage_100=0, max_maturity=100
+2026-05-21 12:59:34,860 - fastapi_app - INFO - [DEBUG] 苹果检测状态: apple_detected=True, current_frame_count=1
+2026-05-21 12:59:34,860 - fastapi_app - INFO - [DEBUG] 苹果预测0: class=20%_ripe, maturity=20, conf=0.3002491295337677
+2026-05-21 12:59:35,833 - fastapi_app - INFO - [DEBUG] 苹果跟踪器结果: total=1, historical_total=3, stage_20=1, stage_40=0, stage_60=0, stage_80=0, stage_100=0, max_maturity=100
+2026-05-21 12:59:35,833 - fastapi_app - INFO - [DEBUG] 苹果检测状态: apple_detected=False, current_frame_count=0
+2026-05-21 12:59:36,493 - fastapi_app - INFO - [DEBUG] 苹果跟踪器结果: total=1, historical_total=3, stage_20=1, stage_40=0, stage_60=0, stage_80=0, stage_100=0, max_maturity=100
+2026-05-21 12:59:36,494 - fastapi_app - INFO - [DEBUG] 苹果检测状态: apple_detected=False, current_frame_count=0
+2026-05-21 12:59:37,543 - fastapi_app - INFO - [DEBUG] 苹果跟踪器结果: total=1, historical_total=3, stage_20=1, stage_40=0, stage_60=0, stage_80=0, stage_100=0, max_maturity=100
+2026-05-21 12:59:37,543 - fastapi_app - INFO - [DEBUG] 苹果检测状态: apple_detected=False, current_frame_count=0
+2026-05-21 12:59:38,557 - fastapi_app - INFO - [DEBUG] 苹果跟踪器结果: total=1, historical_total=3, stage_20=1, stage_40=0, stage_60=0, stage_80=0, stage_100=0, max_maturity=100
+2026-05-21 12:59:38,557 - fastapi_app - INFO - [DEBUG] 苹果检测状态: apple_detected=True, current_frame_count=1
+2026-05-21 12:59:38,559 - fastapi_app - INFO - [DEBUG] 苹果预测0: class=20%_ripe, maturity=20, conf=0.2964727282524109
+2026-05-21 12:59:39,661 - fastapi_app - INFO - [DEBUG] 苹果跟踪器结果: total=1, historical_total=3, stage_20=1, stage_40=0, stage_60=0, stage_80=0, stage_100=0, max_maturity=100
+2026-05-21 12:59:39,662 - fastapi_app - INFO - [DEBUG] 苹果检测状态: apple_detected=False, current_frame_count=0
+2026-05-21 12:59:40,631 - fastapi_app - INFO - [DEBUG] 苹果跟踪器结果: total=1, historical_total=3, stage_20=1, stage_40=0, stage_60=0, stage_80=0, stage_100=0, max_maturity=100
+2026-05-21 12:59:40,633 - fastapi_app - INFO - [DEBUG] 苹果检测状态: apple_detected=False, current_frame_count=0
+2026-05-21 12:59:41,669 - fastapi_app - INFO - [DEBUG] 苹果跟踪器结果: total=1, historical_total=3, stage_20=1, stage_40=0, stage_60=0, stage_80=0, stage_100=0, max_maturity=100
+2026-05-21 12:59:41,670 - fastapi_app - INFO - [DEBUG] 苹果检测状态: apple_detected=True, current_frame_count=1
+2026-05-21 12:59:41,670 - fastapi_app - INFO - [DEBUG] 苹果预测0: class=20%_ripe, maturity=20, conf=0.27065104246139526
+2026-05-21 12:59:42,616 - fastapi_app - INFO - [DEBUG] 苹果跟踪器结果: total=1, historical_total=3, stage_20=1, stage_40=0, stage_60=0, stage_80=0, stage_100=0, max_maturity=100
+2026-05-21 12:59:42,618 - fastapi_app - INFO - [DEBUG] 苹果检测状态: apple_detected=False, current_frame_count=0
+2026-05-21 12:59:43,690 - fastapi_app - INFO - [DEBUG] 苹果跟踪器结果: total=1, historical_total=3, stage_20=1, stage_40=0, stage_60=0, stage_80=0, stage_100=0, max_maturity=100
+2026-05-21 12:59:43,690 - fastapi_app - INFO - [DEBUG] 苹果检测状态: apple_detected=False, current_frame_count=0
+2026-05-21 12:59:44,595 - fastapi_app - INFO - [DEBUG] 苹果跟踪器结果: total=1, historical_total=3, stage_20=1, stage_40=0, stage_60=0, stage_80=0, stage_100=0, max_maturity=100
+2026-05-21 12:59:44,595 - fastapi_app - INFO - [DEBUG] 苹果检测状态: apple_detected=False, current_frame_count=0
+2026-05-21 12:59:45,572 - fastapi_app - INFO - [DEBUG] 苹果跟踪器结果: total=1, historical_total=3, stage_20=1, stage_40=0, stage_60=0, stage_80=0, stage_100=0, max_maturity=100
+2026-05-21 12:59:45,572 - fastapi_app - INFO - [DEBUG] 苹果检测状态: apple_detected=False, current_frame_count=0
+2026-05-21 12:59:46,722 - fastapi_app - INFO - [DEBUG] 苹果跟踪器结果: total=1, historical_total=3, stage_20=3, stage_40=0, stage_60=0, stage_80=0, stage_100=1, max_maturity=100
+2026-05-21 12:59:46,723 - fastapi_app - INFO - [DEBUG] 苹果检测状态: apple_detected=True, current_frame_count=1
+2026-05-21 12:59:46,723 - fastapi_app - INFO - [DEBUG] 苹果预测0: class=100%_ripe, maturity=100, conf=0.26749590039253235
+2026-05-21 12:59:47,597 - fastapi_app - INFO - [DEBUG] 苹果跟踪器结果: total=1, historical_total=3, stage_20=1, stage_40=0, stage_60=0, stage_80=0, stage_100=0, max_maturity=100
+2026-05-21 12:59:47,599 - fastapi_app - INFO - [DEBUG] 苹果检测状态: apple_detected=True, current_frame_count=1
+2026-05-21 12:59:47,599 - fastapi_app - INFO - [DEBUG] 苹果预测0: class=20%_ripe, maturity=20, conf=0.3732841908931732
+2026-05-21 12:59:48,638 - fastapi_app - INFO - [DEBUG] 苹果跟踪器结果: total=1, historical_total=3, stage_20=1, stage_40=0, stage_60=0, stage_80=0, stage_100=0, max_maturity=100
+2026-05-21 12:59:48,640 - fastapi_app - INFO - [DEBUG] 苹果检测状态: apple_detected=True, current_frame_count=1
+2026-05-21 12:59:48,640 - fastapi_app - INFO - [DEBUG] 苹果预测0: class=20%_ripe, maturity=20, conf=0.5267975926399231
+2026-05-21 12:59:49,574 - fastapi_app - INFO - [DEBUG] 苹果跟踪器结果: total=1, historical_total=3, stage_20=1, stage_40=0, stage_60=0, stage_80=0, stage_100=0, max_maturity=100
+2026-05-21 12:59:49,574 - fastapi_app - INFO - [DEBUG] 苹果检测状态: apple_detected=False, current_frame_count=0
+2026-05-21 13:01:43,943 - fastapi_app - INFO - WebSocket连接已断开，当前连接数: 0
+2026-05-21 13:04:49,925 - fastapi_app - INFO - [OK] 害虫检测器加载成功
+2026-05-21 13:04:49,991 - fastapi_app - INFO - [OK] 柑橘成熟度检测器加载成功
+2026-05-21 13:04:50,066 - fastapi_app - INFO - [OK] 番茄成熟度检测器加载成功
+2026-05-21 13:04:50,119 - fastapi_app - INFO - [OK] 苹果成熟度检测器加载成功
+2026-05-21 13:04:50,745 - fastapi_app - INFO - OpenClaw通知服务配置完成
+2026-05-21 13:04:51,006 - fastapi_app - INFO - [OK] 害虫检测器加载成功
+2026-05-21 13:04:51,075 - fastapi_app - INFO - [OK] 柑橘成熟度检测器加载成功
+2026-05-21 13:04:51,174 - fastapi_app - INFO - [OK] 番茄成熟度检测器加载成功
+2026-05-21 13:04:51,245 - fastapi_app - INFO - [OK] 苹果成熟度检测器加载成功
+2026-05-21 13:04:51,786 - fastapi_app - INFO - OpenClaw通知服务配置完成(HTTPS)
+2026-05-21 13:04:52,287 - fastapi_app - INFO - WebSocket连接已建立，当前连接数: 1
+2026-05-21 13:04:56,310 - fastapi_app - INFO - WebSocket连接已断开，当前连接数: 0
+2026-05-21 13:04:57,264 - fastapi_app - INFO - WebSocket连接已建立，当前连接数: 1
+2026-05-21 13:04:57,708 - fastapi_app - INFO - WebSocket连接已建立，当前连接数: 2
+2026-05-21 13:04:57,900 - fastapi_app - INFO - WebSocket连接已建立，当前连接数: 3
+2026-05-21 13:04:59,976 - fastapi_app - INFO - WebSocket连接已断开，当前连接数: 2
+2026-05-21 13:04:59,980 - fastapi_app - INFO - WebSocket连接已断开，当前连接数: 1
+2026-05-21 13:05:09,462 - fastapi_app - INFO - [DEBUG] 苹果跟踪器结果: total=1, historical_total=1, stage_20=1, stage_40=0, stage_60=0, stage_80=0, stage_100=0, max_maturity=20
+2026-05-21 13:05:09,462 - fastapi_app - INFO - [DEBUG] 苹果检测状态: apple_detected=True, current_frame_count=1
+2026-05-21 13:05:09,463 - fastapi_app - INFO - [DEBUG] 苹果预测0: class=20%_ripe, maturity=20, conf=0.38861018419265747
+2026-05-21 13:05:10,359 - fastapi_app - INFO - [DEBUG] 苹果跟踪器结果: total=1, historical_total=1, stage_20=1, stage_40=0, stage_60=0, stage_80=0, stage_100=0, max_maturity=20
+2026-05-21 13:05:10,360 - fastapi_app - INFO - [DEBUG] 苹果检测状态: apple_detected=True, current_frame_count=1
+2026-05-21 13:05:10,360 - fastapi_app - INFO - [DEBUG] 苹果预测0: class=20%_ripe, maturity=20, conf=0.3260935842990875
+2026-05-21 13:05:11,269 - fastapi_app - INFO - [DEBUG] 苹果跟踪器结果: total=2, historical_total=2, stage_20=2, stage_40=0, stage_60=0, stage_80=0, stage_100=0, max_maturity=20
+2026-05-21 13:05:11,270 - fastapi_app - INFO - [DEBUG] 苹果检测状态: apple_detected=True, current_frame_count=2
+2026-05-21 13:05:11,270 - fastapi_app - INFO - [DEBUG] 苹果预测0: class=20%_ripe, maturity=20, conf=0.30709466338157654
+2026-05-21 13:05:11,270 - fastapi_app - INFO - [DEBUG] 苹果预测1: class=20%_ripe, maturity=20, conf=0.272893488407135
+2026-05-21 13:05:12,329 - fastapi_app - INFO - [DEBUG] 苹果跟踪器结果: total=2, historical_total=2, stage_20=2, stage_40=0, stage_60=0, stage_80=0, stage_100=0, max_maturity=20
+2026-05-21 13:05:12,329 - fastapi_app - INFO - [DEBUG] 苹果检测状态: apple_detected=True, current_frame_count=1
+2026-05-21 13:05:12,330 - fastapi_app - INFO - [DEBUG] 苹果预测0: class=20%_ripe, maturity=20, conf=0.32938486337661743
+2026-05-21 13:05:13,289 - fastapi_app - INFO - [DEBUG] 苹果跟踪器结果: total=2, historical_total=2, stage_20=2, stage_40=0, stage_60=0, stage_80=0, stage_100=0, max_maturity=20
+2026-05-21 13:05:13,289 - fastapi_app - INFO - [DEBUG] 苹果检测状态: apple_detected=True, current_frame_count=2
+2026-05-21 13:05:13,289 - fastapi_app - INFO - [DEBUG] 苹果预测0: class=20%_ripe, maturity=20, conf=0.4378323256969452
+2026-05-21 13:05:13,290 - fastapi_app - INFO - [DEBUG] 苹果预测1: class=20%_ripe, maturity=20, conf=0.3114686906337738
+2026-05-21 13:05:14,309 - fastapi_app - INFO - [DEBUG] 苹果跟踪器结果: total=2, historical_total=2, stage_20=2, stage_40=0, stage_60=0, stage_80=0, stage_100=0, max_maturity=20
+2026-05-21 13:05:14,309 - fastapi_app - INFO - [DEBUG] 苹果检测状态: apple_detected=True, current_frame_count=2
+2026-05-21 13:05:14,311 - fastapi_app - INFO - [DEBUG] 苹果预测0: class=20%_ripe, maturity=20, conf=0.388526976108551
+2026-05-21 13:05:14,311 - fastapi_app - INFO - [DEBUG] 苹果预测1: class=20%_ripe, maturity=20, conf=0.3833428919315338
+2026-05-21 13:05:15,292 - fastapi_app - INFO - [DEBUG] 苹果跟踪器结果: total=2, historical_total=2, stage_20=2, stage_40=0, stage_60=0, stage_80=0, stage_100=0, max_maturity=20
+2026-05-21 13:05:15,293 - fastapi_app - INFO - [DEBUG] 苹果检测状态: apple_detected=True, current_frame_count=2
+2026-05-21 13:05:15,293 - fastapi_app - INFO - [DEBUG] 苹果预测0: class=20%_ripe, maturity=20, conf=0.4023008346557617
+2026-05-21 13:05:15,294 - fastapi_app - INFO - [DEBUG] 苹果预测1: class=20%_ripe, maturity=20, conf=0.3683098554611206
+2026-05-21 13:05:16,318 - fastapi_app - INFO - [DEBUG] 苹果跟踪器结果: total=2, historical_total=2, stage_20=2, stage_40=0, stage_60=0, stage_80=0, stage_100=0, max_maturity=20
+2026-05-21 13:05:16,319 - fastapi_app - INFO - [DEBUG] 苹果检测状态: apple_detected=True, current_frame_count=1
+2026-05-21 13:05:16,319 - fastapi_app - INFO - [DEBUG] 苹果预测0: class=20%_ripe, maturity=20, conf=0.2637363374233246
+2026-05-21 13:05:17,306 - fastapi_app - INFO - [DEBUG] 苹果跟踪器结果: total=2, historical_total=2, stage_20=2, stage_40=0, stage_60=0, stage_80=0, stage_100=0, max_maturity=20
+2026-05-21 13:05:17,307 - fastapi_app - INFO - [DEBUG] 苹果检测状态: apple_detected=True, current_frame_count=1
+2026-05-21 13:05:17,308 - fastapi_app - INFO - [DEBUG] 苹果预测0: class=20%_ripe, maturity=20, conf=0.3190925717353821
+2026-05-21 13:05:18,313 - fastapi_app - INFO - [DEBUG] 苹果跟踪器结果: total=2, historical_total=2, stage_20=2, stage_40=0, stage_60=0, stage_80=0, stage_100=0, max_maturity=20
+2026-05-21 13:05:18,314 - fastapi_app - INFO - [DEBUG] 苹果检测状态: apple_detected=False, current_frame_count=0
+2026-05-21 13:05:19,313 - fastapi_app - INFO - [DEBUG] 苹果跟踪器结果: total=2, historical_total=2, stage_20=2, stage_40=0, stage_60=0, stage_80=0, stage_100=0, max_maturity=20
+2026-05-21 13:05:19,313 - fastapi_app - INFO - [DEBUG] 苹果检测状态: apple_detected=True, current_frame_count=1
+2026-05-21 13:05:19,313 - fastapi_app - INFO - [DEBUG] 苹果预测0: class=20%_ripe, maturity=20, conf=0.4914081394672394
+2026-05-21 13:05:20,331 - fastapi_app - INFO - [DEBUG] 苹果跟踪器结果: total=2, historical_total=2, stage_20=2, stage_40=0, stage_60=0, stage_80=0, stage_100=0, max_maturity=20
+2026-05-21 13:05:20,332 - fastapi_app - INFO - [DEBUG] 苹果检测状态: apple_detected=True, current_frame_count=1
+2026-05-21 13:05:20,332 - fastapi_app - INFO - [DEBUG] 苹果预测0: class=20%_ripe, maturity=20, conf=0.3105120360851288
+2026-05-21 13:05:21,325 - fastapi_app - INFO - [DEBUG] 苹果跟踪器结果: total=2, historical_total=2, stage_20=2, stage_40=0, stage_60=0, stage_80=0, stage_100=0, max_maturity=20
+2026-05-21 13:05:21,325 - fastapi_app - INFO - [DEBUG] 苹果检测状态: apple_detected=False, current_frame_count=0
+2026-05-21 13:05:22,369 - fastapi_app - INFO - [DEBUG] 苹果跟踪器结果: total=2, historical_total=2, stage_20=2, stage_40=0, stage_60=0, stage_80=0, stage_100=0, max_maturity=20
+2026-05-21 13:05:22,371 - fastapi_app - INFO - [DEBUG] 苹果检测状态: apple_detected=False, current_frame_count=0
+2026-05-21 13:05:23,336 - fastapi_app - INFO - [DEBUG] 苹果跟踪器结果: total=1, historical_total=2, stage_20=1, stage_40=0, stage_60=0, stage_80=0, stage_100=0, max_maturity=20
+2026-05-21 13:05:23,336 - fastapi_app - INFO - [DEBUG] 苹果检测状态: apple_detected=False, current_frame_count=0
+2026-05-21 13:05:24,356 - fastapi_app - INFO - [DEBUG] 苹果跟踪器结果: total=1, historical_total=2, stage_20=1, stage_40=0, stage_60=0, stage_80=0, stage_100=0, max_maturity=20
+2026-05-21 13:05:24,357 - fastapi_app - INFO - [DEBUG] 苹果检测状态: apple_detected=True, current_frame_count=1
+2026-05-21 13:05:24,357 - fastapi_app - INFO - [DEBUG] 苹果预测0: class=20%_ripe, maturity=20, conf=0.29788854718208313
+2026-05-21 13:05:25,511 - fastapi_app - INFO - [DEBUG] 苹果跟踪器结果: total=1, historical_total=2, stage_20=1, stage_40=0, stage_60=0, stage_80=0, stage_100=0, max_maturity=20
+2026-05-21 13:05:25,511 - fastapi_app - INFO - [DEBUG] 苹果检测状态: apple_detected=False, current_frame_count=0
+2026-05-21 13:05:26,482 - fastapi_app - INFO - [DEBUG] 苹果跟踪器结果: total=1, historical_total=2, stage_20=1, stage_40=0, stage_60=0, stage_80=0, stage_100=0, max_maturity=20
+2026-05-21 13:05:26,483 - fastapi_app - INFO - [DEBUG] 苹果检测状态: apple_detected=False, current_frame_count=0
+2026-05-21 13:05:27,524 - fastapi_app - INFO - [DEBUG] 苹果跟踪器结果: total=1, historical_total=2, stage_20=1, stage_40=0, stage_60=0, stage_80=0, stage_100=0, max_maturity=20
+2026-05-21 13:05:27,525 - fastapi_app - INFO - [DEBUG] 苹果检测状态: apple_detected=False, current_frame_count=0
+2026-05-21 13:05:28,473 - fastapi_app - INFO - [DEBUG] 苹果跟踪器结果: total=1, historical_total=2, stage_20=1, stage_40=0, stage_60=0, stage_80=0, stage_100=0, max_maturity=20
+2026-05-21 13:05:28,474 - fastapi_app - INFO - [DEBUG] 苹果检测状态: apple_detected=False, current_frame_count=0
+2026-05-21 13:05:29,496 - fastapi_app - INFO - [DEBUG] 苹果跟踪器结果: total=1, historical_total=2, stage_20=1, stage_40=0, stage_60=0, stage_80=0, stage_100=0, max_maturity=20
+2026-05-21 13:05:29,496 - fastapi_app - INFO - [DEBUG] 苹果检测状态: apple_detected=False, current_frame_count=0
+2026-05-21 13:05:30,481 - fastapi_app - INFO - [DEBUG] 苹果跟踪器结果: total=1, historical_total=2, stage_20=1, stage_40=0, stage_60=0, stage_80=0, stage_100=0, max_maturity=20
+2026-05-21 13:05:30,481 - fastapi_app - INFO - [DEBUG] 苹果检测状态: apple_detected=True, current_frame_count=1
+2026-05-21 13:05:30,481 - fastapi_app - INFO - [DEBUG] 苹果预测0: class=20%_ripe, maturity=20, conf=0.26949387788772583
+2026-05-21 13:05:31,431 - fastapi_app - INFO - [DEBUG] 苹果跟踪器结果: total=1, historical_total=2, stage_20=1, stage_40=0, stage_60=0, stage_80=0, stage_100=0, max_maturity=20
+2026-05-21 13:05:31,431 - fastapi_app - INFO - [DEBUG] 苹果检测状态: apple_detected=False, current_frame_count=0
+2026-05-21 13:05:32,466 - fastapi_app - INFO - [DEBUG] 苹果跟踪器结果: total=1, historical_total=2, stage_20=1, stage_40=0, stage_60=0, stage_80=0, stage_100=0, max_maturity=20
+2026-05-21 13:05:32,468 - fastapi_app - INFO - [DEBUG] 苹果检测状态: apple_detected=False, current_frame_count=0
+2026-05-21 13:05:33,416 - fastapi_app - INFO - [DEBUG] 苹果跟踪器结果: total=1, historical_total=2, stage_20=1, stage_40=0, stage_60=0, stage_80=0, stage_100=0, max_maturity=20
+2026-05-21 13:05:33,418 - fastapi_app - INFO - [DEBUG] 苹果检测状态: apple_detected=False, current_frame_count=0
+2026-05-21 13:05:34,433 - fastapi_app - INFO - [DEBUG] 苹果跟踪器结果: total=1, historical_total=2, stage_20=1, stage_40=0, stage_60=0, stage_80=0, stage_100=0, max_maturity=20
+2026-05-21 13:05:34,434 - fastapi_app - INFO - [DEBUG] 苹果检测状态: apple_detected=True, current_frame_count=1
+2026-05-21 13:05:34,434 - fastapi_app - INFO - [DEBUG] 苹果预测0: class=20%_ripe, maturity=20, conf=0.353575199842453
+2026-05-21 13:05:35,499 - fastapi_app - INFO - [DEBUG] 苹果跟踪器结果: total=1, historical_total=2, stage_20=1, stage_40=0, stage_60=0, stage_80=0, stage_100=0, max_maturity=20
+2026-05-21 13:05:35,499 - fastapi_app - INFO - [DEBUG] 苹果检测状态: apple_detected=True, current_frame_count=1
+2026-05-21 13:05:35,500 - fastapi_app - INFO - [DEBUG] 苹果预测0: class=20%_ripe, maturity=20, conf=0.31687408685684204
+2026-05-21 13:05:36,450 - fastapi_app - INFO - [DEBUG] 苹果跟踪器结果: total=1, historical_total=2, stage_20=1, stage_40=0, stage_60=0, stage_80=0, stage_100=0, max_maturity=20
+2026-05-21 13:05:36,452 - fastapi_app - INFO - [DEBUG] 苹果检测状态: apple_detected=True, current_frame_count=1
+2026-05-21 13:05:36,452 - fastapi_app - INFO - [DEBUG] 苹果预测0: class=20%_ripe, maturity=20, conf=0.34921994805336
+2026-05-21 13:05:37,450 - fastapi_app - INFO - [DEBUG] 苹果跟踪器结果: total=1, historical_total=2, stage_20=1, stage_40=0, stage_60=0, stage_80=0, stage_100=0, max_maturity=20
+2026-05-21 13:05:37,451 - fastapi_app - INFO - [DEBUG] 苹果检测状态: apple_detected=True, current_frame_count=1
+2026-05-21 13:05:37,451 - fastapi_app - INFO - [DEBUG] 苹果预测0: class=20%_ripe, maturity=20, conf=0.2947562038898468
+2026-05-21 13:05:38,453 - fastapi_app - INFO - [DEBUG] 苹果跟踪器结果: total=1, historical_total=2, stage_20=1, stage_40=0, stage_60=0, stage_80=0, stage_100=0, max_maturity=20
+2026-05-21 13:05:38,454 - fastapi_app - INFO - [DEBUG] 苹果检测状态: apple_detected=True, current_frame_count=1
+2026-05-21 13:05:38,454 - fastapi_app - INFO - [DEBUG] 苹果预测0: class=20%_ripe, maturity=20, conf=0.5368198156356812
+2026-05-21 13:05:39,447 - fastapi_app - INFO - [DEBUG] 苹果跟踪器结果: total=1, historical_total=2, stage_20=1, stage_40=0, stage_60=0, stage_80=0, stage_100=0, max_maturity=20
+2026-05-21 13:05:39,447 - fastapi_app - INFO - [DEBUG] 苹果检测状态: apple_detected=True, current_frame_count=1
+2026-05-21 13:05:39,447 - fastapi_app - INFO - [DEBUG] 苹果预测0: class=20%_ripe, maturity=20, conf=0.5450177788734436
+2026-05-21 13:05:40,447 - fastapi_app - INFO - [DEBUG] 苹果跟踪器结果: total=1, historical_total=2, stage_20=1, stage_40=0, stage_60=0, stage_80=0, stage_100=0, max_maturity=20
+2026-05-21 13:05:40,447 - fastapi_app - INFO - [DEBUG] 苹果检测状态: apple_detected=False, current_frame_count=0
+2026-05-21 13:05:41,434 - fastapi_app - INFO - [DEBUG] 苹果跟踪器结果: total=1, historical_total=2, stage_20=1, stage_40=0, stage_60=0, stage_80=0, stage_100=0, max_maturity=20
+2026-05-21 13:05:41,435 - fastapi_app - INFO - [DEBUG] 苹果检测状态: apple_detected=False, current_frame_count=0
+2026-05-21 13:05:42,431 - fastapi_app - INFO - [DEBUG] 苹果跟踪器结果: total=1, historical_total=2, stage_20=1, stage_40=0, stage_60=0, stage_80=0, stage_100=0, max_maturity=20
+2026-05-21 13:05:42,432 - fastapi_app - INFO - [DEBUG] 苹果检测状态: apple_detected=False, current_frame_count=0
+2026-05-21 13:05:43,517 - fastapi_app - INFO - [DEBUG] 苹果跟踪器结果: total=1, historical_total=2, stage_20=1, stage_40=0, stage_60=0, stage_80=0, stage_100=0, max_maturity=20
+2026-05-21 13:05:43,518 - fastapi_app - INFO - [DEBUG] 苹果检测状态: apple_detected=False, current_frame_count=0
+2026-05-21 13:05:44,515 - fastapi_app - INFO - [DEBUG] 苹果跟踪器结果: total=1, historical_total=2, stage_20=1, stage_40=0, stage_60=0, stage_80=0, stage_100=0, max_maturity=20
+2026-05-21 13:05:44,516 - fastapi_app - INFO - [DEBUG] 苹果检测状态: apple_detected=True, current_frame_count=1
+2026-05-21 13:05:44,516 - fastapi_app - INFO - [DEBUG] 苹果预测0: class=20%_ripe, maturity=20, conf=0.30120736360549927
+2026-05-21 13:05:45,546 - fastapi_app - INFO - [DEBUG] 苹果跟踪器结果: total=1, historical_total=2, stage_20=1, stage_40=0, stage_60=0, stage_80=0, stage_100=0, max_maturity=20
+2026-05-21 13:05:45,547 - fastapi_app - INFO - [DEBUG] 苹果检测状态: apple_detected=True, current_frame_count=1
+2026-05-21 13:05:45,548 - fastapi_app - INFO - [DEBUG] 苹果预测0: class=20%_ripe, maturity=20, conf=0.2828049957752228
+2026-05-21 13:05:46,559 - fastapi_app - INFO - [DEBUG] 苹果跟踪器结果: total=1, historical_total=2, stage_20=2, stage_40=0, stage_60=0, stage_80=0, stage_100=1, max_maturity=100
+2026-05-21 13:05:46,559 - fastapi_app - INFO - [DEBUG] 苹果检测状态: apple_detected=True, current_frame_count=1
+2026-05-21 13:05:46,559 - fastapi_app - INFO - [DEBUG] 苹果预测0: class=100%_ripe, maturity=100, conf=0.28450843691825867
+2026-05-21 13:05:47,470 - fastapi_app - INFO - [DEBUG] 苹果跟踪器结果: total=1, historical_total=2, stage_20=2, stage_40=0, stage_60=0, stage_80=0, stage_100=1, max_maturity=100
+2026-05-21 13:05:47,471 - fastapi_app - INFO - [DEBUG] 苹果检测状态: apple_detected=False, current_frame_count=0
+2026-05-21 13:05:48,576 - fastapi_app - INFO - [DEBUG] 苹果跟踪器结果: total=1, historical_total=2, stage_20=1, stage_40=0, stage_60=0, stage_80=0, stage_100=0, max_maturity=100
+2026-05-21 13:05:48,577 - fastapi_app - INFO - [DEBUG] 苹果检测状态: apple_detected=True, current_frame_count=1
+2026-05-21 13:05:48,578 - fastapi_app - INFO - [DEBUG] 苹果预测0: class=20%_ripe, maturity=20, conf=0.30406537652015686
+2026-05-21 13:05:49,489 - fastapi_app - INFO - [DEBUG] 苹果跟踪器结果: total=1, historical_total=2, stage_20=1, stage_40=0, stage_60=0, stage_80=0, stage_100=0, max_maturity=100
+2026-05-21 13:05:49,489 - fastapi_app - INFO - [DEBUG] 苹果检测状态: apple_detected=False, current_frame_count=0
+2026-05-21 13:05:50,494 - fastapi_app - INFO - [DEBUG] 苹果跟踪器结果: total=1, historical_total=2, stage_20=1, stage_40=0, stage_60=0, stage_80=0, stage_100=0, max_maturity=100
+2026-05-21 13:05:50,495 - fastapi_app - INFO - [DEBUG] 苹果检测状态: apple_detected=False, current_frame_count=0
+2026-05-21 13:05:51,635 - fastapi_app - INFO - [DEBUG] 苹果跟踪器结果: total=1, historical_total=2, stage_20=1, stage_40=0, stage_60=0, stage_80=0, stage_100=0, max_maturity=100
+2026-05-21 13:05:51,636 - fastapi_app - INFO - [DEBUG] 苹果检测状态: apple_detected=False, current_frame_count=0
+2026-05-21 13:05:52,592 - fastapi_app - INFO - [DEBUG] 苹果跟踪器结果: total=1, historical_total=2, stage_20=1, stage_40=0, stage_60=0, stage_80=0, stage_100=0, max_maturity=100
+2026-05-21 13:05:52,593 - fastapi_app - INFO - [DEBUG] 苹果检测状态: apple_detected=False, current_frame_count=0
+2026-05-21 13:05:53,572 - fastapi_app - INFO - [DEBUG] 苹果跟踪器结果: total=1, historical_total=2, stage_20=1, stage_40=0, stage_60=0, stage_80=0, stage_100=0, max_maturity=100
+2026-05-21 13:05:53,574 - fastapi_app - INFO - [DEBUG] 苹果检测状态: apple_detected=False, current_frame_count=0
+2026-05-21 13:05:54,581 - fastapi_app - INFO - [DEBUG] 苹果跟踪器结果: total=2, historical_total=2, stage_20=2, stage_40=0, stage_60=0, stage_80=0, stage_100=0, max_maturity=100
+2026-05-21 13:05:54,582 - fastapi_app - INFO - [DEBUG] 苹果检测状态: apple_detected=False, current_frame_count=0
+2026-05-21 13:05:55,548 - fastapi_app - INFO - [DEBUG] 苹果跟踪器结果: total=1, historical_total=3, stage_20=1, stage_40=0, stage_60=0, stage_80=0, stage_100=0, max_maturity=100
+2026-05-21 13:05:55,551 - fastapi_app - INFO - [DEBUG] 苹果检测状态: apple_detected=True, current_frame_count=1
+2026-05-21 13:05:55,551 - fastapi_app - INFO - [DEBUG] 苹果预测0: class=20%_ripe, maturity=20, conf=0.2594831883907318
+2026-05-21 13:05:56,597 - fastapi_app - INFO - [DEBUG] 苹果跟踪器结果: total=1, historical_total=3, stage_20=1, stage_40=0, stage_60=0, stage_80=0, stage_100=0, max_maturity=100
+2026-05-21 13:05:56,598 - fastapi_app - INFO - [DEBUG] 苹果检测状态: apple_detected=False, current_frame_count=0
+2026-05-21 13:05:57,618 - fastapi_app - INFO - [DEBUG] 苹果跟踪器结果: total=1, historical_total=3, stage_20=1, stage_40=0, stage_60=0, stage_80=0, stage_100=0, max_maturity=100
+2026-05-21 13:05:57,620 - fastapi_app - INFO - [DEBUG] 苹果检测状态: apple_detected=False, current_frame_count=0
+2026-05-21 13:05:58,548 - fastapi_app - INFO - [DEBUG] 苹果跟踪器结果: total=1, historical_total=3, stage_20=1, stage_40=0, stage_60=0, stage_80=0, stage_100=0, max_maturity=100
+2026-05-21 13:05:58,548 - fastapi_app - INFO - [DEBUG] 苹果检测状态: apple_detected=True, current_frame_count=1
+2026-05-21 13:05:58,548 - fastapi_app - INFO - [DEBUG] 苹果预测0: class=20%_ripe, maturity=20, conf=0.3002491295337677
+2026-05-21 13:05:59,594 - fastapi_app - INFO - [DEBUG] 苹果跟踪器结果: total=1, historical_total=3, stage_20=1, stage_40=0, stage_60=0, stage_80=0, stage_100=0, max_maturity=100
+2026-05-21 13:05:59,594 - fastapi_app - INFO - [DEBUG] 苹果检测状态: apple_detected=False, current_frame_count=0
+2026-05-21 13:06:00,230 - fastapi_app - INFO - [DEBUG] 苹果跟踪器结果: total=1, historical_total=3, stage_20=1, stage_40=0, stage_60=0, stage_80=0, stage_100=0, max_maturity=100
+2026-05-21 13:06:00,231 - fastapi_app - INFO - [DEBUG] 苹果检测状态: apple_detected=False, current_frame_count=0
+2026-05-21 13:06:01,310 - fastapi_app - INFO - [DEBUG] 苹果跟踪器结果: total=1, historical_total=3, stage_20=1, stage_40=0, stage_60=0, stage_80=0, stage_100=0, max_maturity=100
+2026-05-21 13:06:01,311 - fastapi_app - INFO - [DEBUG] 苹果检测状态: apple_detected=False, current_frame_count=0
+2026-05-21 13:06:02,346 - fastapi_app - INFO - [DEBUG] 苹果跟踪器结果: total=1, historical_total=3, stage_20=1, stage_40=0, stage_60=0, stage_80=0, stage_100=0, max_maturity=100
+2026-05-21 13:06:02,347 - fastapi_app - INFO - [DEBUG] 苹果检测状态: apple_detected=True, current_frame_count=1
+2026-05-21 13:06:02,347 - fastapi_app - INFO - [DEBUG] 苹果预测0: class=20%_ripe, maturity=20, conf=0.2964727282524109
+2026-05-21 13:06:03,335 - fastapi_app - INFO - [DEBUG] 苹果跟踪器结果: total=1, historical_total=3, stage_20=1, stage_40=0, stage_60=0, stage_80=0, stage_100=0, max_maturity=100
+2026-05-21 13:06:03,335 - fastapi_app - INFO - [DEBUG] 苹果检测状态: apple_detected=False, current_frame_count=0
+2026-05-21 13:06:04,452 - fastapi_app - INFO - [DEBUG] 苹果跟踪器结果: total=1, historical_total=3, stage_20=1, stage_40=0, stage_60=0, stage_80=0, stage_100=0, max_maturity=100
+2026-05-21 13:06:04,452 - fastapi_app - INFO - [DEBUG] 苹果检测状态: apple_detected=False, current_frame_count=0
+2026-05-21 13:06:05,495 - fastapi_app - INFO - [DEBUG] 苹果跟踪器结果: total=1, historical_total=3, stage_20=1, stage_40=0, stage_60=0, stage_80=0, stage_100=0, max_maturity=100
+2026-05-21 13:06:05,496 - fastapi_app - INFO - [DEBUG] 苹果检测状态: apple_detected=True, current_frame_count=1
+2026-05-21 13:06:05,496 - fastapi_app - INFO - [DEBUG] 苹果预测0: class=20%_ripe, maturity=20, conf=0.27065104246139526
+2026-05-21 13:06:06,489 - fastapi_app - INFO - [DEBUG] 苹果跟踪器结果: total=1, historical_total=3, stage_20=1, stage_40=0, stage_60=0, stage_80=0, stage_100=0, max_maturity=100
+2026-05-21 13:06:06,490 - fastapi_app - INFO - [DEBUG] 苹果检测状态: apple_detected=False, current_frame_count=0
+2026-05-21 13:06:07,507 - fastapi_app - INFO - [DEBUG] 苹果跟踪器结果: total=1, historical_total=3, stage_20=1, stage_40=0, stage_60=0, stage_80=0, stage_100=0, max_maturity=100
+2026-05-21 13:06:07,508 - fastapi_app - INFO - [DEBUG] 苹果检测状态: apple_detected=False, current_frame_count=0
+2026-05-21 13:06:08,561 - fastapi_app - INFO - [DEBUG] 苹果跟踪器结果: total=1, historical_total=3, stage_20=1, stage_40=0, stage_60=0, stage_80=0, stage_100=0, max_maturity=100
+2026-05-21 13:06:08,561 - fastapi_app - INFO - [DEBUG] 苹果检测状态: apple_detected=False, current_frame_count=0
+2026-05-21 13:06:09,445 - fastapi_app - INFO - [DEBUG] 苹果跟踪器结果: total=1, historical_total=3, stage_20=1, stage_40=0, stage_60=0, stage_80=0, stage_100=0, max_maturity=100
+2026-05-21 13:06:09,447 - fastapi_app - INFO - [DEBUG] 苹果检测状态: apple_detected=False, current_frame_count=0
+2026-05-21 13:06:10,508 - fastapi_app - INFO - [DEBUG] 苹果跟踪器结果: total=1, historical_total=3, stage_20=3, stage_40=0, stage_60=0, stage_80=0, stage_100=1, max_maturity=100
+2026-05-21 13:06:10,509 - fastapi_app - INFO - [DEBUG] 苹果检测状态: apple_detected=True, current_frame_count=1
+2026-05-21 13:06:10,509 - fastapi_app - INFO - [DEBUG] 苹果预测0: class=100%_ripe, maturity=100, conf=0.26749590039253235
+2026-05-21 13:06:11,467 - fastapi_app - INFO - [DEBUG] 苹果跟踪器结果: total=1, historical_total=3, stage_20=1, stage_40=0, stage_60=0, stage_80=0, stage_100=0, max_maturity=100
+2026-05-21 13:06:11,468 - fastapi_app - INFO - [DEBUG] 苹果检测状态: apple_detected=True, current_frame_count=1
+2026-05-21 13:06:11,468 - fastapi_app - INFO - [DEBUG] 苹果预测0: class=20%_ripe, maturity=20, conf=0.3732841908931732
+2026-05-21 13:06:12,419 - fastapi_app - INFO - [DEBUG] 苹果跟踪器结果: total=1, historical_total=3, stage_20=1, stage_40=0, stage_60=0, stage_80=0, stage_100=0, max_maturity=100
+2026-05-21 13:06:12,420 - fastapi_app - INFO - [DEBUG] 苹果检测状态: apple_detected=True, current_frame_count=1
+2026-05-21 13:06:12,420 - fastapi_app - INFO - [DEBUG] 苹果预测0: class=20%_ripe, maturity=20, conf=0.5267975926399231
+2026-05-21 13:06:13,288 - fastapi_app - INFO - [DEBUG] 苹果跟踪器结果: total=1, historical_total=3, stage_20=1, stage_40=0, stage_60=0, stage_80=0, stage_100=0, max_maturity=100
+2026-05-21 13:06:13,289 - fastapi_app - INFO - [DEBUG] 苹果检测状态: apple_detected=False, current_frame_count=0
+2026-05-21 13:07:01,178 - fastapi_app - ERROR - 发送WebSocket消息失败: 
+2026-05-21 13:07:14,906 - fastapi_app - INFO - [DEBUG] 番茄跟踪器结果: total=4, historical_total=4, unripe=3, ripe=1, overripe=0, max_maturity=89.8
+2026-05-21 13:07:14,907 - fastapi_app - INFO - [DEBUG] 番茄预测0: class=Unripe-Tomato, maturity=57.7, conf=0.9621807932853699
+2026-05-21 13:07:14,907 - fastapi_app - INFO - [DEBUG] 番茄预测1: class=Unripe-Tomato, maturity=55.0, conf=0.9161458611488342
+2026-05-21 13:07:14,908 - fastapi_app - INFO - [DEBUG] 番茄预测2: class=Ripe-Tomato, maturity=89.8, conf=0.8513450026512146
+2026-05-21 13:07:15,846 - fastapi_app - INFO - [DEBUG] 番茄跟踪器结果: total=4, historical_total=4, unripe=4, ripe=1, overripe=0, max_maturity=89.9
+2026-05-21 13:07:15,847 - fastapi_app - INFO - [DEBUG] 番茄预测0: class=Unripe-Tomato, maturity=57.6, conf=0.9599776268005371
+2026-05-21 13:07:15,847 - fastapi_app - INFO - [DEBUG] 番茄预测1: class=Unripe-Tomato, maturity=54.3, conf=0.9054259061813354
+2026-05-21 13:07:15,848 - fastapi_app - INFO - [DEBUG] 番茄预测2: class=Ripe-Tomato, maturity=89.9, conf=0.8532477617263794
+2026-05-21 13:07:16,858 - fastapi_app - INFO - [DEBUG] 番茄跟踪器结果: total=4, historical_total=4, unripe=3, ripe=1, overripe=0, max_maturity=89.9
+2026-05-21 13:07:16,859 - fastapi_app - INFO - [DEBUG] 番茄预测0: class=Unripe-Tomato, maturity=57.4, conf=0.9570237398147583
+2026-05-21 13:07:16,859 - fastapi_app - INFO - [DEBUG] 番茄预测1: class=Unripe-Tomato, maturity=49.1, conf=0.818609893321991
+2026-05-21 13:07:16,860 - fastapi_app - INFO - [DEBUG] 番茄预测2: class=Ripe-Tomato, maturity=85.2, conf=0.7191250920295715
+2026-05-21 13:07:17,870 - fastapi_app - INFO - [DEBUG] 番茄跟踪器结果: total=4, historical_total=4, unripe=3, ripe=1, overripe=0, max_maturity=89.9
+2026-05-21 13:07:17,871 - fastapi_app - INFO - [DEBUG] 番茄预测0: class=Unripe-Tomato, maturity=57.2, conf=0.9530465602874756
+2026-05-21 13:07:17,871 - fastapi_app - INFO - [DEBUG] 番茄预测1: class=Unripe-Tomato, maturity=47.7, conf=0.7958278656005859
+2026-05-21 13:07:17,871 - fastapi_app - INFO - [DEBUG] 番茄预测2: class=Ripe-Tomato, maturity=87.4, conf=0.7837132215499878
+2026-05-21 13:07:18,849 - fastapi_app - INFO - [DEBUG] 番茄跟踪器结果: total=5, historical_total=5, unripe=2, ripe=3, overripe=0, max_maturity=89.9
+2026-05-21 13:07:18,850 - fastapi_app - INFO - [DEBUG] 番茄预测0: class=Unripe-Tomato, maturity=57.0, conf=0.9491907358169556
+2026-05-21 13:07:18,850 - fastapi_app - INFO - [DEBUG] 番茄预测1: class=Ripe-Tomato, maturity=89.2, conf=0.834782063961029
+2026-05-21 13:07:18,851 - fastapi_app - INFO - [DEBUG] 番茄预测2: class=Unripe-Tomato, maturity=42.3, conf=0.7042006254196167
+2026-05-21 13:07:19,870 - fastapi_app - INFO - [DEBUG] 番茄跟踪器结果: total=5, historical_total=5, unripe=2, ripe=3, overripe=0, max_maturity=89.9
+2026-05-21 13:07:19,870 - fastapi_app - INFO - [DEBUG] 番茄预测0: class=Unripe-Tomato, maturity=57.0, conf=0.9504703283309937
+2026-05-21 13:07:19,871 - fastapi_app - INFO - [DEBUG] 番茄预测1: class=Unripe-Tomato, maturity=51.5, conf=0.8583097457885742
+2026-05-21 13:07:19,871 - fastapi_app - INFO - [DEBUG] 番茄预测2: class=Ripe-Tomato, maturity=82.6, conf=0.6447396278381348
+2026-05-21 13:07:20,855 - fastapi_app - INFO - [DEBUG] 番茄跟踪器结果: total=5, historical_total=5, unripe=2, ripe=3, overripe=0, max_maturity=89.9
+2026-05-21 13:07:20,855 - fastapi_app - INFO - [DEBUG] 番茄预测0: class=Unripe-Tomato, maturity=57.4, conf=0.9566896557807922
+2026-05-21 13:07:20,856 - fastapi_app - INFO - [DEBUG] 番茄预测1: class=Ripe-Tomato, maturity=88.2, conf=0.804530680179596
+2026-05-21 13:07:20,856 - fastapi_app - INFO - [DEBUG] 番茄预测2: class=Unripe-Tomato, maturity=32.6, conf=0.5429989099502563
+2026-05-21 13:07:50,007 - fastapi_app - INFO - [DEBUG] 苹果跟踪器结果: total=1, historical_total=1, stage_20=1, stage_40=0, stage_60=0, stage_80=0, stage_100=0, max_maturity=20
+2026-05-21 13:07:50,007 - fastapi_app - INFO - [DEBUG] 苹果检测状态: apple_detected=True, current_frame_count=1
+2026-05-21 13:07:50,007 - fastapi_app - INFO - [DEBUG] 苹果预测0: class=20%_ripe, maturity=20, conf=0.38861018419265747
+2026-05-21 13:07:50,963 - fastapi_app - INFO - [DEBUG] 苹果跟踪器结果: total=1, historical_total=1, stage_20=1, stage_40=0, stage_60=0, stage_80=0, stage_100=0, max_maturity=20
+2026-05-21 13:07:50,964 - fastapi_app - INFO - [DEBUG] 苹果检测状态: apple_detected=True, current_frame_count=1
+2026-05-21 13:07:50,964 - fastapi_app - INFO - [DEBUG] 苹果预测0: class=20%_ripe, maturity=20, conf=0.3260935842990875
+2026-05-21 13:07:51,969 - fastapi_app - INFO - [DEBUG] 苹果跟踪器结果: total=2, historical_total=2, stage_20=2, stage_40=0, stage_60=0, stage_80=0, stage_100=0, max_maturity=20
+2026-05-21 13:07:51,969 - fastapi_app - INFO - [DEBUG] 苹果检测状态: apple_detected=True, current_frame_count=2
+2026-05-21 13:07:51,970 - fastapi_app - INFO - [DEBUG] 苹果预测0: class=20%_ripe, maturity=20, conf=0.30709466338157654
+2026-05-21 13:07:51,970 - fastapi_app - INFO - [DEBUG] 苹果预测1: class=20%_ripe, maturity=20, conf=0.272893488407135
+2026-05-21 13:07:53,072 - fastapi_app - INFO - [DEBUG] 苹果跟踪器结果: total=2, historical_total=2, stage_20=2, stage_40=0, stage_60=0, stage_80=0, stage_100=0, max_maturity=20
+2026-05-21 13:07:53,072 - fastapi_app - INFO - [DEBUG] 苹果检测状态: apple_detected=True, current_frame_count=1
+2026-05-21 13:07:53,074 - fastapi_app - INFO - [DEBUG] 苹果预测0: class=20%_ripe, maturity=20, conf=0.32938486337661743
+2026-05-21 13:07:53,983 - fastapi_app - INFO - [DEBUG] 苹果跟踪器结果: total=2, historical_total=2, stage_20=2, stage_40=0, stage_60=0, stage_80=0, stage_100=0, max_maturity=20
+2026-05-21 13:07:53,983 - fastapi_app - INFO - [DEBUG] 苹果检测状态: apple_detected=True, current_frame_count=2
+2026-05-21 13:07:53,983 - fastapi_app - INFO - [DEBUG] 苹果预测0: class=20%_ripe, maturity=20, conf=0.4378323256969452
+2026-05-21 13:07:53,983 - fastapi_app - INFO - [DEBUG] 苹果预测1: class=20%_ripe, maturity=20, conf=0.3114686906337738
+2026-05-21 13:07:54,990 - fastapi_app - INFO - [DEBUG] 苹果跟踪器结果: total=2, historical_total=2, stage_20=2, stage_40=0, stage_60=0, stage_80=0, stage_100=0, max_maturity=20
+2026-05-21 13:07:54,990 - fastapi_app - INFO - [DEBUG] 苹果检测状态: apple_detected=True, current_frame_count=2
+2026-05-21 13:07:54,991 - fastapi_app - INFO - [DEBUG] 苹果预测0: class=20%_ripe, maturity=20, conf=0.388526976108551
+2026-05-21 13:07:54,991 - fastapi_app - INFO - [DEBUG] 苹果预测1: class=20%_ripe, maturity=20, conf=0.3833428919315338
+2026-05-21 13:07:56,048 - fastapi_app - INFO - [DEBUG] 苹果跟踪器结果: total=2, historical_total=2, stage_20=2, stage_40=0, stage_60=0, stage_80=0, stage_100=0, max_maturity=20
+2026-05-21 13:07:56,048 - fastapi_app - INFO - [DEBUG] 苹果检测状态: apple_detected=True, current_frame_count=2
+2026-05-21 13:07:56,048 - fastapi_app - INFO - [DEBUG] 苹果预测0: class=20%_ripe, maturity=20, conf=0.4023008346557617
+2026-05-21 13:07:56,048 - fastapi_app - INFO - [DEBUG] 苹果预测1: class=20%_ripe, maturity=20, conf=0.3683098554611206
+2026-05-21 13:07:57,069 - fastapi_app - INFO - [DEBUG] 苹果跟踪器结果: total=2, historical_total=2, stage_20=2, stage_40=0, stage_60=0, stage_80=0, stage_100=0, max_maturity=20
+2026-05-21 13:07:57,070 - fastapi_app - INFO - [DEBUG] 苹果检测状态: apple_detected=True, current_frame_count=1
+2026-05-21 13:07:57,071 - fastapi_app - INFO - [DEBUG] 苹果预测0: class=20%_ripe, maturity=20, conf=0.2637363374233246
+2026-05-21 13:08:00,246 - fastapi_app - INFO - [DEBUG] 苹果跟踪器结果: total=1, historical_total=1, stage_20=1, stage_40=0, stage_60=0, stage_80=0, stage_100=0, max_maturity=20
+2026-05-21 13:08:00,246 - fastapi_app - INFO - [DEBUG] 苹果检测状态: apple_detected=True, current_frame_count=1
+2026-05-21 13:08:00,246 - fastapi_app - INFO - [DEBUG] 苹果预测0: class=20%_ripe, maturity=20, conf=0.38861018419265747
+2026-05-21 13:08:01,231 - fastapi_app - INFO - [DEBUG] 苹果跟踪器结果: total=1, historical_total=1, stage_20=1, stage_40=0, stage_60=0, stage_80=0, stage_100=0, max_maturity=20
+2026-05-21 13:08:01,233 - fastapi_app - INFO - [DEBUG] 苹果检测状态: apple_detected=True, current_frame_count=1
+2026-05-21 13:08:01,233 - fastapi_app - INFO - [DEBUG] 苹果预测0: class=20%_ripe, maturity=20, conf=0.3260935842990875
+2026-05-21 13:08:02,222 - fastapi_app - INFO - [DEBUG] 苹果跟踪器结果: total=2, historical_total=2, stage_20=2, stage_40=0, stage_60=0, stage_80=0, stage_100=0, max_maturity=20
+2026-05-21 13:08:02,222 - fastapi_app - INFO - [DEBUG] 苹果检测状态: apple_detected=True, current_frame_count=2
+2026-05-21 13:08:02,223 - fastapi_app - INFO - [DEBUG] 苹果预测0: class=20%_ripe, maturity=20, conf=0.30709466338157654
+2026-05-21 13:08:02,223 - fastapi_app - INFO - [DEBUG] 苹果预测1: class=20%_ripe, maturity=20, conf=0.272893488407135
+2026-05-21 13:08:03,228 - fastapi_app - INFO - [DEBUG] 苹果跟踪器结果: total=2, historical_total=2, stage_20=2, stage_40=0, stage_60=0, stage_80=0, stage_100=0, max_maturity=20
+2026-05-21 13:08:03,228 - fastapi_app - INFO - [DEBUG] 苹果检测状态: apple_detected=True, current_frame_count=1
+2026-05-21 13:08:03,229 - fastapi_app - INFO - [DEBUG] 苹果预测0: class=20%_ripe, maturity=20, conf=0.32938486337661743
+2026-05-21 13:08:04,238 - fastapi_app - INFO - [DEBUG] 苹果跟踪器结果: total=2, historical_total=2, stage_20=2, stage_40=0, stage_60=0, stage_80=0, stage_100=0, max_maturity=20
+2026-05-21 13:08:04,238 - fastapi_app - INFO - [DEBUG] 苹果检测状态: apple_detected=True, current_frame_count=2
+2026-05-21 13:08:04,238 - fastapi_app - INFO - [DEBUG] 苹果预测0: class=20%_ripe, maturity=20, conf=0.4378323256969452
+2026-05-21 13:08:04,239 - fastapi_app - INFO - [DEBUG] 苹果预测1: class=20%_ripe, maturity=20, conf=0.3114686906337738
+2026-05-21 13:08:05,257 - fastapi_app - INFO - [DEBUG] 苹果跟踪器结果: total=2, historical_total=2, stage_20=2, stage_40=0, stage_60=0, stage_80=0, stage_100=0, max_maturity=20
+2026-05-21 13:08:05,258 - fastapi_app - INFO - [DEBUG] 苹果检测状态: apple_detected=True, current_frame_count=2
+2026-05-21 13:08:05,259 - fastapi_app - INFO - [DEBUG] 苹果预测0: class=20%_ripe, maturity=20, conf=0.388526976108551
+2026-05-21 13:08:05,259 - fastapi_app - INFO - [DEBUG] 苹果预测1: class=20%_ripe, maturity=20, conf=0.3833428919315338
+2026-05-21 13:08:14,743 - fastapi_app - INFO - WebSocket连接已断开，当前连接数: 0
+2026-05-21 13:08:14,960 - fastapi_app - INFO - WebSocket连接已建立，当前连接数: 1
+2026-05-21 13:08:15,659 - fastapi_app - INFO - WebSocket连接已建立，当前连接数: 2
+2026-05-21 13:08:15,789 - fastapi_app - INFO - WebSocket连接已建立，当前连接数: 3
+2026-05-21 13:08:17,986 - fastapi_app - INFO - WebSocket连接已断开，当前连接数: 2
+2026-05-21 13:08:17,988 - fastapi_app - INFO - WebSocket连接已断开，当前连接数: 1
+2026-05-21 13:08:28,566 - fastapi_app - INFO - [DEBUG] 苹果跟踪器结果: total=1, historical_total=1, stage_20=1, stage_40=0, stage_60=0, stage_80=0, stage_100=0, max_maturity=20
+2026-05-21 13:08:28,568 - fastapi_app - INFO - [DEBUG] 苹果检测状态: apple_detected=True, current_frame_count=1
+2026-05-21 13:08:28,568 - fastapi_app - INFO - [DEBUG] 苹果预测0: class=20%_ripe, maturity=20, conf=0.38861018419265747
+2026-05-21 13:08:29,532 - fastapi_app - INFO - [DEBUG] 苹果跟踪器结果: total=1, historical_total=1, stage_20=1, stage_40=0, stage_60=0, stage_80=0, stage_100=0, max_maturity=20
+2026-05-21 13:08:29,533 - fastapi_app - INFO - [DEBUG] 苹果检测状态: apple_detected=True, current_frame_count=1
+2026-05-21 13:08:29,533 - fastapi_app - INFO - [DEBUG] 苹果预测0: class=20%_ripe, maturity=20, conf=0.3260935842990875
+2026-05-21 13:08:30,543 - fastapi_app - INFO - [DEBUG] 苹果跟踪器结果: total=2, historical_total=2, stage_20=2, stage_40=0, stage_60=0, stage_80=0, stage_100=0, max_maturity=20
+2026-05-21 13:08:30,543 - fastapi_app - INFO - [DEBUG] 苹果检测状态: apple_detected=True, current_frame_count=2
+2026-05-21 13:08:30,544 - fastapi_app - INFO - [DEBUG] 苹果预测0: class=20%_ripe, maturity=20, conf=0.30709466338157654
+2026-05-21 13:08:30,544 - fastapi_app - INFO - [DEBUG] 苹果预测1: class=20%_ripe, maturity=20, conf=0.272893488407135
+2026-05-21 13:08:31,540 - fastapi_app - INFO - [DEBUG] 苹果跟踪器结果: total=2, historical_total=2, stage_20=2, stage_40=0, stage_60=0, stage_80=0, stage_100=0, max_maturity=20
+2026-05-21 13:08:31,540 - fastapi_app - INFO - [DEBUG] 苹果检测状态: apple_detected=True, current_frame_count=1
+2026-05-21 13:08:31,540 - fastapi_app - INFO - [DEBUG] 苹果预测0: class=20%_ripe, maturity=20, conf=0.32938486337661743
+2026-05-21 13:08:32,543 - fastapi_app - INFO - [DEBUG] 苹果跟踪器结果: total=2, historical_total=2, stage_20=2, stage_40=0, stage_60=0, stage_80=0, stage_100=0, max_maturity=20
+2026-05-21 13:08:32,544 - fastapi_app - INFO - [DEBUG] 苹果检测状态: apple_detected=True, current_frame_count=2
+2026-05-21 13:08:32,544 - fastapi_app - INFO - [DEBUG] 苹果预测0: class=20%_ripe, maturity=20, conf=0.4378323256969452
+2026-05-21 13:08:32,544 - fastapi_app - INFO - [DEBUG] 苹果预测1: class=20%_ripe, maturity=20, conf=0.3114686906337738
+2026-05-21 13:08:41,599 - fastapi_app - INFO - WebSocket连接已断开，当前连接数: 0
+2026-05-21 13:10:45,105 - fastapi_app - INFO - [OK] 害虫检测器加载成功
+2026-05-21 13:10:45,180 - fastapi_app - INFO - [OK] 柑橘成熟度检测器加载成功
+2026-05-21 13:10:45,253 - fastapi_app - INFO - [OK] 番茄成熟度检测器加载成功
+2026-05-21 13:10:45,294 - fastapi_app - INFO - [OK] 苹果成熟度检测器加载成功
+2026-05-21 13:10:45,726 - fastapi_app - INFO - OpenClaw通知服务配置完成
+2026-05-21 13:10:46,952 - fastapi_app - INFO - [OK] 害虫检测器加载成功
+2026-05-21 13:10:47,024 - fastapi_app - INFO - [OK] 柑橘成熟度检测器加载成功
+2026-05-21 13:10:47,125 - fastapi_app - INFO - [OK] 番茄成熟度检测器加载成功
+2026-05-21 13:10:47,181 - fastapi_app - INFO - [OK] 苹果成熟度检测器加载成功
+2026-05-21 13:10:47,270 - fastapi_app - INFO - WebSocket连接已建立，当前连接数: 1
+2026-05-21 13:10:47,700 - fastapi_app - INFO - OpenClaw通知服务配置完成(HTTPS)
+2026-05-21 13:10:52,021 - fastapi_app - INFO - WebSocket连接已断开，当前连接数: 0
+2026-05-21 13:10:52,977 - fastapi_app - INFO - WebSocket连接已建立，当前连接数: 1
+2026-05-21 13:10:53,180 - fastapi_app - INFO - WebSocket连接已建立，当前连接数: 2
+2026-05-21 13:10:53,227 - fastapi_app - INFO - WebSocket连接已建立，当前连接数: 3
+2026-05-21 13:10:55,663 - fastapi_app - INFO - WebSocket连接已断开，当前连接数: 2
+2026-05-21 13:10:55,667 - fastapi_app - INFO - WebSocket连接已断开，当前连接数: 1
+2026-05-21 13:11:05,538 - fastapi_app - INFO - [DEBUG] 苹果跟踪器结果: total=1, historical_total=1, stage_20=1, stage_40=0, stage_60=0, stage_80=0, stage_100=0, max_maturity=20
+2026-05-21 13:11:05,538 - fastapi_app - INFO - [DEBUG] 苹果检测状态: apple_detected=True, current_frame_count=1
+2026-05-21 13:11:05,538 - fastapi_app - INFO - [DEBUG] 苹果预测0: class=20%_ripe, maturity=20, conf=0.38861018419265747
+2026-05-21 13:11:06,401 - fastapi_app - INFO - [DEBUG] 苹果跟踪器结果: total=1, historical_total=1, stage_20=1, stage_40=0, stage_60=0, stage_80=0, stage_100=0, max_maturity=20
+2026-05-21 13:11:06,401 - fastapi_app - INFO - [DEBUG] 苹果检测状态: apple_detected=True, current_frame_count=1
+2026-05-21 13:11:06,401 - fastapi_app - INFO - [DEBUG] 苹果预测0: class=20%_ripe, maturity=20, conf=0.3260935842990875
+2026-05-21 13:11:07,381 - fastapi_app - INFO - [DEBUG] 苹果跟踪器结果: total=2, historical_total=2, stage_20=2, stage_40=0, stage_60=0, stage_80=0, stage_100=0, max_maturity=20
+2026-05-21 13:11:07,381 - fastapi_app - INFO - [DEBUG] 苹果检测状态: apple_detected=True, current_frame_count=2
+2026-05-21 13:11:07,381 - fastapi_app - INFO - [DEBUG] 苹果预测0: class=20%_ripe, maturity=20, conf=0.30709466338157654
+2026-05-21 13:11:07,382 - fastapi_app - INFO - [DEBUG] 苹果预测1: class=20%_ripe, maturity=20, conf=0.272893488407135
+2026-05-21 13:11:08,434 - fastapi_app - INFO - [DEBUG] 苹果跟踪器结果: total=2, historical_total=2, stage_20=2, stage_40=0, stage_60=0, stage_80=0, stage_100=0, max_maturity=20
+2026-05-21 13:11:08,434 - fastapi_app - INFO - [DEBUG] 苹果检测状态: apple_detected=True, current_frame_count=1
+2026-05-21 13:11:08,434 - fastapi_app - INFO - [DEBUG] 苹果预测0: class=20%_ripe, maturity=20, conf=0.32938486337661743
+2026-05-21 13:11:09,390 - fastapi_app - INFO - [DEBUG] 苹果跟踪器结果: total=2, historical_total=2, stage_20=2, stage_40=0, stage_60=0, stage_80=0, stage_100=0, max_maturity=20
+2026-05-21 13:11:09,391 - fastapi_app - INFO - [DEBUG] 苹果检测状态: apple_detected=True, current_frame_count=2
+2026-05-21 13:11:09,391 - fastapi_app - INFO - [DEBUG] 苹果预测0: class=20%_ripe, maturity=20, conf=0.4378323256969452
+2026-05-21 13:11:09,391 - fastapi_app - INFO - [DEBUG] 苹果预测1: class=20%_ripe, maturity=20, conf=0.3114686906337738
+2026-05-21 13:11:10,459 - fastapi_app - INFO - [DEBUG] 苹果跟踪器结果: total=2, historical_total=2, stage_20=2, stage_40=0, stage_60=0, stage_80=0, stage_100=0, max_maturity=20
+2026-05-21 13:11:10,461 - fastapi_app - INFO - [DEBUG] 苹果检测状态: apple_detected=True, current_frame_count=2
+2026-05-21 13:11:10,461 - fastapi_app - INFO - [DEBUG] 苹果预测0: class=20%_ripe, maturity=20, conf=0.388526976108551
+2026-05-21 13:11:10,462 - fastapi_app - INFO - [DEBUG] 苹果预测1: class=20%_ripe, maturity=20, conf=0.3833428919315338
+2026-05-21 13:11:11,441 - fastapi_app - INFO - [DEBUG] 苹果跟踪器结果: total=2, historical_total=2, stage_20=2, stage_40=0, stage_60=0, stage_80=0, stage_100=0, max_maturity=20
+2026-05-21 13:11:11,442 - fastapi_app - INFO - [DEBUG] 苹果检测状态: apple_detected=True, current_frame_count=2
+2026-05-21 13:11:11,442 - fastapi_app - INFO - [DEBUG] 苹果预测0: class=20%_ripe, maturity=20, conf=0.4023008346557617
+2026-05-21 13:11:11,442 - fastapi_app - INFO - [DEBUG] 苹果预测1: class=20%_ripe, maturity=20, conf=0.3683098554611206
+2026-05-21 13:11:12,433 - fastapi_app - INFO - [DEBUG] 苹果跟踪器结果: total=2, historical_total=2, stage_20=2, stage_40=0, stage_60=0, stage_80=0, stage_100=0, max_maturity=20
+2026-05-21 13:11:12,433 - fastapi_app - INFO - [DEBUG] 苹果检测状态: apple_detected=True, current_frame_count=1
+2026-05-21 13:11:12,434 - fastapi_app - INFO - [DEBUG] 苹果预测0: class=20%_ripe, maturity=20, conf=0.2637363374233246
+2026-05-21 13:11:13,390 - fastapi_app - INFO - [DEBUG] 苹果跟踪器结果: total=2, historical_total=2, stage_20=2, stage_40=0, stage_60=0, stage_80=0, stage_100=0, max_maturity=20
+2026-05-21 13:11:13,391 - fastapi_app - INFO - [DEBUG] 苹果检测状态: apple_detected=True, current_frame_count=1
+2026-05-21 13:11:13,391 - fastapi_app - INFO - [DEBUG] 苹果预测0: class=20%_ripe, maturity=20, conf=0.3190925717353821
+2026-05-21 13:11:20,459 - fastapi_app - INFO - WebSocket连接已断开，当前连接数: 0
+2026-05-21 13:14:54,331 - fastapi_app - INFO - [OK] 害虫检测器加载成功
+2026-05-21 13:14:54,381 - fastapi_app - INFO - [OK] 柑橘成熟度检测器加载成功
+2026-05-21 13:14:54,438 - fastapi_app - INFO - [OK] 番茄成熟度检测器加载成功
+2026-05-21 13:14:54,482 - fastapi_app - INFO - [OK] 苹果成熟度检测器加载成功
+2026-05-21 13:14:54,912 - fastapi_app - INFO - OpenClaw通知服务配置完成
+2026-05-21 13:14:55,825 - fastapi_app - INFO - [OK] 害虫检测器加载成功
+2026-05-21 13:14:55,888 - fastapi_app - INFO - [OK] 柑橘成熟度检测器加载成功
+2026-05-21 13:14:55,950 - fastapi_app - INFO - [OK] 番茄成熟度检测器加载成功
+2026-05-21 13:14:56,002 - fastapi_app - INFO - [OK] 苹果成熟度检测器加载成功
+2026-05-21 13:14:56,297 - fastapi_app - INFO - WebSocket连接已建立，当前连接数: 1
+2026-05-21 13:14:56,495 - fastapi_app - INFO - OpenClaw通知服务配置完成(HTTPS)
+2026-05-21 13:15:00,284 - fastapi_app - INFO - WebSocket连接已断开，当前连接数: 0
+2026-05-21 13:15:01,227 - fastapi_app - INFO - WebSocket连接已建立，当前连接数: 1
+2026-05-21 13:15:01,651 - fastapi_app - INFO - WebSocket连接已建立，当前连接数: 2
+2026-05-21 13:15:01,832 - fastapi_app - INFO - WebSocket连接已建立，当前连接数: 3
+2026-05-21 13:15:03,959 - fastapi_app - INFO - WebSocket连接已断开，当前连接数: 2
+2026-05-21 13:15:03,968 - fastapi_app - INFO - WebSocket连接已断开，当前连接数: 1
+2026-05-21 13:15:12,414 - fastapi_app - INFO - [DEBUG] 苹果跟踪器结果: total=1, historical_total=1, stage_20=1, stage_40=0, stage_60=0, stage_80=0, stage_100=0, max_maturity=20
+2026-05-21 13:15:12,415 - fastapi_app - INFO - [DEBUG] 苹果检测状态: apple_detected=True, current_frame_count=1
+2026-05-21 13:15:12,415 - fastapi_app - INFO - [DEBUG] 苹果预测0: class=20%_ripe, maturity=20, conf=0.38861018419265747
+2026-05-21 13:15:13,259 - fastapi_app - INFO - [DEBUG] 苹果跟踪器结果: total=1, historical_total=1, stage_20=1, stage_40=0, stage_60=0, stage_80=0, stage_100=0, max_maturity=20
+2026-05-21 13:15:13,259 - fastapi_app - INFO - [DEBUG] 苹果检测状态: apple_detected=True, current_frame_count=1
+2026-05-21 13:15:13,261 - fastapi_app - INFO - [DEBUG] 苹果预测0: class=20%_ripe, maturity=20, conf=0.3260935842990875
+2026-05-21 13:15:14,261 - fastapi_app - INFO - [DEBUG] 苹果跟踪器结果: total=2, historical_total=2, stage_20=2, stage_40=0, stage_60=0, stage_80=0, stage_100=0, max_maturity=20
+2026-05-21 13:15:14,263 - fastapi_app - INFO - [DEBUG] 苹果检测状态: apple_detected=True, current_frame_count=2
+2026-05-21 13:15:14,263 - fastapi_app - INFO - [DEBUG] 苹果预测0: class=20%_ripe, maturity=20, conf=0.30709466338157654
+2026-05-21 13:15:14,263 - fastapi_app - INFO - [DEBUG] 苹果预测1: class=20%_ripe, maturity=20, conf=0.272893488407135
+2026-05-21 13:15:15,288 - fastapi_app - INFO - [DEBUG] 苹果跟踪器结果: total=2, historical_total=2, stage_20=2, stage_40=0, stage_60=0, stage_80=0, stage_100=0, max_maturity=20
+2026-05-21 13:15:15,288 - fastapi_app - INFO - [DEBUG] 苹果检测状态: apple_detected=True, current_frame_count=1
+2026-05-21 13:15:15,289 - fastapi_app - INFO - [DEBUG] 苹果预测0: class=20%_ripe, maturity=20, conf=0.32938486337661743
+2026-05-21 13:15:16,266 - fastapi_app - INFO - [DEBUG] 苹果跟踪器结果: total=2, historical_total=2, stage_20=2, stage_40=0, stage_60=0, stage_80=0, stage_100=0, max_maturity=20
+2026-05-21 13:15:16,266 - fastapi_app - INFO - [DEBUG] 苹果检测状态: apple_detected=True, current_frame_count=2
+2026-05-21 13:15:16,266 - fastapi_app - INFO - [DEBUG] 苹果预测0: class=20%_ripe, maturity=20, conf=0.4378323256969452
+2026-05-21 13:15:16,266 - fastapi_app - INFO - [DEBUG] 苹果预测1: class=20%_ripe, maturity=20, conf=0.3114686906337738
+2026-05-21 13:15:17,271 - fastapi_app - INFO - [DEBUG] 苹果跟踪器结果: total=2, historical_total=2, stage_20=2, stage_40=0, stage_60=0, stage_80=0, stage_100=0, max_maturity=20
+2026-05-21 13:15:17,271 - fastapi_app - INFO - [DEBUG] 苹果检测状态: apple_detected=True, current_frame_count=2
+2026-05-21 13:15:17,271 - fastapi_app - INFO - [DEBUG] 苹果预测0: class=20%_ripe, maturity=20, conf=0.388526976108551
+2026-05-21 13:15:17,271 - fastapi_app - INFO - [DEBUG] 苹果预测1: class=20%_ripe, maturity=20, conf=0.3833428919315338
+2026-05-21 13:15:18,271 - fastapi_app - INFO - [DEBUG] 苹果跟踪器结果: total=2, historical_total=2, stage_20=2, stage_40=0, stage_60=0, stage_80=0, stage_100=0, max_maturity=20
+2026-05-21 13:15:18,273 - fastapi_app - INFO - [DEBUG] 苹果检测状态: apple_detected=True, current_frame_count=2
+2026-05-21 13:15:18,273 - fastapi_app - INFO - [DEBUG] 苹果预测0: class=20%_ripe, maturity=20, conf=0.4023008346557617
+2026-05-21 13:15:18,273 - fastapi_app - INFO - [DEBUG] 苹果预测1: class=20%_ripe, maturity=20, conf=0.3683098554611206
+2026-05-21 13:15:19,273 - fastapi_app - INFO - [DEBUG] 苹果跟踪器结果: total=2, historical_total=2, stage_20=2, stage_40=0, stage_60=0, stage_80=0, stage_100=0, max_maturity=20
+2026-05-21 13:15:19,273 - fastapi_app - INFO - [DEBUG] 苹果检测状态: apple_detected=True, current_frame_count=1
+2026-05-21 13:15:19,275 - fastapi_app - INFO - [DEBUG] 苹果预测0: class=20%_ripe, maturity=20, conf=0.2637363374233246
+2026-05-21 13:15:20,278 - fastapi_app - INFO - [DEBUG] 苹果跟踪器结果: total=2, historical_total=2, stage_20=2, stage_40=0, stage_60=0, stage_80=0, stage_100=0, max_maturity=20
+2026-05-21 13:15:20,279 - fastapi_app - INFO - [DEBUG] 苹果检测状态: apple_detected=True, current_frame_count=1
+2026-05-21 13:15:20,279 - fastapi_app - INFO - [DEBUG] 苹果预测0: class=20%_ripe, maturity=20, conf=0.3190925717353821
+2026-05-21 13:15:32,616 - fastapi_app - INFO - WebSocket连接已断开，当前连接数: 0
+2026-05-21 13:15:32,810 - fastapi_app - INFO - WebSocket连接已建立，当前连接数: 1
+2026-05-21 13:15:33,278 - fastapi_app - INFO - WebSocket连接已建立，当前连接数: 2
+2026-05-21 13:15:33,324 - fastapi_app - INFO - WebSocket连接已建立，当前连接数: 3
+2026-05-21 13:15:34,168 - fastapi_app - INFO - WebSocket连接已断开，当前连接数: 2
+2026-05-21 13:15:34,170 - fastapi_app - INFO - WebSocket连接已断开，当前连接数: 1
+2026-05-21 13:15:34,173 - fastapi_app - INFO - WebSocket连接已断开，当前连接数: 0
+2026-05-21 13:15:34,331 - fastapi_app - INFO - WebSocket连接已建立，当前连接数: 1
+2026-05-21 13:15:34,760 - fastapi_app - INFO - WebSocket连接已建立，当前连接数: 2
+2026-05-21 13:15:34,806 - fastapi_app - INFO - WebSocket连接已建立，当前连接数: 3
+2026-05-21 13:15:37,323 - fastapi_app - INFO - WebSocket连接已断开，当前连接数: 2
+2026-05-21 13:15:37,330 - fastapi_app - INFO - WebSocket连接已断开，当前连接数: 1
+2026-05-21 13:15:44,650 - fastapi_app - INFO - [DEBUG] 苹果跟踪器结果: total=1, historical_total=1, stage_20=1, stage_40=0, stage_60=0, stage_80=0, stage_100=0, max_maturity=20
+2026-05-21 13:15:44,651 - fastapi_app - INFO - [DEBUG] 苹果检测状态: apple_detected=True, current_frame_count=1
+2026-05-21 13:15:44,651 - fastapi_app - INFO - [DEBUG] 苹果预测0: class=20%_ripe, maturity=20, conf=0.38861018419265747
+2026-05-21 13:15:45,625 - fastapi_app - INFO - [DEBUG] 苹果跟踪器结果: total=1, historical_total=1, stage_20=1, stage_40=0, stage_60=0, stage_80=0, stage_100=0, max_maturity=20
+2026-05-21 13:15:45,626 - fastapi_app - INFO - [DEBUG] 苹果检测状态: apple_detected=True, current_frame_count=1
+2026-05-21 13:15:45,627 - fastapi_app - INFO - [DEBUG] 苹果预测0: class=20%_ripe, maturity=20, conf=0.3260935842990875
+2026-05-21 13:15:46,565 - fastapi_app - INFO - [DEBUG] 苹果跟踪器结果: total=2, historical_total=2, stage_20=2, stage_40=0, stage_60=0, stage_80=0, stage_100=0, max_maturity=20
+2026-05-21 13:15:46,566 - fastapi_app - INFO - [DEBUG] 苹果检测状态: apple_detected=True, current_frame_count=2
+2026-05-21 13:15:46,566 - fastapi_app - INFO - [DEBUG] 苹果预测0: class=20%_ripe, maturity=20, conf=0.30709466338157654
+2026-05-21 13:15:46,566 - fastapi_app - INFO - [DEBUG] 苹果预测1: class=20%_ripe, maturity=20, conf=0.272893488407135
+2026-05-21 13:15:47,607 - fastapi_app - INFO - [DEBUG] 苹果跟踪器结果: total=2, historical_total=2, stage_20=2, stage_40=0, stage_60=0, stage_80=0, stage_100=0, max_maturity=20
+2026-05-21 13:15:47,608 - fastapi_app - INFO - [DEBUG] 苹果检测状态: apple_detected=True, current_frame_count=1
+2026-05-21 13:15:47,608 - fastapi_app - INFO - [DEBUG] 苹果预测0: class=20%_ripe, maturity=20, conf=0.32938486337661743
+2026-05-21 13:15:48,612 - fastapi_app - INFO - [DEBUG] 苹果跟踪器结果: total=2, historical_total=2, stage_20=2, stage_40=0, stage_60=0, stage_80=0, stage_100=0, max_maturity=20
+2026-05-21 13:15:48,614 - fastapi_app - INFO - [DEBUG] 苹果检测状态: apple_detected=True, current_frame_count=2
+2026-05-21 13:15:48,614 - fastapi_app - INFO - [DEBUG] 苹果预测0: class=20%_ripe, maturity=20, conf=0.4378323256969452
+2026-05-21 13:15:48,614 - fastapi_app - INFO - [DEBUG] 苹果预测1: class=20%_ripe, maturity=20, conf=0.3114686906337738
+2026-05-21 13:15:49,605 - fastapi_app - INFO - [DEBUG] 苹果跟踪器结果: total=2, historical_total=2, stage_20=2, stage_40=0, stage_60=0, stage_80=0, stage_100=0, max_maturity=20
+2026-05-21 13:15:49,605 - fastapi_app - INFO - [DEBUG] 苹果检测状态: apple_detected=True, current_frame_count=2
+2026-05-21 13:15:49,605 - fastapi_app - INFO - [DEBUG] 苹果预测0: class=20%_ripe, maturity=20, conf=0.388526976108551
+2026-05-21 13:15:49,606 - fastapi_app - INFO - [DEBUG] 苹果预测1: class=20%_ripe, maturity=20, conf=0.3833428919315338
+2026-05-21 13:15:50,641 - fastapi_app - INFO - [DEBUG] 苹果跟踪器结果: total=2, historical_total=2, stage_20=2, stage_40=0, stage_60=0, stage_80=0, stage_100=0, max_maturity=20
+2026-05-21 13:15:50,641 - fastapi_app - INFO - [DEBUG] 苹果检测状态: apple_detected=True, current_frame_count=2
+2026-05-21 13:15:50,641 - fastapi_app - INFO - [DEBUG] 苹果预测0: class=20%_ripe, maturity=20, conf=0.4023008346557617
+2026-05-21 13:15:50,641 - fastapi_app - INFO - [DEBUG] 苹果预测1: class=20%_ripe, maturity=20, conf=0.3683098554611206
+2026-05-21 13:15:51,633 - fastapi_app - INFO - [DEBUG] 苹果跟踪器结果: total=2, historical_total=2, stage_20=2, stage_40=0, stage_60=0, stage_80=0, stage_100=0, max_maturity=20
+2026-05-21 13:15:51,634 - fastapi_app - INFO - [DEBUG] 苹果检测状态: apple_detected=True, current_frame_count=1
+2026-05-21 13:15:51,634 - fastapi_app - INFO - [DEBUG] 苹果预测0: class=20%_ripe, maturity=20, conf=0.2637363374233246
+2026-05-21 13:15:52,618 - fastapi_app - INFO - [DEBUG] 苹果跟踪器结果: total=2, historical_total=2, stage_20=2, stage_40=0, stage_60=0, stage_80=0, stage_100=0, max_maturity=20
+2026-05-21 13:15:52,620 - fastapi_app - INFO - [DEBUG] 苹果检测状态: apple_detected=True, current_frame_count=1
+2026-05-21 13:15:52,620 - fastapi_app - INFO - [DEBUG] 苹果预测0: class=20%_ripe, maturity=20, conf=0.3190925717353821
+2026-05-21 13:15:53,618 - fastapi_app - INFO - [DEBUG] 苹果跟踪器结果: total=2, historical_total=2, stage_20=2, stage_40=0, stage_60=0, stage_80=0, stage_100=0, max_maturity=20
+2026-05-21 13:15:53,618 - fastapi_app - INFO - [DEBUG] 苹果检测状态: apple_detected=False, current_frame_count=0
+2026-05-21 13:15:54,639 - fastapi_app - INFO - [DEBUG] 苹果跟踪器结果: total=2, historical_total=2, stage_20=2, stage_40=0, stage_60=0, stage_80=0, stage_100=0, max_maturity=20
+2026-05-21 13:15:54,639 - fastapi_app - INFO - [DEBUG] 苹果检测状态: apple_detected=True, current_frame_count=1
+2026-05-21 13:15:54,639 - fastapi_app - INFO - [DEBUG] 苹果预测0: class=20%_ripe, maturity=20, conf=0.4914081394672394
+2026-05-21 13:15:55,645 - fastapi_app - INFO - [DEBUG] 苹果跟踪器结果: total=2, historical_total=2, stage_20=2, stage_40=0, stage_60=0, stage_80=0, stage_100=0, max_maturity=20
+2026-05-21 13:15:55,645 - fastapi_app - INFO - [DEBUG] 苹果检测状态: apple_detected=True, current_frame_count=1
+2026-05-21 13:15:55,646 - fastapi_app - INFO - [DEBUG] 苹果预测0: class=20%_ripe, maturity=20, conf=0.3105120360851288
+2026-05-21 13:15:56,647 - fastapi_app - INFO - [DEBUG] 苹果跟踪器结果: total=2, historical_total=2, stage_20=2, stage_40=0, stage_60=0, stage_80=0, stage_100=0, max_maturity=20
+2026-05-21 13:15:56,647 - fastapi_app - INFO - [DEBUG] 苹果检测状态: apple_detected=False, current_frame_count=0
+2026-05-21 13:15:57,658 - fastapi_app - INFO - [DEBUG] 苹果跟踪器结果: total=2, historical_total=2, stage_20=2, stage_40=0, stage_60=0, stage_80=0, stage_100=0, max_maturity=20
+2026-05-21 13:15:57,658 - fastapi_app - INFO - [DEBUG] 苹果检测状态: apple_detected=False, current_frame_count=0
+2026-05-21 13:15:58,683 - fastapi_app - INFO - [DEBUG] 苹果跟踪器结果: total=1, historical_total=2, stage_20=1, stage_40=0, stage_60=0, stage_80=0, stage_100=0, max_maturity=20
+2026-05-21 13:15:58,684 - fastapi_app - INFO - [DEBUG] 苹果检测状态: apple_detected=False, current_frame_count=0
+2026-05-21 13:15:59,691 - fastapi_app - INFO - [DEBUG] 苹果跟踪器结果: total=1, historical_total=2, stage_20=1, stage_40=0, stage_60=0, stage_80=0, stage_100=0, max_maturity=20
+2026-05-21 13:15:59,691 - fastapi_app - INFO - [DEBUG] 苹果检测状态: apple_detected=True, current_frame_count=1
+2026-05-21 13:15:59,692 - fastapi_app - INFO - [DEBUG] 苹果预测0: class=20%_ripe, maturity=20, conf=0.29788854718208313
+2026-05-21 13:16:00,700 - fastapi_app - INFO - [DEBUG] 苹果跟踪器结果: total=1, historical_total=2, stage_20=1, stage_40=0, stage_60=0, stage_80=0, stage_100=0, max_maturity=20
+2026-05-21 13:16:00,701 - fastapi_app - INFO - [DEBUG] 苹果检测状态: apple_detected=False, current_frame_count=0
+2026-05-21 13:16:01,595 - fastapi_app - INFO - [DEBUG] 苹果跟踪器结果: total=1, historical_total=2, stage_20=1, stage_40=0, stage_60=0, stage_80=0, stage_100=0, max_maturity=20
+2026-05-21 13:16:01,596 - fastapi_app - INFO - [DEBUG] 苹果检测状态: apple_detected=False, current_frame_count=0
+2026-05-21 13:16:02,594 - fastapi_app - INFO - [DEBUG] 苹果跟踪器结果: total=1, historical_total=2, stage_20=1, stage_40=0, stage_60=0, stage_80=0, stage_100=0, max_maturity=20
+2026-05-21 13:16:02,595 - fastapi_app - INFO - [DEBUG] 苹果检测状态: apple_detected=False, current_frame_count=0
+2026-05-21 13:16:03,629 - fastapi_app - INFO - [DEBUG] 苹果跟踪器结果: total=1, historical_total=2, stage_20=1, stage_40=0, stage_60=0, stage_80=0, stage_100=0, max_maturity=20
+2026-05-21 13:16:03,629 - fastapi_app - INFO - [DEBUG] 苹果检测状态: apple_detected=False, current_frame_count=0
+2026-05-21 13:16:04,064 - fastapi_app - INFO - WebSocket连接已断开，当前连接数: 0
+2026-05-21 13:22:51,442 - fastapi_app - INFO - [OK] 害虫检测器加载成功
+2026-05-21 13:22:51,494 - fastapi_app - INFO - [OK] 柑橘成熟度检测器加载成功
+2026-05-21 13:22:51,555 - fastapi_app - INFO - [OK] 番茄成熟度检测器加载成功
+2026-05-21 13:22:51,596 - fastapi_app - INFO - [OK] 苹果成熟度检测器加载成功
+2026-05-21 13:22:52,036 - fastapi_app - INFO - OpenClaw通知服务配置完成
+2026-05-21 13:22:52,931 - fastapi_app - INFO - [OK] 害虫检测器加载成功
+2026-05-21 13:22:52,999 - fastapi_app - INFO - [OK] 柑橘成熟度检测器加载成功
+2026-05-21 13:22:53,088 - fastapi_app - INFO - [OK] 番茄成熟度检测器加载成功
+2026-05-21 13:22:53,159 - fastapi_app - INFO - [OK] 苹果成熟度检测器加载成功
+2026-05-21 13:22:53,643 - fastapi_app - INFO - OpenClaw通知服务配置完成(HTTPS)
+2026-05-21 13:22:54,284 - fastapi_app - INFO - WebSocket连接已建立，当前连接数: 1
+2026-05-21 13:22:59,757 - fastapi_app - INFO - WebSocket连接已断开，当前连接数: 0
+2026-05-21 13:23:00,700 - fastapi_app - INFO - WebSocket连接已建立，当前连接数: 1
+2026-05-21 13:23:01,340 - fastapi_app - INFO - WebSocket连接已建立，当前连接数: 2
+2026-05-21 13:23:01,387 - fastapi_app - INFO - WebSocket连接已建立，当前连接数: 3
+2026-05-21 13:23:03,421 - fastapi_app - INFO - WebSocket连接已断开，当前连接数: 2
+2026-05-21 13:23:03,421 - fastapi_app - INFO - WebSocket连接已断开，当前连接数: 1
+2026-05-21 13:23:11,465 - fastapi_app - INFO - [DEBUG] 苹果跟踪器结果: total=1, historical_total=1, stage_20=1, stage_40=0, stage_60=0, stage_80=0, stage_100=0, max_maturity=20
+2026-05-21 13:23:11,465 - fastapi_app - INFO - [DEBUG] 苹果检测状态: apple_detected=True, current_frame_count=1
+2026-05-21 13:23:11,466 - fastapi_app - INFO - [DEBUG] 苹果预测0: class=20%_ripe, maturity=20, conf=0.38861018419265747
+2026-05-21 13:23:12,316 - fastapi_app - INFO - [DEBUG] 苹果跟踪器结果: total=1, historical_total=1, stage_20=1, stage_40=0, stage_60=0, stage_80=0, stage_100=0, max_maturity=20
+2026-05-21 13:23:12,316 - fastapi_app - INFO - [DEBUG] 苹果检测状态: apple_detected=True, current_frame_count=1
+2026-05-21 13:23:12,317 - fastapi_app - INFO - [DEBUG] 苹果预测0: class=20%_ripe, maturity=20, conf=0.3260935842990875
+2026-05-21 13:23:13,294 - fastapi_app - INFO - [DEBUG] 苹果跟踪器结果: total=2, historical_total=2, stage_20=2, stage_40=0, stage_60=0, stage_80=0, stage_100=0, max_maturity=20
+2026-05-21 13:23:13,296 - fastapi_app - INFO - [DEBUG] 苹果检测状态: apple_detected=True, current_frame_count=2
+2026-05-21 13:23:13,296 - fastapi_app - INFO - [DEBUG] 苹果预测0: class=20%_ripe, maturity=20, conf=0.30709466338157654
+2026-05-21 13:23:13,296 - fastapi_app - INFO - [DEBUG] 苹果预测1: class=20%_ripe, maturity=20, conf=0.272893488407135
+2026-05-21 13:23:14,315 - fastapi_app - INFO - [DEBUG] 苹果跟踪器结果: total=2, historical_total=2, stage_20=2, stage_40=0, stage_60=0, stage_80=0, stage_100=0, max_maturity=20
+2026-05-21 13:23:14,316 - fastapi_app - INFO - [DEBUG] 苹果检测状态: apple_detected=True, current_frame_count=1
+2026-05-21 13:23:14,316 - fastapi_app - INFO - [DEBUG] 苹果预测0: class=20%_ripe, maturity=20, conf=0.32938486337661743
+2026-05-21 13:23:15,322 - fastapi_app - INFO - [DEBUG] 苹果跟踪器结果: total=2, historical_total=2, stage_20=2, stage_40=0, stage_60=0, stage_80=0, stage_100=0, max_maturity=20
+2026-05-21 13:23:15,323 - fastapi_app - INFO - [DEBUG] 苹果检测状态: apple_detected=True, current_frame_count=2
+2026-05-21 13:23:15,323 - fastapi_app - INFO - [DEBUG] 苹果预测0: class=20%_ripe, maturity=20, conf=0.4378323256969452
+2026-05-21 13:23:15,323 - fastapi_app - INFO - [DEBUG] 苹果预测1: class=20%_ripe, maturity=20, conf=0.3114686906337738
+2026-05-21 13:23:16,348 - fastapi_app - INFO - [DEBUG] 苹果跟踪器结果: total=2, historical_total=2, stage_20=2, stage_40=0, stage_60=0, stage_80=0, stage_100=0, max_maturity=20
+2026-05-21 13:23:16,349 - fastapi_app - INFO - [DEBUG] 苹果检测状态: apple_detected=True, current_frame_count=2
+2026-05-21 13:23:16,350 - fastapi_app - INFO - [DEBUG] 苹果预测0: class=20%_ripe, maturity=20, conf=0.388526976108551
+2026-05-21 13:23:16,350 - fastapi_app - INFO - [DEBUG] 苹果预测1: class=20%_ripe, maturity=20, conf=0.3833428919315338
+2026-05-21 13:23:17,360 - fastapi_app - INFO - [DEBUG] 苹果跟踪器结果: total=2, historical_total=2, stage_20=2, stage_40=0, stage_60=0, stage_80=0, stage_100=0, max_maturity=20
+2026-05-21 13:23:17,361 - fastapi_app - INFO - [DEBUG] 苹果检测状态: apple_detected=True, current_frame_count=2
+2026-05-21 13:23:17,361 - fastapi_app - INFO - [DEBUG] 苹果预测0: class=20%_ripe, maturity=20, conf=0.4023008346557617
+2026-05-21 13:23:17,362 - fastapi_app - INFO - [DEBUG] 苹果预测1: class=20%_ripe, maturity=20, conf=0.3683098554611206
+2026-05-21 13:23:18,372 - fastapi_app - INFO - [DEBUG] 苹果跟踪器结果: total=2, historical_total=2, stage_20=2, stage_40=0, stage_60=0, stage_80=0, stage_100=0, max_maturity=20
+2026-05-21 13:23:18,374 - fastapi_app - INFO - [DEBUG] 苹果检测状态: apple_detected=True, current_frame_count=1
+2026-05-21 13:23:18,374 - fastapi_app - INFO - [DEBUG] 苹果预测0: class=20%_ripe, maturity=20, conf=0.2637363374233246
+2026-05-21 13:23:19,394 - fastapi_app - INFO - [DEBUG] 苹果跟踪器结果: total=2, historical_total=2, stage_20=2, stage_40=0, stage_60=0, stage_80=0, stage_100=0, max_maturity=20
+2026-05-21 13:23:19,395 - fastapi_app - INFO - [DEBUG] 苹果检测状态: apple_detected=True, current_frame_count=1
+2026-05-21 13:23:19,396 - fastapi_app - INFO - [DEBUG] 苹果预测0: class=20%_ripe, maturity=20, conf=0.3190925717353821
+2026-05-21 13:23:26,344 - fastapi_app - INFO - [DEBUG] 番茄跟踪器结果: total=4, historical_total=4, unripe=3, ripe=1, overripe=0, max_maturity=89.8
+2026-05-21 13:23:26,344 - fastapi_app - INFO - [DEBUG] 番茄预测0: class=Unripe-Tomato, maturity=57.7, conf=0.9621807932853699
+2026-05-21 13:23:26,344 - fastapi_app - INFO - [DEBUG] 番茄预测1: class=Unripe-Tomato, maturity=55.0, conf=0.9161458611488342
+2026-05-21 13:23:26,345 - fastapi_app - INFO - [DEBUG] 番茄预测2: class=Ripe-Tomato, maturity=89.8, conf=0.8513450026512146
+2026-05-21 13:23:27,028 - fastapi_app - INFO - [DEBUG] 番茄跟踪器结果: total=4, historical_total=4, unripe=4, ripe=1, overripe=0, max_maturity=89.9
+2026-05-21 13:23:27,028 - fastapi_app - INFO - [DEBUG] 番茄预测0: class=Unripe-Tomato, maturity=57.6, conf=0.9599776268005371
+2026-05-21 13:23:27,028 - fastapi_app - INFO - [DEBUG] 番茄预测1: class=Unripe-Tomato, maturity=54.3, conf=0.9054259061813354
+2026-05-21 13:23:27,029 - fastapi_app - INFO - [DEBUG] 番茄预测2: class=Ripe-Tomato, maturity=89.9, conf=0.8532477617263794
+2026-05-21 13:23:28,039 - fastapi_app - INFO - [DEBUG] 番茄跟踪器结果: total=4, historical_total=4, unripe=3, ripe=1, overripe=0, max_maturity=89.9
+2026-05-21 13:23:28,040 - fastapi_app - INFO - [DEBUG] 番茄预测0: class=Unripe-Tomato, maturity=57.4, conf=0.9570237398147583
+2026-05-21 13:23:28,040 - fastapi_app - INFO - [DEBUG] 番茄预测1: class=Unripe-Tomato, maturity=49.1, conf=0.818609893321991
+2026-05-21 13:23:28,040 - fastapi_app - INFO - [DEBUG] 番茄预测2: class=Ripe-Tomato, maturity=85.2, conf=0.7191250920295715
+2026-05-21 13:23:29,035 - fastapi_app - INFO - [DEBUG] 番茄跟踪器结果: total=4, historical_total=4, unripe=3, ripe=1, overripe=0, max_maturity=89.9
+2026-05-21 13:23:29,036 - fastapi_app - INFO - [DEBUG] 番茄预测0: class=Unripe-Tomato, maturity=57.2, conf=0.9530465602874756
+2026-05-21 13:23:29,036 - fastapi_app - INFO - [DEBUG] 番茄预测1: class=Unripe-Tomato, maturity=47.7, conf=0.7958278656005859
+2026-05-21 13:23:29,036 - fastapi_app - INFO - [DEBUG] 番茄预测2: class=Ripe-Tomato, maturity=87.4, conf=0.7837132215499878
+2026-05-21 13:23:30,005 - fastapi_app - INFO - [DEBUG] 番茄跟踪器结果: total=5, historical_total=5, unripe=2, ripe=3, overripe=0, max_maturity=89.9
+2026-05-21 13:23:30,006 - fastapi_app - INFO - [DEBUG] 番茄预测0: class=Unripe-Tomato, maturity=57.0, conf=0.9491907358169556
+2026-05-21 13:23:30,006 - fastapi_app - INFO - [DEBUG] 番茄预测1: class=Ripe-Tomato, maturity=89.2, conf=0.834782063961029
+2026-05-21 13:23:30,006 - fastapi_app - INFO - [DEBUG] 番茄预测2: class=Unripe-Tomato, maturity=42.3, conf=0.7042006254196167
+2026-05-21 13:23:31,058 - fastapi_app - INFO - [DEBUG] 番茄跟踪器结果: total=5, historical_total=5, unripe=2, ripe=3, overripe=0, max_maturity=89.9
+2026-05-21 13:23:31,058 - fastapi_app - INFO - [DEBUG] 番茄预测0: class=Unripe-Tomato, maturity=57.0, conf=0.9504703283309937
+2026-05-21 13:23:31,058 - fastapi_app - INFO - [DEBUG] 番茄预测1: class=Unripe-Tomato, maturity=51.5, conf=0.8583097457885742
+2026-05-21 13:23:31,059 - fastapi_app - INFO - [DEBUG] 番茄预测2: class=Ripe-Tomato, maturity=82.6, conf=0.6447396278381348
+2026-05-21 13:23:31,985 - fastapi_app - INFO - [DEBUG] 番茄跟踪器结果: total=5, historical_total=5, unripe=2, ripe=3, overripe=0, max_maturity=89.9
+2026-05-21 13:23:31,986 - fastapi_app - INFO - [DEBUG] 番茄预测0: class=Unripe-Tomato, maturity=57.4, conf=0.9566896557807922
+2026-05-21 13:23:31,986 - fastapi_app - INFO - [DEBUG] 番茄预测1: class=Ripe-Tomato, maturity=88.2, conf=0.804530680179596
+2026-05-21 13:23:31,986 - fastapi_app - INFO - [DEBUG] 番茄预测2: class=Unripe-Tomato, maturity=32.6, conf=0.5429989099502563
+2026-05-21 13:23:33,030 - fastapi_app - INFO - [DEBUG] 番茄跟踪器结果: total=5, historical_total=5, unripe=2, ripe=3, overripe=0, max_maturity=92.7
+2026-05-21 13:23:33,031 - fastapi_app - INFO - [DEBUG] 番茄预测0: class=Unripe-Tomato, maturity=56.6, conf=0.9436383247375488
+2026-05-21 13:23:33,031 - fastapi_app - INFO - [DEBUG] 番茄预测1: class=Ripe-Tomato, maturity=92.7, conf=0.9332982897758484
+2026-05-21 13:23:33,032 - fastapi_app - INFO - [DEBUG] 番茄预测2: class=Ripe-Tomato, maturity=90.6, conf=0.8749765753746033
+2026-05-21 13:23:33,964 - fastapi_app - INFO - [DEBUG] 番茄跟踪器结果: total=5, historical_total=5, unripe=2, ripe=3, overripe=0, max_maturity=92.7
+2026-05-21 13:23:33,965 - fastapi_app - INFO - [DEBUG] 番茄预测0: class=Ripe-Tomato, maturity=91.9, conf=0.9110720157623291
+2026-05-21 13:23:33,965 - fastapi_app - INFO - [DEBUG] 番茄预测1: class=Unripe-Tomato, maturity=53.5, conf=0.8909215331077576
+2026-05-21 13:23:33,965 - fastapi_app - INFO - [DEBUG] 番茄预测2: class=Unripe-Tomato, maturity=51.9, conf=0.8648952841758728
+2026-05-21 13:23:39,649 - fastapi_app - INFO - [DEBUG] 苹果跟踪器结果: total=1, historical_total=1, stage_20=1, stage_40=0, stage_60=0, stage_80=0, stage_100=0, max_maturity=20
+2026-05-21 13:23:39,650 - fastapi_app - INFO - [DEBUG] 苹果检测状态: apple_detected=True, current_frame_count=1
+2026-05-21 13:23:39,650 - fastapi_app - INFO - [DEBUG] 苹果预测0: class=20%_ripe, maturity=20, conf=0.38861018419265747
+2026-05-21 13:23:40,610 - fastapi_app - INFO - [DEBUG] 苹果跟踪器结果: total=1, historical_total=1, stage_20=1, stage_40=0, stage_60=0, stage_80=0, stage_100=0, max_maturity=20
+2026-05-21 13:23:40,610 - fastapi_app - INFO - [DEBUG] 苹果检测状态: apple_detected=True, current_frame_count=1
+2026-05-21 13:23:40,610 - fastapi_app - INFO - [DEBUG] 苹果预测0: class=20%_ripe, maturity=20, conf=0.3260935842990875
+2026-05-21 13:23:41,711 - fastapi_app - INFO - [DEBUG] 苹果跟踪器结果: total=2, historical_total=2, stage_20=2, stage_40=0, stage_60=0, stage_80=0, stage_100=0, max_maturity=20
+2026-05-21 13:23:41,712 - fastapi_app - INFO - [DEBUG] 苹果检测状态: apple_detected=True, current_frame_count=2
+2026-05-21 13:23:41,712 - fastapi_app - INFO - [DEBUG] 苹果预测0: class=20%_ripe, maturity=20, conf=0.30709466338157654
+2026-05-21 13:23:41,712 - fastapi_app - INFO - [DEBUG] 苹果预测1: class=20%_ripe, maturity=20, conf=0.272893488407135
+2026-05-21 13:23:42,733 - fastapi_app - INFO - [DEBUG] 苹果跟踪器结果: total=2, historical_total=2, stage_20=2, stage_40=0, stage_60=0, stage_80=0, stage_100=0, max_maturity=20
+2026-05-21 13:23:42,733 - fastapi_app - INFO - [DEBUG] 苹果检测状态: apple_detected=True, current_frame_count=1
+2026-05-21 13:23:42,733 - fastapi_app - INFO - [DEBUG] 苹果预测0: class=20%_ripe, maturity=20, conf=0.32938486337661743
+2026-05-21 13:23:43,658 - fastapi_app - INFO - [DEBUG] 苹果跟踪器结果: total=2, historical_total=2, stage_20=2, stage_40=0, stage_60=0, stage_80=0, stage_100=0, max_maturity=20
+2026-05-21 13:23:43,659 - fastapi_app - INFO - [DEBUG] 苹果检测状态: apple_detected=True, current_frame_count=2
+2026-05-21 13:23:43,660 - fastapi_app - INFO - [DEBUG] 苹果预测0: class=20%_ripe, maturity=20, conf=0.4378323256969452
+2026-05-21 13:23:43,660 - fastapi_app - INFO - [DEBUG] 苹果预测1: class=20%_ripe, maturity=20, conf=0.3114686906337738
+2026-05-21 13:23:44,634 - fastapi_app - INFO - [DEBUG] 苹果跟踪器结果: total=2, historical_total=2, stage_20=2, stage_40=0, stage_60=0, stage_80=0, stage_100=0, max_maturity=20
+2026-05-21 13:23:44,634 - fastapi_app - INFO - [DEBUG] 苹果检测状态: apple_detected=True, current_frame_count=2
+2026-05-21 13:23:44,634 - fastapi_app - INFO - [DEBUG] 苹果预测0: class=20%_ripe, maturity=20, conf=0.388526976108551
+2026-05-21 13:23:44,634 - fastapi_app - INFO - [DEBUG] 苹果预测1: class=20%_ripe, maturity=20, conf=0.3833428919315338
+2026-05-21 13:23:45,644 - fastapi_app - INFO - [DEBUG] 苹果跟踪器结果: total=2, historical_total=2, stage_20=2, stage_40=0, stage_60=0, stage_80=0, stage_100=0, max_maturity=20
+2026-05-21 13:23:45,644 - fastapi_app - INFO - [DEBUG] 苹果检测状态: apple_detected=True, current_frame_count=2
+2026-05-21 13:23:45,644 - fastapi_app - INFO - [DEBUG] 苹果预测0: class=20%_ripe, maturity=20, conf=0.4023008346557617
+2026-05-21 13:23:45,645 - fastapi_app - INFO - [DEBUG] 苹果预测1: class=20%_ripe, maturity=20, conf=0.3683098554611206
+2026-05-21 13:23:46,648 - fastapi_app - INFO - [DEBUG] 苹果跟踪器结果: total=2, historical_total=2, stage_20=2, stage_40=0, stage_60=0, stage_80=0, stage_100=0, max_maturity=20
+2026-05-21 13:23:46,648 - fastapi_app - INFO - [DEBUG] 苹果检测状态: apple_detected=True, current_frame_count=1
+2026-05-21 13:23:46,649 - fastapi_app - INFO - [DEBUG] 苹果预测0: class=20%_ripe, maturity=20, conf=0.2637363374233246
+2026-05-21 13:23:47,648 - fastapi_app - INFO - [DEBUG] 苹果跟踪器结果: total=2, historical_total=2, stage_20=2, stage_40=0, stage_60=0, stage_80=0, stage_100=0, max_maturity=20
+2026-05-21 13:23:47,649 - fastapi_app - INFO - [DEBUG] 苹果检测状态: apple_detected=True, current_frame_count=1
+2026-05-21 13:23:47,650 - fastapi_app - INFO - [DEBUG] 苹果预测0: class=20%_ripe, maturity=20, conf=0.3190925717353821
+2026-05-21 13:23:57,108 - fastapi_app - INFO - WebSocket连接已断开，当前连接数: 0
