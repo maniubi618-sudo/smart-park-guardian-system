@@ -26,7 +26,7 @@
             <el-card class="setting-section" shadow="never">
               <template #header>
                 <div class="section-header">
-                  <span class="section-title">⚡ 功能开关</span>
+                  <span class="section-title">功能开关</span>
                 </div>
               </template>
               <el-form :model="detectionSettings" label-width="140px">
@@ -52,7 +52,7 @@
             <el-card class="setting-section" shadow="never" style="margin-top: 20px;">
               <template #header>
                 <div class="section-header">
-                  <span class="section-title">📊 检测阈值</span>
+                  <span class="section-title">检测阈值</span>
                 </div>
               </template>
               <el-form :model="detectionSettings" label-width="140px">
@@ -107,7 +107,7 @@
             <el-card class="setting-section" shadow="never">
               <template #header>
                 <div class="section-header">
-                  <span class="section-title">🍊 柑橘成熟度检测</span>
+                  <span class="section-title">柑橘成熟度检测</span>
                 </div>
               </template>
               <el-form :model="agricultureSettings" label-width="140px">
@@ -139,7 +139,7 @@
             <el-card class="setting-section" shadow="never" style="margin-top: 20px;">
               <template #header>
                 <div class="section-header">
-                  <span class="section-title">🌱 作物病害检测</span>
+                  <span class="section-title">作物病害检测</span>
                 </div>
               </template>
               <el-form :model="agricultureSettings" label-width="140px">
@@ -169,7 +169,7 @@
             
             <div class="button-group" style="margin-top: 20px;">
               <el-button @click="resetToDefault" type="info">
-                🔄 重置默认值
+                重置默认值
               </el-button>
             </div>
           </el-tab-pane>
@@ -385,51 +385,50 @@ onMounted(() => {
 <style scoped>
 .settings-container {
   width: 100%;
-  padding: 20px;
-  background-color: #f5f7fa;
-  min-height: calc(100vh - 80px);
+  min-height: calc(100vh - 136px);
 }
 
 .settings-card {
-  max-width: 1200px;
+  max-width: 1180px;
   margin: 0 auto;
-  background-color: white;
-  border-radius: 8px;
-  box-shadow: 0 2px 12px 0 rgba(0, 0, 0, 0.1);
 }
 
 .card-header {
   display: flex;
   justify-content: space-between;
   align-items: center;
+  gap: 16px;
 }
 
 .card-title {
+  color: var(--text-color);
   font-size: 18px;
-  font-weight: 600;
+  font-weight: 850;
   margin: 0;
 }
 
 .message-alert {
-  margin-bottom: 20px;
+  margin-bottom: 18px;
 }
 
 .form-help {
-  color: #909399;
+  display: inline-flex;
+  margin-left: 12px;
+  color: var(--text-color-muted);
   font-size: 12px;
-  margin-left: 10px;
+  font-weight: 600;
 }
 
 .el-tabs {
-  margin-top: 20px;
+  margin-top: 18px;
 }
 
 .el-form-item {
-  margin-bottom: 20px;
+  margin-bottom: 18px;
 }
 
-.setting-section {
-  border: 1px solid #e4e7ed;
+.setting-section + .setting-section {
+  margin-top: 18px !important;
 }
 
 .section-header {
@@ -439,9 +438,23 @@ onMounted(() => {
 }
 
 .section-title {
-  font-size: 16px;
-  font-weight: 600;
-  color: #303133;
+  position: relative;
+  padding-left: 12px;
+  color: var(--text-color);
+  font-size: 15px;
+  font-weight: 850;
+}
+
+.section-title::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 50%;
+  width: 4px;
+  height: 16px;
+  border-radius: 999px;
+  background: var(--primary-color);
+  transform: translateY(-50%);
 }
 
 .button-group {

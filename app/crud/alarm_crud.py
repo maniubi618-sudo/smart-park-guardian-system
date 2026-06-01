@@ -408,14 +408,17 @@ def delete_alarms_and_related_records(db: Session, alarm_ids: List[int]) -> int:
     return deleted_count
 
 
-def get_recent_unresolved_alarms(db: Session, limit: int = 5):
+def get_recent_unresolved_alarms(db: Session, limit: int = 5, camera_id: int = None, since_hours: int = None, alarm_type: int = None):
     """
     获取最近的未解决告警记录（alarm_status为0或2），默认最多5条
-    
+
     Args:
         db (Session): 数据库会话
         limit (int): 限制返回的记录数，默认为5
-        
+        camera_id (int, optional): 按摄像头ID过滤
+        since_hours (int, optional): 只返回最近N小时内的告警
+        alarm_type (int, optional): 按告警类型过滤
+
     Returns:
         tuple: (总数, 告警记录列表)
     """
@@ -452,8 +455,24 @@ def get_recent_unresolved_alarms(db: Session, limit: int = 5):
         UserDB, AlarmHandleRecordDB.handler_user_id == UserDB.user_id
     ).filter(
         AlarmDB.alarm_status.in_([0,2])  # 未解决的告警（处理中或未处理）
-    ).order_by(
-        AlarmDB.alarm_id.asc()  # 按告警ID升序排列
+    )
+
+    # 可选：按摄像头ID过滤
+    if camera_id is not None:
+        query = query.filter(AlarmDB.camera_id == camera_id)
+
+    # 可选：只返回最近N小时内的告警
+    if since_hours is not None and since_hours > 0:
+        from datetime import datetime, timedelta
+        since_time = datetime.now() - timedelta(hours=since_hours)
+        query = query.filter(AlarmDB.alarm_time >= since_time)
+
+    # 可选：按告警类型过滤
+    if alarm_type is not None:
+        query = query.filter(AlarmDB.alarm_type == alarm_type)
+
+    query = query.order_by(
+        AlarmDB.alarm_id.desc()  # 按告警ID降序排列（最新优先）
     )
 
     return query.count(), query.limit(limit).all()

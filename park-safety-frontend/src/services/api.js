@@ -26,8 +26,10 @@ api.interceptors.response.use(
   },
   error => {
     if (error.response && error.response.status === 401) {
-      localStorage.removeItem('token')
-      window.location.href = '/login'
+      if (sessionStorage.getItem('parkSafetyBridge') !== 'true') {
+        localStorage.removeItem('token')
+        window.location.href = '/login'
+      }
     }
     // 改进错误处理，提供更具体的错误消息
     if (error.response) {
@@ -205,28 +207,12 @@ export const citrusApi = {
   }
 }
 
-// 番茄检测相关
-export const tomatoApi = {
-  detect: (file) => {
-    const formData = new FormData()
-    formData.append('file', file)
-    return api.post('/v1/tomato-detection/detect', formData, {
-      headers: {
-        'Content-Type': 'multipart/form-data'
-      }
-    })
-  },
-  getStatus: () => {
-    return api.get('/v1/tomato-detection/status')
-  }
-}
-
 // 农作物病害检测相关
 export const cropDiseaseApi = {
   detect: (file, cropType = 'rice') => {
     const formData = new FormData()
     formData.append('file', file)
-    return api.post(`/v1/crop-disease-detection/detect?crop_type=${cropType}`, formData, {
+    return api.post(`/v1/crop-disease-detection/detect?crop_type=${cropType}&record_alarm=true`, formData, {
       headers: {
         'Content-Type': 'multipart/form-data'
       }

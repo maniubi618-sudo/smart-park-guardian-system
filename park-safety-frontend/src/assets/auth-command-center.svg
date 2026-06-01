@@ -1,0 +1,49 @@
+<svg width="960" height="720" viewBox="0 0 960 720" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <rect width="960" height="720" rx="24" fill="#071C18"/>
+  <path d="M0 542C146 502 249 521 371 567C514 621 640 634 960 540V720H0V542Z" fill="#0B4F49" fill-opacity=".42"/>
+  <g opacity=".16" stroke="#9FF0DD">
+    <path d="M80 80H880M80 160H880M80 240H880M80 320H880M80 400H880M80 480H880M80 560H880M80 640H880"/>
+    <path d="M80 80V640M160 80V640M240 80V640M320 80V640M400 80V640M480 80V640M560 80V640M640 80V640M720 80V640M800 80V640M880 80V640"/>
+  </g>
+  <circle cx="480" cy="360" r="224" stroke="#9FF0DD" stroke-opacity=".26"/>
+  <circle cx="480" cy="360" r="156" stroke="#9FF0DD" stroke-opacity=".22"/>
+  <circle cx="480" cy="360" r="78" stroke="#9FF0DD" stroke-opacity=".18"/>
+  <path d="M480 360L700 318" stroke="url(#sweep)" stroke-width="4" stroke-linecap="round"/>
+  <path d="M480 360L275 456" stroke="#9FF0DD" stroke-opacity=".12"/>
+  <path d="M480 360L430 132" stroke="#9FF0DD" stroke-opacity=".12"/>
+  <g filter="url(#glowGreen)">
+    <circle cx="642" cy="278" r="8" fill="#22C55E"/>
+  </g>
+  <g filter="url(#glowAmber)">
+    <circle cx="338" cy="250" r="8" fill="#F59E0B"/>
+  </g>
+  <g filter="url(#glowRed)">
+    <circle cx="535" cy="508" r="8" fill="#EF4444"/>
+  </g>
+  <rect x="112" y="96" width="194" height="94" rx="10" fill="#0B2924" stroke="#9FF0DD" stroke-opacity=".2"/>
+  <rect x="132" y="122" width="110" height="10" rx="5" fill="#9FF0DD" fill-opacity=".62"/>
+  <rect x="132" y="148" width="142" height="8" rx="4" fill="#9FF0DD" fill-opacity=".22"/>
+  <rect x="132" y="168" width="86" height="8" rx="4" fill="#9FF0DD" fill-opacity=".18"/>
+  <rect x="654" y="500" width="194" height="94" rx="10" fill="#0B2924" stroke="#9FF0DD" stroke-opacity=".2"/>
+  <rect x="674" y="526" width="78" height="10" rx="5" fill="#F59E0B" fill-opacity=".72"/>
+  <rect x="674" y="552" width="142" height="8" rx="4" fill="#9FF0DD" fill-opacity=".22"/>
+  <rect x="674" y="572" width="106" height="8" rx="4" fill="#9FF0DD" fill-opacity=".18"/>
+  <defs>
+    <linearGradient id="sweep" x1="480" y1="360" x2="700" y2="318" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#9FF0DD"/>
+      <stop offset="1" stop-color="#9FF0DD" stop-opacity="0"/>
+    </linearGradient>
+    <filter id="glowGreen" x="610" y="246" width="64" height="64" filterUnits="userSpaceOnUse">
+      <feGaussianBlur stdDeviation="12" result="blur"/>
+      <feMerge><feMergeNode in="blur"/><feMergeNode in="SourceGraphic"/></feMerge>
+    </filter>
+    <filter id="glowAmber" x="306" y="218" width="64" height="64" filterUnits="userSpaceOnUse">
+      <feGaussianBlur stdDeviation="12" result="blur"/>
+      <feMerge><feMergeNode in="blur"/><feMergeNode in="SourceGraphic"/></feMerge>
+    </filter>
+    <filter id="glowRed" x="503" y="476" width="64" height="64" filterUnits="userSpaceOnUse">
+      <feGaussianBlur stdDeviation="12" result="blur"/>
+      <feMerge><feMergeNode in="blur"/><feMergeNode in="SourceGraphic"/></feMerge>
+    </filter>
+  </defs>
+</svg>

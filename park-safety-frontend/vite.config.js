@@ -15,13 +15,26 @@ export default defineConfig({
     }
   },
   server: {
-    host: 'localhost',
-    port: 3000,
+    host: '0.0.0.0',
+    port: 5173,
     https: existsSync(certFile) && existsSync(keyFile) ? {
       cert: certFile,
       key: keyFile
     } : false,
     proxy: {
+      '/api/v1/camera_infos/phone_camera': {
+        target: 'https://127.0.0.1:8443',
+        changeOrigin: true,
+        secure: false,
+        ws: true
+      },
+      // 告警广播 WebSocket 必须路由到 HTTPS 后端(8443)
+      '/api/v1/safety_analysis/ws': {
+        target: 'https://127.0.0.1:8443',
+        changeOrigin: true,
+        secure: false,
+        ws: true
+      },
       '/api': {
         target: 'http://localhost:8089',
         changeOrigin: true,

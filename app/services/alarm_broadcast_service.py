@@ -40,15 +40,15 @@ def sync_broadcast_alarm(alarm):
         loop=broadcast_loop
     )
     
-    # 同时触发语音播报（异步执行，不阻塞广播）
-    try:
-        import threading
-        voice_thread = threading.Thread(
-            target=VoiceBroadcastService.get_alarm_voice_text,
-            args=(alarm.alarm_type, getattr(alarm, 'camera_name', '')),
-            daemon=True,
-            name="Voice-Broadcast"
-        )
-        voice_thread.start()
-    except Exception as e:
-        logger.error(f"启动语音播报线程失败：{str(e)}")
+    # 语音播报已禁用 - 如需开启请取消下方注释
+    # try:
+    #     import threading
+    #     voice_thread = threading.Thread(
+    #         target=VoiceBroadcastService.get_alarm_voice_text,
+    #         args=(alarm.alarm_type, getattr(alarm, 'camera_name', '')),
+    #         daemon=True,
+    #         name="Voice-Broadcast"
+    #     )
+    #     voice_thread.start()
+    # except Exception as e:
+    #     logger.error(f"启动语音播报线程失败：{str(e)}")

@@ -94,8 +94,8 @@ class AlarmResponse(BaseModel):
     snapshot_url: str
     create_time: datetime
     update_time: datetime
-    park_area: str # 联表查询所得字段
-    camera_name: str # 联表查询所得字段
+    park_area: Optional[str] = None  # 联表查询所得字段（手机摄像头可能为NULL）
+    camera_name: Optional[str] = None  # 联表查询所得字段（手机摄像头可能为NULL）
     handle_user_name: Optional[str] = None  # 联表查询所得字段,可以为None
 
     class Config:

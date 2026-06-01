@@ -1,7 +1,7 @@
 <template>
   <div class="app-container">
     <router-view v-slot="{ Component }">
-      <transition name="fade" mode="out-in">
+      <transition name="route-canvas" mode="out-in">
         <component :is="Component" />
       </transition>
     </router-view>
@@ -36,13 +36,23 @@ onMounted(() => {
   min-height: 100vh;
 }
 
-.fade-enter-active,
-.fade-leave-active {
-  transition: opacity 0.3s ease;
+.route-canvas-enter-active {
+  transition: opacity var(--motion-slow) var(--motion-ease), transform var(--motion-slow) var(--motion-ease), filter var(--motion-slow) var(--motion-ease);
 }
 
-.fade-enter-from,
-.fade-leave-to {
+.route-canvas-leave-active {
+  transition: opacity var(--motion-fast) var(--motion-exit), transform var(--motion-fast) var(--motion-exit), filter var(--motion-fast) var(--motion-exit);
+}
+
+.route-canvas-enter-from {
   opacity: 0;
+  transform: translateY(14px);
+  filter: blur(8px);
+}
+
+.route-canvas-leave-to {
+  opacity: 0;
+  transform: translateY(-8px);
+  filter: blur(4px);
 }
 </style>

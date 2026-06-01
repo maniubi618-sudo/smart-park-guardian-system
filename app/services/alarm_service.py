@@ -76,13 +76,15 @@ class AlarmService:
             return Result.ERROR(f"查询告警记录失败: {str(e)}")
 
     @staticmethod
-    async def get_recent_unresolved_alarms(db: Session, limit: int = 5) -> Result[AlarmPageResponse]:
+    async def get_recent_unresolved_alarms(db: Session, limit: int = 5, camera_id: int = None, since_hours: int = None, alarm_type: int = None) -> Result[AlarmPageResponse]:
         """
         获取最近的未解决告警记录（alarm_status in [0,2]，默认最多5条
 
         Args:
             db: 数据库会话
             limit: 限制返回的记录数，默认为5
+            camera_id: 可选，按摄像头ID过滤
+            since_hours: 可选，只返回最近N小时内的告警
 
         Returns:
             Result[AlarmPageResponse]: 包含最近未解决告警记录的响应对象
@@ -92,7 +94,7 @@ class AlarmService:
             total, alarms_with_details = await asyncio.get_event_loop().run_in_executor(
                 db_executor,
                 crud_get_recent_unresolved_alarms,
-                db, limit
+                db, limit, camera_id, since_hours, alarm_type
             )
 
             # 转换查询结果为AlarmResponse对象

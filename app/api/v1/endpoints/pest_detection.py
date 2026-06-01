@@ -5,6 +5,7 @@ from typing import List, Optional, Dict, Any
 import base64
 
 from app.services.pest_detector import get_pest_detector
+from app.services.config_manager import get_config_manager
 
 router = APIRouter(prefix="/pest-detection", tags=["害虫检测"])
 
@@ -29,6 +30,11 @@ async def detect_pests(file: UploadFile = File(...)):
     """
     try:
         detector = get_pest_detector()
+        try:
+            config_manager = get_config_manager()
+            detector.confidence = config_manager.get("agriculture.pestConfidence", 0.6)
+        except Exception as e:
+            print(f"Warning: Failed to get pest config, using current threshold: {e}")
         
         if detector.model is None:
             return DetectionResponse(
@@ -65,8 +71,12 @@ async def get_status():
     获取检测器状态
     """
     detector = get_pest_detector()
+    try:
+        detector.update_from_config()
+    except Exception:
+        pass
     return {
         "model_loaded": detector.model is not None,
-        "model_path": detector.model_path
+        "model_path": detector.model_path,
+        "confidence_threshold": detector.confidence
     }
-

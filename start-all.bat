@@ -33,7 +33,7 @@ timeout /t 3 /nobreak >nul
 
 :: 启动前端服务
 echo [3/3] 启动前端服务...
-start "前端服务" cmd /k "cd /d %FRONTEND_PATH% && echo 启动前端服务 (端口: 3000) && npm run dev"
+start "前端服务" cmd /k "cd /d %FRONTEND_PATH% && echo 启动前端服务 (端口: 3003) && npx vite --host 0.0.0.0 --port 3003 --strictPort"
 
 :: 等待前端启动
 echo 等待前端服务启动 (5秒)...
@@ -46,7 +46,7 @@ echo ========================================
 echo.
 echo 后端服务 (HTTP): http://localhost:8089
 echo 后端服务 (HTTPS): https://localhost:8443
-echo 前端服务: https://localhost:3000
+echo 前端服务: https://localhost:3003
 echo.
 echo API文档 (HTTP): http://localhost:8089/docs
 echo API文档 (HTTPS): https://localhost:8443/docs
@@ -58,7 +58,7 @@ echo.
 echo 关闭弹出的命令窗口即可停止服务
 echo.
 echo 使用步骤:
-echo 1. 打开前端页面: https://localhost:3000
+echo 1. 打开前端页面: https://localhost:3003
 echo 2. 登录系统
 echo 3. 进入"摄像头管理"页面
 echo 4. 点击"手机摄像头"按钮

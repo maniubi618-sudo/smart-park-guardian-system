@@ -420,7 +420,7 @@ onMounted(() => {
 }
 
 .search-card :deep(.el-input__wrapper.is-focus) {
-  box-shadow: 0 0 0 1px #409eff, 0 4px 8px rgba(64, 158, 255, 0.15);
+  box-shadow: 0 0 0 1px #536f88, 0 4px 8px rgba(83, 111, 136, 0.15);
 }
 
 /* 选择器样式优化 */
@@ -437,25 +437,25 @@ onMounted(() => {
 }
 
 .search-card :deep(.el-button--primary) {
-  background: linear-gradient(135deg, #409eff 0%, #66b1ff 100%);
+  background: linear-gradient(135deg, #536f88 0%, #6f879c 100%);
   border: none;
-  box-shadow: 0 4px 12px rgba(64, 158, 255, 0.3);
+  box-shadow: 0 4px 12px rgba(83, 111, 136, 0.3);
 }
 
 .search-card :deep(.el-button--primary:hover) {
-  background: linear-gradient(135deg, #66b1ff 0%, #409eff 100%);
+  background: linear-gradient(135deg, #6f879c 0%, #536f88 100%);
   transform: translateY(-2px);
-  box-shadow: 0 6px 16px rgba(64, 158, 255, 0.4);
+  box-shadow: 0 6px 16px rgba(83, 111, 136, 0.4);
 }
 
 .search-card :deep(.el-button--success) {
-  background: linear-gradient(135deg, #67c23a 0%, #85ce61 100%);
+  background: linear-gradient(135deg, #536f88 0%, #6f879c 100%);
   border: none;
   box-shadow: 0 4px 12px rgba(103, 194, 58, 0.3);
 }
 
 .search-card :deep(.el-button--success:hover) {
-  background: linear-gradient(135deg, #85ce61 0%, #67c23a 100%);
+  background: linear-gradient(135deg, #6f879c 0%, #536f88 100%);
   transform: translateY(-2px);
   box-shadow: 0 6px 16px rgba(103, 194, 58, 0.4);
 }
@@ -515,7 +515,7 @@ onMounted(() => {
 
 .table-card :deep(el-button:hover) {
   transform: translateY(-2px);
-  box-shadow: 0 4px 12px 0 rgba(64, 158, 255, 0.3);
+  box-shadow: 0 4px 12px 0 rgba(83, 111, 136, 0.3);
 }
 
 /* 分页器样式 */
@@ -560,13 +560,13 @@ onMounted(() => {
 }
 
 .pagination :deep(.el-select .el-input:hover) {
-  border-color: #409eff;
-  box-shadow: 0 0 0 2px rgba(64, 158, 255, 0.2);
+  border-color: #536f88;
+  box-shadow: 0 0 0 2px rgba(83, 111, 136, 0.2);
 }
 
 .pagination :deep(.el-select .el-input.is-focus) {
-  border-color: #409eff;
-  box-shadow: 0 0 0 2px rgba(64, 158, 255, 0.2);
+  border-color: #536f88;
+  box-shadow: 0 0 0 2px rgba(83, 111, 136, 0.2);
 }
 
 .pagination :deep(.el-select-dropdown) {
@@ -583,19 +583,19 @@ onMounted(() => {
 }
 
 .pagination :deep(.el-select-dropdown__item:hover) {
-  background-color: #ecf5ff;
-  color: #409eff;
+  background-color: #eef2f5;
+  color: #536f88;
 }
 
 .pagination :deep(.el-select-dropdown__item.selected) {
-  background-color: #ecf5ff;
-  color: #409eff;
+  background-color: #eef2f5;
+  color: #536f88;
   font-weight: 500;
 }
 
 .pagination :deep(.el-select-dropdown__item.hover) {
-  background-color: #ecf5ff;
-  color: #409eff;
+  background-color: #eef2f5;
+  color: #536f88;
 }
 
 .pagination :deep(.el-pagination__total) {
@@ -619,9 +619,9 @@ onMounted(() => {
 
 .pagination :deep(.el-pagination__prev:hover),
 .pagination :deep(.el-pagination__next:hover) {
-  border-color: #409eff;
-  color: #409eff;
-  box-shadow: 0 2px 8px rgba(64, 158, 255, 0.15);
+  border-color: #536f88;
+  color: #536f88;
+  box-shadow: 0 2px 8px rgba(83, 111, 136, 0.15);
 }
 
 .pagination :deep(.el-pagination__prev.is-disabled),
@@ -645,21 +645,21 @@ onMounted(() => {
 }
 
 .pagination :deep(.el-pagination__page:hover) {
-  border-color: #409eff;
-  color: #409eff;
+  border-color: #536f88;
+  color: #536f88;
 }
 
 .pagination :deep(.el-pagination__page.is-current) {
-  background-color: #409eff;
-  border-color: #409eff;
+  background-color: #536f88;
+  border-color: #536f88;
   color: #ffffff;
   font-weight: 500;
-  box-shadow: 0 2px 8px rgba(64, 158, 255, 0.3);
+  box-shadow: 0 2px 8px rgba(83, 111, 136, 0.3);
 }
 
 .pagination :deep(.el-pagination__page.is-current:hover) {
-  background-color: #66b1ff;
-  border-color: #66b1ff;
+  background-color: #6f879c;
+  border-color: #6f879c;
 }
 
 .pagination :deep(.el-pagination__jump) {

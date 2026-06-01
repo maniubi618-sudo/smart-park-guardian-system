@@ -73,6 +73,13 @@ const router = createRouter({
 // 路由守卫
 router.beforeEach((to, from, next) => {
   const authStore = useAuthStore()
+  const isBridgeEntry = to.path === '/dashboard' && to.query.entry === 'clawpro'
+
+  if (isBridgeEntry) {
+    authStore.enterBridgeSession()
+    next({ path: '/dashboard', replace: true })
+    return
+  }
   
   // 检查是否需要认证
   if (to.meta.requiresAuth) {

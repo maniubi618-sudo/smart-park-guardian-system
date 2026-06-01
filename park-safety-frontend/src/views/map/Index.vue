@@ -362,7 +362,7 @@ const renderPhoneCameraMarker = (uid, phone) => {
 
   const markerContent = document.createElement('div')
   markerContent.innerHTML = `
-    <div style="width: 48px; height: 48px; background: white; border-radius: 50%; border: 4px solid ${phone.streaming ? '#67c23a' : '#909399'}; display: flex; align-items: center; justify-content: center; font-size: 24px; box-shadow: 0 2px 8px rgba(0,0,0,0.2);">
+    <div style="width: 48px; height: 48px; background: white; border-radius: 50%; border: 4px solid ${phone.streaming ? '#536f88' : '#909399'}; display: flex; align-items: center; justify-content: center; font-size: 24px; box-shadow: 0 2px 8px rgba(0,0,0,0.2);">
       📱
     </div>
   `
@@ -380,8 +380,8 @@ const renderPhoneCameraMarker = (uid, phone) => {
       <h4 style="margin: 0 0 10px 0;">手机摄像头 CAM-${uid}</h4>
       <p style="margin: 0 0 5px 0;">设备ID: ${uid}</p>
       <p style="margin: 0 0 5px 0;">位置: ${phone.location.latitude.toFixed(6)}, ${phone.location.longitude.toFixed(6)}</p>
-      <p style="margin: 0; color: ${phone.streaming ? '#67c23a' : '#909399'};">${phone.streaming ? '● 推流中' : '○ 待机'}</p>
-      <p style="margin: 5px 0 0 0; color: #409eff; font-size: 12px; cursor: pointer;" onclick="window.selectPhoneCameraMarker('${uid}')">点击查看视频</p>
+      <p style="margin: 0; color: ${phone.streaming ? '#536f88' : '#909399'};">${phone.streaming ? '● 推流中' : '○ 待机'}</p>
+      <p style="margin: 5px 0 0 0; color: #536f88; font-size: 12px; cursor: pointer;" onclick="window.selectPhoneCameraMarker('${uid}')">点击查看视频</p>
     </div>
   `
 
@@ -691,7 +691,7 @@ const loadData = async () => {
 const createCameraIcon = (status, hasAlarm) => {
   const color = hasAlarm ? '#f56c6c' :
                 status === 0 ? '#909399' :
-                status === 1 ? '#67c23a' : '#409eff'
+                status === 1 ? '#536f88' : '#536f88'
 
   return new AMap.Icon({
     size: new AMap.Size(36, 36),
@@ -701,7 +701,7 @@ const createCameraIcon = (status, hasAlarm) => {
 }
 
 const createAlarmIcon = (type) => {
-  const color = type === 0 ? '#e6a23c' : type === 1 ? '#f56c6c' : '#67c23a'
+  const color = type === 0 ? '#c58a45' : type === 1 ? '#f56c6c' : '#536f88'
   return new AMap.Icon({
     size: new AMap.Size(32, 32),
     imageSize: new AMap.Size(32, 32),
@@ -812,45 +812,79 @@ const refreshData = async () => {
 <style scoped>
 .map-container {
   width: 100%;
-  height: calc(100vh - 80px);
+  height: calc(100vh - 136px);
+  min-height: 560px;
   position: relative;
+  border: 1px solid var(--border-color);
+  border-radius: 8px;
+  overflow: hidden;
+  background: #dfe9e5;
 }
 
 .map-toolbar {
   position: absolute;
-  top: 20px;
-  left: 20px;
+  top: 18px;
+  left: 18px;
   z-index: 1000;
   display: flex;
   gap: 10px;
 }
 
-.camera-list-panel {
+.camera-list-panel,
+.phone-camera-list-panel,
+.alarm-list-panel {
   position: absolute;
-  top: 80px;
-  left: 20px;
-  width: 280px;
-  max-height: 400px;
-  background: rgba(255, 255, 255, 0.95);
+  width: 300px;
+  background: rgba(32, 38, 42, 0.88);
+  color: #f8f5ed;
+  border: 1px solid rgba(216, 224, 231, 0.22);
   border-radius: 8px;
-  box-shadow: 0 2px 12px rgba(0, 0, 0, 0.15);
+  box-shadow: 0 18px 44px rgba(3, 13, 11, 0.28);
+  backdrop-filter: blur(16px);
   z-index: 1000;
   overflow: hidden;
-  transition: all 0.3s ease;
+  animation: mapPanelIn var(--motion-slow) var(--motion-ease) both;
+  transition: width var(--motion-slow) var(--motion-ease), max-height var(--motion-slow) var(--motion-ease), transform var(--motion-base) var(--motion-ease), box-shadow var(--motion-base) var(--motion-ease), border-color var(--motion-base) var(--motion-ease);
+}
+
+.camera-list-panel:hover,
+.phone-camera-list-panel:hover,
+.alarm-list-panel:hover,
+.phone-video-overlay:hover {
+  transform: translateY(-2px);
+  border-color: rgba(216, 224, 231, 0.34);
+  box-shadow: 0 24px 56px rgba(3, 13, 11, 0.36);
 }
 
 .phone-camera-list-panel {
-  position: absolute;
-  top: 340px;
-  left: 20px;
-  width: 280px;
-  max-height: 260px;
-  background: rgba(255, 255, 255, 0.95);
-  border-radius: 8px;
-  box-shadow: 0 2px 12px rgba(0, 0, 0, 0.15);
-  z-index: 1000;
-  overflow: hidden;
-  transition: all 0.3s ease;
+  animation-delay: 80ms;
+}
+
+.alarm-list-panel {
+  animation-delay: 140ms;
+}
+
+@keyframes mapPanelIn {
+  from {
+    opacity: 0;
+    transform: translateY(14px) scale(0.98);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+.camera-list-panel {
+  top: 80px;
+  left: 18px;
+  max-height: 410px;
+}
+
+.phone-camera-list-panel {
+  top: 350px;
+  left: 18px;
+  max-height: 270px;
 }
 
 .el-scrollbar {
@@ -859,14 +893,16 @@ const refreshData = async () => {
 }
 
 .panel-header {
-  padding: 12px 16px;
-  font-weight: 600;
-  border-bottom: 1px solid #eee;
+  min-height: 50px;
+  padding: 12px 14px;
+  font-weight: 800;
+  border-bottom: 1px solid rgba(216, 224, 231, 0.14);
   display: flex;
   align-items: center;
   gap: 8px;
-  color: #303133;
+  color: #f8f5ed;
   justify-content: space-between;
+  cursor: move;
 }
 
 .panel-actions {
@@ -877,9 +913,9 @@ const refreshData = async () => {
 .camera-list-panel.collapsed,
 .phone-camera-list-panel.collapsed,
 .alarm-list-panel.collapsed {
-  width: 60px;
-  max-height: 48px;
-  transition: all 0.3s ease;
+  width: 56px;
+  max-height: 50px;
+  transition: all var(--motion-slow) var(--motion-ease);
 }
 
 .camera-list-panel.collapsed .panel-header,
@@ -890,39 +926,33 @@ const refreshData = async () => {
 }
 
 .alarm-list-panel {
-  position: absolute;
   top: 80px;
-  right: 20px;
-  width: 240px;
+  right: 18px;
+  width: 280px;
   max-height: 300px;
-  background: rgba(255, 255, 255, 0.95);
-  border-radius: 8px;
-  box-shadow: 0 2px 12px rgba(0, 0, 0, 0.15);
-  z-index: 1000;
-  overflow: hidden;
-  transition: all 0.3s ease;
 }
 
 .camera-item {
-  padding: 12px 16px;
+  padding: 12px 14px;
   display: flex;
   align-items: center;
   gap: 12px;
   cursor: pointer;
-  transition: background 0.2s;
-  border-bottom: 1px solid #f5f5f5;
+  transition: background var(--motion-base) var(--motion-ease), transform var(--motion-base) var(--motion-ease), box-shadow var(--motion-base) var(--motion-ease);
+  border-bottom: 1px solid rgba(216, 224, 231, 0.10);
 }
 
 .camera-item:hover {
-  background: #f5f7fa;
+  background: rgba(216, 224, 231, 0.10);
+  transform: translateX(4px);
 }
 
 .camera-item.active {
-  background: #ecf5ff;
+  background: rgba(216, 224, 231, 0.16);
 }
 
 .camera-item.streaming {
-  background: #f0f9eb;
+  background: rgba(83, 111, 136, 0.16);
 }
 
 .camera-status {
@@ -932,41 +962,48 @@ const refreshData = async () => {
 }
 
 .status-offline {
-  background: #909399;
+  background: #94a3b8;
 }
 
 .status-online {
-  background: #67c23a;
+  background: #536f88;
 }
 
 .status-analyzing {
-  background: #409eff;
-  animation: pulse 1.5s infinite;
+  background: #c58a45;
+  animation: mapPulse 1.8s var(--motion-ease) infinite;
 }
 
 .status-streaming {
-  background: #67c23a;
-  animation: pulse 1.5s infinite;
+  background: #536f88;
+  animation: mapPulse 1.8s var(--motion-ease) infinite;
 }
 
-@keyframes pulse {
-  0%, 100% { opacity: 1; }
-  50% { opacity: 0.5; }
+@keyframes mapPulse {
+  0%, 100% {
+    opacity: 1;
+    box-shadow: 0 0 0 0 rgba(83, 111, 136, 0.30);
+  }
+  50% {
+    opacity: 0.72;
+    box-shadow: 0 0 0 7px rgba(83, 111, 136, 0);
+  }
 }
 
 .alarm-item {
-  padding: 12px 16px;
-  border-bottom: 1px solid #ebeef5;
+  padding: 12px 14px;
+  border-bottom: 1px solid rgba(216, 224, 231, 0.10);
   cursor: pointer;
-  transition: background 0.2s;
+  transition: background var(--motion-base) var(--motion-ease), transform var(--motion-base) var(--motion-ease);
 }
 
 .alarm-item:hover {
-  background: #f5f7fa;
+  background: rgba(216, 224, 231, 0.10);
+  transform: translateX(-4px);
 }
 
 .alarm-item:active {
-  background: #ecf5ff;
+  background: rgba(216, 224, 231, 0.16);
 }
 
 .alarm-item-header {
@@ -982,7 +1019,7 @@ const refreshData = async () => {
 
 .alarm-camera {
   font-size: 13px;
-  color: #606266;
+  color: rgba(248, 245, 237, 0.76);
 }
 
 .alarm-item-footer {
@@ -991,7 +1028,7 @@ const refreshData = async () => {
 
 .alarm-desc {
   font-size: 12px;
-  color: #909399;
+  color: rgba(248, 245, 237, 0.58);
   line-height: 1.4;
   display: -webkit-box;
   -webkit-line-clamp: 2;
@@ -1001,7 +1038,7 @@ const refreshData = async () => {
 
 .alarm-time {
   font-size: 11px;
-  color: #c0c4cc;
+  color: rgba(248, 245, 237, 0.5);
 }
 
 .camera-info {
@@ -1010,8 +1047,8 @@ const refreshData = async () => {
 }
 
 .camera-name {
-  font-weight: 500;
-  color: #303133;
+  font-weight: 800;
+  color: #ffffff;
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
@@ -1019,34 +1056,37 @@ const refreshData = async () => {
 
 .camera-position {
   font-size: 12px;
-  color: #909399;
+  color: rgba(248, 245, 237, 0.58);
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
 }
 
 .camera-alarm {
-  color: #f56c6c;
+  color: #f87171;
 }
 
 .phone-streaming-indicator {
-  color: #67c23a;
+  color: #c8d3dc;
 }
 
 .empty-tip {
   padding: 20px;
   text-align: center;
-  color: #909399;
+  color: rgba(248, 245, 237, 0.58);
   font-size: 13px;
 }
 
 .phone-video-overlay {
   position: absolute;
-  background: rgba(0, 0, 0, 0.9);
+  background: rgba(32, 38, 42, 0.94);
+  border: 1px solid rgba(216, 224, 231, 0.22);
   border-radius: 8px;
   overflow: hidden;
-  box-shadow: 0 2px 12px rgba(0, 0, 0, 0.3);
+  box-shadow: 0 18px 44px rgba(3, 13, 11, 0.34);
   z-index: 2000;
+  animation: mapPanelIn var(--motion-slow) var(--motion-ease) both;
+  transition: transform var(--motion-base) var(--motion-ease), box-shadow var(--motion-base) var(--motion-ease), border-color var(--motion-base) var(--motion-ease);
 }
 
 .phone-video-header {
@@ -1054,14 +1094,26 @@ const refreshData = async () => {
   justify-content: space-between;
   align-items: center;
   padding: 8px 12px;
-  background: rgba(0, 0, 0, 0.7);
-  color: white;
+  background: rgba(3, 13, 11, 0.62);
+  color: #f8f5ed;
   font-size: 13px;
+  font-weight: 800;
 }
 
 .phone-viewer-canvas {
   width: 100%;
   height: calc(100% - 36px);
   display: block;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .camera-list-panel,
+  .phone-camera-list-panel,
+  .alarm-list-panel,
+  .phone-video-overlay,
+  .status-analyzing,
+  .status-streaming {
+    animation: none !important;
+  }
 }
 </style>

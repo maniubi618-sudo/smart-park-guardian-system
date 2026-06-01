@@ -21,6 +21,7 @@ from app.api.v1.endpoints import crop_disease_detection  # 导入农作物病害
 from app.api.v1.endpoints import citrus_detection  # 导入柑橘检测路由
 from app.api.v1.endpoints import tomato_detection  # 导入番茄检测路由
 from app.api.v1.endpoints import config_router  # 导入配置管理路由
+from app.api.v1.endpoints import bridge  # 导入直通桥接路由
 from app.middleware.jwt_middleware import JWTMiddleware
 from app.services.thread_pool_manager import shutdown_executor
 from app.utils.logger import get_logger
@@ -54,9 +55,11 @@ app = FastAPI(
 )
 # 配置允许跨域的源（前端地址）
 origins = [
-    "http://localhost:3000",  # 你的前端地址
+    "http://localhost:3003",
+    "https://localhost:3003",
+    "http://localhost:5173",
+    "https://localhost:5173",
 ]
-    # 若需要，可添加其他允许的源，如 "http://localhost:3000" 等
 
 # 添加 CORS 中间件
 app.add_middleware(
@@ -71,6 +74,10 @@ app.add_middleware(
 static_dir = os.path.join(os.path.dirname(__file__), "static")
 if os.path.exists(static_dir):
     app.mount("/static", StaticFiles(directory=static_dir), name="static")
+
+@app.get("/")
+async def root():
+    return {"status": "ok", "message": "园区智能安防系统 HTTP 服务运行中", "pages": {"/phone-camera": "手机摄像头推流页面", "/docs": "API文档"}}
 
 # 手机摄像头页面路由
 @app.get("/phone-camera")
@@ -110,6 +117,7 @@ app.include_router(crop_disease_detection.router, prefix="/api/v1", tags=["农�
 app.include_router(citrus_detection.router, prefix="/api/v1", tags=["柑橘成熟度检测"])
 app.include_router(tomato_detection.router, prefix="/api/v1", tags=["番茄成熟度检测"])
 app.include_router(config_router.router, prefix="/api/v1", tags=["配置管理"])
+app.include_router(bridge.router, prefix="/api/v1", tags=["直通桥接"])
 
 # 根路径
 @app.get("/")

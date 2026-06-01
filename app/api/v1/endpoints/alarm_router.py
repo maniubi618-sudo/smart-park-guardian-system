@@ -18,6 +18,9 @@ router = APIRouter()
             summary="获取最近5条未解决的告警记录+ 未解决的告警总数")
 async def get_recent_unresolved_alarms(
         limit: Optional[int] = Query(5, description="限制返回的记录数", le=10),
+        camera_id: Optional[int] = Query(None, description="按摄像头ID过滤，0=手机摄像头"),
+        since_hours: Optional[int] = Query(None, description="只返回最近N小时内的告警"),
+        alarm_type: Optional[int] = Query(None, description="按告警类型过滤"),
         db: Session = Depends(get_db)
 ):
     """
@@ -25,8 +28,11 @@ async def get_recent_unresolved_alarms(
 
     参数说明:
     - limit: 限制返回的记录数，最大10条，默认5条
+    - camera_id: 可选，按摄像头ID过滤（0=手机摄像头）
+    - since_hours: 可选，只返回最近N小时内的告警
+    - alarm_type: 可选，按告警类型过滤
     """
-    result = await AlarmService.get_recent_unresolved_alarms(db, limit)
+    result = await AlarmService.get_recent_unresolved_alarms(db, limit, camera_id, since_hours, alarm_type)
     return result
 
 # GET /api/v1/alarms/today_report：获取本日告警统计

@@ -221,7 +221,7 @@ onMounted(() => {
 }
 
 .status-icon.loading {
-  color: #409eff;
+  color: #536f88;
 }
 
 .status-icon.error {

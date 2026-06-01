@@ -16,9 +16,9 @@
   "agriculture": {
     "citrusConfidence": 0.5,
     "citrusIouThreshold": 0.5,
-    "cropDiseaseConfidence": 0.2,
-    "cropDiseaseIouThreshold": 0.4,
-    "pestConfidence": 0.2,
+    "cropDiseaseConfidence": 0.25,
+    "cropDiseaseIouThreshold": 0.3,
+    "pestConfidence": 0.6,
     "pestIouThreshold": 0.25
   },
   "system": {

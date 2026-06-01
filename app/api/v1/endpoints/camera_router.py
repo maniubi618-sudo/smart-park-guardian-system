@@ -3,16 +3,12 @@ from fastapi import APIRouter, Depends, status, Path, Query, WebSocket, WebSocke
 from sqlalchemy.orm import Session
 import socket
 import os
-import cv2
-import numpy as np
-from threading import Thread
 from app.JSON_schemas.Result_pydantic import Result
 from app.JSON_schemas.camera_info_pydantic import CameraInfoResponse, CameraInfoCreate, CameraInfoUpdate, CameraInfoPageResponse, CameraStatusReport
 from app.dependencies.db import get_db
 from app.services.camera_info_service import CameraInfoService
 from app.dependencies.security import get_current_active_user, User
 from app.services.phone_camera_manager import phone_camera_manager
-from app.config.database import SessionLocal
 from app.utils.logger import get_logger
 
 logger = get_logger()
@@ -351,90 +347,8 @@ async def get_phone_camera_status():
 # 13. ws://后端服务器IP:运行端口/api/v1/camera_infos/phone_camera/phone: 手机端推流WebSocket端点
 @router.websocket("/phone_camera/phone")
 async def websocket_phone_camera_phone(websocket: WebSocket):
-    """手机端WebSocket端点，推送摄像头画面 + YOLO异常检测"""
+    """手机端WebSocket端点，推送摄像头画面"""
     uid = None
-    PHONE_CAMERA_ID = 0  # 手机摄像头专用ID
-    db = SessionLocal()
-
-    # 创建告警跟踪器（防抖）
-    from app.objects.alarm_case_tracker import DebouncedAlarmCaseTracker
-    tracker = DebouncedAlarmCaseTracker()
-
-    def run_detection(jpeg_bytes: bytes, phone_uid: str):
-        """在独立线程中运行YOLO检测和告警创建"""
-        try:
-            # JPEG解码
-            nparr = np.frombuffer(jpeg_bytes, np.uint8)
-            frame = cv2.imdecode(nparr, cv2.IMREAD_COLOR)
-            if frame is None:
-                return
-
-            # 检测3种安全违规类型
-            from app.services.detection_service import DetectionService
-            for alarm_code in [0, 1, 2]:
-                try:
-                    detected, annotated_frames = DetectionService.detect_alarm_case(frame, alarm_code)
-                    if not detected or not annotated_frames:
-                        continue
-
-                    annotated_frame = annotated_frames[0]
-                    source_key = f"phone_{phone_uid}_{alarm_code}"
-
-                    result = tracker.update_state(source_key, True)
-                    if result["state_changed"] and result["change_type"] == "normal_to_violation":
-                        # 保存截图
-                        snapshot_url = ""
-                        try:
-                            from app.services.storage_service import StorageService
-                            snapshot_url = StorageService.upload_alarm_snapshot(
-                                annotated_frame, PHONE_CAMERA_ID
-                            )
-                        except Exception:
-                            snapshot_url = f"(phone-{phone_uid[:8]})"
-
-                        # 创建告警
-                        from app.crud.alarm_crud import create_alarm
-                        from app.utils.oss_utils import get_now
-                        alarm = create_alarm(db, PHONE_CAMERA_ID, alarm_code, 0,
-                                             get_now(), snapshot_url)
-                        tracker.bind_alarm_id(source_key, alarm.alarm_id)
-
-                        # WebSocket广播
-                        from app.services.alarm_broadcast_service import sync_broadcast_alarm
-                        sync_broadcast_alarm(alarm)
-
-                        # OpenClaw QQ通知
-                        try:
-                            from app.services.openclaw_notification_service import OpenClawNotificationService
-                            from app.objects.alarm_case import AlarmCase
-                            OpenClawNotificationService.send_alarm_notification({
-                                "alarm_id": alarm.alarm_id,
-                                "camera_id": PHONE_CAMERA_ID,
-                                "alarm_type": alarm_code,
-                                "alarm_type_desc": AlarmCase.descs[alarm_code],
-                                "alarm_time": alarm.alarm_time.isoformat() if alarm.alarm_time else "",
-                                "snapshot_url": snapshot_url,
-                                "camera_name": f"手机摄像头({phone_uid[:8]})",
-                                "park_area": "手机推流",
-                                "alarm_status": alarm.alarm_status,
-                            })
-                        except Exception as e:
-                            logger.error(f"OpenClaw QQ通知发送失败: {e}")
-
-                        logger.info(
-                            f"手机摄像头({phone_uid[:8]})检测到违规: "
-                            f"类型={alarm_code}, Alarm#{alarm.alarm_id}"
-                        )
-                except Exception:
-                    continue
-        except Exception as e:
-            logger.error(f"手机帧检测异常: {e}")
-
-    # 设置检测回调
-    phone_camera_manager.enable_detection(
-        lambda data, uid: Thread(target=run_detection, args=(data, uid), daemon=True).start(),
-        sample_rate=3
-    )
 
     try:
         await phone_camera_manager.connect_phone(websocket)
@@ -463,9 +377,6 @@ async def websocket_phone_camera_phone(websocket: WebSocket):
     except Exception as e:
         phone_camera_manager.disconnect_phone(websocket)
         logger.error(f"手机端WebSocket异常: {e}")
-    finally:
-        phone_camera_manager.disable_detection()
-        db.close()
 
 
 # 14. ws://后端服务器IP:运行端口/api/v1/camera_infos/phone_camera/viewer: 观看端WebSocket端点
@@ -485,5 +396,3 @@ async def websocket_phone_camera_viewer(websocket: WebSocket):
         phone_camera_manager.disconnect_viewer(websocket)
     except Exception as e:
         phone_camera_manager.disconnect_viewer(websocket)
-
-

@@ -21,6 +21,18 @@ export const useAuthStore = defineStore('auth', {
     userRole: (state) => state.user?.user_role || null
   },
   actions: {
+    enterBridgeSession() {
+      this.token = 'clawpro-local-bridge'
+      this.user = {
+        name: 'ClawPro 项目联动',
+        user_name: 'ClawPro 项目联动',
+        user_role: 'bridge'
+      }
+      sessionStorage.setItem('parkSafetyBridge', 'true')
+      localStorage.setItem('token', this.token)
+      localStorage.setItem('user', JSON.stringify(this.user))
+    },
+
     async login(username, password) {
       this.loading = true
       this.error = null
@@ -81,6 +93,7 @@ export const useAuthStore = defineStore('auth', {
       this.token = null
       this.user = null
       this.error = null
+      sessionStorage.removeItem('parkSafetyBridge')
       localStorage.removeItem('token')
       localStorage.removeItem('user')
     },

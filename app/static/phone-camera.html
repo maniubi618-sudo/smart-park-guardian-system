@@ -23,7 +23,7 @@
     * { box-sizing: border-box; margin: 0; padding: 0; }
     html, body { height: 100%; background: var(--bg); color: var(--text); font-family: 'Share Tech Mono', monospace; overflow: hidden; user-select: none; }
     video { position: fixed; inset: 0; width: 100%; height: 100%; object-fit: cover; z-index: 0; }
-    video.front { transform: scaleX(-1); }
+    video.mirrored { transform: scaleX(-1); }
     .overlay { position: fixed; inset: 0; z-index: 10; pointer-events: none;
       background: linear-gradient(180deg, rgba(6,10,14,0.8) 0%, transparent 18%, transparent 82%, rgba(6,10,14,0.9) 100%); }
     .top-bar { position: fixed; top: 0; left: 0; right: 0; z-index: 20; padding: 16px 20px 48px;
@@ -41,15 +41,15 @@
     .bottom-bar { position: fixed; bottom: 0; left: 0; right: 0; z-index: 20; padding: 48px 20px 28px;
       background: linear-gradient(0deg, rgba(6,10,14,0.95) 0%, transparent 100%); display: flex; flex-direction: column; gap: 16px; }
     .info-row { display: flex; justify-content: space-between; font-size: 10px; color: var(--dim); letter-spacing: 1px; padding: 0 4px; }
-    .tools-row { display: flex; justify-content: center; align-items: flex-end; gap: 24px; }
-    .tool-btn { width: 48px; height: 48px; border-radius: 50%; border: 1px solid var(--border);
-      background: rgba(12,19,25,0.8); color: var(--text); font-size: 20px;
+    .tools-row { display: flex; justify-content: center; align-items: flex-end; gap: 12px; }
+    .tool-btn { width: 40px; height: 40px; border-radius: 50%; border: 1px solid var(--border);
+      background: rgba(12,19,25,0.8); color: var(--text); font-size: 18px;
       display: flex; align-items: center; justify-content: center; cursor: pointer; transition: all 0.2s; backdrop-filter: blur(8px); }
     .tool-btn:active, .tool-btn.on { border-color: var(--accent); background: var(--accent-dim); color: var(--accent); }
-    .capture-btn { width: 72px; height: 72px; border-radius: 50%; border: 3px solid rgba(255,255,255,0.3);
+    .capture-btn { width: 60px; height: 60px; border-radius: 50%; border: 3px solid rgba(255,255,255,0.3);
       background: rgba(255,255,255,0.08); display: flex; align-items: center; justify-content: center; cursor: pointer; transition: all 0.2s; }
     .capture-btn:active { transform: scale(0.92); border-color: var(--accent); }
-    .capture-btn-inner { width: 54px; height: 54px; border-radius: 50%; background: rgba(255,255,255,0.15); transition: all 0.2s; }
+    .capture-btn-inner { width: 44px; height: 44px; border-radius: 50%; background: rgba(255,255,255,0.15); transition: all 0.2s; }
     .capture-btn:active .capture-btn-inner { background: var(--accent); box-shadow: 0 0 20px var(--accent-glow); }
     .flash { position: fixed; inset: 0; background: white; z-index: 30; opacity: 0; pointer-events: none; transition: opacity 0.1s; }
     .flash.on { opacity: 0.7; }
@@ -135,6 +135,10 @@
       <span style="font-size:9px;color:var(--dim);">翻转</span>
     </div>
     <div style="display:flex;flex-direction:column;align-items:center;gap:4px;">
+      <button class="tool-btn" id="mirrorBtn" title="镜像翻转">🪞</button>
+      <span style="font-size:9px;color:var(--dim);">镜像</span>
+    </div>
+    <div style="display:flex;flex-direction:column;align-items:center;gap:4px;">
       <button class="tool-btn" id="torchBtn" title="闪光灯">💡</button>
       <span style="font-size:9px;color:var(--dim);">闪光灯</span>
     </div>
@@ -162,12 +166,21 @@ let stream    = null;
 let ws        = null;
 let currentFacing = 'environment';
 let torchOn       = false;
-let encodeTimer   = null;
+let mirrorUser    = false;  // 用户手动切换的镜像开关
+let mirrorFrame   = false;  // 实际是否需要在 canvas 绘制时镜像
 let encodeMs      = 0;
 let encodeCount   = 0;
 let encodeTotalMs = 0;
 let connected     = false;
 let reconnectTimer = null;
+
+// 同步视频 CSS 镜像与 canvas 绘制镜像（前摄浏览器天然镜像需处理）
+function syncMirrorState() {
+  // 前摄(getUserMedia)天然镜像，需要 scaleX(-1) 反镜像；mirrorUser 是用户额外切换
+  mirrorFrame = (currentFacing === 'user') !== mirrorUser;
+  video.classList.toggle('mirrored', mirrorFrame);
+  document.getElementById('mirrorBtn').classList.toggle('on', mirrorUser);
+}
 
 // ── 生成设备唯一ID（使用设备指纹 + 本地存储）──
 function generateDeviceId() {
@@ -231,6 +244,7 @@ document.getElementById('startBtn').addEventListener('click', startCamera);
 document.getElementById('allowLocationBtn').addEventListener('click', requestLocation);
 document.getElementById('skipLocationBtn').addEventListener('click', skipLocation);
 document.getElementById('flipBtn').addEventListener('click', flipCamera);
+document.getElementById('mirrorBtn').addEventListener('click', toggleMirror);
 document.getElementById('torchBtn').addEventListener('click', toggleTorch);
 document.getElementById('muteBtn').addEventListener('click', toggleMute);
 document.getElementById('captureBtn').addEventListener('click', capturePhoto);
@@ -302,7 +316,6 @@ async function startCamera(facing) {
   }
 
   video.srcObject = stream;
-  video.classList.toggle('front', facing === 'user');
 
   await new Promise(resolve => {
     video.onloadedmetadata = resolve;
@@ -311,7 +324,10 @@ async function startCamera(facing) {
   await video.play().catch(() => {});
 
   currentFacing = facing;
-  const track    = stream.getVideoTracks()[0];
+  mirrorUser = false;
+  syncMirrorState();
+
+  const track = stream.getVideoTracks()[0];
   const settings = track.getSettings();
   document.getElementById('resLabel').textContent = `${settings.width || video.videoWidth || '?'}×${settings.height || video.videoHeight || '?'}`;
 
@@ -413,9 +429,9 @@ function connectServer() {
   document.getElementById('connInfo').textContent = '正在连接服务器...';
   document.getElementById('connectStatus').textContent = '请等待连接...';
 
-  const proto = location.protocol === 'https:' ? 'wss' : 'ws';
-  const host  = location.host;
-  const wsUrl = `${proto}://${host}/api/v1/camera_infos/phone_camera/phone`;
+  const proto = location.protocol === 'https:' ? 'wss' : 'wss';
+  const host  = location.hostname;
+  const wsUrl = `${proto}://${host}:8443/api/v1/camera_infos/phone_camera/phone`;
   
   console.log('连接到:', wsUrl);
   
@@ -480,21 +496,29 @@ function send(data) {
 
 // ── 高效帧推流 ──
 function startStreaming() {
-  // 只在可视时推流（节省性能）
-  const FRAME_INTERVAL = 120; // ~8fps，低延迟够用
+  if (window._streamCleanup) {
+    window._streamCleanup();
+    window._streamCleanup = null;
+  }
+
+  // 使用之前稳定版本的推流节奏：约 8fps，低延迟够用且手机端负载更低。
+  const FRAME_INTERVAL = 120;
   const capCanvas = document.createElement('canvas');
   const capCtx    = capCanvas.getContext('2d', { alpha: false });
+
+  let encodeTimer = null;
 
   // FPS 统计
   let fpsFrames = 0;
   let fpsLastTime = Date.now();
-  setInterval(() => {
+  const statsInterval = setInterval(() => {
     const elapsed = (Date.now() - fpsLastTime) / 1000;
-    document.getElementById('fpsLabel').textContent = `${Math.round(fpsFrames / elapsed)} fps`;
+    document.getElementById('fpsLabel').textContent =
+      elapsed > 0 ? `${Math.round(fpsFrames / elapsed)} fps` : '— fps';
     fpsFrames = 0;
     fpsLastTime = Date.now();
     document.getElementById('encodeLabel').textContent =
-      encodeCount > 0 ? `${Math.round(encodeTotalMs / encodeCount)} ms/帧` : '— ms/帧';
+      encodeCount > 0 ? `${Math.round(encodeTotalMs / Math.max(encodeCount, 1))} ms/帧` : '— ms/帧';
     encodeCount = 0;
     encodeTotalMs = 0;
   }, 3000);
@@ -518,14 +542,16 @@ function startStreaming() {
     capCanvas.height = Math.round(capCanvas.width * (vh / vw));
 
     try {
-      capCtx.save();
-      // 前置摄像头镜像
-      if (currentFacing === 'user') {
-        capCtx.translate(capCanvas.width, 0);
-        capCtx.scale(-1, 1);
+      const ctx = capCtx;
+      if (mirrorFrame) {
+        ctx.save();
+        ctx.translate(capCanvas.width, 0);
+        ctx.scale(-1, 1);
       }
-      capCtx.drawImage(video, 0, 0, capCanvas.width, capCanvas.height);
-      capCtx.restore();
+      ctx.drawImage(video, 0, 0, capCanvas.width, capCanvas.height);
+      if (mirrorFrame) {
+        ctx.restore();
+      }
 
       capCanvas.toBlob(blob => {
         encodeMs = Date.now() - t0;
@@ -551,17 +577,29 @@ function startStreaming() {
   } else {
     video.onloadedmetadata = () => captureFrame();
   }
+
+  window._streamCleanup = () => {
+    if (encodeTimer) clearTimeout(encodeTimer);
+    clearInterval(statsInterval);
+  };
 }
 
 // ── 翻转摄像头 ──
 function flipCamera() {
   if (stream) stream.getTracks().forEach(t => t.stop());
-  if (encodeTimer) clearTimeout(encodeTimer);
+  if (window._streamCleanup) { window._streamCleanup(); window._streamCleanup = null; }
   if (ws) { ws.onclose = null; ws.close(); ws = null; }
   connected = false;
   const next = currentFacing === 'environment' ? 'user' : 'environment';
   showToast(next === 'user' ? '切换到前置' : '切换到后置');
   startCamera(next);
+}
+
+// ── 镜像翻转 ──
+function toggleMirror() {
+  mirrorUser = !mirrorUser;
+  syncMirrorState();
+  showToast(mirrorUser ? '镜像已开启' : '镜像已关闭', 1500);
 }
 
 // ── 闪光灯 ──
@@ -692,6 +730,7 @@ function showToast(msg, duration) {
 
 // ── 页面卸载时清理 ──
 window.addEventListener('beforeunload', () => {
+  if (window._streamCleanup) { window._streamCleanup(); window._streamCleanup = null; }
   if (stream) stream.getTracks().forEach(t => t.stop());
   if (ws) ws.close();
 });

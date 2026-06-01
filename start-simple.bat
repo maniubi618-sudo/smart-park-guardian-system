@@ -30,7 +30,7 @@ timeout /t 3 /nobreak >nul
 
 :: Start Frontend
 echo [3/3] Starting Frontend
-start "Frontend" cmd /k "cd /d %FRONTEND% && npm run dev"
+start "Frontend" cmd /k "cd /d %FRONTEND% && npx vite --host 0.0.0.0 --port 3003 --strictPort"
 
 :: Wait
 echo Waiting 5 seconds...
@@ -43,7 +43,7 @@ echo ===========================
 echo.
 echo Backend HTTP: http://localhost:8089
 echo Backend HTTPS: https://localhost:8443
-echo Frontend: http://localhost:3000
+echo Frontend: http://localhost:3003
 echo.
 echo Phone Camera: https://[YourIP]:8443/phone-camera
 echo.

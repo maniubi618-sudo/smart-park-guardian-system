@@ -9,6 +9,9 @@ from app.services.config_manager import get_config_manager
 
 router = APIRouter(prefix="/crop-disease-detection", tags=["农作物病害检测"])
 
+DISEASE_CONF_THRESHOLD = 0.25
+HEALTHY_LABELS = {"健康", "Healthy", "healthy"}
+
 
 class DetectionResult(BaseModel):
     class_name: str
@@ -51,7 +54,8 @@ async def get_available_crops():
 @router.post("/detect", response_model=DetectionResponse)
 async def detect_disease(
     file: UploadFile = File(...),
-    crop_type: str = Query("rice", description="作物类型: apple, corn, cotton, grape, potato, rice, strawberry, tomato, wheat")
+    crop_type: str = Query("rice", description="作物类型: apple, corn, cotton, grape, potato, rice, strawberry, tomato, wheat"),
+    record_alarm: bool = Query(False, description="是否将本次病害检测结果写入大屏告警")
 ):
     """
     上传图片进行病害检测
@@ -71,7 +75,7 @@ async def detect_disease(
         # 从配置读取最新的置信度阈值
         try:
             config_manager = get_config_manager()
-            detector.confidence = config_manager.get("agriculture.cropDiseaseConfidence", 0.25)
+            detector.confidence = config_manager.get("agriculture.cropDiseaseConfidence", DISEASE_CONF_THRESHOLD)
         except Exception as e:
             print(f"Warning: Failed to get config, using default: {e}")
 
@@ -89,6 +93,13 @@ async def detect_disease(
         # 执行检测
         predictions, annotated_image = detector.detect_and_annotate(image_bytes)
 
+        # 只保留高置信度病害结果。低置信度和“健康”类别都不返回给前端，避免手机画面误报。
+        disease_preds = [
+            p for p in predictions
+            if p["class"] not in HEALTHY_LABELS and p["original_confidence"] >= DISEASE_CONF_THRESHOLD
+        ]
+        annotated_image = detector.annotate_image(image_bytes, disease_preds)
+
         # 格式化结果
         results = [
             DetectionResult(
@@ -98,19 +109,61 @@ async def detect_disease(
                 original_confidence=pred["original_confidence"],
                 bbox=pred["bbox"]
             )
-            for pred in predictions
+            for pred in disease_preds
         ]
 
-        # 判断是否有病害
-        has_disease = any(pred["class"] != "健康" for pred in predictions)
-        
+        has_disease = len(disease_preds) > 0
+
         if has_disease:
             # 统计病害数量
-            disease_count = sum(1 for pred in predictions if pred["class"] != "健康")
+            disease_count = len(disease_preds)
             message = f"检测到 {disease_count} 个病害目标"
+
+            if record_alarm:
+                # ★ 创建告警记录，使智慧大棚前端能展示
+                try:
+                    from app.crud.alarm_crud import create_alarm
+                    from app.utils.oss_utils import get_now
+                    from app.config.database import SessionLocal
+                    from app.services.alarm_broadcast_service import sync_broadcast_alarm
+                    from app.utils.logger import get_logger
+                    _log = get_logger()
+
+                    db = SessionLocal()
+                    try:
+                        # 保存标注图作为截图
+                        snapshot_url = ""
+                        if annotated_image:
+                            import base64, os
+                            snapshot_dir = os.path.join(os.path.dirname(os.path.dirname(os.path.dirname(__file__))), 'snapshots')
+                            os.makedirs(snapshot_dir, exist_ok=True)
+                            # 从检测结果收集病害名称和置信度，写入文件名以便前端解析
+                            # 格式: 0_20260530_175958_apple_叶斑病_0.97_灰霉病_0.85_crop.jpg
+                            disease_parts = []
+                            for p in disease_preds:
+                                disease_parts.append(p["class"])
+                                disease_parts.append(f'{p["confidence"]:.2f}')
+                            disease_tag = "_".join(disease_parts[:6])  # 最多3个病害（名+置信度=6段）
+                            snapshot_path = os.path.join(snapshot_dir, f'0_{get_now().strftime("%Y%m%d_%H%M%S")}_{disease_tag}_crop.jpg')
+                            img_data = base64.b64decode(annotated_image.split(',')[1] if ',' in annotated_image else annotated_image)
+                            with open(snapshot_path, 'wb') as f:
+                                f.write(img_data)
+                            snapshot_url = snapshot_path
+                            _log.info(f"[CropDisease] 标注图已保存: {snapshot_path}")
+
+                        _log.info(f"[CropDisease] 创建告警: camera_id=0, type=3...")
+                        alarm = create_alarm(db, 0, 3, 0, get_now(), snapshot_url)
+                        _log.info(f"[CropDisease] 告警创建成功: ID={alarm.alarm_id}")
+                        sync_broadcast_alarm(alarm)
+                        _log.info(f"[CropDisease] 告警已广播")
+                    finally:
+                        db.close()
+                except Exception as e:
+                    import traceback
+                    print(f"创建病虫告警失败: {e}\n{traceback.format_exc()}")
         else:
             message = "正常"
-        
+
         return DetectionResponse(
             success=True,
             crop_type=crop_type,
@@ -131,6 +184,11 @@ async def get_status(crop_type: str = Query("rice", description="作物类型"))
     """
     try:
         detector = get_crop_disease_detector(crop_type=crop_type)
+        try:
+            config_manager = get_config_manager()
+            detector.confidence = config_manager.get("agriculture.cropDiseaseConfidence", DISEASE_CONF_THRESHOLD)
+        except Exception as e:
+            print(f"Warning: Failed to get config, using current detector confidence: {e}")
         return {
             "crop_type": detector.crop_type,
             "model_loaded": detector.model is not None,
@@ -139,4 +197,3 @@ async def get_status(crop_type: str = Query("rice", description="作物类型"))
         }
     except Exception as e:
         raise HTTPException(status_code=500, detail=f"获取状态失败: {str(e)}")
-
