@@ -78,6 +78,12 @@ async def update_config(config: ConfigUpdate):
                 pest_detector.update_from_config()
             except:
                 pass
+
+            try:
+                from app.services.crop_disease_detector import update_crop_disease_detectors_from_config
+                update_crop_disease_detectors_from_config()
+            except:
+                pass
         
         return {
             "success": True,

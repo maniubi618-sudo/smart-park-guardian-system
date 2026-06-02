@@ -1,8 +1,11 @@
 #!/bin/bash
 # ========================================
-#   园区智能安防系统 - HTTP模式启动脚本
-#   使用HTTP而非HTTPS，避免浏览器证书问题
+#   园区智能安防系统 - HTTP 模式启动脚本
+#   使用纯 HTTP，无需处理 HTTPS 证书问题
+#   跨项目联动端口: 前端 5175 / 后端 8089
 # ========================================
+
+set -euo pipefail
 
 PROJECT_ROOT="$(cd "$(dirname "$0")" && pwd)"
 FRONTEND_PATH="$PROJECT_ROOT/park-safety-frontend"
@@ -11,93 +14,181 @@ GREEN='\033[0;32m'
 YELLOW='\033[1;33m'
 BLUE='\033[0;34m'
 RED='\033[0;31m'
+CYAN='\033[0;36m'
 NC='\033[0m'
 
-FRONTEND_PORT="${FRONTEND_PORT:-3003}"
+FRONTEND_PORT="${FRONTEND_PORT:-5175}"
 BACKEND_HTTP_PORT="${BACKEND_HTTP_PORT:-8089}"
-BACKEND_HTTPS_PORT="${BACKEND_HTTPS_PORT:-8443}"
 
-echo "========================================"
-echo "  园区智能安防系统 - HTTP启动脚本"
-echo "========================================"
+PID_BACKEND=/tmp/smart-park-backend.pid
+PID_FRONTEND=/tmp/smart-park-frontend.pid
+LOG_BACKEND=/tmp/smart-park-backend.log
+LOG_FRONTEND=/tmp/smart-park-frontend.log
+
+# ============================================================
+# 工具函数
+# ============================================================
+
+force_free_port() {
+    local port=$1
+    local max_wait=10
+    lsof -ti:"$port" 2>/dev/null | xargs kill 2>/dev/null || true
+    sleep 0.5
+    lsof -ti:"$port" 2>/dev/null | xargs kill -9 2>/dev/null || true
+    sleep 0.5
+    local waited=0
+    while lsof -ti:"$port" >/dev/null 2>&1; do
+        if [ $waited -ge $max_wait ]; then
+            echo -e "${RED}  !! 端口 $port 超时未释放，请手动检查${NC}"
+            return 1
+        fi
+        sleep 1
+        waited=$((waited + 1))
+        lsof -ti:"$port" 2>/dev/null | xargs kill -9 2>/dev/null || true
+    done
+    return 0
+}
+
+wait_for_port() {
+    local port=$1
+    local label="${2:-端口 $port}"
+    local max_wait=15
+    local waited=0
+    while ! lsof -ti:"$port" >/dev/null 2>&1; do
+        if [ $waited -ge $max_wait ]; then
+            return 1
+        fi
+        sleep 1
+        waited=$((waited + 1))
+    done
+    echo -e "${GREEN}  OK${NC} $label 已就绪 (${waited}s)"
+    return 0
+}
+
+is_alive() {
+    kill -0 "$1" 2>/dev/null
+}
+
+cleanup_on_exit() {
+    echo ""
+    echo -e "${YELLOW}[中断]${NC} 正在清理..."
+    for f in "$PID_BACKEND" "$PID_FRONTEND"; do
+        [ -f "$f" ] && kill "$(cat "$f" 2>/dev/null)" 2>/dev/null; rm -f "$f"
+    done
+    force_free_port "$FRONTEND_PORT" || true
+    force_free_port "$BACKEND_HTTP_PORT" || true
+    echo -e "${GREEN}已停止${NC}"
+    exit 0
+}
+trap cleanup_on_exit SIGINT SIGTERM
+
+# ============================================================
+# 启动流程
+# ============================================================
+
+echo ""
+echo -e "${CYAN}========================================${NC}"
+echo -e "${CYAN}  园区智能安防系统 - HTTP 启动${NC}"
+echo -e "${CYAN}========================================${NC}"
+echo ""
+echo -e "  前端端口: ${GREEN}$FRONTEND_PORT${NC}"
+echo -e "  后端端口: ${GREEN}$BACKEND_HTTP_PORT${NC}"
 echo ""
 
-# ---- 清理已存在的服务进程 ----
-echo -e "${BLUE}[清理]${NC} 检查并停止已存在的服务..."
+# ---- [1/4] 清理旧进程 ----
+echo -e "${BLUE}[1/4]${NC} 清理旧进程..."
 
-for pid in $(lsof -i :$BACKEND_HTTP_PORT -t 2>/dev/null); do
-    kill -9 $pid 2>/dev/null
-    echo -e "${YELLOW}  已停止占用端口 $BACKEND_HTTP_PORT 的进程 (PID: $pid)${NC}"
+for pf in "$PID_BACKEND" "$PID_FRONTEND"; do
+    if [ -f "$pf" ]; then
+        pid=$(cat "$pf" 2>/dev/null || true)
+        [ -n "$pid" ] && kill "$pid" 2>/dev/null || true
+        rm -f "$pf"
+    fi
 done
 
-for pid in $(lsof -i :$BACKEND_HTTPS_PORT -t 2>/dev/null); do
-    kill -9 $pid 2>/dev/null
-    echo -e "${YELLOW}  已停止占用端口 $BACKEND_HTTPS_PORT 的进程 (PID: $pid)${NC}"
-done
+force_free_port "$BACKEND_HTTP_PORT" "后端 HTTP"
+force_free_port "$FRONTEND_PORT"  "前端"
 
-for pid in $(lsof -i :$FRONTEND_PORT -t 2>/dev/null); do
-    kill -9 $pid 2>/dev/null
-    echo -e "${YELLOW}  已停止占用端口 $FRONTEND_PORT 的进程 (PID: $pid)${NC}"
-done
+ps aux | grep -E "vite|node.*park-safety" | grep -v grep | awk '{print $2}' | xargs kill -9 2>/dev/null || true
 
-for pid in $(ps aux | grep "vite" | grep -v grep | awk '{print $2}'); do
-    kill -9 $pid 2>/dev/null
-    echo -e "${YELLOW}  已停止 vite 进程 (PID: $pid)${NC}"
-done
-
-sleep 1
 echo -e "${GREEN}  OK${NC} 清理完成"
 echo ""
 
-# ---- 检查虚拟环境 ----
-echo -e "${BLUE}[检查]${NC} Python 虚拟环境..."
-cd "$PROJECT_ROOT"
+# ---- [2/4] 检查依赖 ----
+echo -e "${BLUE}[2/4]${NC} 检查运行环境..."
+
 VENV_PYTHON="$PROJECT_ROOT/venv/bin/python"
-if [ -f "$VENV_PYTHON" ]; then
-    echo -e "${GREEN}  OK${NC} 虚拟环境: $VENV_PYTHON"
-else
-    echo -e "${RED}  !! 虚拟环境不存在，请先运行: python3 -m venv venv && ./venv/bin/python -m pip install -r requirements.txt${NC}"
+if [ ! -f "$VENV_PYTHON" ]; then
+    echo -e "${RED}  !! 虚拟环境不存在: $VENV_PYTHON${NC}"
+    echo -e "${RED}     请先运行: python3 -m venv venv && ./venv/bin/pip install -r requirements.txt${NC}"
     exit 1
 fi
+echo -e "${GREEN}  OK${NC} Python: $("$VENV_PYTHON" --version 2>&1)"
 
-# ---- 启动后端 HTTP (端口 8089) ----
+command -v node &>/dev/null || { echo -e "${RED}  !! 未找到 Node.js${NC}"; exit 1; }
+echo -e "${GREEN}  OK${NC} Node.js: $(node --version)"
+
+if [ ! -d "$FRONTEND_PATH/node_modules" ]; then
+    echo -e "${YELLOW}  .. 前端依赖未安装，正在 npm install...${NC}"
+    (cd "$FRONTEND_PATH" && npm install --silent) || { echo -e "${RED}  !! npm install 失败${NC}"; exit 1; }
+fi
+echo -e "${GREEN}  OK${NC} 前端依赖已就绪"
 echo ""
-echo -e "${BLUE}[1/2]${NC} 启动后端 HTTP 服务 (端口: $BACKEND_HTTP_PORT)..."
-nohup "$VENV_PYTHON" -m app.main > /tmp/smart-park-backend.log 2>&1 &
+
+# ---- [3/4] 启动后端 HTTP ----
+echo -e "${BLUE}[3/4]${NC} 启动后端 HTTP (0.0.0.0:$BACKEND_HTTP_PORT)..."
+
+cd "$PROJECT_ROOT"
+nohup "$VENV_PYTHON" -m app.main > "$LOG_BACKEND" 2>&1 &
 BACKEND_PID=$!
-echo "$BACKEND_PID" > /tmp/smart-park-backend.pid
-sleep 3
-if kill -0 "$BACKEND_PID" 2>/dev/null && lsof -i :$BACKEND_HTTP_PORT -t >/dev/null 2>&1; then
-    echo -e "${GREEN}  OK${NC} 后端 HTTP 已启动 (PID: $BACKEND_PID)"
-else
-    echo -e "${RED}  !! 后端 HTTP 启动失败，查看日志: cat /tmp/smart-park-backend.log${NC}"
+echo "$BACKEND_PID" > "$PID_BACKEND"
+
+if ! wait_for_port "$BACKEND_HTTP_PORT" "后端 HTTP"; then
+    echo -e "${RED}  !! 后端启动超时，查看日志: cat $LOG_BACKEND${NC}"
     exit 1
 fi
 
-# ---- 启动前端 HTTP (端口 3003) ----
-echo -e "${BLUE}[2/2]${NC} 启动前端服务 (HTTP模式，端口: $FRONTEND_PORT)..."
-cd "$FRONTEND_PATH"
-nohup npx vite --host 0.0.0.0 --port "$FRONTEND_PORT" --strictPort -c vite.config.http.js > /tmp/smart-park-frontend.log 2>&1 &
-FRONTEND_PID=$!
-echo "$FRONTEND_PID" > /tmp/smart-park-frontend.pid
-sleep 3
-if kill -0 "$FRONTEND_PID" 2>/dev/null && lsof -i :$FRONTEND_PORT -t >/dev/null 2>&1; then
-    echo -e "${GREEN}  OK${NC} 前端已启动 (PID: $FRONTEND_PID)"
-else
-    echo -e "${RED}  !! 前端启动失败，查看日志: cat /tmp/smart-park-frontend.log${NC}"
+if ! is_alive "$BACKEND_PID"; then
+    echo -e "${RED}  !! 后端进程已退出，查看日志: cat $LOG_BACKEND${NC}"
+    exit 1
 fi
+
+echo -e "${GREEN}  OK${NC} 后端 HTTP 已启动 (PID: $BACKEND_PID)"
+
+# ---- [4/4] 启动前端 ----
+echo -e "${BLUE}[4/4]${NC} 启动前端 (HTTP, 0.0.0.0:$FRONTEND_PORT)..."
+
+cd "$FRONTEND_PATH"
+nohup npx vite --host 0.0.0.0 --port "$FRONTEND_PORT" --strictPort -c vite.config.http.js > "$LOG_FRONTEND" 2>&1 &
+FRONTEND_PID=$!
+echo "$FRONTEND_PID" > "$PID_FRONTEND"
+
+if ! wait_for_port "$FRONTEND_PORT" "前端"; then
+    echo -e "${RED}  !! 前端启动超时，查看日志: cat $LOG_FRONTEND${NC}"
+    kill "$BACKEND_PID" 2>/dev/null || true
+    exit 1
+fi
+
+if ! is_alive "$FRONTEND_PID"; then
+    echo -e "${RED}  !! 前端进程已退出，查看日志: cat $LOG_FRONTEND${NC}"
+    exit 1
+fi
+
+echo -e "${GREEN}  OK${NC} 前端已启动 (PID: $FRONTEND_PID)"
 
 # ---- 完成 ----
 echo ""
-echo "========================================"
-echo -e "${GREEN}  所有服务已启动成功!${NC}"
-echo "========================================"
+echo -e "${CYAN}========================================${NC}"
+echo -e "${GREEN}  ✓ 所有服务已启动${NC}"
+echo -e "${CYAN}========================================${NC}"
 echo ""
-echo -e "  后端 HTTP:    ${BLUE}http://localhost:$BACKEND_HTTP_PORT${NC}"
-echo -e "  API 文档:     ${BLUE}http://localhost:$BACKEND_HTTP_PORT/docs${NC}"
 echo -e "  前端页面:     ${BLUE}http://localhost:$FRONTEND_PORT${NC}"
+echo -e "  后端 API:     ${BLUE}http://localhost:$BACKEND_HTTP_PORT${NC}"
+echo -e "  API 文档:     ${BLUE}http://localhost:$BACKEND_HTTP_PORT/docs${NC}"
 echo ""
-echo -e "  ${YELLOW}提示: 使用HTTP模式，无需处理HTTPS证书问题${NC}"
+echo -e "  ${YELLOW}日志:${NC}"
+echo -e "    后端: tail -f $LOG_BACKEND"
+echo -e "    前端: tail -f $LOG_FRONTEND"
 echo ""
 echo -e "  停止服务:     ${YELLOW}./stop.sh${NC}"
 echo ""

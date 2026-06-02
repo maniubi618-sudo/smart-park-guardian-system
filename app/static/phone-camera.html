@@ -295,7 +295,8 @@ async function startCamera(facing) {
 
   // 尝试获取摄像头（简化约束，减少等待时间）
   const constraints = [
-    { video: { facingMode: facing, width: { ideal: 1280 }, height: { ideal: 720 } } },
+    { video: { facingMode: facing, width: { ideal: 1920 }, height: { ideal: 1080 }, frameRate: { ideal: 10, max: 15 } } },
+    { video: { facingMode: facing, width: { ideal: 1280 }, height: { ideal: 720 }, frameRate: { ideal: 10, max: 15 } } },
     { video: { facingMode: facing } },
     { video: true }
   ];
@@ -501,8 +502,8 @@ function startStreaming() {
     window._streamCleanup = null;
   }
 
-  // 使用之前稳定版本的推流节奏：约 8fps，低延迟够用且手机端负载更低。
-  const FRAME_INTERVAL = 120;
+  // 病害识别依赖叶片/果面纹理，优先保留清晰度，帧率适当降低。
+  const FRAME_INTERVAL = 180;
   const capCanvas = document.createElement('canvas');
   const capCtx    = capCanvas.getContext('2d', { alpha: false });
 
@@ -538,7 +539,7 @@ function startStreaming() {
       return;
     }
 
-    capCanvas.width  = Math.min(vw, 1280); // 限制最大宽度，省流量
+    capCanvas.width  = Math.min(vw, 1920);
     capCanvas.height = Math.round(capCanvas.width * (vh / vw));
 
     try {
@@ -562,7 +563,7 @@ function startStreaming() {
           try { ws.send(blob); } catch (e) {}
         }
         fpsFrames++;
-      }, 'image/jpeg', 0.6); // 0.6 质量，文件更小
+      }, 'image/jpeg', 0.92);
 
     } catch (e) {
       // 绘制失败，跳过

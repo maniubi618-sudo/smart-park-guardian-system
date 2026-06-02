@@ -1,7 +1,11 @@
 #!/bin/bash
 # ========================================
-#   园区智能安防系统 - macOS 一键启动脚本
+#   园区智能安防系统 - HTTPS 模式启动脚本
+#   前端 HTTPS:5175 / 后端 HTTP:8089 + HTTPS:8443
+#   如需纯 HTTP 模式请使用: ./start-http.sh
 # ========================================
+
+set -euo pipefail
 
 PROJECT_ROOT="$(cd "$(dirname "$0")" && pwd)"
 FRONTEND_PATH="$PROJECT_ROOT/park-safety-frontend"
@@ -10,138 +14,180 @@ GREEN='\033[0;32m'
 YELLOW='\033[1;33m'
 BLUE='\033[0;34m'
 RED='\033[0;31m'
+CYAN='\033[0;36m'
 NC='\033[0m'
 
-# 可配置的端口号
-FRONTEND_PORT="${FRONTEND_PORT:-3003}"
+FRONTEND_PORT="${FRONTEND_PORT:-5175}"
 BACKEND_HTTP_PORT="${BACKEND_HTTP_PORT:-8089}"
 BACKEND_HTTPS_PORT="${BACKEND_HTTPS_PORT:-8443}"
+MYSQL_ROOT_PASSWORD="${MYSQL_ROOT_PASSWORD:-}"
 
-echo "========================================"
-echo "  园区智能安防系统 - 启动脚本"
-echo "========================================"
+PID_BACKEND=/tmp/smart-park-backend.pid
+PID_BACKEND_HTTPS=/tmp/smart-park-backend-https.pid
+PID_FRONTEND=/tmp/smart-park-frontend.pid
+LOG_BACKEND=/tmp/smart-park-backend.log
+LOG_BACKEND_HTTPS=/tmp/smart-park-backend-https.log
+LOG_FRONTEND=/tmp/smart-park-frontend.log
+
+force_free_port() {
+    local port=$1
+    local max_wait=10
+    lsof -ti:"$port" 2>/dev/null | xargs kill 2>/dev/null || true
+    sleep 0.5
+    lsof -ti:"$port" 2>/dev/null | xargs kill -9 2>/dev/null || true
+    sleep 0.5
+    local waited=0
+    while lsof -ti:"$port" >/dev/null 2>&1; do
+        [ $waited -ge $max_wait ] && { echo -e "${RED}  !! 端口 $port 超时未释放${NC}"; return 1; }
+        sleep 1
+        waited=$((waited + 1))
+        lsof -ti:"$port" 2>/dev/null | xargs kill -9 2>/dev/null || true
+    done
+    return 0
+}
+
+wait_for_port() {
+    local port=$1
+    local label="${2:-端口 $port}"
+    local max_wait=15
+    local waited=0
+    while ! lsof -ti:"$port" >/dev/null 2>&1; do
+        [ $waited -ge $max_wait ] && return 1
+        sleep 1
+        waited=$((waited + 1))
+    done
+    echo -e "${GREEN}  OK${NC} $label 已就绪 (${waited}s)"
+    return 0
+}
+
+is_alive() { kill -0 "$1" 2>/dev/null; }
+
+cleanup_on_exit() {
+    echo ""
+    echo -e "${YELLOW}[中断]${NC} 正在清理..."
+    for f in "$PID_BACKEND" "$PID_BACKEND_HTTPS" "$PID_FRONTEND"; do
+        [ -f "$f" ] && kill "$(cat "$f" 2>/dev/null)" 2>/dev/null; rm -f "$f"
+    done
+    force_free_port "$FRONTEND_PORT" || true
+    force_free_port "$BACKEND_HTTP_PORT" || true
+    force_free_port "$BACKEND_HTTPS_PORT" || true
+    echo -e "${GREEN}已停止${NC}"
+    exit 0
+}
+trap cleanup_on_exit SIGINT SIGTERM
+
+# ============================================================
+echo ""
+echo -e "${CYAN}========================================${NC}"
+echo -e "${CYAN}  园区智能安防系统 - HTTPS 启动${NC}"
+echo -e "${CYAN}========================================${NC}"
+echo ""
+echo -e "  前端端口: ${GREEN}$FRONTEND_PORT (HTTPS)${NC}"
+echo -e "  后端 HTTP: ${GREEN}$BACKEND_HTTP_PORT${NC}"
+echo -e "  后端 HTTPS: ${GREEN}$BACKEND_HTTPS_PORT${NC}"
 echo ""
 
-# ---- 清理已存在的服务进程 ----
-echo -e "${BLUE}[清理]${NC} 检查并停止已存在的服务..."
-
-# 停止占用后端端口的服务
-for pid in $(lsof -i :$BACKEND_HTTP_PORT -t 2>/dev/null); do
-    kill -9 $pid 2>/dev/null
-    echo -e "${YELLOW}  已停止占用端口 $BACKEND_HTTP_PORT 的进程 (PID: $pid)${NC}"
+# ---- [1/5] 清理 ----
+echo -e "${BLUE}[1/5]${NC} 清理旧进程..."
+for pf in "$PID_BACKEND" "$PID_BACKEND_HTTPS" "$PID_FRONTEND"; do
+    if [ -f "$pf" ]; then
+        pid=$(cat "$pf" 2>/dev/null || true)
+        [ -n "$pid" ] && kill "$pid" 2>/dev/null || true
+        rm -f "$pf"
+    fi
 done
-
-for pid in $(lsof -i :$BACKEND_HTTPS_PORT -t 2>/dev/null); do
-    kill -9 $pid 2>/dev/null
-    echo -e "${YELLOW}  已停止占用端口 $BACKEND_HTTPS_PORT 的进程 (PID: $pid)${NC}"
-done
-
-# 停止前端服务（包括可能的自动切换端口）
-for pid in $(lsof -i :$FRONTEND_PORT -t 2>/dev/null); do
-    kill -9 $pid 2>/dev/null
-    echo -e "${YELLOW}  已停止占用端口 $FRONTEND_PORT 的进程 (PID: $pid)${NC}"
-done
-
-# 停止其他可能的前端进程
-for pid in $(ps aux | grep "vite" | grep -v grep | awk '{print $2}'); do
-    kill -9 $pid 2>/dev/null
-    echo -e "${YELLOW}  已停止 vite 进程 (PID: $pid)${NC}"
-done
-
-sleep 1
-
+force_free_port "$BACKEND_HTTP_PORT"  "后端 HTTP"
+force_free_port "$BACKEND_HTTPS_PORT" "后端 HTTPS"
+force_free_port "$FRONTEND_PORT"     "前端"
+ps aux | grep -E "vite|node.*park-safety|app\.main" | grep -v grep | awk '{print $2}' | xargs kill -9 2>/dev/null || true
 echo -e "${GREEN}  OK${NC} 清理完成"
 echo ""
 
-MYSQL_ROOT_PASSWORD="${MYSQL_ROOT_PASSWORD:-}"
-
-# ---- 检查 MySQL ----
-echo -e "${BLUE}[检查]${NC} MySQL 服务..."
+# ---- [2/5] MySQL ----
+echo -e "${BLUE}[2/5]${NC} 检查 MySQL..."
 if [ -n "$MYSQL_ROOT_PASSWORD" ]; then
-    MYSQL_PWD="$MYSQL_ROOT_PASSWORD" mysqladmin ping -u root 2>/dev/null | grep -q "alive"
+    MYSQL_PWD="$MYSQL_ROOT_PASSWORD" mysqladmin ping -u root --silent 2>/dev/null && mysql_ok=true || mysql_ok=false
 else
-    mysqladmin ping -u root 2>/dev/null | grep -q "alive"
+    mysqladmin ping -u root --silent 2>/dev/null && mysql_ok=true || mysql_ok=false
 fi
-
-if [ $? -eq 0 ]; then
+if $mysql_ok; then
     echo -e "${GREEN}  OK${NC} MySQL 已运行"
 else
-    echo -e "${YELLOW}  !! MySQL 未运行，尝试启动...${NC}"
-    if [ -z "$MYSQL_ROOT_PASSWORD" ]; then
-        echo -e "${YELLOW}  提示: 如需使用 root 密码检查 MySQL，请先导出环境变量 MYSQL_ROOT_PASSWORD${NC}"
-    fi
+    echo -e "${YELLOW}  .. MySQL 未运行，尝试启动...${NC}"
     /usr/local/mysql/support-files/mysql.server start 2>/dev/null || true
     sleep 2
 fi
 
-# ---- 检查虚拟环境 ----
-echo -e "${BLUE}[检查]${NC} Python 虚拟环境..."
-cd "$PROJECT_ROOT"
+# ---- [3/5] 依赖 ----
+echo -e "${BLUE}[3/5]${NC} 检查运行环境..."
 VENV_PYTHON="$PROJECT_ROOT/venv/bin/python"
-if [ -f "$VENV_PYTHON" ]; then
-    echo -e "${GREEN}  OK${NC} 虚拟环境: $VENV_PYTHON"
-else
-    echo -e "${RED}  !! 虚拟环境不存在，请先运行: python3 -m venv venv && ./venv/bin/python -m pip install -r requirements.txt${NC}"
-    exit 1
+[ -f "$VENV_PYTHON" ] || { echo -e "${RED}  !! 虚拟环境不存在${NC}"; exit 1; }
+echo -e "${GREEN}  OK${NC} Python: $("$VENV_PYTHON" --version 2>&1)"
+command -v node &>/dev/null || { echo -e "${RED}  !! 未找到 Node.js${NC}"; exit 1; }
+echo -e "${GREEN}  OK${NC} Node.js: $(node --version)"
+
+# SSL 证书
+CERT_DIR="$PROJECT_ROOT/app"
+if [ ! -f "$CERT_DIR/server.crt" ] || [ ! -f "$CERT_DIR/server.key" ]; then
+    echo -e "${YELLOW}  .. 生成自签名 SSL 证书...${NC}"
+    mkdir -p "$CERT_DIR"
+    openssl req -x509 -newkey rsa:2048 -keyout "$CERT_DIR/server.key" \
+        -out "$CERT_DIR/server.crt" -days 365 -nodes \
+        -subj "/CN=localhost" 2>/dev/null
+    echo -e "${GREEN}  OK${NC} 证书已生成"
 fi
 
-# ---- 启动后端 HTTP (端口 8089) ----
+[ -d "$FRONTEND_PATH/node_modules" ] || {
+    echo -e "${YELLOW}  .. 安装前端依赖...${NC}"
+    (cd "$FRONTEND_PATH" && npm install --silent) || { echo -e "${RED}  !! npm install 失败${NC}"; exit 1; }
+}
+echo -e "${GREEN}  OK${NC} 前端依赖已就绪"
 echo ""
-echo -e "${BLUE}[1/3]${NC} 启动后端 HTTP 服务 (端口: $BACKEND_HTTP_PORT)..."
-nohup "$VENV_PYTHON" -m app.main > /tmp/smart-park-backend.log 2>&1 &
-BACKEND_PID=$!
-echo "$BACKEND_PID" > /tmp/smart-park-backend.pid
-sleep 3
-if kill -0 "$BACKEND_PID" 2>/dev/null && lsof -i :$BACKEND_HTTP_PORT -t >/dev/null 2>&1; then
-    echo -e "${GREEN}  OK${NC} 后端 HTTP 已启动 (PID: $BACKEND_PID)"
-else
-    echo -e "${RED}  !! 后端 HTTP 启动失败，查看日志: cat /tmp/smart-park-backend.log${NC}"
+
+# ---- [4/5] 后端 ----
+echo -e "${BLUE}[4/5]${NC} 启动后端..."
+cd "$PROJECT_ROOT"
+nohup "$VENV_PYTHON" -m app.main > "$LOG_BACKEND" 2>&1 &
+echo "$!" > "$PID_BACKEND"
+wait_for_port "$BACKEND_HTTP_PORT" "后端 HTTP" || { echo -e "${RED}  !! 后端 HTTP 启动超时${NC}"; exit 1; }
+
+nohup bash -c "cd '$PROJECT_ROOT' && '$VENV_PYTHON' -m app.main_https" > "$LOG_BACKEND_HTTPS" 2>&1 &
+echo "$!" > "$PID_BACKEND_HTTPS"
+wait_for_port "$BACKEND_HTTPS_PORT" "后端 HTTPS" || echo -e "${RED}  !! 后端 HTTPS 启动超时 (非致命)${NC}"
+
+# ---- [5/5] 前端 ----
+echo -e "${BLUE}[5/5]${NC} 启动前端 (HTTPS, 0.0.0.0:$FRONTEND_PORT)..."
+cd "$FRONTEND_PATH"
+nohup npx vite --host 0.0.0.0 --port "$FRONTEND_PORT" --strictPort > "$LOG_FRONTEND" 2>&1 &
+echo "$!" > "$PID_FRONTEND"
+if ! wait_for_port "$FRONTEND_PORT" "前端"; then
+    echo -e "${RED}  !! 前端启动超时${NC}"
+    kill "$(cat "$PID_BACKEND")" 2>/dev/null
     exit 1
 fi
 
-# ---- 启动后端 HTTPS (端口 8443)，用于手机摄像头 ----
-echo -e "${BLUE}[2/3]${NC} 启动后端 HTTPS 服务 (端口: $BACKEND_HTTPS_PORT)..."
-nohup bash -c "cd '$PROJECT_ROOT' && '$VENV_PYTHON' -m app.main_https" > /tmp/smart-park-backend-https.log 2>&1 &
-HTTPS_PID=$!
-echo "$HTTPS_PID" > /tmp/smart-park-backend-https.pid
-sleep 3
-if kill -0 "$HTTPS_PID" 2>/dev/null && lsof -i :$BACKEND_HTTPS_PORT -t >/dev/null 2>&1; then
-    echo -e "${GREEN}  OK${NC} 后端 HTTPS 已启动 (PID: $HTTPS_PID)"
-else
-    echo -e "${RED}  !! 后端 HTTPS 启动失败，查看日志: cat /tmp/smart-park-backend-https.log${NC}"
-fi
-
-# ---- 启动前端 (端口 3003) ----
-echo -e "${BLUE}[3/3]${NC} 启动前端服务 (端口: $FRONTEND_PORT)..."
-cd "$FRONTEND_PATH"
-nohup npx vite --host 0.0.0.0 --port "$FRONTEND_PORT" --strictPort > /tmp/smart-park-frontend.log 2>&1 &
-FRONTEND_PID=$!
-echo "$FRONTEND_PID" > /tmp/smart-park-frontend.pid
-sleep 3
-if kill -0 "$FRONTEND_PID" 2>/dev/null && lsof -i :$FRONTEND_PORT -t >/dev/null 2>&1; then
-    echo -e "${GREEN}  OK${NC} 前端已启动 (PID: $FRONTEND_PID)"
-else
-    echo -e "${RED}  !! 前端启动失败，查看日志: cat /tmp/smart-park-frontend.log${NC}"
-fi
+# ---- 本机 IP ----
+LOCAL_IP=$(python3 -c "import socket;s=socket.socket(socket.AF_INET,socket.SOCK_DGRAM);s.settimeout(1);s.connect(('8.8.8.8',80));print(s.getsockname()[0]);s.close()" 2>/dev/null || echo "")
 
 # ---- 完成 ----
 echo ""
-echo "========================================"
-echo -e "${GREEN}  所有服务已启动成功!${NC}"
-echo "========================================"
+echo -e "${CYAN}========================================${NC}"
+echo -e "${GREEN}  ✓ 所有服务已启动${NC}"
+echo -e "${CYAN}========================================${NC}"
 echo ""
+echo -e "  前端页面:     ${BLUE}https://localhost:$FRONTEND_PORT${NC}"
 echo -e "  后端 HTTP:    ${BLUE}http://localhost:$BACKEND_HTTP_PORT${NC}"
 echo -e "  后端 HTTPS:   ${BLUE}https://localhost:$BACKEND_HTTPS_PORT${NC}"
 echo -e "  API 文档:     ${BLUE}http://localhost:$BACKEND_HTTP_PORT/docs${NC}"
-echo -e "  前端页面:     ${BLUE}https://localhost:$FRONTEND_PORT${NC}"
 echo ""
-echo -e "  手机摄像头:   ${BLUE}https://$(./venv/bin/python -c "
-import socket
-s=socket.socket(socket.AF_INET,socket.SOCK_DGRAM)
-s.connect(('8.8.8.8',80))
-print(s.getsockname()[0])
-s.close()
-" 2>/dev/null):$BACKEND_HTTPS_PORT/phone-camera${NC}"
+[ -n "$LOCAL_IP" ] && echo -e "  手机摄像头:   ${BLUE}https://$LOCAL_IP:$BACKEND_HTTPS_PORT/phone-camera${NC}" && echo ""
+echo -e "  ${YELLOW}注意: 自签名证书浏览器会提示不安全，需手动信任${NC}"
+echo -e "  ${YELLOW}提示: 纯 HTTP 模式请用 ./start-http.sh${NC}"
+echo ""
+echo -e "  ${YELLOW}日志:${NC}"
+echo -e "    后端 HTTP:  tail -f $LOG_BACKEND"
+echo -e "    后端 HTTPS: tail -f $LOG_BACKEND_HTTPS"
+echo -e "    前端:       tail -f $LOG_FRONTEND"
 echo ""
 echo -e "  停止服务:     ${YELLOW}./stop.sh${NC}"
 echo ""

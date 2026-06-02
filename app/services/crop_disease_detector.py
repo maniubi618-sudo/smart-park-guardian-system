@@ -41,6 +41,28 @@ class CropDiseaseDetector:
         "wheat": "wheat_best.pt"
     }
 
+    # Lower defaults for the crops used most in this project. The upload/API
+    # path still allows config overrides, but these avoid missing weak early
+    # symptoms when no crop-specific config has been set.
+    DEFAULT_CONFIDENCE_BY_CROP = {
+        "tomato": 0.45,
+        "apple": 0.20,
+        "rice": 0.05,
+    }
+
+    DEFAULT_IOU_BY_CROP = {
+        "tomato": 0.55,
+        "apple": 0.50,
+        "rice": 0.55,
+    }
+
+    DEFAULT_MIN_CROP_CONTENT_RATIO_BY_CROP = {
+        "tomato": 0.30,
+        "rice": 0.12,
+    }
+
+    HEALTHY_LABELS = {"健康", "Healthy", "healthy"}
+
     # Disease labels for each crop (English)
     DISEASE_LABELS = {
         "corn": ["Blight", "Gray_Spot", "Rust",
@@ -113,6 +135,11 @@ class CropDiseaseDetector:
         self.iou = self._get_iou_threshold()
         self.enable_tta = self._get_tta_enabled()
         self.enable_preprocess = self._get_preprocess_enabled()
+        self.require_crop_content = self._get_require_crop_content()
+        self.min_crop_content_ratio = self._get_min_crop_content_ratio()
+        self.min_green_ratio = self._get_min_green_ratio()
+        self.min_box_area_ratio = self._get_min_box_area_ratio()
+        self.healthy_suppression_margin = self._get_healthy_suppression_margin()
         self.model = None
         self.model_path = None
         self._load_model()
@@ -121,17 +148,25 @@ class CropDiseaseDetector:
         """从配置获取默认置信度阈值"""
         try:
             config_manager = get_config_manager()
-            return config_manager.get("agriculture.cropDiseaseConfidence", 0.25)
+            per_crop = config_manager.get("agriculture.cropDiseaseConfidenceByCrop", {})
+            if isinstance(per_crop, dict) and self.crop_type in per_crop:
+                return float(per_crop[self.crop_type])
+            default_value = self.DEFAULT_CONFIDENCE_BY_CROP.get(self.crop_type, 0.25)
+            return float(config_manager.get("agriculture.cropDiseaseConfidence", default_value))
         except Exception:
-            return 0.25
+            return self.DEFAULT_CONFIDENCE_BY_CROP.get(self.crop_type, 0.25)
 
     def _get_iou_threshold(self):
         """IoU NMS 阈值 - 农业场景建议 0.3-0.5"""
         try:
             config_manager = get_config_manager()
-            return config_manager.get("agriculture.cropDiseaseIouThreshold", 0.4)
+            per_crop = config_manager.get("agriculture.cropDiseaseIouByCrop", {})
+            if isinstance(per_crop, dict) and self.crop_type in per_crop:
+                return float(per_crop[self.crop_type])
+            default_value = self.DEFAULT_IOU_BY_CROP.get(self.crop_type, 0.5)
+            return float(config_manager.get("agriculture.cropDiseaseIouThreshold", default_value))
         except Exception:
-            return 0.4
+            return self.DEFAULT_IOU_BY_CROP.get(self.crop_type, 0.5)
 
     def _get_tta_enabled(self):
         try:
@@ -146,6 +181,47 @@ class CropDiseaseDetector:
             return config_manager.get("agriculture.cropDiseaseEnablePreprocess", False)
         except Exception:
             return False
+
+    def _get_require_crop_content(self):
+        try:
+            config_manager = get_config_manager()
+            return bool(config_manager.get("agriculture.cropDiseaseRequireCropContent", True))
+        except Exception:
+            return True
+
+    def _get_min_crop_content_ratio(self):
+        try:
+            config_manager = get_config_manager()
+            per_crop = config_manager.get("agriculture.cropDiseaseMinCropContentRatioByCrop", {})
+            if isinstance(per_crop, dict) and self.crop_type in per_crop:
+                return float(per_crop[self.crop_type])
+            return float(config_manager.get("agriculture.cropDiseaseMinCropContentRatio", 0.015))
+        except Exception:
+            return self.DEFAULT_MIN_CROP_CONTENT_RATIO_BY_CROP.get(self.crop_type, 0.015)
+
+    def _get_min_green_ratio(self):
+        try:
+            config_manager = get_config_manager()
+            per_crop = config_manager.get("agriculture.cropDiseaseMinGreenRatioByCrop", {})
+            if isinstance(per_crop, dict) and self.crop_type in per_crop:
+                return float(per_crop[self.crop_type])
+            return 0.0
+        except Exception:
+            return 0.0
+
+    def _get_min_box_area_ratio(self):
+        try:
+            config_manager = get_config_manager()
+            return float(config_manager.get("agriculture.cropDiseaseMinBoxAreaRatio", 0.003))
+        except Exception:
+            return 0.003
+
+    def _get_healthy_suppression_margin(self):
+        try:
+            config_manager = get_config_manager()
+            return float(config_manager.get("agriculture.cropDiseaseHealthySuppressionMargin", 0.0))
+        except Exception:
+            return 0.0
 
     def _load_model(self):
         try:
@@ -175,13 +251,25 @@ class CropDiseaseDetector:
 
     def switch_crop(self, crop_type: str):
         self.crop_type = crop_type.lower()
+        self.update_from_config()
         self._load_model()
+
+    def update_from_config(self):
+        self.confidence = self._get_default_confidence()
+        self.iou = self._get_iou_threshold()
+        self.enable_tta = self._get_tta_enabled()
+        self.enable_preprocess = self._get_preprocess_enabled()
+        self.require_crop_content = self._get_require_crop_content()
+        self.min_crop_content_ratio = self._get_min_crop_content_ratio()
+        self.min_green_ratio = self._get_min_green_ratio()
+        self.min_box_area_ratio = self._get_min_box_area_ratio()
+        self.healthy_suppression_margin = self._get_healthy_suppression_margin()
 
     @staticmethod
     def map_confidence(original_conf: float) -> float:
-        """映射置信度：YOLO 原始分偏低，映射到更直观的 [0.90, 1.0] 区间"""
+        """Return the real YOLO confidence instead of inflating low scores."""
         original_conf = max(0.0, min(1.0, float(original_conf)))
-        return 0.90 + (original_conf * 0.0999)
+        return original_conf
 
     @staticmethod
     def enhance_image(img: np.ndarray) -> np.ndarray:
@@ -221,27 +309,86 @@ class CropDiseaseDetector:
 
         return img
 
+    def _has_enough_crop_content(self, img: np.ndarray) -> bool:
+        """Reject black/blank/non-crop frames before YOLO can hallucinate labels."""
+        if img is None or img.size == 0:
+            return False
+
+        gray = cv2.cvtColor(img, cv2.COLOR_RGB2GRAY)
+        mean_light = float(np.mean(gray))
+        contrast = float(np.std(gray))
+        if mean_light < 12 or mean_light > 245 or contrast < 6:
+            return False
+
+        hsv = cv2.cvtColor(img, cv2.COLOR_RGB2HSV)
+        h, s, v = cv2.split(hsv)
+
+        green_mask = (h >= 25) & (h <= 95) & (s >= 35) & (v >= 35)
+        yellow_brown_mask = (h >= 8) & (h < 25) & (s >= 35) & (v >= 45)
+        red_mask = ((h <= 8) | (h >= 165)) & (s >= 35) & (v >= 45)
+        green_ratio = float(np.count_nonzero(green_mask)) / float(img.shape[0] * img.shape[1])
+        if green_ratio < self.min_green_ratio:
+            return False
+
+        crop_like_ratio = float(np.count_nonzero(green_mask | yellow_brown_mask | red_mask)) / float(img.shape[0] * img.shape[1])
+        if crop_like_ratio < self.min_crop_content_ratio:
+            return False
+
+        return True
+
+    def _filter_predictions(self, img: np.ndarray, predictions: List[Dict]) -> List[Dict]:
+        if not predictions:
+            return []
+
+        image_area = max(1, img.shape[0] * img.shape[1])
+        filtered = []
+        for pred in predictions:
+            box = pred.get("bbox", {})
+            area = max(0, box.get("x2", 0) - box.get("x1", 0)) * max(0, box.get("y2", 0) - box.get("y1", 0))
+            if area / image_area < self.min_box_area_ratio:
+                continue
+            filtered.append(pred)
+
+        healthy_conf = max(
+            (p["original_confidence"] for p in filtered if p["class"] in self.HEALTHY_LABELS),
+            default=0.0
+        )
+        if healthy_conf > 0:
+            filtered = [
+                p for p in filtered
+                if p["class"] in self.HEALTHY_LABELS
+                or p["original_confidence"] > healthy_conf + self.healthy_suppression_margin
+            ]
+
+        filtered.sort(key=lambda p: p["confidence"], reverse=True)
+        return filtered
+
     def detect(self, image_bytes: bytes) -> List[Dict]:
         if self.model is None:
             return []
 
         try:
             img = self.preprocess(image_bytes)
+            if self.require_crop_content and not self._has_enough_crop_content(img):
+                return []
 
-            # Core inference（不传 iou，使用 YOLO 默认 NMS，避免合并掉正确检测框）
             inference_kwargs = {
                 "conf": self.confidence,
+                "iou": self.iou,
+                "imgsz": 640,
                 "verbose": False
             }
 
-            results = self.model(img, **inference_kwargs)
+            model_img = cv2.cvtColor(img, cv2.COLOR_RGB2BGR)
+            results = self.model(model_img, **inference_kwargs)
             predictions = self._parse_results(results)
 
             # TTA: horizontal flip for hard cases (no detection or low conf)
             if self.enable_tta and (len(predictions) == 0 or
-                                     all(p['confidence'] < 0.7 for p in predictions)):
+                                     all(p['original_confidence'] < 0.45 for p in predictions)):
                 img_flipped = cv2.flip(img, 1)
-                results_flip = self.model(img_flipped, **inference_kwargs)
+                model_img_flipped = cv2.cvtColor(img_flipped, cv2.COLOR_RGB2BGR)
+                results_flip = self.model(model_img_flipped, **inference_kwargs)
                 flip_preds = self._parse_results(results_flip)
 
                 w = img.shape[1]
@@ -252,7 +399,7 @@ class CropDiseaseDetector:
 
                 predictions = self._merge_predictions(predictions, flip_preds)
 
-            return predictions
+            return self._filter_predictions(img, predictions)
         except Exception as e:
             print(f"Error [CropDiseaseDetector] Detection failed: {e}")
             import traceback
@@ -271,16 +418,14 @@ class CropDiseaseDetector:
                 class_id = int(box.cls)
                 original_conf = float(box.conf)
 
-                # 优先用代码中文标签，其次从模型自带名称提取中文
-                if class_id < len(labels_cn):
-                    class_name = labels_cn[class_id]
-                elif class_id in result.names:
+                if class_id in result.names:
                     raw_name = str(result.names[class_id])
-                    # 模型名称格式如 "RootRot(黑根腐病)"，提取括号内中文
                     if '(' in raw_name and raw_name.endswith(')'):
-                        class_name = raw_name[raw_name.index('(')+1:-1]
+                        class_name = raw_name[raw_name.index('(') + 1:-1]
                     else:
                         class_name = raw_name
+                elif class_id < len(labels_cn):
+                    class_name = labels_cn[class_id]
                 elif class_id < len(labels):
                     class_name = labels[class_id]
                 else:
@@ -448,3 +593,9 @@ def get_crop_disease_detector(crop_type: str = "rice"):
     elif _detector_instances[crop_type].crop_type != crop_type:
         _detector_instances[crop_type].switch_crop(crop_type)
     return _detector_instances[crop_type]
+
+
+def update_crop_disease_detectors_from_config():
+    """Refresh cached crop disease detector thresholds after config changes."""
+    for detector in _detector_instances.values():
+        detector.update_from_config()

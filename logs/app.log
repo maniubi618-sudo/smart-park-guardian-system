@@ -46283,3 +46283,657 @@
 2026-06-01 08:33:23,711 - fastapi_app - INFO - WebSocket连接已建立，当前连接数: 2
 2026-06-01 08:33:26,957 - fastapi_app - INFO - WebSocket连接已断开，当前连接数: 1
 2026-06-01 08:33:26,995 - fastapi_app - INFO - WebSocket连接已建立，当前连接数: 2
+2026-06-01 08:57:58,129 - fastapi_app - INFO - [OK] 害虫检测器加载成功
+2026-06-01 08:57:58,212 - fastapi_app - INFO - [OK] 柑橘成熟度检测器加载成功
+2026-06-01 08:57:58,258 - fastapi_app - INFO - [OK] 番茄成熟度检测器加载成功
+2026-06-01 08:57:58,277 - fastapi_app - INFO - [OK] 苹果成熟度检测器加载成功
+2026-06-01 08:57:58,498 - fastapi_app - INFO - OpenClaw通知服务配置完成
+2026-06-01 08:58:00,837 - fastapi_app - INFO - [OK] 害虫检测器加载成功
+2026-06-01 08:58:00,907 - fastapi_app - INFO - [OK] 柑橘成熟度检测器加载成功
+2026-06-01 08:58:00,931 - fastapi_app - INFO - [OK] 番茄成熟度检测器加载成功
+2026-06-01 08:58:00,945 - fastapi_app - INFO - [OK] 苹果成熟度检测器加载成功
+2026-06-01 08:58:01,097 - fastapi_app - INFO - OpenClaw通知服务配置完成
+2026-06-01 17:05:35,903 - fastapi_app - INFO - [CropDisease] 标注图已保存: /Users/apple/smart-park-guardian-system/app/api/snapshots/0_20260601_170535_穗颈瘟_0.97_穗颈瘟_0.94_穗颈瘟_0.94_crop.jpg
+2026-06-01 17:05:35,903 - fastapi_app - INFO - [CropDisease] 创建告警: camera_id=0, type=3...
+2026-06-01 17:05:35,912 - fastapi_app - INFO - [CropDisease] 告警创建成功: ID=828
+2026-06-01 17:05:35,912 - fastapi_app - INFO - 广播告警: Alarm ID=828, 类型=害虫检测
+2026-06-01 17:05:35,913 - fastapi_app - INFO - [CropDisease] 告警已广播
+2026-06-01 17:05:35,913 - fastapi_app - INFO - 广播消息完成，有效连接数: 0
+2026-06-01 17:06:29,911 - fastapi_app - INFO - [CropDisease] 标注图已保存: /Users/apple/smart-park-guardian-system/app/api/snapshots/0_20260601_170629_晚疫病_0.96_crop.jpg
+2026-06-01 17:06:29,911 - fastapi_app - INFO - [CropDisease] 创建告警: camera_id=0, type=3...
+2026-06-01 17:06:29,916 - fastapi_app - INFO - [CropDisease] 告警创建成功: ID=829
+2026-06-01 17:06:29,916 - fastapi_app - INFO - 广播告警: Alarm ID=829, 类型=害虫检测
+2026-06-01 17:06:29,916 - fastapi_app - INFO - [CropDisease] 告警已广播
+2026-06-01 17:06:29,916 - fastapi_app - INFO - 广播消息完成，有效连接数: 0
+2026-06-01 17:07:03,398 - fastapi_app - INFO - [CropDisease] 标注图已保存: /Users/apple/smart-park-guardian-system/app/api/snapshots/0_20260601_170703_花叶病毒_0.98_crop.jpg
+2026-06-01 17:07:03,399 - fastapi_app - INFO - [CropDisease] 创建告警: camera_id=0, type=3...
+2026-06-01 17:07:03,402 - fastapi_app - INFO - [CropDisease] 告警创建成功: ID=830
+2026-06-01 17:07:03,403 - fastapi_app - INFO - 广播告警: Alarm ID=830, 类型=害虫检测
+2026-06-01 17:07:03,403 - fastapi_app - INFO - [CropDisease] 告警已广播
+2026-06-01 17:07:03,403 - fastapi_app - INFO - 广播消息完成，有效连接数: 0
+2026-06-01 17:08:23,018 - fastapi_app - INFO - [OK] 害虫检测器加载成功
+2026-06-01 17:08:23,054 - fastapi_app - INFO - [OK] 柑橘成熟度检测器加载成功
+2026-06-01 17:08:23,116 - fastapi_app - INFO - [OK] 番茄成熟度检测器加载成功
+2026-06-01 17:08:23,135 - fastapi_app - INFO - [OK] 苹果成熟度检测器加载成功
+2026-06-01 17:08:23,346 - fastapi_app - INFO - OpenClaw通知服务配置完成(HTTPS)
+2026-06-01 17:08:27,250 - fastapi_app - INFO - WebSocket连接已建立，当前连接数: 1
+2026-06-01 17:08:27,543 - fastapi_app - INFO - WebSocket连接已建立，当前连接数: 2
+2026-06-01 17:08:28,921 - fastapi_app - INFO - WebSocket连接已断开，当前连接数: 1
+2026-06-01 17:08:30,132 - fastapi_app - INFO - WebSocket连接已断开，当前连接数: 0
+2026-06-01 17:08:31,772 - fastapi_app - INFO - WebSocket连接已建立，当前连接数: 1
+2026-06-01 17:08:31,876 - fastapi_app - INFO - WebSocket连接已断开，当前连接数: 0
+2026-06-01 17:08:31,901 - fastapi_app - INFO - [OK] 害虫检测器加载成功
+2026-06-01 17:08:31,977 - fastapi_app - INFO - [OK] 柑橘成熟度检测器加载成功
+2026-06-01 17:08:32,003 - fastapi_app - INFO - [OK] 番茄成熟度检测器加载成功
+2026-06-01 17:08:32,017 - fastapi_app - INFO - [OK] 苹果成熟度检测器加载成功
+2026-06-01 17:08:32,133 - fastapi_app - INFO - [OK] 害虫检测器加载成功
+2026-06-01 17:08:32,195 - fastapi_app - INFO - OpenClaw通知服务配置完成
+2026-06-01 17:08:32,238 - fastapi_app - INFO - [OK] 柑橘成熟度检测器加载成功
+2026-06-01 17:08:32,264 - fastapi_app - INFO - [OK] 番茄成熟度检测器加载成功
+2026-06-01 17:08:32,279 - fastapi_app - INFO - [OK] 苹果成熟度检测器加载成功
+2026-06-01 17:08:32,482 - fastapi_app - INFO - WebSocket连接已建立，当前连接数: 1
+2026-06-01 17:08:32,485 - fastapi_app - INFO - OpenClaw通知服务配置完成
+2026-06-01 17:08:32,585 - fastapi_app - INFO - WebSocket连接已建立，当前连接数: 2
+2026-06-01 17:08:33,813 - fastapi_app - INFO - WebSocket连接已断开，当前连接数: 1
+2026-06-01 17:08:33,926 - fastapi_app - INFO - WebSocket连接已建立，当前连接数: 2
+2026-06-01 17:08:42,782 - fastapi_app - INFO - [OK] 害虫检测器加载成功
+2026-06-01 17:08:42,868 - fastapi_app - INFO - [OK] 柑橘成熟度检测器加载成功
+2026-06-01 17:08:42,893 - fastapi_app - INFO - [OK] 番茄成熟度检测器加载成功
+2026-06-01 17:08:42,909 - fastapi_app - INFO - [OK] 苹果成熟度检测器加载成功
+2026-06-01 17:08:43,090 - fastapi_app - INFO - OpenClaw通知服务配置完成
+2026-06-01 17:08:53,192 - fastapi_app - INFO - [OK] 害虫检测器加载成功
+2026-06-01 17:08:53,279 - fastapi_app - INFO - [OK] 柑橘成熟度检测器加载成功
+2026-06-01 17:08:53,304 - fastapi_app - INFO - [OK] 番茄成熟度检测器加载成功
+2026-06-01 17:08:53,319 - fastapi_app - INFO - [OK] 苹果成熟度检测器加载成功
+2026-06-01 17:08:53,497 - fastapi_app - INFO - OpenClaw通知服务配置完成
+2026-06-01 17:08:53,943 - fastapi_app - WARNING - 手机连接但没有提供UID
+2026-06-01 17:08:53,956 - fastapi_app - INFO - 手机 D56R49 元数据已更新: {'uid': 'D56R49', 'facing': {'isTrusted': True}, 'ip': '172.26.139.181', 'width': 720, 'height': 1280, 'location': {'latitude': 20.042521, 'longitude': 110.406227, 'accuracy': 30}}
+2026-06-01 17:08:58,909 - fastapi_app - WARNING - 手机连接但没有提供UID
+2026-06-01 17:08:58,918 - fastapi_app - INFO - 手机 D56R49 元数据已更新: {'uid': 'D56R49', 'facing': 'environment', 'ip': '172.26.139.181', 'width': 720, 'height': 1280, 'location': {'latitude': 20.042521, 'longitude': 110.406227, 'accuracy': 30}}
+2026-06-01 17:09:03,077 - fastapi_app - INFO - 观看端已连接，当前观看端数: 1
+2026-06-01 17:09:03,679 - fastapi_app - INFO - [OK] 害虫检测器加载成功
+2026-06-01 17:09:03,771 - fastapi_app - INFO - [OK] 柑橘成熟度检测器加载成功
+2026-06-01 17:09:03,800 - fastapi_app - INFO - [OK] 番茄成熟度检测器加载成功
+2026-06-01 17:09:03,817 - fastapi_app - INFO - [OK] 苹果成熟度检测器加载成功
+2026-06-01 17:09:04,006 - fastapi_app - INFO - OpenClaw通知服务配置完成
+2026-06-01 17:09:14,347 - fastapi_app - INFO - [OK] 害虫检测器加载成功
+2026-06-01 17:09:14,457 - fastapi_app - INFO - [OK] 柑橘成熟度检测器加载成功
+2026-06-01 17:09:14,496 - fastapi_app - INFO - [OK] 番茄成熟度检测器加载成功
+2026-06-01 17:09:14,513 - fastapi_app - INFO - [OK] 苹果成熟度检测器加载成功
+2026-06-01 17:09:14,697 - fastapi_app - INFO - OpenClaw通知服务配置完成
+2026-06-01 17:09:24,911 - fastapi_app - INFO - [OK] 害虫检测器加载成功
+2026-06-01 17:09:25,026 - fastapi_app - INFO - [OK] 柑橘成熟度检测器加载成功
+2026-06-01 17:09:25,051 - fastapi_app - INFO - [OK] 番茄成熟度检测器加载成功
+2026-06-01 17:09:25,067 - fastapi_app - INFO - [OK] 苹果成熟度检测器加载成功
+2026-06-01 17:09:25,244 - fastapi_app - INFO - OpenClaw通知服务配置完成
+2026-06-01 17:09:35,461 - fastapi_app - INFO - [OK] 害虫检测器加载成功
+2026-06-01 17:09:35,574 - fastapi_app - INFO - [OK] 柑橘成熟度检测器加载成功
+2026-06-01 17:09:35,601 - fastapi_app - INFO - [OK] 番茄成熟度检测器加载成功
+2026-06-01 17:09:35,617 - fastapi_app - INFO - [OK] 苹果成熟度检测器加载成功
+2026-06-01 17:09:35,792 - fastapi_app - INFO - OpenClaw通知服务配置完成
+2026-06-01 17:09:46,060 - fastapi_app - INFO - [OK] 害虫检测器加载成功
+2026-06-01 17:09:46,146 - fastapi_app - INFO - [OK] 柑橘成熟度检测器加载成功
+2026-06-01 17:09:46,171 - fastapi_app - INFO - [OK] 番茄成熟度检测器加载成功
+2026-06-01 17:09:46,188 - fastapi_app - INFO - [OK] 苹果成熟度检测器加载成功
+2026-06-01 17:09:46,369 - fastapi_app - INFO - OpenClaw通知服务配置完成
+2026-06-01 17:09:52,169 - fastapi_app - ERROR - 转发数据到观看端失败: 
+2026-06-01 17:09:55,037 - fastapi_app - INFO - 观看端已连接，当前观看端数: 1
+2026-06-01 17:09:56,681 - fastapi_app - INFO - [OK] 害虫检测器加载成功
+2026-06-01 17:09:56,775 - fastapi_app - INFO - [OK] 柑橘成熟度检测器加载成功
+2026-06-01 17:09:56,801 - fastapi_app - INFO - [OK] 番茄成熟度检测器加载成功
+2026-06-01 17:09:56,817 - fastapi_app - INFO - [OK] 苹果成熟度检测器加载成功
+2026-06-01 17:09:57,014 - fastapi_app - INFO - OpenClaw通知服务配置完成
+2026-06-01 17:10:07,211 - fastapi_app - INFO - [OK] 害虫检测器加载成功
+2026-06-01 17:10:07,298 - fastapi_app - INFO - [OK] 柑橘成熟度检测器加载成功
+2026-06-01 17:10:07,324 - fastapi_app - INFO - [OK] 番茄成熟度检测器加载成功
+2026-06-01 17:10:07,341 - fastapi_app - INFO - [OK] 苹果成熟度检测器加载成功
+2026-06-01 17:10:07,522 - fastapi_app - INFO - OpenClaw通知服务配置完成
+2026-06-01 17:10:17,748 - fastapi_app - INFO - [OK] 害虫检测器加载成功
+2026-06-01 17:10:17,834 - fastapi_app - INFO - [OK] 柑橘成熟度检测器加载成功
+2026-06-01 17:10:17,860 - fastapi_app - INFO - [OK] 番茄成熟度检测器加载成功
+2026-06-01 17:10:17,876 - fastapi_app - INFO - [OK] 苹果成熟度检测器加载成功
+2026-06-01 17:10:18,051 - fastapi_app - INFO - OpenClaw通知服务配置完成
+2026-06-01 17:10:28,224 - fastapi_app - INFO - [OK] 害虫检测器加载成功
+2026-06-01 17:10:28,313 - fastapi_app - INFO - [OK] 柑橘成熟度检测器加载成功
+2026-06-01 17:10:28,339 - fastapi_app - INFO - [OK] 番茄成熟度检测器加载成功
+2026-06-01 17:10:28,354 - fastapi_app - INFO - [OK] 苹果成熟度检测器加载成功
+2026-06-01 17:10:28,532 - fastapi_app - INFO - OpenClaw通知服务配置完成
+2026-06-01 17:10:38,714 - fastapi_app - INFO - [OK] 害虫检测器加载成功
+2026-06-01 17:10:38,799 - fastapi_app - INFO - [OK] 柑橘成熟度检测器加载成功
+2026-06-01 17:10:38,823 - fastapi_app - INFO - [OK] 番茄成熟度检测器加载成功
+2026-06-01 17:10:38,839 - fastapi_app - INFO - [OK] 苹果成熟度检测器加载成功
+2026-06-01 17:10:39,010 - fastapi_app - INFO - OpenClaw通知服务配置完成
+2026-06-01 17:10:49,180 - fastapi_app - INFO - [OK] 害虫检测器加载成功
+2026-06-01 17:10:49,264 - fastapi_app - INFO - [OK] 柑橘成熟度检测器加载成功
+2026-06-01 17:10:49,287 - fastapi_app - INFO - [OK] 番茄成熟度检测器加载成功
+2026-06-01 17:10:49,303 - fastapi_app - INFO - [OK] 苹果成熟度检测器加载成功
+2026-06-01 17:10:49,478 - fastapi_app - INFO - OpenClaw通知服务配置完成
+2026-06-01 17:10:59,702 - fastapi_app - INFO - [OK] 害虫检测器加载成功
+2026-06-01 17:10:59,787 - fastapi_app - INFO - [OK] 柑橘成熟度检测器加载成功
+2026-06-01 17:10:59,812 - fastapi_app - INFO - [OK] 番茄成熟度检测器加载成功
+2026-06-01 17:10:59,828 - fastapi_app - INFO - [OK] 苹果成熟度检测器加载成功
+2026-06-01 17:11:00,005 - fastapi_app - INFO - OpenClaw通知服务配置完成
+2026-06-01 17:11:01,565 - fastapi_app - WARNING - 手机连接但没有提供UID
+2026-06-01 17:11:01,577 - fastapi_app - INFO - 手机 D56R49 元数据已更新: {'uid': 'D56R49', 'facing': {'isTrusted': True}, 'ip': '172.26.139.181', 'width': 720, 'height': 1280, 'location': {'latitude': 20.042536, 'longitude': 110.406236, 'accuracy': 30}}
+2026-06-01 17:11:01,578 - fastapi_app - ERROR - 转发数据到观看端失败: 
+2026-06-01 17:11:05,820 - fastapi_app - INFO - 观看端已连接，当前观看端数: 1
+2026-06-01 17:11:10,262 - fastapi_app - INFO - [OK] 害虫检测器加载成功
+2026-06-01 17:11:10,348 - fastapi_app - INFO - [OK] 柑橘成熟度检测器加载成功
+2026-06-01 17:11:10,372 - fastapi_app - INFO - [OK] 番茄成熟度检测器加载成功
+2026-06-01 17:11:10,388 - fastapi_app - INFO - [OK] 苹果成熟度检测器加载成功
+2026-06-01 17:11:10,564 - fastapi_app - INFO - OpenClaw通知服务配置完成
+2026-06-01 17:11:12,859 - fastapi_app - WARNING - 手机连接但没有提供UID
+2026-06-01 17:11:12,872 - fastapi_app - INFO - 手机 D56R49 元数据已更新: {'uid': 'D56R49', 'facing': 'environment', 'ip': '172.26.139.181', 'width': 720, 'height': 1280, 'location': {'latitude': 20.042536, 'longitude': 110.406236, 'accuracy': 30}}
+2026-06-01 17:11:20,796 - fastapi_app - INFO - [OK] 害虫检测器加载成功
+2026-06-01 17:11:20,883 - fastapi_app - INFO - [OK] 柑橘成熟度检测器加载成功
+2026-06-01 17:11:20,907 - fastapi_app - INFO - [OK] 番茄成熟度检测器加载成功
+2026-06-01 17:11:20,923 - fastapi_app - INFO - [OK] 苹果成熟度检测器加载成功
+2026-06-01 17:11:21,101 - fastapi_app - INFO - OpenClaw通知服务配置完成
+2026-06-01 17:11:31,326 - fastapi_app - INFO - [OK] 害虫检测器加载成功
+2026-06-01 17:11:31,414 - fastapi_app - INFO - [OK] 柑橘成熟度检测器加载成功
+2026-06-01 17:11:31,440 - fastapi_app - INFO - [OK] 番茄成熟度检测器加载成功
+2026-06-01 17:11:31,455 - fastapi_app - INFO - [OK] 苹果成熟度检测器加载成功
+2026-06-01 17:11:31,630 - fastapi_app - INFO - OpenClaw通知服务配置完成
+2026-06-01 17:11:33,985 - fastapi_app - WARNING - 手机连接但没有提供UID
+2026-06-01 17:11:33,999 - fastapi_app - INFO - 手机 D56R49 元数据已更新: {'uid': 'D56R49', 'facing': 'user', 'ip': '172.26.139.181', 'width': 720, 'height': 1280, 'location': {'latitude': 20.042559, 'longitude': 110.406224, 'accuracy': 33}}
+2026-06-01 17:11:37,644 - fastapi_app - WARNING - 手机连接但没有提供UID
+2026-06-01 17:11:37,662 - fastapi_app - INFO - 手机 D56R49 元数据已更新: {'uid': 'D56R49', 'facing': 'environment', 'ip': '172.26.139.181', 'width': 720, 'height': 1280, 'location': {'latitude': 20.042559, 'longitude': 110.406224, 'accuracy': 33}}
+2026-06-01 17:11:41,834 - fastapi_app - INFO - [OK] 害虫检测器加载成功
+2026-06-01 17:11:41,922 - fastapi_app - INFO - [OK] 柑橘成熟度检测器加载成功
+2026-06-01 17:11:41,947 - fastapi_app - INFO - [OK] 番茄成熟度检测器加载成功
+2026-06-01 17:11:41,965 - fastapi_app - INFO - [OK] 苹果成熟度检测器加载成功
+2026-06-01 17:11:42,152 - fastapi_app - INFO - OpenClaw通知服务配置完成
+2026-06-01 17:11:52,406 - fastapi_app - INFO - [OK] 害虫检测器加载成功
+2026-06-01 17:11:52,494 - fastapi_app - INFO - [OK] 柑橘成熟度检测器加载成功
+2026-06-01 17:11:52,520 - fastapi_app - INFO - [OK] 番茄成熟度检测器加载成功
+2026-06-01 17:11:52,535 - fastapi_app - INFO - [OK] 苹果成熟度检测器加载成功
+2026-06-01 17:11:52,716 - fastapi_app - INFO - OpenClaw通知服务配置完成
+2026-06-01 17:12:02,939 - fastapi_app - INFO - [OK] 害虫检测器加载成功
+2026-06-01 17:12:03,026 - fastapi_app - INFO - [OK] 柑橘成熟度检测器加载成功
+2026-06-01 17:12:03,051 - fastapi_app - INFO - [OK] 番茄成熟度检测器加载成功
+2026-06-01 17:12:03,067 - fastapi_app - INFO - [OK] 苹果成熟度检测器加载成功
+2026-06-01 17:12:03,247 - fastapi_app - INFO - OpenClaw通知服务配置完成
+2026-06-01 17:12:14,342 - fastapi_app - INFO - [OK] 害虫检测器加载成功
+2026-06-01 17:12:14,435 - fastapi_app - INFO - [OK] 柑橘成熟度检测器加载成功
+2026-06-01 17:12:14,461 - fastapi_app - INFO - [OK] 番茄成熟度检测器加载成功
+2026-06-01 17:12:14,477 - fastapi_app - INFO - [OK] 苹果成熟度检测器加载成功
+2026-06-01 17:12:14,660 - fastapi_app - INFO - OpenClaw通知服务配置完成
+2026-06-01 17:12:23,910 - fastapi_app - INFO - [OK] 害虫检测器加载成功
+2026-06-01 17:12:23,997 - fastapi_app - INFO - [OK] 柑橘成熟度检测器加载成功
+2026-06-01 17:12:24,037 - fastapi_app - INFO - [OK] 番茄成熟度检测器加载成功
+2026-06-01 17:12:24,097 - fastapi_app - INFO - [OK] 苹果成熟度检测器加载成功
+2026-06-01 17:12:24,293 - fastapi_app - INFO - OpenClaw通知服务配置完成
+2026-06-01 17:12:34,590 - fastapi_app - INFO - [OK] 害虫检测器加载成功
+2026-06-01 17:12:34,678 - fastapi_app - INFO - [OK] 柑橘成熟度检测器加载成功
+2026-06-01 17:12:34,704 - fastapi_app - INFO - [OK] 番茄成熟度检测器加载成功
+2026-06-01 17:12:34,720 - fastapi_app - INFO - [OK] 苹果成熟度检测器加载成功
+2026-06-01 17:12:34,892 - fastapi_app - INFO - OpenClaw通知服务配置完成
+2026-06-01 17:12:45,173 - fastapi_app - INFO - [OK] 害虫检测器加载成功
+2026-06-01 17:12:45,264 - fastapi_app - INFO - [OK] 柑橘成熟度检测器加载成功
+2026-06-01 17:12:45,289 - fastapi_app - INFO - [OK] 番茄成熟度检测器加载成功
+2026-06-01 17:12:45,305 - fastapi_app - INFO - [OK] 苹果成熟度检测器加载成功
+2026-06-01 17:12:45,489 - fastapi_app - INFO - OpenClaw通知服务配置完成
+2026-06-01 17:12:55,773 - fastapi_app - INFO - [OK] 害虫检测器加载成功
+2026-06-01 17:12:55,861 - fastapi_app - INFO - [OK] 柑橘成熟度检测器加载成功
+2026-06-01 17:12:55,886 - fastapi_app - INFO - [OK] 番茄成熟度检测器加载成功
+2026-06-01 17:12:55,914 - fastapi_app - INFO - [OK] 苹果成熟度检测器加载成功
+2026-06-01 17:12:56,094 - fastapi_app - INFO - OpenClaw通知服务配置完成
+2026-06-01 17:13:07,185 - fastapi_app - INFO - [OK] 害虫检测器加载成功
+2026-06-01 17:13:07,276 - fastapi_app - INFO - [OK] 柑橘成熟度检测器加载成功
+2026-06-01 17:13:07,306 - fastapi_app - INFO - [OK] 番茄成熟度检测器加载成功
+2026-06-01 17:13:07,330 - fastapi_app - INFO - [OK] 苹果成熟度检测器加载成功
+2026-06-01 17:13:07,586 - fastapi_app - INFO - OpenClaw通知服务配置完成
+2026-06-01 17:13:17,145 - fastapi_app - INFO - [OK] 害虫检测器加载成功
+2026-06-01 17:13:17,273 - fastapi_app - INFO - [OK] 柑橘成熟度检测器加载成功
+2026-06-01 17:13:17,301 - fastapi_app - INFO - [OK] 番茄成熟度检测器加载成功
+2026-06-01 17:13:17,322 - fastapi_app - INFO - [OK] 苹果成熟度检测器加载成功
+2026-06-01 17:13:17,569 - fastapi_app - INFO - OpenClaw通知服务配置完成
+2026-06-01 17:13:27,880 - fastapi_app - INFO - [OK] 害虫检测器加载成功
+2026-06-01 17:13:27,972 - fastapi_app - INFO - [OK] 柑橘成熟度检测器加载成功
+2026-06-01 17:13:27,998 - fastapi_app - INFO - [OK] 番茄成熟度检测器加载成功
+2026-06-01 17:13:28,014 - fastapi_app - INFO - [OK] 苹果成熟度检测器加载成功
+2026-06-01 17:13:28,202 - fastapi_app - INFO - OpenClaw通知服务配置完成
+2026-06-01 17:13:39,001 - fastapi_app - INFO - [OK] 害虫检测器加载成功
+2026-06-01 17:13:39,170 - fastapi_app - INFO - [OK] 柑橘成熟度检测器加载成功
+2026-06-01 17:13:39,213 - fastapi_app - INFO - [OK] 番茄成熟度检测器加载成功
+2026-06-01 17:13:39,231 - fastapi_app - INFO - [OK] 苹果成熟度检测器加载成功
+2026-06-01 17:13:39,442 - fastapi_app - INFO - OpenClaw通知服务配置完成
+2026-06-01 17:13:49,173 - fastapi_app - INFO - [OK] 害虫检测器加载成功
+2026-06-01 17:13:49,286 - fastapi_app - INFO - [OK] 柑橘成熟度检测器加载成功
+2026-06-01 17:13:49,315 - fastapi_app - INFO - [OK] 番茄成熟度检测器加载成功
+2026-06-01 17:13:49,333 - fastapi_app - INFO - [OK] 苹果成熟度检测器加载成功
+2026-06-01 17:13:49,557 - fastapi_app - INFO - OpenClaw通知服务配置完成
+2026-06-01 17:13:59,482 - fastapi_app - INFO - [OK] 害虫检测器加载成功
+2026-06-01 17:13:59,662 - fastapi_app - INFO - [OK] 柑橘成熟度检测器加载成功
+2026-06-01 17:13:59,692 - fastapi_app - INFO - [OK] 番茄成熟度检测器加载成功
+2026-06-01 17:13:59,712 - fastapi_app - INFO - [OK] 苹果成熟度检测器加载成功
+2026-06-01 17:13:59,952 - fastapi_app - INFO - OpenClaw通知服务配置完成
+2026-06-01 17:14:09,397 - fastapi_app - INFO - [OK] 害虫检测器加载成功
+2026-06-01 17:14:09,491 - fastapi_app - INFO - [OK] 柑橘成熟度检测器加载成功
+2026-06-01 17:14:09,519 - fastapi_app - INFO - [OK] 番茄成熟度检测器加载成功
+2026-06-01 17:14:09,535 - fastapi_app - INFO - [OK] 苹果成熟度检测器加载成功
+2026-06-01 17:14:09,723 - fastapi_app - INFO - OpenClaw通知服务配置完成
+2026-06-01 17:14:20,376 - fastapi_app - INFO - [OK] 害虫检测器加载成功
+2026-06-01 17:14:20,513 - fastapi_app - INFO - [OK] 柑橘成熟度检测器加载成功
+2026-06-01 17:14:20,543 - fastapi_app - INFO - [OK] 番茄成熟度检测器加载成功
+2026-06-01 17:14:20,562 - fastapi_app - INFO - [OK] 苹果成熟度检测器加载成功
+2026-06-01 17:14:20,764 - fastapi_app - INFO - OpenClaw通知服务配置完成
+2026-06-01 17:14:30,713 - fastapi_app - INFO - [OK] 害虫检测器加载成功
+2026-06-01 17:14:30,805 - fastapi_app - INFO - [OK] 柑橘成熟度检测器加载成功
+2026-06-01 17:14:30,835 - fastapi_app - INFO - [OK] 番茄成熟度检测器加载成功
+2026-06-01 17:14:30,857 - fastapi_app - INFO - [OK] 苹果成熟度检测器加载成功
+2026-06-01 17:14:31,123 - fastapi_app - INFO - OpenClaw通知服务配置完成
+2026-06-01 17:14:40,484 - fastapi_app - INFO - [OK] 害虫检测器加载成功
+2026-06-01 17:14:40,578 - fastapi_app - INFO - [OK] 柑橘成熟度检测器加载成功
+2026-06-01 17:14:40,601 - fastapi_app - INFO - [OK] 番茄成熟度检测器加载成功
+2026-06-01 17:14:40,618 - fastapi_app - INFO - [OK] 苹果成熟度检测器加载成功
+2026-06-01 17:14:40,828 - fastapi_app - INFO - OpenClaw通知服务配置完成
+2026-06-01 17:14:51,136 - fastapi_app - INFO - [OK] 害虫检测器加载成功
+2026-06-01 17:14:51,228 - fastapi_app - INFO - [OK] 柑橘成熟度检测器加载成功
+2026-06-01 17:14:51,256 - fastapi_app - INFO - [OK] 番茄成熟度检测器加载成功
+2026-06-01 17:14:51,275 - fastapi_app - INFO - [OK] 苹果成熟度检测器加载成功
+2026-06-01 17:14:51,463 - fastapi_app - INFO - OpenClaw通知服务配置完成
+2026-06-01 17:15:03,262 - fastapi_app - INFO - [OK] 害虫检测器加载成功
+2026-06-01 17:15:03,365 - fastapi_app - INFO - [OK] 柑橘成熟度检测器加载成功
+2026-06-01 17:15:03,421 - fastapi_app - INFO - [OK] 番茄成熟度检测器加载成功
+2026-06-01 17:15:03,442 - fastapi_app - INFO - [OK] 苹果成熟度检测器加载成功
+2026-06-01 17:15:03,694 - fastapi_app - INFO - OpenClaw通知服务配置完成
+2026-06-01 17:15:12,112 - fastapi_app - INFO - [OK] 害虫检测器加载成功
+2026-06-01 17:15:12,207 - fastapi_app - INFO - [OK] 柑橘成熟度检测器加载成功
+2026-06-01 17:15:12,234 - fastapi_app - INFO - [OK] 番茄成熟度检测器加载成功
+2026-06-01 17:15:12,251 - fastapi_app - INFO - [OK] 苹果成熟度检测器加载成功
+2026-06-01 17:15:12,443 - fastapi_app - INFO - OpenClaw通知服务配置完成
+2026-06-01 17:15:22,722 - fastapi_app - INFO - [OK] 害虫检测器加载成功
+2026-06-01 17:15:22,812 - fastapi_app - INFO - [OK] 柑橘成熟度检测器加载成功
+2026-06-01 17:15:22,839 - fastapi_app - INFO - [OK] 番茄成熟度检测器加载成功
+2026-06-01 17:15:22,855 - fastapi_app - INFO - [OK] 苹果成熟度检测器加载成功
+2026-06-01 17:15:23,041 - fastapi_app - INFO - OpenClaw通知服务配置完成
+2026-06-01 17:15:33,392 - fastapi_app - INFO - [OK] 害虫检测器加载成功
+2026-06-01 17:15:33,487 - fastapi_app - INFO - [OK] 柑橘成熟度检测器加载成功
+2026-06-01 17:15:33,513 - fastapi_app - INFO - [OK] 番茄成熟度检测器加载成功
+2026-06-01 17:15:33,528 - fastapi_app - INFO - [OK] 苹果成熟度检测器加载成功
+2026-06-01 17:15:33,714 - fastapi_app - INFO - OpenClaw通知服务配置完成
+2026-06-01 17:15:44,373 - fastapi_app - INFO - [OK] 害虫检测器加载成功
+2026-06-01 17:15:44,495 - fastapi_app - INFO - [OK] 柑橘成熟度检测器加载成功
+2026-06-01 17:15:44,527 - fastapi_app - INFO - [OK] 番茄成熟度检测器加载成功
+2026-06-01 17:15:44,544 - fastapi_app - INFO - [OK] 苹果成熟度检测器加载成功
+2026-06-01 17:15:44,739 - fastapi_app - INFO - OpenClaw通知服务配置完成
+2026-06-01 17:15:54,016 - fastapi_app - INFO - [OK] 害虫检测器加载成功
+2026-06-01 17:15:54,110 - fastapi_app - INFO - [OK] 柑橘成熟度检测器加载成功
+2026-06-01 17:15:54,137 - fastapi_app - INFO - [OK] 番茄成熟度检测器加载成功
+2026-06-01 17:15:54,152 - fastapi_app - INFO - [OK] 苹果成熟度检测器加载成功
+2026-06-01 17:15:54,341 - fastapi_app - INFO - OpenClaw通知服务配置完成
+2026-06-01 17:16:04,559 - fastapi_app - INFO - [OK] 害虫检测器加载成功
+2026-06-01 17:16:04,649 - fastapi_app - INFO - [OK] 柑橘成熟度检测器加载成功
+2026-06-01 17:16:04,675 - fastapi_app - INFO - [OK] 番茄成熟度检测器加载成功
+2026-06-01 17:16:04,691 - fastapi_app - INFO - [OK] 苹果成熟度检测器加载成功
+2026-06-01 17:16:04,874 - fastapi_app - INFO - OpenClaw通知服务配置完成
+2026-06-01 17:16:15,164 - fastapi_app - INFO - [OK] 害虫检测器加载成功
+2026-06-01 17:16:15,261 - fastapi_app - INFO - [OK] 柑橘成熟度检测器加载成功
+2026-06-01 17:16:15,284 - fastapi_app - INFO - [OK] 番茄成熟度检测器加载成功
+2026-06-01 17:16:15,301 - fastapi_app - INFO - [OK] 苹果成熟度检测器加载成功
+2026-06-01 17:16:15,479 - fastapi_app - INFO - OpenClaw通知服务配置完成
+2026-06-01 17:16:25,859 - fastapi_app - INFO - [OK] 害虫检测器加载成功
+2026-06-01 17:16:25,957 - fastapi_app - INFO - [OK] 柑橘成熟度检测器加载成功
+2026-06-01 17:16:25,984 - fastapi_app - INFO - [OK] 番茄成熟度检测器加载成功
+2026-06-01 17:16:26,002 - fastapi_app - INFO - [OK] 苹果成熟度检测器加载成功
+2026-06-01 17:16:26,201 - fastapi_app - INFO - OpenClaw通知服务配置完成
+2026-06-01 17:16:36,448 - fastapi_app - INFO - [OK] 害虫检测器加载成功
+2026-06-01 17:16:36,537 - fastapi_app - INFO - [OK] 柑橘成熟度检测器加载成功
+2026-06-01 17:16:36,564 - fastapi_app - INFO - [OK] 番茄成熟度检测器加载成功
+2026-06-01 17:16:36,580 - fastapi_app - INFO - [OK] 苹果成熟度检测器加载成功
+2026-06-01 17:16:36,765 - fastapi_app - INFO - OpenClaw通知服务配置完成
+2026-06-01 17:16:46,960 - fastapi_app - INFO - [OK] 害虫检测器加载成功
+2026-06-01 17:16:47,047 - fastapi_app - INFO - [OK] 柑橘成熟度检测器加载成功
+2026-06-01 17:16:47,074 - fastapi_app - INFO - [OK] 番茄成熟度检测器加载成功
+2026-06-01 17:16:47,091 - fastapi_app - INFO - [OK] 苹果成熟度检测器加载成功
+2026-06-01 17:16:47,275 - fastapi_app - INFO - OpenClaw通知服务配置完成
+2026-06-01 17:16:50,238 - fastapi_app - WARNING - 手机连接但没有提供UID
+2026-06-01 17:16:50,320 - fastapi_app - INFO - 手机 D56R49 元数据已更新: {'uid': 'D56R49', 'facing': {'isTrusted': True}, 'ip': '172.26.139.181', 'width': 720, 'height': 1280}
+2026-06-01 17:16:51,787 - fastapi_app - INFO - 观看端已连接，当前观看端数: 2
+2026-06-01 17:16:57,607 - fastapi_app - INFO - [OK] 害虫检测器加载成功
+2026-06-01 17:16:57,692 - fastapi_app - INFO - [OK] 柑橘成熟度检测器加载成功
+2026-06-01 17:16:57,716 - fastapi_app - INFO - [OK] 番茄成熟度检测器加载成功
+2026-06-01 17:16:57,732 - fastapi_app - INFO - [OK] 苹果成熟度检测器加载成功
+2026-06-01 17:16:57,914 - fastapi_app - INFO - OpenClaw通知服务配置完成
+2026-06-01 17:16:59,629 - fastapi_app - WARNING - 手机连接但没有提供UID
+2026-06-01 17:16:59,640 - fastapi_app - INFO - 手机 D56R49 元数据已更新: {'uid': 'D56R49', 'facing': 'environment', 'ip': '172.26.139.181', 'width': 720, 'height': 1280}
+2026-06-01 17:17:08,200 - fastapi_app - INFO - [OK] 害虫检测器加载成功
+2026-06-01 17:17:08,287 - fastapi_app - INFO - [OK] 柑橘成熟度检测器加载成功
+2026-06-01 17:17:08,311 - fastapi_app - INFO - [OK] 番茄成熟度检测器加载成功
+2026-06-01 17:17:08,330 - fastapi_app - INFO - [OK] 苹果成熟度检测器加载成功
+2026-06-01 17:17:08,512 - fastapi_app - INFO - OpenClaw通知服务配置完成
+2026-06-01 17:17:18,827 - fastapi_app - INFO - [OK] 害虫检测器加载成功
+2026-06-01 17:17:18,915 - fastapi_app - INFO - [OK] 柑橘成熟度检测器加载成功
+2026-06-01 17:17:18,940 - fastapi_app - INFO - [OK] 番茄成熟度检测器加载成功
+2026-06-01 17:17:18,961 - fastapi_app - INFO - [OK] 苹果成熟度检测器加载成功
+2026-06-01 17:17:19,152 - fastapi_app - INFO - OpenClaw通知服务配置完成
+2026-06-01 17:17:29,433 - fastapi_app - INFO - [OK] 害虫检测器加载成功
+2026-06-01 17:17:29,522 - fastapi_app - INFO - [OK] 柑橘成熟度检测器加载成功
+2026-06-01 17:17:29,547 - fastapi_app - INFO - [OK] 番茄成熟度检测器加载成功
+2026-06-01 17:17:29,564 - fastapi_app - INFO - [OK] 苹果成熟度检测器加载成功
+2026-06-01 17:17:29,745 - fastapi_app - INFO - OpenClaw通知服务配置完成
+2026-06-01 17:17:40,024 - fastapi_app - INFO - [OK] 害虫检测器加载成功
+2026-06-01 17:17:40,114 - fastapi_app - INFO - [OK] 柑橘成熟度检测器加载成功
+2026-06-01 17:17:40,140 - fastapi_app - INFO - [OK] 番茄成熟度检测器加载成功
+2026-06-01 17:17:40,155 - fastapi_app - INFO - [OK] 苹果成熟度检测器加载成功
+2026-06-01 17:17:40,369 - fastapi_app - INFO - OpenClaw通知服务配置完成
+2026-06-01 17:17:50,589 - fastapi_app - INFO - [OK] 害虫检测器加载成功
+2026-06-01 17:17:50,672 - fastapi_app - INFO - [OK] 柑橘成熟度检测器加载成功
+2026-06-01 17:17:50,696 - fastapi_app - INFO - [OK] 番茄成熟度检测器加载成功
+2026-06-01 17:17:50,712 - fastapi_app - INFO - [OK] 苹果成熟度检测器加载成功
+2026-06-01 17:17:50,945 - fastapi_app - INFO - OpenClaw通知服务配置完成
+2026-06-01 17:18:01,176 - fastapi_app - INFO - [OK] 害虫检测器加载成功
+2026-06-01 17:18:01,263 - fastapi_app - INFO - [OK] 柑橘成熟度检测器加载成功
+2026-06-01 17:18:01,291 - fastapi_app - INFO - [OK] 番茄成熟度检测器加载成功
+2026-06-01 17:18:01,307 - fastapi_app - INFO - [OK] 苹果成熟度检测器加载成功
+2026-06-01 17:18:01,527 - fastapi_app - INFO - OpenClaw通知服务配置完成
+2026-06-01 17:18:13,073 - fastapi_app - INFO - [OK] 害虫检测器加载成功
+2026-06-01 17:18:13,164 - fastapi_app - INFO - [OK] 柑橘成熟度检测器加载成功
+2026-06-01 17:18:13,189 - fastapi_app - INFO - [OK] 番茄成熟度检测器加载成功
+2026-06-01 17:18:13,204 - fastapi_app - INFO - [OK] 苹果成熟度检测器加载成功
+2026-06-01 17:18:13,386 - fastapi_app - INFO - OpenClaw通知服务配置完成
+2026-06-01 17:18:22,674 - fastapi_app - INFO - [OK] 害虫检测器加载成功
+2026-06-01 17:18:22,763 - fastapi_app - INFO - [OK] 柑橘成熟度检测器加载成功
+2026-06-01 17:18:22,787 - fastapi_app - INFO - [OK] 番茄成熟度检测器加载成功
+2026-06-01 17:18:22,803 - fastapi_app - INFO - [OK] 苹果成熟度检测器加载成功
+2026-06-01 17:18:22,986 - fastapi_app - INFO - OpenClaw通知服务配置完成
+2026-06-01 17:18:33,225 - fastapi_app - INFO - [OK] 害虫检测器加载成功
+2026-06-01 17:18:33,317 - fastapi_app - INFO - [OK] 柑橘成熟度检测器加载成功
+2026-06-01 17:18:33,343 - fastapi_app - INFO - [OK] 番茄成熟度检测器加载成功
+2026-06-01 17:18:33,358 - fastapi_app - INFO - [OK] 苹果成熟度检测器加载成功
+2026-06-01 17:18:33,547 - fastapi_app - INFO - OpenClaw通知服务配置完成
+2026-06-01 17:18:43,763 - fastapi_app - INFO - [OK] 害虫检测器加载成功
+2026-06-01 17:18:43,850 - fastapi_app - INFO - [OK] 柑橘成熟度检测器加载成功
+2026-06-01 17:18:43,876 - fastapi_app - INFO - [OK] 番茄成熟度检测器加载成功
+2026-06-01 17:18:43,893 - fastapi_app - INFO - [OK] 苹果成熟度检测器加载成功
+2026-06-01 17:18:44,073 - fastapi_app - INFO - OpenClaw通知服务配置完成
+2026-06-01 17:18:54,309 - fastapi_app - INFO - [OK] 害虫检测器加载成功
+2026-06-01 17:18:54,397 - fastapi_app - INFO - [OK] 柑橘成熟度检测器加载成功
+2026-06-01 17:18:54,422 - fastapi_app - INFO - [OK] 番茄成熟度检测器加载成功
+2026-06-01 17:18:54,439 - fastapi_app - INFO - [OK] 苹果成熟度检测器加载成功
+2026-06-01 17:18:54,619 - fastapi_app - INFO - OpenClaw通知服务配置完成
+2026-06-01 17:19:04,801 - fastapi_app - INFO - [OK] 害虫检测器加载成功
+2026-06-01 17:19:04,888 - fastapi_app - INFO - [OK] 柑橘成熟度检测器加载成功
+2026-06-01 17:19:04,914 - fastapi_app - INFO - [OK] 番茄成熟度检测器加载成功
+2026-06-01 17:19:04,931 - fastapi_app - INFO - [OK] 苹果成熟度检测器加载成功
+2026-06-01 17:19:05,119 - fastapi_app - INFO - OpenClaw通知服务配置完成
+2026-06-01 17:19:15,353 - fastapi_app - INFO - [OK] 害虫检测器加载成功
+2026-06-01 17:19:15,449 - fastapi_app - INFO - [OK] 柑橘成熟度检测器加载成功
+2026-06-01 17:19:15,494 - fastapi_app - INFO - [OK] 番茄成熟度检测器加载成功
+2026-06-01 17:19:15,510 - fastapi_app - INFO - [OK] 苹果成熟度检测器加载成功
+2026-06-01 17:19:15,840 - fastapi_app - INFO - OpenClaw通知服务配置完成
+2026-06-01 17:19:26,236 - fastapi_app - INFO - [OK] 害虫检测器加载成功
+2026-06-01 17:19:26,327 - fastapi_app - INFO - [OK] 柑橘成熟度检测器加载成功
+2026-06-01 17:19:26,353 - fastapi_app - INFO - [OK] 番茄成熟度检测器加载成功
+2026-06-01 17:19:26,371 - fastapi_app - INFO - [OK] 苹果成熟度检测器加载成功
+2026-06-01 17:19:26,553 - fastapi_app - INFO - OpenClaw通知服务配置完成
+2026-06-01 17:19:36,899 - fastapi_app - INFO - [OK] 害虫检测器加载成功
+2026-06-01 17:19:36,999 - fastapi_app - INFO - [OK] 柑橘成熟度检测器加载成功
+2026-06-01 17:19:37,026 - fastapi_app - INFO - [OK] 番茄成熟度检测器加载成功
+2026-06-01 17:19:37,042 - fastapi_app - INFO - [OK] 苹果成熟度检测器加载成功
+2026-06-01 17:19:37,221 - fastapi_app - INFO - OpenClaw通知服务配置完成
+2026-06-01 17:19:47,623 - fastapi_app - INFO - [OK] 害虫检测器加载成功
+2026-06-01 17:19:47,710 - fastapi_app - INFO - [OK] 柑橘成熟度检测器加载成功
+2026-06-01 17:19:47,743 - fastapi_app - INFO - [OK] 番茄成熟度检测器加载成功
+2026-06-01 17:19:47,764 - fastapi_app - INFO - [OK] 苹果成熟度检测器加载成功
+2026-06-01 17:19:47,990 - fastapi_app - INFO - OpenClaw通知服务配置完成
+2026-06-01 17:19:58,406 - fastapi_app - INFO - [OK] 害虫检测器加载成功
+2026-06-01 17:19:58,496 - fastapi_app - INFO - [OK] 柑橘成熟度检测器加载成功
+2026-06-01 17:19:58,524 - fastapi_app - INFO - [OK] 番茄成熟度检测器加载成功
+2026-06-01 17:19:58,540 - fastapi_app - INFO - [OK] 苹果成熟度检测器加载成功
+2026-06-01 17:19:58,776 - fastapi_app - INFO - OpenClaw通知服务配置完成
+2026-06-01 17:20:09,012 - fastapi_app - INFO - [OK] 害虫检测器加载成功
+2026-06-01 17:20:09,209 - fastapi_app - INFO - [OK] 柑橘成熟度检测器加载成功
+2026-06-01 17:20:09,290 - fastapi_app - INFO - [OK] 番茄成熟度检测器加载成功
+2026-06-01 17:20:09,325 - fastapi_app - INFO - [OK] 苹果成熟度检测器加载成功
+2026-06-01 17:20:09,536 - fastapi_app - INFO - OpenClaw通知服务配置完成
+2026-06-01 17:20:19,817 - fastapi_app - INFO - [OK] 害虫检测器加载成功
+2026-06-01 17:20:19,910 - fastapi_app - INFO - [OK] 柑橘成熟度检测器加载成功
+2026-06-01 17:20:19,936 - fastapi_app - INFO - [OK] 番茄成熟度检测器加载成功
+2026-06-01 17:20:19,951 - fastapi_app - INFO - [OK] 苹果成熟度检测器加载成功
+2026-06-01 17:20:20,133 - fastapi_app - INFO - OpenClaw通知服务配置完成
+2026-06-01 17:20:30,441 - fastapi_app - INFO - [OK] 害虫检测器加载成功
+2026-06-01 17:20:30,530 - fastapi_app - INFO - [OK] 柑橘成熟度检测器加载成功
+2026-06-01 17:20:30,555 - fastapi_app - INFO - [OK] 番茄成熟度检测器加载成功
+2026-06-01 17:20:30,572 - fastapi_app - INFO - [OK] 苹果成熟度检测器加载成功
+2026-06-01 17:20:30,765 - fastapi_app - INFO - OpenClaw通知服务配置完成
+2026-06-01 17:20:41,018 - fastapi_app - INFO - [OK] 害虫检测器加载成功
+2026-06-01 17:20:41,106 - fastapi_app - INFO - [OK] 柑橘成熟度检测器加载成功
+2026-06-01 17:20:41,133 - fastapi_app - INFO - [OK] 番茄成熟度检测器加载成功
+2026-06-01 17:20:41,148 - fastapi_app - INFO - [OK] 苹果成熟度检测器加载成功
+2026-06-01 17:20:41,328 - fastapi_app - INFO - OpenClaw通知服务配置完成
+2026-06-01 17:20:51,569 - fastapi_app - INFO - [OK] 害虫检测器加载成功
+2026-06-01 17:20:51,666 - fastapi_app - INFO - [OK] 柑橘成熟度检测器加载成功
+2026-06-01 17:20:51,694 - fastapi_app - INFO - [OK] 番茄成熟度检测器加载成功
+2026-06-01 17:20:51,710 - fastapi_app - INFO - [OK] 苹果成熟度检测器加载成功
+2026-06-01 17:20:51,893 - fastapi_app - INFO - OpenClaw通知服务配置完成
+2026-06-01 17:21:02,492 - fastapi_app - INFO - [OK] 害虫检测器加载成功
+2026-06-01 17:21:02,577 - fastapi_app - INFO - [OK] 柑橘成熟度检测器加载成功
+2026-06-01 17:21:02,602 - fastapi_app - INFO - [OK] 番茄成熟度检测器加载成功
+2026-06-01 17:21:02,619 - fastapi_app - INFO - [OK] 苹果成熟度检测器加载成功
+2026-06-01 17:21:02,809 - fastapi_app - INFO - OpenClaw通知服务配置完成
+2026-06-01 17:21:13,141 - fastapi_app - INFO - [OK] 害虫检测器加载成功
+2026-06-01 17:21:13,315 - fastapi_app - INFO - [OK] 柑橘成熟度检测器加载成功
+2026-06-01 17:21:13,378 - fastapi_app - INFO - [OK] 番茄成熟度检测器加载成功
+2026-06-01 17:21:13,400 - fastapi_app - INFO - [OK] 苹果成熟度检测器加载成功
+2026-06-01 17:21:13,658 - fastapi_app - INFO - OpenClaw通知服务配置完成
+2026-06-01 17:21:24,245 - fastapi_app - INFO - [OK] 害虫检测器加载成功
+2026-06-01 17:21:24,336 - fastapi_app - INFO - [OK] 柑橘成熟度检测器加载成功
+2026-06-01 17:21:24,371 - fastapi_app - INFO - [OK] 番茄成熟度检测器加载成功
+2026-06-01 17:21:24,403 - fastapi_app - INFO - [OK] 苹果成熟度检测器加载成功
+2026-06-01 17:21:24,647 - fastapi_app - INFO - OpenClaw通知服务配置完成
+2026-06-01 17:21:34,056 - fastapi_app - INFO - [OK] 害虫检测器加载成功
+2026-06-01 17:21:34,151 - fastapi_app - INFO - [OK] 柑橘成熟度检测器加载成功
+2026-06-01 17:21:34,179 - fastapi_app - INFO - [OK] 番茄成熟度检测器加载成功
+2026-06-01 17:21:34,196 - fastapi_app - INFO - [OK] 苹果成熟度检测器加载成功
+2026-06-01 17:21:34,384 - fastapi_app - INFO - OpenClaw通知服务配置完成
+2026-06-01 17:21:44,982 - fastapi_app - INFO - [OK] 害虫检测器加载成功
+2026-06-01 17:21:45,076 - fastapi_app - INFO - [OK] 柑橘成熟度检测器加载成功
+2026-06-01 17:21:45,104 - fastapi_app - INFO - [OK] 番茄成熟度检测器加载成功
+2026-06-01 17:21:45,119 - fastapi_app - INFO - [OK] 苹果成熟度检测器加载成功
+2026-06-01 17:21:45,307 - fastapi_app - INFO - OpenClaw通知服务配置完成
+2026-06-01 17:21:55,633 - fastapi_app - INFO - [OK] 害虫检测器加载成功
+2026-06-01 17:21:55,727 - fastapi_app - INFO - [OK] 柑橘成熟度检测器加载成功
+2026-06-01 17:21:55,757 - fastapi_app - INFO - [OK] 番茄成熟度检测器加载成功
+2026-06-01 17:21:55,772 - fastapi_app - INFO - [OK] 苹果成熟度检测器加载成功
+2026-06-01 17:21:55,954 - fastapi_app - INFO - OpenClaw通知服务配置完成
+2026-06-01 17:22:06,235 - fastapi_app - INFO - [OK] 害虫检测器加载成功
+2026-06-01 17:22:06,326 - fastapi_app - INFO - [OK] 柑橘成熟度检测器加载成功
+2026-06-01 17:22:06,351 - fastapi_app - INFO - [OK] 番茄成熟度检测器加载成功
+2026-06-01 17:22:06,367 - fastapi_app - INFO - [OK] 苹果成熟度检测器加载成功
+2026-06-01 17:22:06,559 - fastapi_app - INFO - OpenClaw通知服务配置完成
+2026-06-01 17:22:16,850 - fastapi_app - INFO - [OK] 害虫检测器加载成功
+2026-06-01 17:22:16,940 - fastapi_app - INFO - [OK] 柑橘成熟度检测器加载成功
+2026-06-01 17:22:16,966 - fastapi_app - INFO - [OK] 番茄成熟度检测器加载成功
+2026-06-01 17:22:16,982 - fastapi_app - INFO - [OK] 苹果成熟度检测器加载成功
+2026-06-01 17:22:17,166 - fastapi_app - INFO - OpenClaw通知服务配置完成
+2026-06-01 17:22:27,316 - fastapi_app - INFO - [OK] 害虫检测器加载成功
+2026-06-01 17:22:27,403 - fastapi_app - INFO - [OK] 柑橘成熟度检测器加载成功
+2026-06-01 17:22:27,428 - fastapi_app - INFO - [OK] 番茄成熟度检测器加载成功
+2026-06-01 17:22:27,445 - fastapi_app - INFO - [OK] 苹果成熟度检测器加载成功
+2026-06-01 17:22:27,622 - fastapi_app - INFO - OpenClaw通知服务配置完成
+2026-06-01 17:22:38,058 - fastapi_app - INFO - [OK] 害虫检测器加载成功
+2026-06-01 17:22:38,147 - fastapi_app - INFO - [OK] 柑橘成熟度检测器加载成功
+2026-06-01 17:22:38,173 - fastapi_app - INFO - [OK] 番茄成熟度检测器加载成功
+2026-06-01 17:22:38,188 - fastapi_app - INFO - [OK] 苹果成熟度检测器加载成功
+2026-06-01 17:22:38,368 - fastapi_app - INFO - OpenClaw通知服务配置完成
+2026-06-01 17:22:48,609 - fastapi_app - INFO - [OK] 害虫检测器加载成功
+2026-06-01 17:22:48,697 - fastapi_app - INFO - [OK] 柑橘成熟度检测器加载成功
+2026-06-01 17:22:48,721 - fastapi_app - INFO - [OK] 番茄成熟度检测器加载成功
+2026-06-01 17:22:48,737 - fastapi_app - INFO - [OK] 苹果成熟度检测器加载成功
+2026-06-01 17:22:48,915 - fastapi_app - INFO - OpenClaw通知服务配置完成
+2026-06-01 17:22:59,093 - fastapi_app - INFO - [OK] 害虫检测器加载成功
+2026-06-01 17:22:59,181 - fastapi_app - INFO - [OK] 柑橘成熟度检测器加载成功
+2026-06-01 17:22:59,206 - fastapi_app - INFO - [OK] 番茄成熟度检测器加载成功
+2026-06-01 17:22:59,221 - fastapi_app - INFO - [OK] 苹果成熟度检测器加载成功
+2026-06-01 17:22:59,402 - fastapi_app - INFO - OpenClaw通知服务配置完成
+2026-06-01 17:23:09,739 - fastapi_app - INFO - [OK] 害虫检测器加载成功
+2026-06-01 17:23:09,833 - fastapi_app - INFO - [OK] 柑橘成熟度检测器加载成功
+2026-06-01 17:23:09,858 - fastapi_app - INFO - [OK] 番茄成熟度检测器加载成功
+2026-06-01 17:23:09,875 - fastapi_app - INFO - [OK] 苹果成熟度检测器加载成功
+2026-06-01 17:23:10,283 - fastapi_app - INFO - OpenClaw通知服务配置完成
+2026-06-01 17:23:20,961 - fastapi_app - INFO - [OK] 害虫检测器加载成功
+2026-06-01 17:23:21,057 - fastapi_app - INFO - [OK] 柑橘成熟度检测器加载成功
+2026-06-01 17:23:21,083 - fastapi_app - INFO - [OK] 番茄成熟度检测器加载成功
+2026-06-01 17:23:21,101 - fastapi_app - INFO - [OK] 苹果成熟度检测器加载成功
+2026-06-01 17:23:21,308 - fastapi_app - INFO - OpenClaw通知服务配置完成
+2026-06-01 17:23:32,175 - fastapi_app - INFO - [OK] 害虫检测器加载成功
+2026-06-01 17:23:32,274 - fastapi_app - INFO - [OK] 柑橘成熟度检测器加载成功
+2026-06-01 17:23:32,308 - fastapi_app - INFO - [OK] 番茄成熟度检测器加载成功
+2026-06-01 17:23:32,324 - fastapi_app - INFO - [OK] 苹果成熟度检测器加载成功
+2026-06-01 17:23:32,666 - fastapi_app - INFO - OpenClaw通知服务配置完成
+2026-06-01 17:23:42,043 - fastapi_app - INFO - [OK] 害虫检测器加载成功
+2026-06-01 17:23:42,148 - fastapi_app - INFO - [OK] 柑橘成熟度检测器加载成功
+2026-06-01 17:23:42,177 - fastapi_app - INFO - [OK] 番茄成熟度检测器加载成功
+2026-06-01 17:23:42,192 - fastapi_app - INFO - [OK] 苹果成熟度检测器加载成功
+2026-06-01 17:23:42,388 - fastapi_app - INFO - OpenClaw通知服务配置完成
+2026-06-01 17:23:52,716 - fastapi_app - INFO - [OK] 害虫检测器加载成功
+2026-06-01 17:23:52,801 - fastapi_app - INFO - [OK] 柑橘成熟度检测器加载成功
+2026-06-01 17:23:52,826 - fastapi_app - INFO - [OK] 番茄成熟度检测器加载成功
+2026-06-01 17:23:52,844 - fastapi_app - INFO - [OK] 苹果成熟度检测器加载成功
+2026-06-01 17:23:53,017 - fastapi_app - INFO - OpenClaw通知服务配置完成
+2026-06-01 17:24:02,787 - fastapi_app - INFO - [OK] 害虫检测器加载成功
+2026-06-01 17:24:02,876 - fastapi_app - INFO - [OK] 柑橘成熟度检测器加载成功
+2026-06-01 17:24:02,901 - fastapi_app - INFO - [OK] 番茄成熟度检测器加载成功
+2026-06-01 17:24:02,917 - fastapi_app - INFO - [OK] 苹果成熟度检测器加载成功
+2026-06-01 17:24:03,096 - fastapi_app - INFO - OpenClaw通知服务配置完成
+2026-06-01 17:24:03,311 - fastapi_app - INFO - [OK] 害虫检测器加载成功
+2026-06-01 17:24:03,421 - fastapi_app - INFO - [OK] 柑橘成熟度检测器加载成功
+2026-06-01 17:24:03,446 - fastapi_app - INFO - [OK] 番茄成熟度检测器加载成功
+2026-06-01 17:24:03,464 - fastapi_app - INFO - [OK] 苹果成熟度检测器加载成功
+2026-06-01 17:24:03,681 - fastapi_app - INFO - OpenClaw通知服务配置完成
+2026-06-01 17:24:13,927 - fastapi_app - INFO - [OK] 害虫检测器加载成功
+2026-06-01 17:24:14,012 - fastapi_app - INFO - [OK] 柑橘成熟度检测器加载成功
+2026-06-01 17:24:14,051 - fastapi_app - INFO - [OK] 番茄成熟度检测器加载成功
+2026-06-01 17:24:14,074 - fastapi_app - INFO - [OK] 苹果成熟度检测器加载成功
+2026-06-01 17:24:14,427 - fastapi_app - INFO - OpenClaw通知服务配置完成
+2026-06-01 17:25:13,806 - fastapi_app - WARNING - 手机连接但没有提供UID
+2026-06-01 17:25:13,820 - fastapi_app - INFO - 手机 D56R49 元数据已更新: {'uid': 'D56R49', 'facing': {'isTrusted': True}, 'ip': '172.26.139.181', 'width': 720, 'height': 1280}
+2026-06-01 17:25:13,821 - fastapi_app - ERROR - 转发数据到观看端失败: 
+2026-06-01 17:25:16,566 - fastapi_app - WARNING - 手机连接但没有提供UID
+2026-06-01 17:25:16,577 - fastapi_app - INFO - 手机 D56R49 元数据已更新: {'uid': 'D56R49', 'facing': 'environment', 'ip': '172.26.139.181', 'width': 720, 'height': 1280}
+2026-06-01 17:25:30,059 - fastapi_app - INFO - 观看端已连接，当前观看端数: 2
+2026-06-01 17:27:33,770 - fastapi_app - ERROR - 转发数据到观看端失败: 
+2026-06-01 17:27:46,795 - fastapi_app - INFO - 观看端已连接，当前观看端数: 2
+2026-06-01 17:29:23,706 - fastapi_app - INFO - [CropDisease] 标注图已保存: /Users/apple/smart-park-guardian-system/app/api/snapshots/0_20260601_172923_穗颈瘟_0.72_穗颈瘟_0.40_穗颈瘟_0.37_crop.jpg
+2026-06-01 17:29:23,706 - fastapi_app - INFO - [CropDisease] 创建告警: camera_id=0, type=3...
+2026-06-01 17:29:23,718 - fastapi_app - INFO - [CropDisease] 告警创建成功: ID=831
+2026-06-01 17:29:23,718 - fastapi_app - INFO - 广播告警: Alarm ID=831, 类型=害虫检测
+2026-06-01 17:29:23,718 - fastapi_app - INFO - [CropDisease] 告警已广播
+2026-06-01 17:29:23,719 - fastapi_app - INFO - 广播消息完成，有效连接数: 0
+2026-06-01 17:37:04,895 - fastapi_app - INFO - [OK] 害虫检测器加载成功
+2026-06-01 17:37:04,973 - fastapi_app - INFO - [OK] 柑橘成熟度检测器加载成功
+2026-06-01 17:37:05,024 - fastapi_app - INFO - [OK] 番茄成熟度检测器加载成功
+2026-06-01 17:37:05,043 - fastapi_app - INFO - [OK] 苹果成熟度检测器加载成功
+2026-06-01 17:37:05,260 - fastapi_app - INFO - OpenClaw通知服务配置完成
+2026-06-01 17:37:05,444 - fastapi_app - INFO - [OK] 害虫检测器加载成功
+2026-06-01 17:37:05,519 - fastapi_app - INFO - [OK] 柑橘成熟度检测器加载成功
+2026-06-01 17:37:05,544 - fastapi_app - INFO - [OK] 番茄成熟度检测器加载成功
+2026-06-01 17:37:05,558 - fastapi_app - INFO - [OK] 苹果成熟度检测器加载成功
+2026-06-01 17:37:05,709 - fastapi_app - INFO - OpenClaw通知服务配置完成
+2026-06-01 17:38:25,311 - fastapi_app - INFO - [OK] 害虫检测器加载成功
+2026-06-01 17:38:25,390 - fastapi_app - INFO - [OK] 柑橘成熟度检测器加载成功
+2026-06-01 17:38:25,413 - fastapi_app - INFO - [OK] 番茄成熟度检测器加载成功
+2026-06-01 17:38:25,428 - fastapi_app - INFO - [OK] 苹果成熟度检测器加载成功
+2026-06-01 17:38:25,599 - fastapi_app - INFO - OpenClaw通知服务配置完成
+2026-06-01 17:38:25,985 - fastapi_app - INFO - [OK] 害虫检测器加载成功
+2026-06-01 17:38:26,059 - fastapi_app - INFO - [OK] 柑橘成熟度检测器加载成功
+2026-06-01 17:38:26,081 - fastapi_app - INFO - [OK] 番茄成熟度检测器加载成功
+2026-06-01 17:38:26,094 - fastapi_app - INFO - [OK] 苹果成熟度检测器加载成功
+2026-06-01 17:38:26,246 - fastapi_app - INFO - OpenClaw通知服务配置完成
+2026-06-01 17:39:17,426 - fastapi_app - INFO - [OK] 害虫检测器加载成功
+2026-06-01 17:39:17,506 - fastapi_app - INFO - [OK] 柑橘成熟度检测器加载成功
+2026-06-01 17:39:17,528 - fastapi_app - INFO - [OK] 番茄成熟度检测器加载成功
+2026-06-01 17:39:17,543 - fastapi_app - INFO - [OK] 苹果成熟度检测器加载成功
+2026-06-01 17:39:17,714 - fastapi_app - INFO - OpenClaw通知服务配置完成
+2026-06-01 17:39:18,151 - fastapi_app - INFO - [OK] 害虫检测器加载成功
+2026-06-01 17:39:18,228 - fastapi_app - INFO - [OK] 柑橘成熟度检测器加载成功
+2026-06-01 17:39:18,253 - fastapi_app - INFO - [OK] 番茄成熟度检测器加载成功
+2026-06-01 17:39:18,267 - fastapi_app - INFO - [OK] 苹果成熟度检测器加载成功
+2026-06-01 17:39:18,420 - fastapi_app - INFO - OpenClaw通知服务配置完成
+2026-06-01 17:40:26,609 - fastapi_app - INFO - [CropDisease] 标注图已保存: /Users/apple/smart-park-guardian-system/app/api/snapshots/0_20260601_174026_叶霉病_0.64_crop.jpg
+2026-06-01 17:40:26,609 - fastapi_app - INFO - [CropDisease] 创建告警: camera_id=0, type=3...
+2026-06-01 17:40:26,625 - fastapi_app - INFO - [CropDisease] 告警创建成功: ID=832
+2026-06-01 17:40:26,626 - fastapi_app - INFO - 广播告警: Alarm ID=832, 类型=害虫检测
+2026-06-01 17:40:26,626 - fastapi_app - INFO - [CropDisease] 告警已广播
+2026-06-01 17:40:26,626 - fastapi_app - INFO - 广播消息完成，有效连接数: 0
+2026-06-01 17:41:01,513 - fastapi_app - INFO - [CropDisease] 标注图已保存: /Users/apple/smart-park-guardian-system/app/api/snapshots/0_20260601_174101_早疫病_0.76_crop.jpg
+2026-06-01 17:41:01,513 - fastapi_app - INFO - [CropDisease] 创建告警: camera_id=0, type=3...
+2026-06-01 17:41:01,518 - fastapi_app - INFO - [CropDisease] 告警创建成功: ID=833
+2026-06-01 17:41:01,518 - fastapi_app - INFO - 广播告警: Alarm ID=833, 类型=害虫检测
+2026-06-01 17:41:01,518 - fastapi_app - INFO - [CropDisease] 告警已广播
+2026-06-01 17:41:01,519 - fastapi_app - INFO - 广播消息完成，有效连接数: 0
+2026-06-01 17:42:09,787 - fastapi_app - INFO - [CropDisease] 标注图已保存: /Users/apple/smart-park-guardian-system/app/api/snapshots/0_20260601_174209_黑根腐病_0.56_crop.jpg
+2026-06-01 17:42:09,788 - fastapi_app - INFO - [CropDisease] 创建告警: camera_id=0, type=3...
+2026-06-01 17:42:09,792 - fastapi_app - INFO - [CropDisease] 告警创建成功: ID=834
+2026-06-01 17:42:09,792 - fastapi_app - INFO - 广播告警: Alarm ID=834, 类型=害虫检测
+2026-06-01 17:42:09,792 - fastapi_app - INFO - [CropDisease] 告警已广播
+2026-06-01 17:42:09,793 - fastapi_app - INFO - 广播消息完成，有效连接数: 0
+2026-06-01 17:42:25,723 - fastapi_app - WARNING - 手机连接但没有提供UID
+2026-06-01 17:42:25,746 - fastapi_app - INFO - 手机 D56R49 元数据已更新: {'uid': 'D56R49', 'facing': {'isTrusted': True}, 'ip': '172.26.139.181', 'width': 720, 'height': 1280}
+2026-06-01 17:42:25,747 - fastapi_app - ERROR - 转发数据到观看端失败: 
+2026-06-01 17:42:29,295 - fastapi_app - WARNING - 手机连接但没有提供UID
+2026-06-01 17:42:29,305 - fastapi_app - INFO - 手机 D56R49 元数据已更新: {'uid': 'D56R49', 'facing': 'environment', 'ip': '172.26.139.181', 'width': 720, 'height': 1280}
+2026-06-01 17:42:54,539 - fastapi_app - INFO - 观看端已连接，当前观看端数: 2
+2026-06-01 17:43:10,444 - fastapi_app - WARNING - 手机连接但没有提供UID
+2026-06-01 17:43:10,456 - fastapi_app - INFO - 手机 D56R49 元数据已更新: {'uid': 'D56R49', 'facing': 'user', 'ip': '172.26.139.181', 'width': 720, 'height': 1280}
+2026-06-01 17:43:15,081 - fastapi_app - WARNING - 手机连接但没有提供UID
+2026-06-01 17:43:15,093 - fastapi_app - INFO - 手机 D56R49 元数据已更新: {'uid': 'D56R49', 'facing': 'environment', 'ip': '172.26.139.181', 'width': 720, 'height': 1280}
+2026-06-01 17:47:49,521 - fastapi_app - INFO - WebSocket连接已断开，当前连接数: 1
+2026-06-01 17:47:49,653 - fastapi_app - INFO - WebSocket连接已建立，当前连接数: 2
+2026-06-01 17:47:58,325 - fastapi_app - WARNING - 手机连接但没有提供UID
+2026-06-01 17:47:58,363 - fastapi_app - INFO - 手机 D56R49 元数据已更新: {'uid': 'D56R49', 'facing': {'isTrusted': True}, 'ip': '172.26.139.181', 'width': 720, 'height': 1280}
+2026-06-01 17:47:58,366 - fastapi_app - ERROR - 转发数据到观看端失败: 
+2026-06-01 17:47:58,366 - fastapi_app - ERROR - 转发数据到观看端失败: 
+2026-06-01 17:48:01,468 - fastapi_app - WARNING - 手机连接但没有提供UID
+2026-06-01 17:48:01,481 - fastapi_app - INFO - 手机 D56R49 元数据已更新: {'uid': 'D56R49', 'facing': 'environment', 'ip': '172.26.139.181', 'width': 720, 'height': 1280}
+2026-06-01 17:48:04,128 - fastapi_app - INFO - 观看端已连接，当前观看端数: 1
+2026-06-01 17:54:05,559 - fastapi_app - INFO - [OK] 害虫检测器加载成功
+2026-06-01 17:54:05,643 - fastapi_app - INFO - [OK] 柑橘成熟度检测器加载成功
+2026-06-01 17:54:05,700 - fastapi_app - INFO - [OK] 番茄成熟度检测器加载成功
+2026-06-01 17:54:05,719 - fastapi_app - INFO - [OK] 苹果成熟度检测器加载成功
+2026-06-01 17:54:05,772 - fastapi_app - INFO - [OK] 害虫检测器加载成功
+2026-06-01 17:54:05,853 - fastapi_app - INFO - [OK] 柑橘成熟度检测器加载成功
+2026-06-01 17:54:05,878 - fastapi_app - INFO - [OK] 番茄成熟度检测器加载成功
+2026-06-01 17:54:05,894 - fastapi_app - INFO - [OK] 苹果成熟度检测器加载成功
+2026-06-01 17:54:05,958 - fastapi_app - INFO - OpenClaw通知服务配置完成
+2026-06-01 17:54:06,051 - fastapi_app - INFO - OpenClaw通知服务配置完成
+2026-06-01 17:55:45,945 - fastapi_app - INFO - [OK] 害虫检测器加载成功
+2026-06-01 17:55:46,029 - fastapi_app - INFO - [OK] 柑橘成熟度检测器加载成功
+2026-06-01 17:55:46,080 - fastapi_app - INFO - [OK] 番茄成熟度检测器加载成功
+2026-06-01 17:55:46,100 - fastapi_app - INFO - [OK] 苹果成熟度检测器加载成功
+2026-06-01 17:55:46,335 - fastapi_app - INFO - OpenClaw通知服务配置完成
+2026-06-01 17:55:46,421 - fastapi_app - INFO - [OK] 害虫检测器加载成功
+2026-06-01 17:55:46,499 - fastapi_app - INFO - [OK] 柑橘成熟度检测器加载成功
+2026-06-01 17:55:46,524 - fastapi_app - INFO - [OK] 番茄成熟度检测器加载成功
+2026-06-01 17:55:46,539 - fastapi_app - INFO - [OK] 苹果成熟度检测器加载成功
+2026-06-01 17:55:46,700 - fastapi_app - INFO - OpenClaw通知服务配置完成
+2026-06-01 17:56:53,182 - fastapi_app - INFO - [OK] 害虫检测器加载成功
+2026-06-01 17:56:53,265 - fastapi_app - INFO - [OK] 柑橘成熟度检测器加载成功
+2026-06-01 17:56:53,290 - fastapi_app - INFO - [OK] 番茄成熟度检测器加载成功
+2026-06-01 17:56:53,305 - fastapi_app - INFO - [OK] 苹果成熟度检测器加载成功
+2026-06-01 17:56:53,479 - fastapi_app - INFO - OpenClaw通知服务配置完成
+2026-06-01 17:56:53,897 - fastapi_app - INFO - [OK] 害虫检测器加载成功
+2026-06-01 17:56:53,978 - fastapi_app - INFO - [OK] 柑橘成熟度检测器加载成功
+2026-06-01 17:56:54,000 - fastapi_app - INFO - [OK] 番茄成熟度检测器加载成功
+2026-06-01 17:56:54,016 - fastapi_app - INFO - [OK] 苹果成熟度检测器加载成功
+2026-06-01 17:56:54,172 - fastapi_app - INFO - OpenClaw通知服务配置完成
+2026-06-01 17:58:10,391 - fastapi_app - WARNING - 手机连接但没有提供UID
+2026-06-01 17:58:10,416 - fastapi_app - INFO - 手机 D56R49 元数据已更新: {'uid': 'D56R49', 'facing': {'isTrusted': True}, 'ip': '172.26.139.181', 'width': 1080, 'height': 1920}
+2026-06-01 17:58:14,186 - fastapi_app - WARNING - 手机连接但没有提供UID
+2026-06-01 17:58:14,202 - fastapi_app - INFO - 手机 D56R49 元数据已更新: {'uid': 'D56R49', 'facing': 'environment', 'ip': '172.26.139.181', 'width': 1080, 'height': 1920, 'location': {'latitude': 20.042561, 'longitude': 110.406222, 'accuracy': 37}}
+2026-06-01 18:00:33,702 - fastapi_app - INFO - WebSocket连接已断开，当前连接数: 1
+2026-06-01 18:00:33,821 - fastapi_app - INFO - WebSocket连接已建立，当前连接数: 2
+2026-06-01 18:00:40,139 - fastapi_app - INFO - WebSocket连接已断开，当前连接数: 1
+2026-06-01 18:00:40,612 - fastapi_app - INFO - WebSocket连接已建立，当前连接数: 2
+2026-06-01 18:03:44,687 - fastapi_app - WARNING - 手机连接但没有提供UID
+2026-06-01 18:03:44,702 - fastapi_app - INFO - 手机 D56R49 元数据已更新: {'uid': 'D56R49', 'facing': {'isTrusted': True}, 'ip': '172.26.139.181', 'width': 1080, 'height': 1920}
+2026-06-01 18:03:44,703 - fastapi_app - ERROR - 转发数据到观看端失败: 
+2026-06-01 18:03:56,079 - fastapi_app - WARNING - 手机连接但没有提供UID
+2026-06-01 18:03:56,088 - fastapi_app - INFO - 手机 D56R49 元数据已更新: {'uid': 'D56R49', 'facing': 'environment', 'ip': '172.26.139.181', 'width': 1080, 'height': 1920}
+2026-06-01 18:04:01,870 - fastapi_app - INFO - 观看端已连接，当前观看端数: 1
+2026-06-01 18:04:57,096 - fastapi_app - INFO - WebSocket连接已断开，当前连接数: 1
+2026-06-01 18:04:57,498 - fastapi_app - INFO - WebSocket连接已建立，当前连接数: 2
+2026-06-02 03:16:12,674 - fastapi_app - INFO - WebSocket连接已断开，当前连接数: 1
+2026-06-02 03:16:13,093 - fastapi_app - INFO - WebSocket连接已建立，当前连接数: 2

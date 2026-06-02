@@ -5,11 +5,9 @@ from typing import List, Optional, Dict, Any
 import base64
 
 from app.services.crop_disease_detector import get_crop_disease_detector, CropDiseaseDetector
-from app.services.config_manager import get_config_manager
 
 router = APIRouter(prefix="/crop-disease-detection", tags=["农作物病害检测"])
 
-DISEASE_CONF_THRESHOLD = 0.25
 HEALTHY_LABELS = {"健康", "Healthy", "healthy"}
 
 
@@ -72,12 +70,12 @@ async def detect_disease(
         # 获取检测器
         detector = get_crop_disease_detector(crop_type=crop_type)
 
-        # 从配置读取最新的置信度阈值
+        # 从配置读取最新阈值。这里使用检测器的作物级配置，避免前端把阈值调低后
+        # 仍被固定 0.25 二次过滤导致漏检。
         try:
-            config_manager = get_config_manager()
-            detector.confidence = config_manager.get("agriculture.cropDiseaseConfidence", DISEASE_CONF_THRESHOLD)
+            detector.update_from_config()
         except Exception as e:
-            print(f"Warning: Failed to get config, using default: {e}")
+            print(f"Warning: Failed to refresh crop disease config, using current values: {e}")
 
         if detector.model is None:
             return DetectionResponse(
@@ -96,7 +94,7 @@ async def detect_disease(
         # 只保留高置信度病害结果。低置信度和“健康”类别都不返回给前端，避免手机画面误报。
         disease_preds = [
             p for p in predictions
-            if p["class"] not in HEALTHY_LABELS and p["original_confidence"] >= DISEASE_CONF_THRESHOLD
+            if p["class"] not in HEALTHY_LABELS and p["original_confidence"] >= detector.confidence
         ]
         annotated_image = detector.annotate_image(image_bytes, disease_preds)
 
@@ -185,15 +183,18 @@ async def get_status(crop_type: str = Query("rice", description="作物类型"))
     try:
         detector = get_crop_disease_detector(crop_type=crop_type)
         try:
-            config_manager = get_config_manager()
-            detector.confidence = config_manager.get("agriculture.cropDiseaseConfidence", DISEASE_CONF_THRESHOLD)
+            detector.update_from_config()
         except Exception as e:
             print(f"Warning: Failed to get config, using current detector confidence: {e}")
         return {
             "crop_type": detector.crop_type,
             "model_loaded": detector.model is not None,
             "model_path": detector.model_path,
-            "confidence_threshold": detector.confidence
+            "confidence_threshold": detector.confidence,
+            "iou_threshold": detector.iou,
+            "tta_enabled": detector.enable_tta,
+            "preprocess_enabled": detector.enable_preprocess,
+            "classes": detector.model.names if detector.model is not None else {}
         }
     except Exception as e:
         raise HTTPException(status_code=500, detail=f"获取状态失败: {str(e)}")

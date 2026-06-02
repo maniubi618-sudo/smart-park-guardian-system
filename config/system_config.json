@@ -17,7 +17,30 @@
     "citrusConfidence": 0.5,
     "citrusIouThreshold": 0.5,
     "cropDiseaseConfidence": 0.25,
-    "cropDiseaseIouThreshold": 0.3,
+    "cropDiseaseIouThreshold": 0.55,
+    "cropDiseaseEnableTTA": true,
+    "cropDiseaseEnablePreprocess": false,
+    "cropDiseaseConfidenceByCrop": {
+      "tomato": 0.45,
+      "apple": 0.2,
+      "rice": 0.05
+    },
+    "cropDiseaseIouByCrop": {
+      "tomato": 0.55,
+      "apple": 0.5,
+      "rice": 0.55
+    },
+    "cropDiseaseRequireCropContent": true,
+    "cropDiseaseMinCropContentRatio": 0.015,
+    "cropDiseaseMinCropContentRatioByCrop": {
+      "tomato": 0.3,
+      "rice": 0.12
+    },
+    "cropDiseaseMinGreenRatioByCrop": {
+      "rice": 0.0
+    },
+    "cropDiseaseMinBoxAreaRatio": 0.003,
+    "cropDiseaseHealthySuppressionMargin": 0.0,
     "pestConfidence": 0.6,
     "pestIouThreshold": 0.25
   },

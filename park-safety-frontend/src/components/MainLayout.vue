@@ -130,7 +130,7 @@ const authStore = useAuthStore()
 const layoutStore = useLayoutStore()
 
 const AGRICULTURE_DASHBOARD_URL = 'http://127.0.0.1:8001/system/index/'
-const STRAWBERRY_DASHBOARD_URL = 'http://localhost:5173/'
+const STRAWBERRY_DASHBOARD_URL = 'http://127.0.0.1:5173/'
 
 const isCollapsed = computed(() => layoutStore.isSidebarCollapsed)
 

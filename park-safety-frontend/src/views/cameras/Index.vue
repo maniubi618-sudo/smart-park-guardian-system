@@ -822,7 +822,7 @@ const videoPlayer = ref(null)
 const localAnalysisForm = reactive({
   analysisMode: '1',
   frameInterval: 5,
-  cropType: 'rice' // 作物类型选择，用于作物病害检测
+  cropType: '' // 作物类型选择，用于作物病害检测
 })
 const isLocalAnalysisStarted = ref(false)
 const localAnalysisLoading = ref(false)
@@ -876,15 +876,17 @@ const phoneViewerLastTime = ref(0)
 const phoneViewerFpsInterval = ref(null)
 const phoneViewerRenderBusy = ref(false)
 const phoneViewerQueuedFrame = ref(null)
+const phoneViewerLastFrameBlob = ref(null)
 
 // 手机摄像头分析相关
 const phoneCameraAnalysisMode = ref('1')
-const phoneCameraCropType = ref('strawberry') // 作物类型选择，用于作物病害检测
+const phoneCameraCropType = ref('') // 作物类型选择，用于作物病害检测
 const isPhoneCameraAnalyzing = ref(false)
 const phoneCameraAnalysisResults = ref(null)
 const phoneCameraAnalysisInterval = ref(null)
 const phoneCameraLastFrameData = ref(null)
 const phoneCameraLastAlertState = ref('') // 手机摄像头分析的告警状态
+const phoneCameraDiseaseStreak = ref(0)
 const phoneCameraReportedDiseases = ref({})  // 已上报病害去重：{ diseaseName: timestamp }
 const PHONE_CAMERA_ALARM_COOLDOWN_MS = 30000  // 同一病害 30 秒内不重复写库
 
@@ -898,7 +900,7 @@ const imageUrl = ref('')
 const availableCrops = ref([])
 const imageAnalysisForm = reactive({
   analysisMode: 'cropDisease',
-  cropType: 'rice'
+  cropType: ''
 })
 const imageAnalysisResult = ref(null)
 const imageAnalysisLoading = ref(false)
@@ -1619,6 +1621,10 @@ const startLocalVideoAnalysis = async () => {
     ElMessage.warning('请选择视频文件')
     return
   }
+  if (localAnalysisForm.analysisMode === '8' && !localAnalysisForm.cropType) {
+    ElMessage.warning('请先选择作物类型，避免用错误模型识别')
+    return
+  }
 
   localAnalysisLoading.value = true
   try {
@@ -1814,7 +1820,7 @@ const startLocalVideoAnalysis = async () => {
             // 格式化结果为统一格式
             const analysisResults = []
             
-            if (result.success && result.predictions) {
+            if (result.success && result.predictions && result.predictions.length > 0) {
               analysisResults.push({
                 label: `🌱 ${getCropLabel(result.crop_type)}病害检测`,
                 value: `检测到 ${result.predictions.length} 个病害`
@@ -2115,6 +2121,10 @@ const startImageAnalysis = async () => {
     ElMessage.warning('请先选择图片')
     return
   }
+  if (imageAnalysisForm.analysisMode === 'cropDisease' && !imageAnalysisForm.cropType) {
+    ElMessage.warning('请先选择作物类型，避免用错误模型识别')
+    return
+  }
 
   imageAnalysisLoading.value = true
   try {
@@ -2149,7 +2159,7 @@ const handleImageAnalysisDialogClose = () => {
   imageUrl.value = ''
   imageAnalysisResult.value = null
   imageAnalysisForm.analysisMode = 'cropDisease'
-  imageAnalysisForm.cropType = 'rice'
+  imageAnalysisForm.cropType = ''
 }
 
 // ========== 手机摄像头分析相关方法 ==========
@@ -2160,9 +2170,14 @@ const startPhoneCameraAnalysis = () => {
     ElMessage.warning('请先连接手机摄像头')
     return
   }
+  if (phoneCameraAnalysisMode.value === '8' && !phoneCameraCropType.value) {
+    ElMessage.warning('请先选择作物类型，避免用错误模型识别')
+    return
+  }
   
   isPhoneCameraAnalyzing.value = true
   phoneCameraLastAlertState.value = ''
+  phoneCameraDiseaseStreak.value = 0
   phoneCameraAnalysisResults.value = null
   
   // 开始分析帧
@@ -2182,6 +2197,7 @@ const stopPhoneCameraAnalysis = () => {
   phoneCameraAnalysisResults.value = null
   phoneCameraLastFrameData.value = null
   phoneCameraLastAlertState.value = ''
+  phoneCameraDiseaseStreak.value = 0
 }
 
 // 分析手机摄像头当前帧
@@ -2189,17 +2205,12 @@ const analyzePhoneCameraFrame = async () => {
   if (!phoneViewerCanvas.value || !isPhoneCameraAnalyzing.value) return
   
   try {
-    // 从Canvas获取当前帧数据
-    const canvas = phoneViewerCanvas.value
-    const frameData = canvas.toDataURL('image/jpeg', 0.6)
-    phoneCameraLastFrameData.value = frameData
-    
     // 检查分析模式
     if (phoneCameraAnalysisMode.value === '8') {
       // 模式8：作物病害检测
-      // 将DataURL转换为Blob
-      const response1 = await fetch(frameData)
-      const blob = await response1.blob()
+      const blob = phoneViewerLastFrameBlob.value
+      if (!blob) return
+      phoneCameraLastFrameData.value = `${phoneViewerResolution.value || 'raw'} / ${(blob.size / 1024).toFixed(0)}KB`
       
       // 创建FormData
       const formData = new FormData()
@@ -2220,10 +2231,19 @@ const analyzePhoneCameraFrame = async () => {
         // 格式化结果为统一格式
         const analysisResults = []
 
-        if (result.success && result.predictions) {
+        const confirmedDisease = result.success && result.predictions && result.predictions.length > 0
+        if (confirmedDisease) {
+          phoneCameraDiseaseStreak.value += 1
+        } else {
+          phoneCameraDiseaseStreak.value = 0
+        }
+
+        if (confirmedDisease) {
           analysisResults.push({
             label: `🌱 ${getCropLabel(result.crop_type)}病害检测`,
-            value: `检测到 ${result.predictions.length} 个病害`
+            value: phoneCameraDiseaseStreak.value >= 2
+              ? `检测到 ${result.predictions.length} 个病害`
+              : `疑似病害，确认中 (${phoneCameraDiseaseStreak.value}/2)`
           })
           
           // 添加详细检测结果
@@ -2242,7 +2262,7 @@ const analyzePhoneCameraFrame = async () => {
         
         phoneCameraAnalysisResults.value = analysisResults
         // 检查是否有告警
-        if (result.success && result.predictions.length > 0) {
+        if (confirmedDisease && phoneCameraDiseaseStreak.value >= 2) {
           checkPhoneCameraAlerts(analysisResults)
           // ★ 直推桥接：检测到病害 → 发送到 5174
           bridgePushDetections(result.predictions, result.crop_type)
@@ -2250,6 +2270,9 @@ const analyzePhoneCameraFrame = async () => {
       }
     } else {
       // 其他模式：使用原来的分析接口
+      const canvas = phoneViewerCanvas.value
+      const frameData = canvas.toDataURL('image/jpeg', 0.9)
+      phoneCameraLastFrameData.value = frameData
       const token = localStorage.getItem('token')
       const response = await fetch('/api/v1/camera_infos/analyze_frame', {
         method: 'POST',
@@ -2407,6 +2430,8 @@ const loadImageFromBlob = (blob) => {
 }
 
 const drawPhoneViewerFrame = async (blob) => {
+  phoneViewerLastFrameBlob.value = blob
+
   if (phoneViewerRenderBusy.value) {
     phoneViewerQueuedFrame.value = blob
     return
@@ -2586,6 +2611,7 @@ const stopPhoneViewer = () => {
   phoneViewerFrameCount.value = 0
   phoneViewerRenderBusy.value = false
   phoneViewerQueuedFrame.value = null
+  phoneViewerLastFrameBlob.value = null
   
   // 清空Canvas
   const canvas = phoneViewerCanvas.value

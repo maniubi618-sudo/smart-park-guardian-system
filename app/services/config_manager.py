@@ -29,7 +29,30 @@ DEFAULT_CONFIG = {
         "citrusConfidence": 0.25,
         "citrusIouThreshold": 0.45,
         "cropDiseaseConfidence": 0.25,
-        "cropDiseaseIouThreshold": 0.45
+        "cropDiseaseIouThreshold": 0.55,
+        "cropDiseaseEnableTTA": True,
+        "cropDiseaseEnablePreprocess": False,
+        "cropDiseaseConfidenceByCrop": {
+            "tomato": 0.45,
+            "apple": 0.20,
+            "rice": 0.05
+        },
+        "cropDiseaseIouByCrop": {
+            "tomato": 0.55,
+            "apple": 0.50,
+            "rice": 0.55
+        },
+        "cropDiseaseRequireCropContent": True,
+        "cropDiseaseMinCropContentRatio": 0.015,
+        "cropDiseaseMinCropContentRatioByCrop": {
+            "tomato": 0.30,
+            "rice": 0.12
+        },
+        "cropDiseaseMinGreenRatioByCrop": {
+            "rice": 0.0
+        },
+        "cropDiseaseMinBoxAreaRatio": 0.003,
+        "cropDiseaseHealthySuppressionMargin": 0.0
     },
     "system": {
         "dbHost": "localhost",
