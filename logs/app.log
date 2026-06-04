@@ -49006,3 +49006,161 @@
 2026-06-04 12:17:12,148 - fastapi_app - WARNING - 手机连接但没有提供UID
 2026-06-04 12:17:12,156 - fastapi_app - INFO - 手机 D56R49 元数据已更新: {'uid': 'D56R49', 'facing': 'environment', 'ip': '172.26.139.181', 'width': 1080, 'height': 1920}
 2026-06-04 12:17:20,457 - fastapi_app - INFO - 观看端已连接，当前观看端数: 1
+2026-06-04 12:35:32,710 - fastapi_app - INFO - WebSocket连接已建立，当前连接数: 1
+2026-06-04 12:37:04,596 - fastapi_app - WARNING - 手机连接但没有提供UID
+2026-06-04 12:37:04,618 - fastapi_app - INFO - 手机 D56R49 元数据已更新: {'uid': 'D56R49', 'facing': {'isTrusted': True}, 'ip': '172.26.139.181', 'width': 1080, 'height': 1920}
+2026-06-04 12:37:04,619 - fastapi_app - ERROR - 转发数据到观看端失败: 
+2026-06-04 12:37:08,110 - fastapi_app - INFO - 观看端已连接，当前观看端数: 1
+2026-06-04 12:37:10,989 - fastapi_app - INFO - 广播消息完成，有效连接数: 1
+2026-06-04 12:37:12,456 - fastapi_app - INFO - 广播消息完成，有效连接数: 1
+2026-06-04 12:37:13,939 - fastapi_app - INFO - 广播消息完成，有效连接数: 1
+2026-06-04 12:37:15,438 - fastapi_app - INFO - 广播消息完成，有效连接数: 1
+2026-06-04 12:37:16,111 - fastapi_app - ERROR - 转发数据到观看端失败: 
+2026-06-04 12:42:41,017 - fastapi_app - INFO - WebSocket连接已断开，当前连接数: 1
+2026-06-04 12:42:41,251 - fastapi_app - INFO - WebSocket连接已建立，当前连接数: 2
+2026-06-04 12:43:04,706 - fastapi_app - INFO - WebSocket连接已断开，当前连接数: 1
+2026-06-04 12:43:05,153 - fastapi_app - INFO - WebSocket连接已建立，当前连接数: 2
+2026-06-04 12:43:10,238 - fastapi_app - INFO - WebSocket连接已断开，当前连接数: 1
+2026-06-04 12:43:10,656 - fastapi_app - INFO - WebSocket连接已建立，当前连接数: 2
+2026-06-04 12:44:05,116 - fastapi_app - INFO - WebSocket连接已断开，当前连接数: 1
+2026-06-04 12:44:05,615 - fastapi_app - INFO - WebSocket连接已建立，当前连接数: 2
+2026-06-04 12:44:12,956 - fastapi_app - INFO - WebSocket连接已断开，当前连接数: 1
+2026-06-04 12:44:13,372 - fastapi_app - INFO - WebSocket连接已建立，当前连接数: 2
+2026-06-04 12:45:05,502 - fastapi_app - INFO - WebSocket连接已断开，当前连接数: 1
+2026-06-04 12:45:05,999 - fastapi_app - INFO - WebSocket连接已建立，当前连接数: 2
+2026-06-04 12:45:12,096 - fastapi_app - INFO - WebSocket连接已断开，当前连接数: 1
+2026-06-04 12:45:12,516 - fastapi_app - INFO - WebSocket连接已建立，当前连接数: 2
+2026-06-04 12:45:16,519 - fastapi_app - INFO - WebSocket连接已断开，当前连接数: 1
+2026-06-04 12:45:16,922 - fastapi_app - INFO - WebSocket连接已建立，当前连接数: 2
+2026-06-04 12:45:40,603 - fastapi_app - INFO - WebSocket连接已断开，当前连接数: 1
+2026-06-04 12:45:41,091 - fastapi_app - INFO - WebSocket连接已建立，当前连接数: 2
+2026-06-04 12:45:44,745 - fastapi_app - INFO - WebSocket连接已断开，当前连接数: 1
+2026-06-04 12:45:45,145 - fastapi_app - INFO - WebSocket连接已建立，当前连接数: 2
+2026-06-04 12:46:33,394 - fastapi_app - INFO - WebSocket连接已建立，当前连接数: 3
+2026-06-04 13:00:07,026 - fastapi_app - INFO - WebSocket连接已断开，当前连接数: 0
+2026-06-04 13:36:16,421 - fastapi_app - INFO - WebSocket连接已建立，当前连接数: 1
+2026-06-04 13:36:48,074 - fastapi_app - WARNING - 手机连接但没有提供UID
+2026-06-04 13:36:48,089 - fastapi_app - INFO - 手机 D56R49 元数据已更新: {'uid': 'D56R49', 'facing': {'isTrusted': True}, 'ip': '172.26.139.181', 'width': 1080, 'height': 1920}
+2026-06-04 13:36:55,025 - fastapi_app - WARNING - 手机连接但没有提供UID
+2026-06-04 13:36:55,040 - fastapi_app - INFO - 手机 D56R49 元数据已更新: {'uid': 'D56R49', 'facing': {'isTrusted': True}, 'ip': '172.26.139.181', 'width': 1080, 'height': 1920}
+2026-06-04 13:37:00,254 - fastapi_app - INFO - 观看端已连接，当前观看端数: 1
+2026-06-04 13:37:34,348 - fastapi_app - WARNING - 手机连接但没有提供UID
+2026-06-04 13:37:34,365 - fastapi_app - INFO - 手机 D56R49 元数据已更新: {'uid': 'D56R49', 'facing': {'isTrusted': True}, 'ip': '172.26.139.181', 'width': 1080, 'height': 1920}
+2026-06-04 13:37:40,142 - fastapi_app - WARNING - 手机连接但没有提供UID
+2026-06-04 13:37:40,162 - fastapi_app - INFO - 手机 D56R49 元数据已更新: {'uid': 'D56R49', 'facing': 'environment', 'ip': '172.26.139.181', 'width': 1080, 'height': 1920}
+2026-06-04 13:38:23,523 - fastapi_app - WARNING - 手机连接但没有提供UID
+2026-06-04 13:38:23,533 - fastapi_app - INFO - 手机 D56R49 元数据已更新: {'uid': 'D56R49', 'facing': 'user', 'ip': '172.26.139.181', 'width': 1080, 'height': 1920}
+2026-06-04 13:38:24,723 - fastapi_app - INFO - 广播消息完成，有效连接数: 1
+2026-06-04 13:38:26,238 - fastapi_app - INFO - 广播消息完成，有效连接数: 1
+2026-06-04 13:38:27,731 - fastapi_app - INFO - 广播消息完成，有效连接数: 1
+2026-06-04 13:38:29,287 - fastapi_app - INFO - 广播消息完成，有效连接数: 1
+2026-06-04 13:38:30,711 - fastapi_app - INFO - 广播消息完成，有效连接数: 1
+2026-06-04 13:38:32,224 - fastapi_app - INFO - 广播消息完成，有效连接数: 1
+2026-06-04 13:38:33,755 - fastapi_app - INFO - 广播消息完成，有效连接数: 1
+2026-06-04 13:38:35,221 - fastapi_app - INFO - 广播消息完成，有效连接数: 1
+2026-06-04 13:38:36,719 - fastapi_app - INFO - 广播消息完成，有效连接数: 1
+2026-06-04 13:38:38,225 - fastapi_app - INFO - 广播消息完成，有效连接数: 1
+2026-06-04 13:38:39,730 - fastapi_app - INFO - 广播消息完成，有效连接数: 1
+2026-06-04 13:38:41,253 - fastapi_app - INFO - 广播消息完成，有效连接数: 1
+2026-06-04 13:38:42,746 - fastapi_app - INFO - 广播消息完成，有效连接数: 1
+2026-06-04 13:38:44,275 - fastapi_app - INFO - 广播消息完成，有效连接数: 1
+2026-06-04 13:45:33,365 - fastapi_app - INFO - WebSocket连接已断开，当前连接数: 0
+2026-06-04 13:45:41,083 - fastapi_app - INFO - [OK] 柑橘成熟度检测器加载成功
+2026-06-04 13:45:41,200 - fastapi_app - INFO - [OK] 番茄成熟度检测器加载成功
+2026-06-04 13:45:41,220 - fastapi_app - INFO - [OK] 苹果成熟度检测器加载成功
+2026-06-04 13:45:54,058 - fastapi_app - INFO - [OK] 柑橘成熟度检测器加载成功
+2026-06-04 13:45:54,150 - fastapi_app - INFO - [OK] 番茄成熟度检测器加载成功
+2026-06-04 13:45:54,166 - fastapi_app - INFO - [OK] 苹果成熟度检测器加载成功
+2026-06-04 13:45:55,891 - fastapi_app - INFO - OpenClaw通知服务配置完成
+2026-06-04 13:45:57,906 - fastapi_app - INFO - OpenClaw通知服务配置完成
+2026-06-04 13:45:58,395 - fastapi_app - INFO - WebSocket连接已建立，当前连接数: 1
+2026-06-04 13:54:10,866 - fastapi_app - INFO - WebSocket连接已断开，当前连接数: 0
+2026-06-04 13:54:12,014 - fastapi_app - INFO - WebSocket连接已建立，当前连接数: 1
+2026-06-04 13:55:09,398 - fastapi_app - WARNING - 手机连接但没有提供UID
+2026-06-04 13:55:09,428 - fastapi_app - INFO - 手机 D56R49 元数据已更新: {'uid': 'D56R49', 'facing': {'isTrusted': True}, 'ip': '172.26.139.181', 'width': 1080, 'height': 1920, 'location': {'latitude': 20.045669, 'longitude': 110.405927, 'accuracy': 30}}
+2026-06-04 13:55:09,429 - fastapi_app - ERROR - 转发数据到观看端失败: 
+2026-06-04 13:55:15,393 - fastapi_app - INFO - 观看端已连接，当前观看端数: 1
+2026-06-04 13:55:18,069 - fastapi_app - INFO - 广播消息完成，有效连接数: 1
+2026-06-04 13:55:19,427 - fastapi_app - INFO - 广播消息完成，有效连接数: 1
+2026-06-04 13:55:20,928 - fastapi_app - INFO - 广播消息完成，有效连接数: 1
+2026-06-04 13:55:22,403 - fastapi_app - INFO - 广播消息完成，有效连接数: 1
+2026-06-04 13:55:23,918 - fastapi_app - INFO - 广播消息完成，有效连接数: 1
+2026-06-04 13:55:25,388 - fastapi_app - INFO - 广播消息完成，有效连接数: 1
+2026-06-04 13:55:26,915 - fastapi_app - INFO - 广播消息完成，有效连接数: 1
+2026-06-04 13:55:28,461 - fastapi_app - INFO - 广播消息完成，有效连接数: 1
+2026-06-04 13:55:29,914 - fastapi_app - INFO - 广播消息完成，有效连接数: 1
+2026-06-04 13:55:37,323 - fastapi_app - WARNING - 手机连接但没有提供UID
+2026-06-04 13:55:37,362 - fastapi_app - INFO - 手机 D56R49 元数据已更新: {'uid': 'D56R49', 'facing': {'isTrusted': True}, 'ip': '172.26.139.181', 'width': 1080, 'height': 1920}
+2026-06-04 13:55:37,363 - fastapi_app - ERROR - 转发数据到观看端失败: 
+2026-06-04 13:55:41,610 - fastapi_app - WARNING - 手机连接但没有提供UID
+2026-06-04 13:55:41,623 - fastapi_app - INFO - 手机 D56R49 元数据已更新: {'uid': 'D56R49', 'facing': 'environment', 'ip': '172.26.139.181', 'width': 1080, 'height': 1920}
+2026-06-04 13:55:41,901 - fastapi_app - INFO - 观看端已连接，当前观看端数: 1
+2026-06-04 14:00:25,225 - fastapi_app - INFO - WebSocket连接已断开，当前连接数: 0
+2026-06-04 14:01:17,907 - fastapi_app - INFO - WebSocket连接已建立，当前连接数: 1
+2026-06-04 14:01:50,721 - fastapi_app - INFO - 观看端已连接，当前观看端数: 2
+2026-06-04 14:01:51,965 - fastapi_app - WARNING - 手机连接但没有提供UID
+2026-06-04 14:01:51,974 - fastapi_app - INFO - 手机 D56R49 元数据已更新: {'uid': 'D56R49', 'facing': {'isTrusted': True}, 'ip': '172.26.139.181', 'width': 1080, 'height': 1920}
+2026-06-04 14:01:51,974 - fastapi_app - ERROR - 转发数据到观看端失败: 
+2026-06-04 14:02:01,457 - fastapi_app - INFO - 广播消息完成，有效连接数: 1
+2026-06-04 14:02:02,848 - fastapi_app - INFO - 广播消息完成，有效连接数: 1
+2026-06-04 14:02:04,344 - fastapi_app - INFO - 广播消息完成，有效连接数: 1
+2026-06-04 14:02:05,813 - fastapi_app - INFO - 广播消息完成，有效连接数: 1
+2026-06-04 14:02:07,355 - fastapi_app - INFO - 广播消息完成，有效连接数: 1
+2026-06-04 14:02:08,839 - fastapi_app - INFO - 广播消息完成，有效连接数: 1
+2026-06-04 14:02:10,330 - fastapi_app - INFO - 广播消息完成，有效连接数: 1
+2026-06-04 14:02:11,822 - fastapi_app - INFO - 广播消息完成，有效连接数: 1
+2026-06-04 14:02:13,376 - fastapi_app - INFO - 广播消息完成，有效连接数: 1
+2026-06-04 14:02:14,902 - fastapi_app - INFO - 广播消息完成，有效连接数: 1
+2026-06-04 14:02:16,398 - fastapi_app - INFO - 广播消息完成，有效连接数: 1
+2026-06-04 14:07:36,250 - fastapi_app - INFO - WebSocket连接已断开，当前连接数: 0
+2026-06-04 14:07:37,403 - fastapi_app - INFO - WebSocket连接已建立，当前连接数: 1
+2026-06-04 14:07:58,968 - fastapi_app - WARNING - 手机连接但没有提供UID
+2026-06-04 14:07:58,977 - fastapi_app - INFO - 手机 D56R49 元数据已更新: {'uid': 'D56R49', 'facing': {'isTrusted': True}, 'ip': '172.26.139.181', 'width': 1080, 'height': 1920}
+2026-06-04 14:07:58,978 - fastapi_app - ERROR - 转发数据到观看端失败: 
+2026-06-04 14:08:01,072 - fastapi_app - INFO - 观看端已连接，当前观看端数: 1
+2026-06-04 14:08:06,038 - fastapi_app - INFO - 广播消息完成，有效连接数: 1
+2026-06-04 14:08:07,564 - fastapi_app - INFO - 广播消息完成，有效连接数: 1
+2026-06-04 14:08:08,956 - fastapi_app - INFO - 广播消息完成，有效连接数: 1
+2026-06-04 14:08:10,501 - fastapi_app - INFO - 广播消息完成，有效连接数: 1
+2026-06-04 14:08:12,722 - fastapi_app - ERROR - 转发数据到观看端失败: 
+2026-06-04 14:10:54,995 - fastapi_app - INFO - WebSocket连接已断开，当前连接数: 2
+2026-06-04 14:11:00,445 - fastapi_app - INFO - WebSocket连接已建立，当前连接数: 3
+2026-06-04 14:11:10,000 - fastapi_app - INFO - WebSocket连接已断开，当前连接数: 2
+2026-06-04 14:11:12,375 - fastapi_app - INFO - WebSocket连接已建立，当前连接数: 3
+2026-06-04 14:11:16,862 - fastapi_app - INFO - WebSocket连接已断开，当前连接数: 2
+2026-06-04 14:11:17,228 - fastapi_app - INFO - WebSocket连接已建立，当前连接数: 3
+2026-06-04 14:11:19,457 - fastapi_app - INFO - WebSocket连接已断开，当前连接数: 2
+2026-06-04 14:11:19,541 - fastapi_app - INFO - WebSocket连接已建立，当前连接数: 3
+2026-06-04 14:14:29,601 - fastapi_app - INFO - WebSocket连接已断开，当前连接数: 2
+2026-06-04 14:14:29,778 - fastapi_app - INFO - WebSocket连接已断开，当前连接数: 1
+2026-06-04 14:14:30,074 - fastapi_app - INFO - WebSocket连接已建立，当前连接数: 2
+2026-06-04 14:14:30,440 - fastapi_app - INFO - WebSocket连接已建立，当前连接数: 3
+2026-06-04 14:14:59,757 - fastapi_app - INFO - WebSocket连接已断开，当前连接数: 0
+2026-06-04 14:15:02,675 - fastapi_app - INFO - [OK] 柑橘成熟度检测器加载成功
+2026-06-04 14:15:02,794 - fastapi_app - INFO - [OK] 番茄成熟度检测器加载成功
+2026-06-04 14:15:02,814 - fastapi_app - INFO - [OK] 苹果成熟度检测器加载成功
+2026-06-04 14:15:07,861 - fastapi_app - INFO - OpenClaw通知服务配置完成
+2026-06-04 14:15:09,770 - fastapi_app - INFO - WebSocket连接已建立，当前连接数: 1
+2026-06-04 14:16:26,303 - fastapi_app - INFO - WebSocket连接已断开，当前连接数: 0
+2026-06-04 14:16:27,467 - fastapi_app - INFO - WebSocket连接已建立，当前连接数: 1
+2026-06-04 14:16:50,907 - fastapi_app - WARNING - 手机连接但没有提供UID
+2026-06-04 14:16:50,917 - fastapi_app - INFO - 手机 D56R49 元数据已更新: {'uid': 'D56R49', 'facing': {'isTrusted': True}, 'ip': '172.26.139.181', 'width': 1080, 'height': 1920}
+2026-06-04 14:17:08,218 - fastapi_app - INFO - 观看端已连接，当前观看端数: 1
+2026-06-04 14:17:11,173 - fastapi_app - INFO - 广播消息完成，有效连接数: 1
+2026-06-04 14:17:12,616 - fastapi_app - INFO - 广播消息完成，有效连接数: 1
+2026-06-04 14:17:14,088 - fastapi_app - INFO - 广播消息完成，有效连接数: 1
+2026-06-04 14:17:15,578 - fastapi_app - INFO - 广播消息完成，有效连接数: 1
+2026-06-04 14:17:17,061 - fastapi_app - INFO - 广播消息完成，有效连接数: 1
+2026-06-04 14:17:18,589 - fastapi_app - INFO - 广播消息完成，有效连接数: 1
+2026-06-04 14:17:20,065 - fastapi_app - INFO - 广播消息完成，有效连接数: 1
+2026-06-04 14:17:21,590 - fastapi_app - INFO - 广播消息完成，有效连接数: 1
+2026-06-04 14:17:23,077 - fastapi_app - INFO - 广播消息完成，有效连接数: 1
+2026-06-04 14:17:24,670 - fastapi_app - INFO - 广播消息完成，有效连接数: 1
+2026-06-04 14:17:30,344 - fastapi_app - WARNING - 手机连接但没有提供UID
+2026-06-04 14:17:30,357 - fastapi_app - INFO - 手机 D56R49 元数据已更新: {'uid': 'D56R49', 'facing': {'isTrusted': True}, 'ip': '172.26.139.181', 'width': 1080, 'height': 1920}
+2026-06-04 14:17:30,358 - fastapi_app - ERROR - 转发数据到观看端失败: 
+2026-06-04 14:17:42,365 - fastapi_app - WARNING - 手机连接但没有提供UID
+2026-06-04 14:17:42,373 - fastapi_app - INFO - 手机 D56R49 元数据已更新: {'uid': 'D56R49', 'facing': 'environment', 'ip': '172.26.139.181', 'width': 1080, 'height': 1920}
+2026-06-04 14:17:45,562 - fastapi_app - INFO - 观看端已连接，当前观看端数: 1
+2026-06-04 14:18:52,222 - fastapi_app - INFO - WebSocket连接已断开，当前连接数: 2
+2026-06-04 14:18:52,340 - fastapi_app - INFO - WebSocket连接已建立，当前连接数: 3

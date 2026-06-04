@@ -20,6 +20,8 @@ class DetectionItem(BaseModel):
     severity: str
     advice: str = ""
     source: str = "5175"
+    snapshotDataUrl: Optional[str] = None
+    snapshotUrl: Optional[str] = None
 
 
 class DetectionPushRequest(BaseModel):
@@ -84,6 +86,10 @@ async def push_detection(payload: DetectionPushRequest):
                     existing["severity"] = d.severity
                     existing["advice"] = d.advice
                     existing["_ts"] = now
+                if d.snapshotDataUrl:
+                    existing["snapshotDataUrl"] = d.snapshotDataUrl
+                if d.snapshotUrl:
+                    existing["snapshotUrl"] = d.snapshotUrl
                 dup = True
                 break
         if dup:
@@ -100,6 +106,10 @@ async def push_detection(payload: DetectionPushRequest):
             "source": d.source,
             "_ts": now
         }
+        if d.snapshotDataUrl:
+            item["snapshotDataUrl"] = d.snapshotDataUrl
+        if d.snapshotUrl:
+            item["snapshotUrl"] = d.snapshotUrl
         _queue.append(item)
         added += 1
 

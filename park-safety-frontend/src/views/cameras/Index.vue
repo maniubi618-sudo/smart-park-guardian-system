@@ -2261,7 +2261,8 @@ const analyzePhoneCameraFrame = async () => {
         if (confirmedDisease && phoneCameraDiseaseStreak.value >= 2) {
           checkPhoneCameraAlerts(analysisResults)
           // ★ 直推桥接：检测到病害 → 发送到 5174
-          bridgePushDetections(result.predictions, result.crop_type)
+          const snapshotDataUrl = await blobToDataUrl(blob)
+          bridgePushDetections(result.predictions, result.crop_type, snapshotDataUrl)
         }
       }
     } else {
@@ -2355,7 +2356,14 @@ const checkPhoneCameraAlerts = (results) => {
 }
 
 // ★ 直推桥接：检测到病害 → POST 到 8089 内存队列 → 5174 拉取
-const bridgePushDetections = (predictions, cropType) => {
+const blobToDataUrl = (blob) => new Promise((resolve, reject) => {
+  const reader = new FileReader()
+  reader.onload = () => resolve(reader.result)
+  reader.onerror = reject
+  reader.readAsDataURL(blob)
+})
+
+const bridgePushDetections = (predictions, cropType, snapshotDataUrl = null) => {
   const detections = predictions.map(p => {
     const conf = p.confidence || 0.88
     return {
@@ -2364,7 +2372,8 @@ const bridgePushDetections = (predictions, cropType) => {
       confidence: conf,
       severity: conf >= 0.9 ? '严重' : conf >= 0.7 ? '中等' : '轻微',
       advice: `检测到${p.class_name}（${(conf * 100).toFixed(0)}%），请复核。`,
-      source: '5175'
+      source: '5175',
+      snapshotDataUrl
     }
   })
   fetch('/api/v1/bridge/detection', {

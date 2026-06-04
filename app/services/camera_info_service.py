@@ -717,12 +717,14 @@ class CameraInfoService:
         return None
 
     @staticmethod
-    async def _broadcast_analysis_results(results, camera_id=None, source="analyze_frame"):
+    async def _broadcast_analysis_results(results, camera_id=None, source="analyze_frame", snapshot_data_url=None):
         events = []
         for result in results or []:
             if isinstance(result, dict):
                 event = CameraInfoService._parse_detection_result(result)
                 if event:
+                    if snapshot_data_url:
+                        event["snapshotDataUrl"] = snapshot_data_url
                     events.append(event)
 
         if not events:
@@ -737,6 +739,8 @@ class CameraInfoService:
             "results": results,
             "events": events
         }
+        if snapshot_data_url:
+            payload["snapshotDataUrl"] = snapshot_data_url
         await analysis_manager.broadcast(payload)
     
     @staticmethod
@@ -1907,6 +1911,12 @@ class CameraInfoService:
             import base64
             from io import BytesIO
             import numpy as np
+
+            snapshot_data_url = (
+                image_base64
+                if image_base64.startswith('data:image')
+                else f"data:image/jpeg;base64,{image_base64}"
+            )
             
             # 移除data:image/jpeg;base64,前缀
             if image_base64.startswith('data:image'):
@@ -2334,7 +2344,8 @@ class CameraInfoService:
             await CameraInfoService._broadcast_analysis_results(
                 analysis_results,
                 camera_id=camera_id,
-                source=source
+                source=source,
+                snapshot_data_url=snapshot_data_url
             )
 
             # 直接返回原始结果

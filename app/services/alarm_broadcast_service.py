@@ -1,5 +1,7 @@
 #  告警广播服务模块
 import asyncio
+import base64
+import os
 import threading
 
 from app.objects.alarm_case import AlarmCase
@@ -20,6 +22,29 @@ broadcast_thread = threading.Thread(
 )
 broadcast_thread.start()
 
+def _snapshot_data_url_from_local_path(snapshot_url: str):
+    """本地截图路径转 data URL；远端 URL 保持只发 snapshot_url。"""
+    if not snapshot_url:
+        return None
+
+    first_snapshot = snapshot_url.split(",", 1)[0].strip()
+    if not first_snapshot or first_snapshot.startswith(("http://", "https://")):
+        return None
+
+    if not os.path.isabs(first_snapshot):
+        first_snapshot = os.path.abspath(first_snapshot)
+
+    if not os.path.exists(first_snapshot):
+        return None
+
+    try:
+        with open(first_snapshot, "rb") as f:
+            encoded = base64.b64encode(f.read()).decode("ascii")
+        return f"data:image/jpeg;base64,{encoded}"
+    except Exception as e:
+        logger.error(f"读取告警截图生成 data URL 失败: {e}")
+        return None
+
 async def _async_broadcast_alarm(alarm):
     """内部异步广播告警函数（供事件循环调用）"""
     alarm_dict = {
@@ -30,6 +55,9 @@ async def _async_broadcast_alarm(alarm):
         "alarm_time": alarm.alarm_time.isoformat() if alarm.alarm_time else None,
         "snapshot_url": alarm.snapshot_url,
     }
+    snapshot_data_url = _snapshot_data_url_from_local_path(alarm.snapshot_url)
+    if snapshot_data_url:
+        alarm_dict["snapshotDataUrl"] = snapshot_data_url
     await manager.broadcast(alarm_dict)
 
 def sync_broadcast_alarm(alarm):
