@@ -288,12 +288,11 @@
                   <el-option label="全部" value="1" />
                   <el-option label="火警" value="4" />
                   <el-option label="柑橘成熟度" value="7" />
-                  <el-option label="作物病害检测" value="8" />
+                  <el-option label="木薯病害检测" value="8" />
                 </el-select>
               </el-form-item>
-              <!-- 作物类型选择，仅在作物病害检测模式下显示 -->
-              <el-form-item v-if="localAnalysisForm.analysisMode === '8'" label="作物类型">
-                <el-select v-model="localAnalysisForm.cropType" placeholder="请选择作物类型">
+              <el-form-item v-if="localAnalysisForm.analysisMode === '8'" label="识别对象">
+                <el-select v-model="localAnalysisForm.cropType" placeholder="木薯" disabled>
                   <el-option v-for="crop in availableCrops" :key="crop" :label="getCropLabel(crop)" :value="crop" />
                 </el-select>
               </el-form-item>
@@ -429,13 +428,13 @@
                     <el-option label="全部" value="1" />
                     <el-option label="火警" value="4" />
                     <el-option label="柑橘成熟度" value="7" />
-                    <el-option label="作物病害检测" value="8" />
+                    <el-option label="木薯病害检测" value="8" />
                   </el-select>
-                  <!-- 作物类型选择，仅在作物病害检测模式下显示 -->
                   <el-select 
                     v-if="phoneCameraAnalysisMode === '8'"
                     v-model="phoneCameraCropType" 
-                    placeholder="请选择作物类型" 
+                    placeholder="木薯" 
+                    disabled
                     style="width: 150px; margin-right: 10px;"
                   >
                     <el-option v-for="crop in availableCrops" :key="crop" :label="getCropLabel(crop)" :value="crop" />
@@ -560,12 +559,12 @@
             <el-form :model="imageAnalysisForm" style="margin-top: 20px;">
               <el-form-item label="分析模式">
                 <el-select v-model="imageAnalysisForm.analysisMode" placeholder="请选择分析模式">
-                  <el-option label="作物病害检测" value="cropDisease" />
+                  <el-option label="木薯病害检测" value="cropDisease" />
                   <el-option label="柑橘成熟度" value="citrus" />
                 </el-select>
               </el-form-item>
-              <el-form-item v-if="imageAnalysisForm.analysisMode === 'cropDisease'" label="作物类型">
-                <el-select v-model="imageAnalysisForm.cropType" placeholder="请选择作物类型">
+              <el-form-item v-if="imageAnalysisForm.analysisMode === 'cropDisease'" label="识别对象">
+                <el-select v-model="imageAnalysisForm.cropType" placeholder="木薯" disabled>
                   <el-option v-for="crop in availableCrops" :key="crop" :label="getCropLabel(crop)" :value="crop" />
                 </el-select>
               </el-form-item>
@@ -585,7 +584,7 @@
                 style="margin-bottom: 20px;"
               />
               <div v-if="imageAnalysisForm.analysisMode === 'cropDisease' && imageAnalysisResult.crop_type" style="margin-bottom: 15px;">
-                <el-tag type="info">作物类型: {{ getCropLabel(imageAnalysisResult.crop_type) }}</el-tag>
+                <el-tag type="info">识别对象: {{ getCropLabel(imageAnalysisResult.crop_type) }}</el-tag>
               </div>
               <div v-if="imageAnalysisResult.predictions && imageAnalysisResult.predictions.length > 0" class="predictions-list">
                 <h4 style="margin-bottom: 15px;">检测结果:</h4>
@@ -822,7 +821,7 @@ const videoPlayer = ref(null)
 const localAnalysisForm = reactive({
   analysisMode: '1',
   frameInterval: 5,
-  cropType: '' // 作物类型选择，用于作物病害检测
+  cropType: 'cassava'
 })
 const isLocalAnalysisStarted = ref(false)
 const localAnalysisLoading = ref(false)
@@ -880,7 +879,7 @@ const phoneViewerLastFrameBlob = ref(null)
 
 // 手机摄像头分析相关
 const phoneCameraAnalysisMode = ref('1')
-const phoneCameraCropType = ref('') // 作物类型选择，用于作物病害检测
+const phoneCameraCropType = ref('cassava')
 const isPhoneCameraAnalyzing = ref(false)
 const phoneCameraAnalysisResults = ref(null)
 const phoneCameraAnalysisInterval = ref(null)
@@ -900,7 +899,7 @@ const imageUrl = ref('')
 const availableCrops = ref([])
 const imageAnalysisForm = reactive({
   analysisMode: 'cropDisease',
-  cropType: ''
+  cropType: 'cassava'
 })
 const imageAnalysisResult = ref(null)
 const imageAnalysisLoading = ref(false)
@@ -941,7 +940,6 @@ const getAnalysisModeName = (mode) => {
     2: '安全规范',
     3: '区域入侵',
     4: '火警',
-    5: '害虫检测',
     6: '作物长势异常',
     7: '柑橘成熟度'
   }
@@ -1426,10 +1424,6 @@ const checkForAlerts = (results) => {
     else if ((result.label === '火焰检测' || result.label === '烟雾检测') && result.value === '检测到') {
       alerts.push(result.label)
     }
-    // 检查害虫检测告警
-    else if (result.label === '害虫检测' && result.value === '检测到') {
-      alerts.push(result.label)
-    }
     // 检查作物长势异常告警
     else if (result.label === '作物长势异常' && result.value === '检测到') {
       alerts.push(result.label)
@@ -1545,10 +1539,6 @@ const checkLocalVideoAlerts = (results) => {
     else if ((result.label === '火焰检测' || result.label === '烟雾检测') && result.value === '检测到') {
       alerts.push(result.label)
     }
-    // 检查害虫检测告警
-    else if (result.label === '害虫检测' && result.value === '检测到') {
-      alerts.push(result.label)
-    }
     // 检查作物长势异常告警
     else if (result.label === '作物长势异常' && result.value === '检测到') {
       alerts.push(result.label)
@@ -1622,8 +1612,7 @@ const startLocalVideoAnalysis = async () => {
     return
   }
   if (localAnalysisForm.analysisMode === '8' && !localAnalysisForm.cropType) {
-    ElMessage.warning('请先选择作物类型，避免用错误模型识别')
-    return
+    localAnalysisForm.cropType = 'cassava'
   }
 
   localAnalysisLoading.value = true
@@ -1692,7 +1681,7 @@ const startLocalVideoAnalysis = async () => {
         if (localAnalysisForm.analysisMode === '8') {
           // 作物病害检测模式
           reportContent = `<div style="padding: 20px;">
-            <h3 style="margin-bottom: 20px; color: #1890ff; text-align: center; font-size: 18px;">🌱 作物病害检测完成</h3>
+            <h3 style="margin-bottom: 20px; color: #1890ff; text-align: center; font-size: 18px;">🌱 木薯病害检测完成</h3>
             <div style="background-color: #f5f7fa; padding: 20px; border-radius: 8px; margin-bottom: 20px;">
               <div style="display: grid; grid-template-columns: repeat(2, 1fr); gap: 15px;">
                 <div style="padding: 10px; background-color: white; border-radius: 6px; box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);">
@@ -1700,7 +1689,7 @@ const startLocalVideoAnalysis = async () => {
                   <span style="color: #1890ff; font-weight: 500;">${processedFrames.value} / ${totalFrames.value} 帧</span>
                 </div>
                 <div style="padding: 10px; background-color: white; border-radius: 6px; box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);">
-                  <strong style="color: #666;">作物类型：</strong>
+                  <strong style="color: #666;">识别对象：</strong>
                   <span style="color: #1890ff; font-weight: 500;">${getCropLabel(localAnalysisForm.cropType)}</span>
                 </div>
                 <div style="padding: 10px; background-color: white; border-radius: 6px; box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); grid-column: 1 / -1;">
@@ -1715,18 +1704,22 @@ const startLocalVideoAnalysis = async () => {
           </div>`
         } else {
           // 其他模式的报告
-          reportContent = `<div style="padding: 20px;">
-            <h3 style="margin-bottom: 20px; color: #1890ff; text-align: center; font-size: 18px;">视频分析完成</h3>
-            <div style="background-color: #f5f7fa; padding: 20px; border-radius: 8px; margin-bottom: 20px;">
-              <div style="display: grid; grid-template-columns: repeat(2, 1fr); gap: 15px;">
+          const modeLabel = localAnalysisForm.analysisMode === '1' ? '全部' : localAnalysisForm.analysisMode === '2' ? '安全规范' : localAnalysisForm.analysisMode === '3' ? '区域入侵' : '火警'
+          const summaryRows = localAnalysisForm.analysisMode === '1'
+            ? `
                 <div style="padding: 10px; background-color: white; border-radius: 6px; box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);">
-                  <strong style="color: #666;">分析帧数：</strong>
-                  <span style="color: #1890ff; font-weight: 500;">${processedFrames.value} / ${totalFrames.value} 帧</span>
+                  <strong style="color: #666;">火焰检测：</strong>
+                  <span style="color: ${totalAnalysisResults.value.fire > 0 ? '#f56c6c' : '#536f88'}; font-weight: 500;">${totalAnalysisResults.value.fire} 次</span>
                 </div>
                 <div style="padding: 10px; background-color: white; border-radius: 6px; box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);">
-                  <strong style="color: #666;">分析模式：</strong>
-                  <span style="color: #1890ff; font-weight: 500;">${localAnalysisForm.analysisMode === '1' ? '全部' : localAnalysisForm.analysisMode === '2' ? '安全规范' : localAnalysisForm.analysisMode === '3' ? '区域入侵' : '火警'}</span>
+                  <strong style="color: #666;">烟雾检测：</strong>
+                  <span style="color: ${totalAnalysisResults.value.smoke > 0 ? '#f56c6c' : '#536f88'}; font-weight: 500;">${totalAnalysisResults.value.smoke} 次</span>
                 </div>
+                <div style="padding: 10px; background-color: white; border-radius: 6px; box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); grid-column: 1 / -1;">
+                  <strong style="color: #666;">人员检测：</strong>
+                  <span style="color: #1890ff; font-weight: 500;">${totalAnalysisResults.value.person} 人</span>
+                </div>`
+            : `
                 <div style="padding: 10px; background-color: white; border-radius: 6px; box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);">
                   <strong style="color: #666;">未戴安全帽：</strong>
                   <span style="color: ${totalAnalysisResults.value.helmet > 0 ? '#f56c6c' : '#536f88'}; font-weight: 500;">${totalAnalysisResults.value.helmet} 次</span>
@@ -1754,7 +1747,20 @@ const startLocalVideoAnalysis = async () => {
                 <div style="padding: 10px; background-color: white; border-radius: 6px; box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); grid-column: 1 / -1;">
                   <strong style="color: #666;">区域入侵：</strong>
                   <span style="color: ${totalAnalysisResults.value.intrusion > 0 ? '#f56c6c' : '#536f88'}; font-weight: 500;">${totalAnalysisResults.value.intrusion} 次</span>
+                </div>`
+          reportContent = `<div style="padding: 20px;">
+            <h3 style="margin-bottom: 20px; color: #1890ff; text-align: center; font-size: 18px;">视频分析完成</h3>
+            <div style="background-color: #f5f7fa; padding: 20px; border-radius: 8px; margin-bottom: 20px;">
+              <div style="display: grid; grid-template-columns: repeat(2, 1fr); gap: 15px;">
+                <div style="padding: 10px; background-color: white; border-radius: 6px; box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);">
+                  <strong style="color: #666;">分析帧数：</strong>
+                  <span style="color: #1890ff; font-weight: 500;">${processedFrames.value} / ${totalFrames.value} 帧</span>
                 </div>
+                <div style="padding: 10px; background-color: white; border-radius: 6px; box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);">
+                  <strong style="color: #666;">分析模式：</strong>
+                  <span style="color: #1890ff; font-weight: 500;">${modeLabel}</span>
+                </div>
+                ${summaryRows}
               </div>
             </div>
             <div style="text-align: center; color: #999; font-size: 14px;">
@@ -2075,30 +2081,22 @@ const loadCrops = async () => {
   try {
     const result = await cropDiseaseApi.getCrops()
     if (result && result.success) {
-      availableCrops.value = result.crops || []
+      availableCrops.value = result.crops || ['cassava']
     } else {
       // API调用失败时使用默认的作物列表
-      availableCrops.value = ['apple', 'corn', 'cotton', 'grape', 'potato', 'rice', 'strawberry', 'tomato', 'wheat']
+      availableCrops.value = ['cassava']
     }
   } catch (error) {
     console.error('获取作物列表失败:', error)
     // 出错时使用默认的作物列表
-    availableCrops.value = ['apple', 'corn', 'cotton', 'grape', 'potato', 'rice', 'strawberry', 'tomato', 'wheat']
+    availableCrops.value = ['cassava']
   }
 }
 
 // 获取作物类型标签
 const getCropLabel = (crop) => {
   const cropLabels = {
-    'apple': '苹果',
-    'corn': '玉米',
-    'cotton': '棉花',
-    'grape': '葡萄',
-    'potato': '马铃薯',
-    'rice': '水稻',
-    'strawberry': '草莓',
-    'tomato': '番茄',
-    'wheat': '小麦'
+    'cassava': '木薯'
   }
   return cropLabels[crop] || crop
 }
@@ -2122,8 +2120,7 @@ const startImageAnalysis = async () => {
     return
   }
   if (imageAnalysisForm.analysisMode === 'cropDisease' && !imageAnalysisForm.cropType) {
-    ElMessage.warning('请先选择作物类型，避免用错误模型识别')
-    return
+    imageAnalysisForm.cropType = 'cassava'
   }
 
   imageAnalysisLoading.value = true
@@ -2159,7 +2156,7 @@ const handleImageAnalysisDialogClose = () => {
   imageUrl.value = ''
   imageAnalysisResult.value = null
   imageAnalysisForm.analysisMode = 'cropDisease'
-  imageAnalysisForm.cropType = ''
+  imageAnalysisForm.cropType = 'cassava'
 }
 
 // ========== 手机摄像头分析相关方法 ==========
@@ -2171,8 +2168,7 @@ const startPhoneCameraAnalysis = () => {
     return
   }
   if (phoneCameraAnalysisMode.value === '8' && !phoneCameraCropType.value) {
-    ElMessage.warning('请先选择作物类型，避免用错误模型识别')
-    return
+    phoneCameraCropType.value = 'cassava'
   }
   
   isPhoneCameraAnalyzing.value = true
@@ -2322,10 +2318,6 @@ const checkPhoneCameraAlerts = (results) => {
     }
     // 检查火警告警
     if ((result.label === '火焰检测' || result.label === '烟雾检测') && result.value === '检测到') {
-      alerts.push(result.label)
-    }
-    // 检查害虫检测告警
-    else if (result.label === '害虫检测' && result.value === '检测到') {
       alerts.push(result.label)
     }
     // 检查作物长势异常告警

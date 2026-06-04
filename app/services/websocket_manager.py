@@ -37,3 +37,6 @@ class ConnectionManager:
 
 # 创建全局WebSocket管理器
 manager = ConnectionManager()
+
+# 当前帧/手机摄像头实时识别结果广播，不等同于 AlarmDB 入库告警
+analysis_manager = ConnectionManager()

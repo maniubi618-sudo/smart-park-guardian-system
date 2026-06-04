@@ -8,7 +8,7 @@ from app.services.crop_disease_detector import get_crop_disease_detector, CropDi
 
 router = APIRouter(prefix="/crop-disease-detection", tags=["农作物病害检测"])
 
-HEALTHY_LABELS = {"健康", "Healthy", "healthy"}
+HEALTHY_LABELS = {"健康", "Healthy", "healthy", "未知", "Unknown", "unknown"}
 
 
 class DetectionResult(BaseModel):
@@ -52,7 +52,7 @@ async def get_available_crops():
 @router.post("/detect", response_model=DetectionResponse)
 async def detect_disease(
     file: UploadFile = File(...),
-    crop_type: str = Query("rice", description="作物类型: apple, corn, cotton, grape, potato, rice, strawberry, tomato, wheat"),
+    crop_type: str = Query("cassava", description="作物类型: cassava"),
     record_alarm: bool = Query(False, description="是否将本次病害检测结果写入大屏告警")
 ):
     """
@@ -60,18 +60,18 @@ async def detect_disease(
     """
     try:
         # 验证作物类型
+        crop_type = CropDiseaseDetector.normalize_crop(crop_type)
         available_crops = CropDiseaseDetector.get_available_crops()
         if crop_type not in available_crops:
             raise HTTPException(
                 status_code=400,
-                detail=f"不支持的作物类型: {crop_type}。可选: {', '.join(available_crops)}"
+                detail=f"不支持的作物类型: {crop_type}。当前只支持: cassava(木薯)"
             )
 
         # 获取检测器
         detector = get_crop_disease_detector(crop_type=crop_type)
 
-        # 从配置读取最新阈值。这里使用检测器的作物级配置，避免前端把阈值调低后
-        # 仍被固定 0.25 二次过滤导致漏检。
+        # 从配置读取最新阈值。
         try:
             detector.update_from_config()
         except Exception as e:
@@ -136,7 +136,7 @@ async def detect_disease(
                             snapshot_dir = os.path.join(os.path.dirname(os.path.dirname(os.path.dirname(__file__))), 'snapshots')
                             os.makedirs(snapshot_dir, exist_ok=True)
                             # 从检测结果收集病害名称和置信度，写入文件名以便前端解析
-                            # 格式: 0_20260530_175958_apple_叶斑病_0.97_灰霉病_0.85_crop.jpg
+                            # 格式: 0_20260530_175958_木薯花叶病_0.97_crop.jpg
                             disease_parts = []
                             for p in disease_preds:
                                 disease_parts.append(p["class"])
@@ -176,11 +176,19 @@ async def detect_disease(
 
 
 @router.get("/status")
-async def get_status(crop_type: str = Query("rice", description="作物类型")):
+async def get_status(crop_type: str = Query("cassava", description="作物类型")):
     """
     获取检测器状态
     """
     try:
+        crop_type = CropDiseaseDetector.normalize_crop(crop_type)
+        available_crops = CropDiseaseDetector.get_available_crops()
+        if crop_type not in available_crops:
+            raise HTTPException(
+                status_code=400,
+                detail=f"不支持的作物类型: {crop_type}。当前只支持: cassava(木薯)"
+            )
+
         detector = get_crop_disease_detector(crop_type=crop_type)
         try:
             detector.update_from_config()
@@ -188,13 +196,14 @@ async def get_status(crop_type: str = Query("rice", description="作物类型"))
             print(f"Warning: Failed to get config, using current detector confidence: {e}")
         return {
             "crop_type": detector.crop_type,
+            "backend": detector.backend,
+            "model_source": detector.model_source,
             "model_loaded": detector.model is not None,
             "model_path": detector.model_path,
             "confidence_threshold": detector.confidence,
-            "iou_threshold": detector.iou,
-            "tta_enabled": detector.enable_tta,
-            "preprocess_enabled": detector.enable_preprocess,
-            "classes": detector.model.names if detector.model is not None else {}
+            "classes": detector.class_map
         }
+    except HTTPException:
+        raise
     except Exception as e:
         raise HTTPException(status_code=500, detail=f"获取状态失败: {str(e)}")

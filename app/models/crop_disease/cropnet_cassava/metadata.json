@@ -1,0 +1,12 @@
+{
+  "model_source": "https://tfhub.dev/google/cropnet/classifier/cassava_disease_V1/2",
+  "backend": "google_cropnet_cassava",
+  "classes": [
+    "cbb",
+    "cbsd",
+    "cgm",
+    "cmd",
+    "healthy",
+    "unknown"
+  ]
+}

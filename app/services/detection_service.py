@@ -1,7 +1,6 @@
 from pathlib import Path
 from ultralytics import YOLO
 from app.utils.logger import get_logger
-from app.services.pest_detector import PestDetector
 from app.services.citrus_detector import CitrusDetector
 from app.services.tomato_detector import TomatoDetector
 from app.services.apple_detector import AppleRipenessDetector
@@ -17,7 +16,6 @@ class DetectionService:
         "安全规范(未戴安全帽、未穿反光衣)", 
         "区域入侵(人)", 
         "火警(火焰、烟雾)",
-        "害虫检测",
         "作物长势异常",
         "果实成熟度"
     ]
@@ -27,7 +25,6 @@ class DetectionService:
         "安全规范": 0, 
         "区域入侵": 1, 
         "火警": 2,
-        "害虫检测": 3,
         "作物长势异常": 4,
         "果实成熟度": 5
     }
@@ -56,8 +53,6 @@ class DetectionService:
     vest_model_path = project_root / 'app' / 'models' / 'vest_model.pt'
     person_vehicle_model_path = project_root / 'app' / 'models' / 'yolo11s.pt'
     fire_smoke_model_path = project_root / 'app' / 'models' / 'fire_smoke_seg_model.pt'
-    # 害虫检测模型路径
-    pest_detector_model_path = project_root / 'app' / 'models' / 'pest_detector.pt'
     crop_growth_model_path = project_root / 'app' / 'models' / 'crop_growth.pt'
     crop_fruit_model_path = project_root / 'app' / 'models' / 'crop_fruit.pt'
 
@@ -66,8 +61,6 @@ class DetectionService:
     person_vehicle_model = YOLO(person_vehicle_model_path)  # 人体车辆检测模型，这里直接使用COCO数据集上预训练的yolo11s模型即可
     fire_smoke_model = YOLO(fire_smoke_model_path)  # 火焰烟雾检测模型
     
-    # 害虫检测器（使用专用类）
-    pest_detector = None
     citrus_detector = None
     tomato_detector = None
     apple_detector = None
@@ -83,16 +76,6 @@ class DetectionService:
     # 苹果检测模型路径
     apple_model_path = project_root / 'app' / 'models' / 'apple.pt'
     
-    # 初始化害虫检测器
-    try:
-        if pest_detector_model_path.exists():
-            pest_detector = PestDetector(str(pest_detector_model_path))
-            logger.info("[OK] 害虫检测器加载成功")
-        else:
-            logger.warning("[WARN] 害虫检测模型文件不存在，请运行 copy_model.py")
-    except Exception as e:
-        logger.warning(f"[ERROR] 加载害虫检测器失败: {e}")
-
     # 初始化柑橘检测器
     try:
         if citrus_model_path.exists():
@@ -148,7 +131,7 @@ class DetectionService:
             "enableVest": detection_config.get("enableVest", True),
             "enableVehicleIntrusion": detection_config.get("enableVehicleIntrusion", True),
             "enableFire": detection_config.get("enableFire", True),
-            "enablePest": detection_config.get("enablePest", True),
+            "fireThreshold": detection_config.get("fireThreshold", 0.7),
             "enableCropGrowth": detection_config.get("enableCropGrowth", True),
             "enableCitrus": detection_config.get("enableCitrus", True)
         }
@@ -220,54 +203,14 @@ class DetectionService:
                 logger.info("火警检测已关闭")
                 return False, []
                 
-            # 减小推理尺寸，提高速度
-            fire_smoke_result=cls.fire_smoke_model(frame, imgsz=320)[0]
-            fire_or_smoke_detected=len(fire_smoke_result.boxes)>0
+            fire_threshold = float(det_config.get("fireThreshold", 0.7))
+            fire_smoke_result=cls.fire_smoke_model(frame, imgsz=640, conf=fire_threshold)[0]
+            fire_or_smoke_detected = any(float(box.conf[0]) >= fire_threshold for box in fire_smoke_result.boxes)
             annotated_frames=[fire_smoke_result.plot()]
             return fire_or_smoke_detected, annotated_frames
         elif alarm_case_code==3:
-            # 作物病虫害/害虫检测
-            
-            # 检查害虫检测是否启用
-            if not det_config["enablePest"]:
-                logger.info("害虫检测已关闭")
-                return False, []
-                
-            if cls.pest_detector and cls.pest_detector.model is not None:
-                try:
-                    # 使用害虫检测器
-                    # 将 frame 是 OpenCV 图像，需要转换为 bytes
-                    import cv2
-                    import numpy as np
-                    
-                    _, buffer = cv2.imencode('.jpg', frame)
-                    image_bytes = buffer.tobytes()
-                    
-                    # 使用我们的害虫检测器
-                    predictions, annotated_image_base64 = cls.pest_detector.detect_and_annotate(image_bytes)
-                    
-                    pest_detected = len(predictions) > 0
-                    
-                    # 准备标注帧
-                    annotated_frames = []
-                    if pest_detected:
-                        # 将 base64 转回图像用于显示
-                        try:
-                            import base64
-                            img_data = base64.b64decode(annotated_image_base64.split(',')[1])
-                            nparr = np.frombuffer(img_data, np.uint8)
-                            annotated_frame = cv2.imdecode(nparr, cv2.IMREAD_COLOR)
-                            annotated_frames.append(annotated_frame)
-                        except Exception as e:
-                            logger.warning(f"解析标注图像失败: {e}")
-                    
-                    return pest_detected, annotated_frames
-                except Exception as e:
-                    logger.error(f"害虫检测出错: {e}")
-                    return False, []
-            else:
-                logger.warning("害虫检测器未加载，请确保 pest_detector.pt 文件存在")
-                return False, []
+            logger.info("旧 alarm_case_code=3 已下线；病害识别请使用 CropNet 木薯病害接口")
+            return False, []
         elif alarm_case_code==4:
             # 作物长势异常检测
             
@@ -337,5 +280,3 @@ class DetectionService:
         else:
             logger.info("本次帧分析失败: 目标告警场景未知")
             return None, []
-
-

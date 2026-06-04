@@ -209,7 +209,7 @@ export const citrusApi = {
 
 // 农作物病害检测相关
 export const cropDiseaseApi = {
-  detect: (file, cropType = 'rice') => {
+  detect: (file, cropType = 'cassava') => {
     const formData = new FormData()
     formData.append('file', file)
     return api.post(`/v1/crop-disease-detection/detect?crop_type=${cropType}&record_alarm=true`, formData, {
@@ -221,7 +221,7 @@ export const cropDiseaseApi = {
   getCrops: () => {
     return api.get('/v1/crop-disease-detection/crops')
   },
-  getStatus: (cropType = 'rice') => {
+  getStatus: (cropType = 'cassava') => {
     return api.get(`/v1/crop-disease-detection/status?crop_type=${cropType}`)
   }
 }

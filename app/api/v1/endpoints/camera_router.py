@@ -9,6 +9,7 @@ from app.dependencies.db import get_db
 from app.services.camera_info_service import CameraInfoService
 from app.dependencies.security import get_current_active_user, User
 from app.services.phone_camera_manager import phone_camera_manager
+from app.services.websocket_manager import analysis_manager
 from app.utils.logger import get_logger
 
 logger = get_logger()
@@ -56,6 +57,8 @@ from pydantic import BaseModel
 class AnalyzeFrameRequest(BaseModel):
     image: str  # Base64编码的图像
     analysis_mode: str  # 分析模式
+    camera_id: Optional[int] = None  # 可选：用于实时广播标记来源
+    source: Optional[str] = None  # 可选：用于实时广播标记来源
 
 # 1. GET /api/v1/camera_infos/status_report：获取摄像头状态统计
 @router.get("/status_report", response_model=Result[CameraStatusReport], summary="获取摄像头状态统计")
@@ -79,7 +82,7 @@ async def get_camera_status_report(
 @router.get("/search", response_model=Result[CameraInfoPageResponse], summary="根据条件获取摄像头信息（支持分页）", status_code=status.HTTP_200_OK)
 async def search_camera_infos(
         park_area_id: Annotated[Optional[int], Query(description="园区区域ID")] = None,
-        analysis_mode: Annotated[Optional[int], Query(description="分析模式: 0-无，1-全部(安全规范+区域入侵+火警)，2-安全规范，3-区域入侵，4-火警")] = None,
+        analysis_mode: Annotated[Optional[int], Query(description="分析模式: 0-无，1-全部(人数+火焰+烟雾)，2-安全规范，3-区域入侵，4-火警")] = None,
         camera_status: Annotated[Optional[int], Query(description="摄像头状态: 0-离线，1-在线(未开启安防检测)，2-在线(安防检测中)")] = None,
         skip: Annotated[int, Query(description="跳过的记录数")] = 0,
         limit: Annotated[int, Query(description="限制返回的记录数")] = 10,
@@ -329,8 +332,28 @@ async def analyze_frame(
     Returns:
         dict: 分析结果
     """
-    result = await CameraInfoService.analyze_single_frame(request.image, request.analysis_mode, db)
+    result = await CameraInfoService.analyze_single_frame(
+        request.image,
+        request.analysis_mode,
+        db,
+        camera_id=request.camera_id,
+        source=request.source or "analyze_frame"
+    )
     return result
+
+
+@router.websocket("/analysis_alerts/ws")
+async def websocket_analysis_alerts(websocket: WebSocket):
+    """
+    当前帧/手机摄像头实时识别结果广播。
+    注意：这里只广播 analyze_frame/分析预览结果，不代表 AlarmDB 已入库。
+    """
+    await analysis_manager.connect(websocket)
+    try:
+        while True:
+            await websocket.receive_text()
+    except WebSocketDisconnect:
+        analysis_manager.disconnect(websocket)
 
 
 # ========== 手机摄像头相关路由 ==========

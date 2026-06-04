@@ -15,7 +15,6 @@ sys.path.insert(0, os.path.dirname(os.path.dirname(os.path.dirname(os.path.dirna
 
 from app.services.config_manager import get_config_manager
 from app.services.citrus_detector import get_citrus_detector
-from app.services.pest_detector import get_pest_detector
 
 router = APIRouter(prefix="/config", tags=["配置管理"])
 
@@ -73,12 +72,6 @@ async def update_config(config: ConfigUpdate):
             except:
                 pass
                 
-            try:
-                pest_detector = get_pest_detector()
-                pest_detector.update_from_config()
-            except:
-                pass
-
             try:
                 from app.services.crop_disease_detector import update_crop_disease_detectors_from_config
                 update_crop_disease_detectors_from_config()

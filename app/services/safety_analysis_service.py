@@ -30,7 +30,7 @@ class SafetyAnalysisService:
 
     # 分析模式编码对应描述
     analysis_mode_descs = {
-        1: "全部(安全规范+区域入侵+火警)",
+        1: "全部(人数+火焰+烟雾)",
         2: "安全规范(安全帽、反光衣穿戴检测)",
         3: "区域入侵(人体、车辆检测)",
         4: "火警(火焰、烟雾检测)"
@@ -74,12 +74,17 @@ class SafetyAnalysisService:
                 vehicle_num = 0
                 
                 # 根据分析模式进行检测
-                if analysis_mode in [1, 2]:
+                if analysis_mode == 2:
                     # 检测安全规范（未戴安全帽、未穿反光衣）
                     safety_detected, _ = DetectionService.detect_alarm_case(frame, 0)
                     alarm_cases['安全规范'] = safety_detected
                 
-                if analysis_mode in [1, 3]:
+                if analysis_mode == 1:
+                    person_result = DetectionService.person_vehicle_model(frame, classes=[0], imgsz=640)[0]
+                    person_num = len(person_result.boxes)
+                    alarm_cases['区域入侵'] = person_num > 0
+
+                if analysis_mode == 3:
                     # 检测区域入侵（人员、车辆）
                     intrusion_detected, _ = DetectionService.detect_alarm_case(frame, 1)
                     alarm_cases['区域入侵'] = intrusion_detected
@@ -110,12 +115,12 @@ class SafetyAnalysisService:
                     # 处理下一个探测结果
                     continue
                 else:
-                    # 如果关注3个告警场景，则需要分别跟踪
+                    # mode=1 只跟踪人数和火警，不跟踪安全规范/车辆。
                     for alarm_case_desc, alarm_case_detected in alarm_cases.items():
-                        alarm_type = -1
                         if alarm_case_desc == "安全规范":
-                            alarm_type = 0
-                        elif alarm_case_desc == "区域入侵":
+                            continue
+                        alarm_type = -1
+                        if alarm_case_desc == "区域入侵":
                             alarm_type = 1
                         elif alarm_case_desc == "火警":
                             alarm_type = 2
@@ -177,15 +182,18 @@ class SafetyAnalysisService:
                                 state_result = cls.alarm_tracker.update_state(alarm_case_source, alarm_case_detected)
                                 # 处理本次状态分析结果
                                 cls.handle_state_result_v2(state_result, camera_id, alarm_type, alarm_case_source, annotated_frames, db)
-                        elif analysis_mode==1: # 分析3种告警场景
-                            for analysis_mode_temp in range(2,5):
-                                alarm_type = analysis_mode_temp - 2
-                                alarm_case_detected, annotated_frames = DetectionService.detect_alarm_case(frame, alarm_type)
-                                if alarm_case_detected is not None:
-                                    alarm_case_source = f"{camera_id}_{alarm_type}"
-                                    state_result = cls.alarm_tracker.update_state(alarm_case_source, alarm_case_detected)
-                                    # 处理本次状态分析结果
-                                    cls.handle_state_result_v2(state_result, camera_id, alarm_type, alarm_case_source, annotated_frames, db)
+                        elif analysis_mode==1: # 全部：只分析人数、火焰、烟雾
+                            person_result = DetectionService.person_vehicle_model(frame, classes=[0], imgsz=640)[0]
+                            person_detected = len(person_result.boxes) > 0
+                            person_source = f"{camera_id}_1"
+                            person_state = cls.alarm_tracker.update_state(person_source, person_detected)
+                            cls.handle_state_result_v2(person_state, camera_id, 1, person_source, [person_result.plot()], db)
+
+                            fire_detected, fire_frames = DetectionService.detect_alarm_case(frame, 2)
+                            if fire_detected is not None:
+                                fire_source = f"{camera_id}_2"
+                                fire_state = cls.alarm_tracker.update_state(fire_source, fire_detected)
+                                cls.handle_state_result_v2(fire_state, camera_id, 2, fire_source, fire_frames, db)
                 else:
                     logger.info(f"{thread_name} 本次获取视频帧（监控帧）失败")
                     read_failure_count += 1

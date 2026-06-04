@@ -139,7 +139,7 @@
             <el-card class="setting-section" shadow="never" style="margin-top: 20px;">
               <template #header>
                 <div class="section-header">
-                  <span class="section-title">作物病害检测</span>
+                  <span class="section-title">木薯病害检测</span>
                 </div>
               </template>
               <el-form :model="agricultureSettings" label-width="140px">
@@ -151,65 +151,7 @@
                     :step="0.01"
                     show-input
                   />
-                  <span class="form-help">通用兜底阈值。番茄、苹果、水稻优先使用下方专用阈值。</span>
-                </el-form-item>
-
-                <el-form-item v-if="agricultureSettings.cropDiseaseConfidenceByCrop" label="番茄阈值">
-                  <el-slider
-                    v-model="agricultureSettings.cropDiseaseConfidenceByCrop.tomato"
-                    :min="0.05"
-                    :max="0.8"
-                    :step="0.01"
-                    show-input
-                  />
-                </el-form-item>
-
-                <el-form-item v-if="agricultureSettings.cropDiseaseConfidenceByCrop" label="苹果阈值">
-                  <el-slider
-                    v-model="agricultureSettings.cropDiseaseConfidenceByCrop.apple"
-                    :min="0.05"
-                    :max="0.8"
-                    :step="0.01"
-                    show-input
-                  />
-                </el-form-item>
-
-                <el-form-item v-if="agricultureSettings.cropDiseaseConfidenceByCrop" label="水稻阈值">
-                  <el-slider
-                    v-model="agricultureSettings.cropDiseaseConfidenceByCrop.rice"
-                    :min="0.05"
-                    :max="0.8"
-                    :step="0.01"
-                    show-input
-                  />
-                  <span class="form-help">值越低检出越多，可能误报；水稻模型分数偏低，建议 0.05。</span>
-                </el-form-item>
-                
-                <el-form-item label="IOU阈值">
-                  <el-slider
-                    v-model="agricultureSettings.cropDiseaseIouThreshold"
-                    :min="0.1"
-                    :max="0.8"
-                    :step="0.01"
-                    show-input
-                  />
-                  <span class="form-help">值越高越保留重叠框，减少小病斑被合并。建议值：0.50-0.55</span>
-                </el-form-item>
-
-                <el-form-item label="空画面过滤">
-                  <el-switch v-model="agricultureSettings.cropDiseaseRequireCropContent" />
-                  <span class="form-help">开启后，黑屏、空画面、无明显作物区域的帧不会触发病害提示。</span>
-                </el-form-item>
-
-                <el-form-item label="作物占比下限">
-                  <el-slider
-                    v-model="agricultureSettings.cropDiseaseMinCropContentRatio"
-                    :min="0.005"
-                    :max="0.08"
-                    :step="0.001"
-                    show-input
-                  />
-                  <span class="form-help">误报多就调高，漏检弱画面就调低。建议值：0.015</span>
+                  <span class="form-help">Google CropNet 木薯病害分类阈值。健康和未知不会触发告警。</span>
                 </el-form-item>
               </el-form>
             </el-card>
@@ -321,29 +263,9 @@ const detectionSettings = ref({
 const agricultureSettings = ref({
   citrusConfidence: 0.25,
   citrusIouThreshold: 0.45,
-  cropDiseaseConfidence: 0.25,
-  cropDiseaseIouThreshold: 0.55,
-  cropDiseaseEnableTTA: true,
-  cropDiseaseEnablePreprocess: false,
-  cropDiseaseConfidenceByCrop: {
-    tomato: 0.45,
-    apple: 0.20,
-    rice: 0.05
-  },
-  cropDiseaseIouByCrop: {
-    tomato: 0.55,
-    apple: 0.50,
-    rice: 0.55
-  },
-  cropDiseaseRequireCropContent: true,
-  cropDiseaseMinCropContentRatio: 0.015,
-  cropDiseaseMinCropContentRatioByCrop: {
-    tomato: 0.30,
-    rice: 0.12
-  },
-  cropDiseaseMinGreenRatioByCrop: {},
-  cropDiseaseMinBoxAreaRatio: 0.003,
-  cropDiseaseHealthySuppressionMargin: 0.0
+  cropDiseaseConfidence: 0.50,
+  cropDiseaseBackend: 'google_cropnet_cassava',
+  cropDiseaseModelSource: 'https://tfhub.dev/google/cropnet/classifier/cassava_disease_V1/2'
 })
 
 // 系统配置
@@ -434,29 +356,9 @@ const resetToDefault = () => {
   agricultureSettings.value = {
     citrusConfidence: 0.25,
     citrusIouThreshold: 0.45,
-    cropDiseaseConfidence: 0.25,
-    cropDiseaseIouThreshold: 0.55,
-    cropDiseaseEnableTTA: true,
-    cropDiseaseEnablePreprocess: false,
-    cropDiseaseConfidenceByCrop: {
-      tomato: 0.45,
-      apple: 0.20,
-      rice: 0.05
-    },
-    cropDiseaseIouByCrop: {
-      tomato: 0.55,
-      apple: 0.50,
-      rice: 0.55
-    },
-    cropDiseaseRequireCropContent: true,
-    cropDiseaseMinCropContentRatio: 0.015,
-    cropDiseaseMinCropContentRatioByCrop: {
-      tomato: 0.30,
-      rice: 0.12
-    },
-    cropDiseaseMinGreenRatioByCrop: {},
-    cropDiseaseMinBoxAreaRatio: 0.003,
-    cropDiseaseHealthySuppressionMargin: 0.0
+    cropDiseaseConfidence: 0.50,
+    cropDiseaseBackend: 'google_cropnet_cassava',
+    cropDiseaseModelSource: 'https://tfhub.dev/google/cropnet/classifier/cassava_disease_V1/2'
   }
   message.value = '已重置为默认值，点击保存生效'
   messageType.value = 'info'

@@ -34,6 +34,7 @@ from app.utils.oss_utils import get_now
 from app.DB_models.alarm_db import AlarmDB
 from app.crud.alarm_crud import create_alarm
 from app.services.alarm_broadcast_service import sync_broadcast_alarm
+from app.services.websocket_manager import analysis_manager
 from app.utils.logger import get_logger
 
 logger = get_logger()
@@ -619,6 +620,8 @@ class CameraInfoService:
     _tomato_trackers = {}
     _citrus_trackers = {}
     _apple_trackers = {}
+    _fire_smoke_confirmations = {}
+    _FIRE_SMOKE_CONFIRMATION_REQUIRED = 3
     
     @staticmethod
     def _get_tomato_tracker(session_id: str = "default") -> TomatoTracker:
@@ -640,6 +643,101 @@ class CameraInfoService:
         if session_id not in CameraInfoService._apple_trackers:
             CameraInfoService._apple_trackers[session_id] = AppleTracker()
         return CameraInfoService._apple_trackers[session_id]
+
+    @staticmethod
+    def _get_fire_threshold() -> float:
+        """读取火焰/烟雾检测阈值，默认使用配置中的 0.7。"""
+        try:
+            detection_config = DetectionService.get_detection_config()
+            return float(detection_config.get("fireThreshold", 0.7))
+        except Exception:
+            return 0.7
+
+    @staticmethod
+    def _confirm_fire_smoke_detection(session_id: str, fire_detected: bool, smoke_detected: bool):
+        """火焰/烟雾三帧确认，避免单帧误报直接展示或写库。"""
+        state = CameraInfoService._fire_smoke_confirmations.setdefault(session_id, {"fire": 0, "smoke": 0})
+        state["fire"] = state["fire"] + 1 if fire_detected else 0
+        state["smoke"] = state["smoke"] + 1 if smoke_detected else 0
+
+        confirmed_fire = state["fire"] >= CameraInfoService._FIRE_SMOKE_CONFIRMATION_REQUIRED
+        confirmed_smoke = state["smoke"] >= CameraInfoService._FIRE_SMOKE_CONFIRMATION_REQUIRED
+
+        if fire_detected and not confirmed_fire:
+            logger.info(
+                f"火焰检测等待三帧确认: session={session_id}, "
+                f"{state['fire']}/{CameraInfoService._FIRE_SMOKE_CONFIRMATION_REQUIRED}"
+            )
+        if smoke_detected and not confirmed_smoke:
+            logger.info(
+                f"烟雾检测等待三帧确认: session={session_id}, "
+                f"{state['smoke']}/{CameraInfoService._FIRE_SMOKE_CONFIRMATION_REQUIRED}"
+            )
+
+        return confirmed_fire, confirmed_smoke
+
+    @staticmethod
+    def _parse_detection_result(result: dict):
+        label = str(result.get("label") or "")
+        value = str(result.get("value") or "")
+        if "未检测到" in value or "未发现" in value or value.startswith("0"):
+            return None
+
+        if label == "人员检测":
+            try:
+                count = int("".join(ch for ch in value if ch.isdigit()) or "0")
+            except ValueError:
+                count = 0
+            if count <= 0:
+                return None
+            return {
+                "alarm_type": 1,
+                "event_type": "person",
+                "label": label,
+                "value": value,
+                "count": count
+            }
+
+        if label in ("火焰检测", "烟雾检测") and value == "检测到":
+            return {
+                "alarm_type": 2,
+                "event_type": "flame" if label == "火焰检测" else "smoke",
+                "label": label,
+                "value": value
+            }
+
+        if label in ("未戴安全帽", "未穿反光衣", "区域入侵") and value == "检测到":
+            return {
+                "alarm_type": 0 if label != "区域入侵" else 1,
+                "event_type": "safety" if label != "区域入侵" else "intrusion",
+                "label": label,
+                "value": value
+            }
+
+        return None
+
+    @staticmethod
+    async def _broadcast_analysis_results(results, camera_id=None, source="analyze_frame"):
+        events = []
+        for result in results or []:
+            if isinstance(result, dict):
+                event = CameraInfoService._parse_detection_result(result)
+                if event:
+                    events.append(event)
+
+        if not events:
+            return
+
+        payload = {
+            "event": "analysis_detection",
+            "source": source,
+            "camera_id": camera_id,
+            "alarm_time": datetime.now(pytz.timezone('Asia/Shanghai')).isoformat(),
+            "is_persisted": False,
+            "results": results,
+            "events": events
+        }
+        await analysis_manager.broadcast(payload)
     
     @staticmethod
     def _reset_tomato_tracker(session_id: str = "default"):
@@ -1303,7 +1401,6 @@ class CameraInfoService:
                     person_count = 0
                     vehicle_count = 0
                     intrusion_detected = False
-                    pest_detected = False
                     growth_abnormal_detected = False
                     citrus_detected = False
                     citrus_predictions = []
@@ -1319,36 +1416,32 @@ class CameraInfoService:
                     tasks = []
                     task_names = []
                     
-                    # 根据分析模式添加对应的检测任务
-                    if mode in [1, 2]:
+                    # mode=1 只保留人数、火焰、烟雾；其他模块仅在单独模式下运行。
+                    if mode == 2:
                         tasks.append(asyncio.to_thread(lambda: DetectionService.helmet_model(frame_cv, imgsz=320)[0]))
                         task_names.append('helmet')
                         tasks.append(asyncio.to_thread(lambda: DetectionService.vest_model(frame_cv, imgsz=320)[0]))
                         task_names.append('vest')
                     
                     if mode in [1, 4]:
-                        tasks.append(asyncio.to_thread(lambda: DetectionService.fire_smoke_model(frame_cv, imgsz=960, conf=0.2)[0]))
+                        fire_threshold = CameraInfoService._get_fire_threshold()
+                        tasks.append(asyncio.to_thread(lambda threshold=fire_threshold: DetectionService.fire_smoke_model(frame_cv, imgsz=960, conf=threshold)[0]))
                         task_names.append('fire_smoke')
                     
-                    if mode in [1, 3]:
+                    if mode == 1:
+                        tasks.append(asyncio.to_thread(lambda: DetectionService.person_vehicle_model(frame_cv, classes=[0], imgsz=960)[0]))
+                        task_names.append('person')
+
+                    if mode == 3:
                         tasks.append(asyncio.to_thread(lambda: DetectionService.person_vehicle_model(frame_cv, classes=[0,1,2,3,4,5,6,7], imgsz=960)[0]))
                         task_names.append('person_vehicle')
                     
-                    if mode in [1, 5]:
-                        if DetectionService.pest_detector and DetectionService.pest_detector.model is not None:
-                            def detect_pest_task():
-                                _, buffer = cv2.imencode('.jpg', frame_cv)
-                                image_bytes = buffer.tobytes()
-                                return DetectionService.pest_detector.detect_and_annotate(image_bytes)
-                            tasks.append(asyncio.to_thread(detect_pest_task))
-                            task_names.append('pest')
-                    
-                    if mode in [1, 6]:
+                    if mode == 6:
                         if DetectionService.crop_growth_model:
                             tasks.append(asyncio.to_thread(lambda: DetectionService.crop_growth_model(frame_cv, imgsz=640)[0]))
                             task_names.append('growth')
                     
-                    if mode in [1, 7]:
+                    if mode == 7:
                         if DetectionService.citrus_detector and DetectionService.citrus_detector.model is not None:
                             def detect_citrus_task():
                                 _, buffer = cv2.imencode('.jpg', frame_cv)
@@ -1357,7 +1450,7 @@ class CameraInfoService:
                             tasks.append(asyncio.to_thread(detect_citrus_task))
                             task_names.append('citrus')
 
-                    if mode in [1, 9]:
+                    if mode == 9:
                         if DetectionService.tomato_detector and DetectionService.tomato_detector.model is not None:
                             def detect_tomato_task():
                                 _, buffer = cv2.imencode('.jpg', frame_cv)
@@ -1366,7 +1459,7 @@ class CameraInfoService:
                             tasks.append(asyncio.to_thread(detect_tomato_task))
                             task_names.append('tomato')
 
-                    if mode in [1, 10]:
+                    if mode == 10:
                         if DetectionService.apple_detector and DetectionService.apple_detector.model is not None:
                             def detect_apple_task():
                                 _, buffer = cv2.imencode('.jpg', frame_cv)
@@ -1401,7 +1494,7 @@ class CameraInfoService:
                                             vest_detected = True
                                             break
                                 elif name == 'fire_smoke':
-                                    confidence_threshold = 0.2
+                                    confidence_threshold = CameraInfoService._get_fire_threshold()
                                     for box in result.boxes:
                                         class_id = int(box.cls[0])
                                         confidence = float(box.conf[0])
@@ -1410,6 +1503,13 @@ class CameraInfoService:
                                                 fire_detected = True
                                             elif class_id == 1:
                                                 smoke_detected = True
+                                elif name == 'person':
+                                    confidence_threshold = 0.3
+                                    for box in result.boxes:
+                                        class_id = int(box.cls[0])
+                                        confidence = float(box.conf[0])
+                                        if class_id == 0 and confidence >= confidence_threshold:
+                                            person_count += 1
                                 elif name == 'person_vehicle':
                                     confidence_threshold = 0.3
                                     for box in result.boxes:
@@ -1420,9 +1520,6 @@ class CameraInfoService:
                                                 person_count += 1
                                             elif class_id in [1, 2, 3, 4, 5, 6, 7]:
                                                 vehicle_count += 1
-                                elif name == 'pest':
-                                    predictions, _ = result
-                                    pest_detected = len(predictions) > 0
                                 elif name == 'growth':
                                     if hasattr(result, 'boxes'):
                                         growth_abnormal_detected = len(result.boxes) > 0
@@ -1444,8 +1541,14 @@ class CameraInfoService:
                     except Exception as e:
                         logger.error(f"检测任务执行失败: {str(e)}")
                     
-                    # 检测区域入侵（人员或车辆）
-                    intrusion_detected = person_count > 0 or vehicle_count > 0
+                    # 区域入侵仅属于模式3；mode=1 只展示人数，不展示车辆/入侵。
+                    intrusion_detected = mode == 3 and (person_count > 0 or vehicle_count > 0)
+                    if mode in [1, 4]:
+                        fire_detected, smoke_detected = CameraInfoService._confirm_fire_smoke_detection(
+                            f"stream_{camera_id}",
+                            fire_detected,
+                            smoke_detected
+                        )
                     
                     # 生成分析结果
                     analysis_results = []
@@ -1454,7 +1557,7 @@ class CameraInfoService:
                     detection_config = DetectionService.get_detection_config()
                     
                     # 根据分析模式添加对应的检测结果
-                    if mode in [1, 2]:
+                    if mode == 2:
                         if detection_config.get('enableHelmet', True) or detection_config.get('enableVest', True):
                             if detection_config.get('enableHelmet', True):
                                 analysis_results.append({"label": "未戴安全帽", "value": "检测到" if helmet_detected else "未检测到"})
@@ -1467,7 +1570,10 @@ class CameraInfoService:
                             {"label": "烟雾检测", "value": "检测到" if smoke_detected else "未检测到"}
                         ])
                     
-                    if mode in [1, 3]:
+                    if mode == 1:
+                        analysis_results.append({"label": "人员检测", "value": f"{person_count}人"})
+
+                    if mode == 3:
                         if detection_config.get('enableVehicleIntrusion', True):
                             analysis_results.extend([
                                 {"label": "人员检测", "value": f"{person_count}人"},
@@ -1475,17 +1581,12 @@ class CameraInfoService:
                                 {"label": "区域入侵", "value": "检测到" if intrusion_detected else "未检测到"}
                             ])
                     
-                    if mode in [1, 5]:
-                        analysis_results.append({
-                            "label": "害虫检测", "value": "检测到" if pest_detected else "未检测到"
-                        })
-                    
-                    if mode in [1, 6]:
+                    if mode == 6:
                         analysis_results.append({
                             "label": "作物长势异常", "value": "检测到" if growth_abnormal_detected else "未检测到"
                         })
                     
-                    if mode in [1, 7]:
+                    if mode == 7:
                         # 首先显示检测状态：有没有检测到橘子
                         if citrus_detected and len(citrus_predictions) > 0:
                             analysis_results.append({
@@ -1540,7 +1641,7 @@ class CameraInfoService:
                                 "value": "❌未检测到橘子"
                             })
 
-                    if mode in [1, 9]:
+                    if mode == 9:
                         # 首先显示检测状态：有没有检测到番茄
                         if tomato_detected and len(tomato_predictions) > 0:
                             analysis_results.append({
@@ -1595,7 +1696,7 @@ class CameraInfoService:
                                 "value": "❌ 未检测到番茄"
                             })
 
-                    if mode in [1, 10]:
+                    if mode == 10:
                         # 首先显示检测状态：有没有检测到苹果
                         if apple_detected and len(apple_predictions) > 0:
                             analysis_results.append({
@@ -1666,6 +1767,11 @@ class CameraInfoService:
 
                     # 保存分析结果，用于未分析的帧
                     last_analysis_results = analysis_results
+                    await CameraInfoService._broadcast_analysis_results(
+                        analysis_results,
+                        camera_id=camera_id,
+                        source="camera_analysis_ws"
+                    )
                     
                     # 检测告警情况并创建告警记录
                     # 获取检测配置
@@ -1673,10 +1779,11 @@ class CameraInfoService:
                     
                     # 检查是否有已启用的检测结果
                     has_enabled_detection = (
-                        (detection_config.get('enableFire', True) and (fire_detected or smoke_detected)) or 
-                        (detection_config.get('enableHelmet', True) and helmet_detected) or 
-                        (detection_config.get('enableVest', True) and vest_detected) or 
-                        (detection_config.get('enableVehicleIntrusion', True) and (intrusion_detected or person_count > 0 or vehicle_count > 0))
+                        (detection_config.get('enableFire', True) and (fire_detected or smoke_detected)) or
+                        (mode == 1 and person_count > 0) or
+                        (mode == 2 and detection_config.get('enableHelmet', True) and helmet_detected) or
+                        (mode == 2 and detection_config.get('enableVest', True) and vest_detected) or
+                        (mode == 3 and detection_config.get('enableVehicleIntrusion', True) and intrusion_detected)
                     )
                     
                     if write_to_database and has_enabled_detection:
@@ -1699,9 +1806,9 @@ class CameraInfoService:
                                 alarm_type = 0  # 默认为安全规范
                                 if detection_config.get('enableFire', True) and (fire_detected or smoke_detected):
                                     alarm_type = 2  # 火警
-                                elif detection_config.get('enableVehicleIntrusion', True) and (person_count > 0 or vehicle_count > 0):
+                                elif (mode == 1 and person_count > 0) or (mode == 3 and detection_config.get('enableVehicleIntrusion', True) and intrusion_detected):
                                     alarm_type = 1  # 区域入侵
-                                elif (detection_config.get('enableHelmet', True) and helmet_detected) or (detection_config.get('enableVest', True) and vest_detected):
+                                elif mode == 2 and ((detection_config.get('enableHelmet', True) and helmet_detected) or (detection_config.get('enableVest', True) and vest_detected)):
                                     alarm_type = 0  # 安全规范
 
                                 # 创建告警记录（无论是否有截图都创建）
@@ -1723,7 +1830,7 @@ class CameraInfoService:
                 # 确保 analysis_results 有值
                 if not analysis_results:
                     analysis_results = []
-                    if mode in [1, 2]:
+                    if mode == 2:
                         analysis_results.extend([
                             {"label": "未戴安全帽", "value": "未检测到"},
                             {"label": "未穿反光衣", "value": "未检测到"}
@@ -1733,21 +1840,19 @@ class CameraInfoService:
                             {"label": "火焰检测", "value": "未检测到"},
                             {"label": "烟雾检测", "value": "未检测到"}
                         ])
-                    if mode in [1, 3]:
+                    if mode == 1:
+                        analysis_results.append({"label": "人员检测", "value": "0人"})
+                    if mode == 3:
                         analysis_results.extend([
                             {"label": "人员检测", "value": "0人"},
                             {"label": "车辆检测", "value": "0辆"},
                             {"label": "区域入侵", "value": "未检测到"}
                         ])
-                    if mode in [1, 5]:
-                        analysis_results.append({
-                            "label": "害虫检测", "value": "未检测到"
-                        })
-                    if mode in [1, 6]:
+                    if mode == 6:
                         analysis_results.append({
                             "label": "作物长势异常", "value": "未检测到"
                         })
-                    if mode in [1, 7]:
+                    if mode == 7:
                         analysis_results.append({
                             "label": "柑橘检测状态",
                             "value": "[ERROR] 未检测到橘子"
@@ -1784,7 +1889,7 @@ class CameraInfoService:
                 cap.release()
 
     @staticmethod
-    async def analyze_single_frame(image_base64: str, analysis_mode: str, db: Session):
+    async def analyze_single_frame(image_base64: str, analysis_mode: str, db: Session, camera_id: int = None, source: str = "analyze_frame"):
         """
         分析单个视频帧，用于本地视频分析功能
         
@@ -1823,7 +1928,6 @@ class CameraInfoService:
             person_count = 0
             vehicle_count = 0
             intrusion_detected = False
-            pest_detected = False
             growth_abnormal_detected = False
             citrus_detected = False
             citrus_predictions = []
@@ -1835,10 +1939,10 @@ class CameraInfoService:
             # 转换分析模式为整数
             mode = int(analysis_mode) if analysis_mode else 1
             
-            # 模式1 = 全部，模式2=安全规范，模式3=区域入侵，模式4=火警，模式5=害虫检测，模式6=作物长势异常，模式7=果实成熟度
+            # 模式1 = 全部（仅人数、火焰、烟雾），模式2=安全规范，模式3=区域入侵，模式4=火警，模式6=作物长势异常，模式7=果实成熟度
             
             # 检测安全帽（未戴安全帽）- 在线程中运行避免阻塞
-            if mode in [1, 2]:
+            if mode == 2:
                 try:
                     def detect_helmet():
                         result = DetectionService.helmet_model(frame_cv, imgsz=640)[0]
@@ -1855,7 +1959,7 @@ class CameraInfoService:
                     logger.error(f"安全帽检测失败: {str(e)}")
             
             # 检测反光衣（未穿反光衣）- 在线程中运行避免阻塞
-            if mode in [1, 2]:
+            if mode == 2:
                 try:
                     def detect_vest():
                         result = DetectionService.vest_model(frame_cv, imgsz=640)[0]
@@ -1875,15 +1979,14 @@ class CameraInfoService:
             if mode in [1, 4]:
                 try:
                     def detect_fire_smoke():
-                        # 增加推理尺寸并设置较低的置信度阈值，提高火灾检测灵敏度
-                        result = DetectionService.fire_smoke_model(frame_cv, imgsz=960, conf=0.2)[0]  # 增加推理尺寸，降低置信度阈值
+                        fire_threshold = CameraInfoService._get_fire_threshold()
+                        result = DetectionService.fire_smoke_model(frame_cv, imgsz=960, conf=fire_threshold)[0]
                         fire_detected = False
                         smoke_detected = False
-                        confidence_threshold = 0.2  # 降低置信度阈值以提高灵敏度
                         for box in result.boxes:
                             class_id = int(box.cls[0])
                             confidence = float(box.conf[0])
-                            if confidence >= confidence_threshold:
+                            if confidence >= fire_threshold:
                                 if class_id == 0:
                                     fire_detected = True
                                 elif class_id == 1:
@@ -1898,7 +2001,8 @@ class CameraInfoService:
                 try:
                     def detect_person_vehicle():
                         # 增加推理尺寸并降低置信度阈值，提高人员检测的准确性
-                        result = DetectionService.person_vehicle_model(frame_cv, classes=[0,1,2,3,4,5,6,7], imgsz=960)[0]  # 增加推理尺寸
+                        classes = [0] if mode == 1 else [0,1,2,3,4,5,6,7]
+                        result = DetectionService.person_vehicle_model(frame_cv, classes=classes, imgsz=960)[0]  # 增加推理尺寸
                         person_count = 0
                         vehicle_count = 0
                         confidence_threshold = 0.3  # 降低置信度阈值以提高检测灵敏度
@@ -1915,23 +2019,8 @@ class CameraInfoService:
                 except Exception as e:
                     logger.error(f"人员车辆检测失败: {str(e)}")
             
-            # 检测害虫
-            if mode in [1, 5]:
-                try:
-                    def detect_pest():
-                        if DetectionService.pest_detector and DetectionService.pest_detector.model is not None:
-                            # 使用害虫检测器
-                            _, buffer = cv2.imencode('.jpg', frame_cv)
-                            image_bytes = buffer.tobytes()
-                            predictions, _ = DetectionService.pest_detector.detect_and_annotate(image_bytes)
-                            return len(predictions) > 0
-                        return False
-                    pest_detected = await asyncio.to_thread(detect_pest)
-                except Exception as e:
-                    logger.error(f"害虫检测失败: {str(e)}")
-            
             # 检测作物长势异常
-            if mode in [1, 6]:
+            if mode == 6:
                 try:
                     def detect_growth():
                         if DetectionService.crop_growth_model:
@@ -1944,7 +2033,7 @@ class CameraInfoService:
                     logger.error(f"作物长势检测失败: {str(e)}")
             
             # 检测柑橘成熟度
-            if mode in [1, 7]:
+            if mode == 7:
                 try:
                     def detect_citrus():
                         if DetectionService.citrus_detector and DetectionService.citrus_detector.model is not None:
@@ -1958,7 +2047,7 @@ class CameraInfoService:
                     logger.error(f"柑橘成熟度检测失败: {str(e)}")
 
             # 检测番茄成熟度
-            if mode in [1, 9]:
+            if mode == 9:
                 try:
                     def detect_tomato():
                         if DetectionService.tomato_detector and DetectionService.tomato_detector.model is not None:
@@ -1972,7 +2061,7 @@ class CameraInfoService:
                     logger.error(f"番茄成熟度检测失败: {str(e)}")
 
             # 检测苹果成熟度
-            if mode in [1, 10]:
+            if mode == 10:
                 try:
                     def detect_apple():
                         if DetectionService.apple_detector and DetectionService.apple_detector.model is not None:
@@ -1986,8 +2075,14 @@ class CameraInfoService:
                 except Exception as e:
                     logger.error(f"苹果成熟度检测失败: {str(e)}")
 
-            # 简单的区域入侵检测（如果检测到人员或车辆，就认为有入侵）
-            intrusion_detected = person_count > 0 or vehicle_count > 0
+            # 区域入侵仅属于模式3；mode=1 只展示人数。
+            intrusion_detected = mode == 3 and (person_count > 0 or vehicle_count > 0)
+            if mode in [1, 4]:
+                fire_detected, smoke_detected = CameraInfoService._confirm_fire_smoke_detection(
+                    "single_frame",
+                    fire_detected,
+                    smoke_detected
+                )
             
             # 生成分析结果
             analysis_results = []
@@ -1996,7 +2091,7 @@ class CameraInfoService:
             detection_config = DetectionService.get_detection_config()
             
             # 根据分析模式添加对应的检测结果
-            if mode in [1, 2]:
+            if mode == 2:
                 if detection_config.get('enableHelmet', True) or detection_config.get('enableVest', True):
                     if detection_config.get('enableHelmet', True):
                         analysis_results.append({"label": "未戴安全帽", "value": "未检测到" if not helmet_detected else "检测到"})
@@ -2009,7 +2104,10 @@ class CameraInfoService:
                     {"label": "烟雾检测", "value": "未检测到" if not smoke_detected else "检测到"}
                 ])
             
-            if mode in [1, 3]:
+            if mode == 1:
+                analysis_results.append({"label": "人员检测", "value": f"{person_count}人"})
+
+            if mode == 3:
                 if detection_config.get('enableVehicleIntrusion', True):
                     analysis_results.extend([
                         {"label": "人员检测", "value": f"{person_count}人"},
@@ -2017,17 +2115,12 @@ class CameraInfoService:
                         {"label": "区域入侵", "value": "未检测到" if not intrusion_detected else "检测到"}
                     ])
             
-            if mode in [1, 5]:
-                analysis_results.append({
-                    "label": "害虫检测", "value": "未检测到" if not pest_detected else "检测到"
-                })
-            
-            if mode in [1, 6]:
+            if mode == 6:
                 analysis_results.append({
                     "label": "作物长势异常", "value": "未检测到" if not growth_abnormal_detected else "检测到"
                 })
             
-            if mode in [1, 7]:
+            if mode == 7:
                 # 使用柑橘跟踪器进行去重
                 citrus_tracker = CameraInfoService._get_citrus_tracker()
                 citrus_tracker_summary = citrus_tracker.update(citrus_predictions)
@@ -2082,7 +2175,7 @@ class CameraInfoService:
                         "value": "[ERROR] 未检测到橘子"
                     })
 
-            if mode in [1, 9]:
+            if mode == 9:
                 # 使用番茄跟踪器进行去重
                 tracker = CameraInfoService._get_tomato_tracker()
                 new_tomatoes, all_tracked = tracker.update(tomato_predictions)
@@ -2157,7 +2250,7 @@ class CameraInfoService:
                     })
 
             # 苹果成熟度检测结果生成
-            if mode in [1, 10]:
+            if mode == 10:
                 # 使用苹果跟踪器进行去重
                 apple_tracker = CameraInfoService._get_apple_tracker()
                 apple_tracker_summary = apple_tracker.update(apple_predictions)
@@ -2237,6 +2330,12 @@ class CameraInfoService:
                         "label": "苹果检测状态",
                         "value": "[ERROR] 未检测到苹果"
                     })
+
+            await CameraInfoService._broadcast_analysis_results(
+                analysis_results,
+                camera_id=camera_id,
+                source=source
+            )
 
             # 直接返回原始结果
             return {"results": analysis_results}
